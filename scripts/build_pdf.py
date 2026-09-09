@@ -35,16 +35,19 @@ def main() -> int:
     if not os.path.isfile(TEX):
         print(f"missing {TEX}", file=sys.stderr)
         return 1
-    if not os.path.isfile(os.path.join(TEX_DIR, "sn-jnl.cls")):
-        print("missing vendored sn-jnl.cls", file=sys.stderr)
+    tex_styles = os.path.join(ROOT, "tex")
+    if not os.path.isfile(os.path.join(tex_styles, "sn-jnl.cls")):
+        print("missing vendored tex/sn-jnl.cls", file=sys.stderr)
         return 2
     engine = _engine()
     if not engine:
         print("no PDF engine (tectonic/pdflatex/xelatex)", file=sys.stderr)
         return 3
     env = os.environ.copy()
-    env["TEXINPUTS"] = TEX_DIR + os.pathsep + env.get("TEXINPUTS", "")
-    env["BSTINPUTS"] = TEX_DIR + os.pathsep + env.get("BSTINPUTS", "")
+    texinputs = os.pathsep.join([tex_styles, TEX_DIR, env.get("TEXINPUTS", "")])
+    bstinputs = os.pathsep.join([tex_styles, TEX_DIR, env.get("BSTINPUTS", "")])
+    env["TEXINPUTS"] = texinputs
+    env["BSTINPUTS"] = bstinputs
     base = os.path.basename(TEX)
     if os.path.basename(engine) == "tectonic" or engine.endswith("/tectonic"):
         rc = _run([engine, "--keep-logs", "--keep-intermediates", "-o", TEX_DIR, TEX], cwd=TEX_DIR, env=env)

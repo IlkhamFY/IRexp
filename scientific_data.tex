@@ -1,4 +1,4 @@
-﻿% IRexp â€” Nature Scientific Data Data Descriptor
+% IRexp --- Nature Scientific Data Data Descriptor
 % Official Springer Nature authoring template: sn-jnl.cls (Dec 2024 package)
 % Styles in tex/ (sn-jnl.cls + bst); sn-article provenance under tex/sn-article.
 % Markdown working notes: docs/SCIENTIFIC_DATA.md
@@ -15,9 +15,11 @@
 \usepackage{amsmath,amssymb}
 \usepackage{booktabs,array,tabularx}
 \usepackage{xcolor}
-\usepackage{url}
 \usepackage{enumitem}
 \setlist{nosep,leftmargin=1.4em}
+
+% Paragraphs are used as run-in heads (Nature-like), not bookmark levels 4.
+\hypersetup{bookmarksdepth=2}
 
 \graphicspath{{figures/}{../figures/}{./}}
 
@@ -25,7 +27,7 @@
 
 \begin{document}
 
-%% Title â‰¤110 chars. Parallel NMRexp pattern: brand + ``A database ofâ€¦'' (no ``agentic''
+%% Title <=110 chars. Parallel NMRexp pattern: brand + ``A database of...'' (no ``agentic''
 %% advertising in the title; agent reuse stays in abstract / Background).
 %% 72 characters including spaces.
 \title[IRexp experimental infrared band lists]{%
@@ -110,17 +112,20 @@ choice when simulated multimodal coverage is required~\citep{zipoli2025uspto}.
 \begin{figure}[ht]
 \centering
 \includegraphics[width=\textwidth]{fig_irexp_positioning.pdf}
-\caption{Summary of major IR and spectral-list resources.
+\caption{Summary of major \emph{IR} resources (NMRexp omitted as a bar competitor).
 \textbf{IRexp} (this work) holds 121,233 experimental \emph{band lists}
 (cm$^{-1}$ peak positions) with bulk redistribution and per-record licence
-pools; stacked bars show structure-linked (43,060) and commercial CC-BY/CC0
+pools; grouped bars show structure-linked (43,060) and commercial CC-BY/CC0
 (88,545) subsets.
-\textbf{NMRexp}~\citep{wang2025nmrexp} is the modality peer for literature-mined
-NMR peak lists (3,372,987 records; different object).
 \textbf{SDBS} FT-IR ($\sim$54,000 digitised absorbance spectra; AIST 2015) and
 \textbf{NIST} WebBook ($\sim$17,000 gas-phase IR; approximate) are view-only with
 no bulk export.
-Sidebar: IRexp scale, redistributable commercial pool, and DOI traceability.
+\textbf{Zipoli et al.}~\citep{zipoli2025uspto} contribute 177,461 \emph{computed}
+IR spectra (open; different object).
+NMRexp~\citep{wang2025nmrexp} is the literature-mining modality peer for NMR peak
+lists and is not plotted here.
+Panel~B summarises redistributability, licence pools, DOI traceability, and the
+peak-list (not absorbance) object.
 Band lists $\neq$ absorbance spectra.}
 \label{fig:positioning}
 \end{figure}
@@ -188,7 +193,7 @@ A harvest snapshot records 188,016 distinct PMC identifiers scanned
 (\texttt{data/irexp/seen\_papers.txt.gz}).
 The released corpus retains records from 15,416 unique \texttt{PMC:*} accessions.
 Extraction operates on open-access plain text objects at flat S3 keys
-\texttt{PMC\{id\}.\{v\}/PMC\{id\}.\{v\}.txt}.
+\texttt{PMC<id>.<v>/PMC<id>.<v>.txt}.
 Europe PMC full-text XML is used for some validation re-fetches.
 The released IRexp DOIs are exclusively \texttt{PMC:*} accessions or the Chemotion
 deposit DOI; no paywalled publisher DOI appears in the 121,233-record file.
@@ -254,7 +259,7 @@ in the repository but contributes 0 records to the released IRexp
         (\texttt{open access[filter]} + characterisation-format IR query;
         year/month sliced).
   \item Fetch OA full text from PMC-OA S3 plain-text objects
-        (\texttt{PMC\{id\}.\{v\}.txt}).
+        (\texttt{PMC<id>.<v>.txt}).
   \item Ingest Chemotion deposit author-curated band lists + structures
         (\texttt{scripts/chemotion\_to\_irexp.py}).
   \item Persist harvest provenance in \texttt{seen\_papers.txt.gz} and optional
@@ -356,7 +361,9 @@ Required chemistry fields for an IR entry:
 \begin{table}[ht]
 \caption{Core fields of an IRexp JSON record.}\label{tab:fields}
 \scriptsize
-\begin{tabular}{@{}>{\ttfamily}l>{\raggedright\arraybackslash}p{1.6cm}>{\raggedright\arraybackslash}p{7.2cm}@{}}
+\begin{tabular}{@{}>{\ttfamily\raggedright\arraybackslash}p{3.35cm}
+  >{\raggedright\arraybackslash}p{1.55cm}
+  >{\raggedright\arraybackslash}p{6.15cm}@{}}
 \toprule
 \multicolumn{1}{l}{Field} & Type & Description \\
 \midrule
