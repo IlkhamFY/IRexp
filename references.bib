@@ -1,5 +1,7 @@
-% Bibliography for docs/scientific_data/scientific_data.tex (Track 2).
-% Keep focused on data-descriptor citations; do not import the full diagnosis bibliography.
+% Bibliography for scientific_data.tex (Nature sn-nature style).
+% Keep focused on data-descriptor citations; do not import the diagnosis bibliography.
+% Conference papers are stored as article entries: the Nature bst
+% inproceedings path pops an empty stack when editor is missing.
 
 @article{wang2025nmrexp,
   author  = {Wang, Jun-Jie and Jin, Yongqi and Zhi, Chen-Yu and Liu, Yu-Jie and
@@ -25,19 +27,20 @@
   doi     = {10.1038/s41597-025-05729-8}
 }
 
-@inproceedings{yang2026nmrtrans,
-  author    = {Yang, Liujia and Yang, Zhuo and Xie, Jiaqing and
-               Wang, Yubin and Gao, Ben and Wei, Xingjian and
-               Sun, Jiaxing and Wu, Jiang and He, Conghui and
-               Li, Yuqiang and Gu, Qinying},
-  title     = {{NMRTrans}: structure elucidation from experimental {NMR} spectra
-               via set transformers},
-  booktitle = {{Proc. 32nd ACM SIGKDD Conf. Knowledge Discovery and Data Mining
-               (KDD '26), Vol. 2}},
-  year      = {2026},
-  pages     = {12621--12632},
-  doi       = {10.1145/3770855.3818935},
-  note      = {arXiv:2602.10158; NMRSpec corpus context}
+@article{yang2026nmrtrans,
+  author  = {Yang, Liujia and Yang, Zhuo and Xie, Jiaqing and
+             Wang, Yubin and Gao, Ben and Wei, Xingjian and
+             Sun, Jiaxing and Wu, Jiang and He, Conghui and
+             Li, Yuqiang and Gu, Qinying},
+  title   = {{NMRTrans}: structure elucidation from experimental {NMR} spectra
+             via set transformers},
+  journal = {{Proc. 32nd {ACM} {SIGKDD} Conf. Knowledge Discovery and Data Mining}},
+  year    = {2026},
+  volume  = {2},
+  pages   = {12621--12632},
+  doi     = {10.1145/3770855.3818935},
+  url     = {https://doi.org/10.1145/3770855.3818935},
+  note    = {arXiv:2602.10158; {NMRSpec} corpus context}
 }
 
 @article{lowe2011opsin,
@@ -55,7 +58,7 @@
   author  = {Landrum, Greg},
   title   = {{RDKit}: Open-source cheminformatics},
   year    = {2026},
-  howpublished = {\url{https://www.rdkit.org}},
+  url     = {https://www.rdkit.org},
   note    = {Accessed 2026-01-01}
 }
 
@@ -75,7 +78,7 @@
   author  = {{National Library of Medicine}},
   title   = {{NCBI PMC Open Access Subset}},
   year    = {2026},
-  howpublished = {\url{https://www.ncbi.nlm.nih.gov/pmc/tools/openftlist/}},
+  url     = {https://www.ncbi.nlm.nih.gov/pmc/tools/openftlist/},
   note    = {Accessed 2026-01-01}
 }
 
@@ -86,22 +89,24 @@
                  spectroscopy data ({Chemotion IR})},
   institution = {Karlsruhe Institute of Technology},
   year        = {2024},
-  doi         = {10.22000/OGoEQGlsZGElrgst}
+  doi         = {10.22000/OGoEQGlsZGElrgst},
+  url         = {https://doi.org/10.22000/OGoEQGlsZGElrgst}
 }
 
 @misc{nist_webbook,
   author  = {{National Institute of Standards and Technology}},
   title   = {{NIST Chemistry WebBook}, {SRD} 69},
   year    = {2026},
-  howpublished = {\url{https://webbook.nist.gov}},
-  note    = {doi:10.18434/T4D303; accessed 2026-01-01}
+  url     = {https://webbook.nist.gov},
+  doi     = {10.18434/T4D303},
+  note    = {Accessed 2026-01-01}
 }
 
 @misc{sdbs,
   author  = {{National Institute of Advanced Industrial Science and Technology}},
   title   = {{Spectral Database for Organic Compounds} ({SDBS})},
   year    = {2026},
-  howpublished = {\url{https://sdbs.db.aist.go.jp}},
+  url     = {https://sdbs.db.aist.go.jp},
   note    = {Accessed 2026-01-01}
 }
 
@@ -116,17 +121,6 @@
   volume  = {51},
   pages   = {D1373--D1380},
   doi     = {10.1093/nar/gkac956}
-}
-
-@article{swain2016chemdataextractor,
-  author  = {Swain, Matthew C. and Cole, Jacqueline M.},
-  title   = {{ChemDataExtractor}: a toolkit for automated extraction of chemical
-             information from the scientific literature},
-  journal = {J. Chem. Inf. Model.},
-  year    = {2016},
-  volume  = {56},
-  pages   = {1894--1904},
-  doi     = {10.1021/acs.jcim.6b00207}
 }
 
 @article{yabbarov2026irspectra,

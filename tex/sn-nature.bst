@@ -1452,7 +1452,6 @@ FUNCTION {inproceedings}
   format.authors "author" output.check
 	  new.block
 	  format.editors output
-add.blank
   format.inpro.title "title" output.check
   new.block
   crossref missing$
