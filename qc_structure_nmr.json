@@ -1,0 +1,275 @@
+{
+  "description": "IRexp Scientific Data Technical Validation QC package",
+  "date": "2026-08-27",
+  "transcription_fidelity": {
+    "n60": {
+      "source": "data/audit/extraction_audit.json",
+      "command": "python3 scripts/audit_extraction.py --n 60 --seed 0",
+      "sampled_records": 60,
+      "bands_confirmed": "560/560",
+      "records_fully_confirmed": "60/60",
+      "band_fidelity": 1.0,
+      "record_fidelity": 1.0,
+      "pool": "PMC only"
+    },
+    "n200": {
+      "source": "data/audit/extraction_audit_n200.json",
+      "command": "python3 scripts/audit_extraction.py --n 200 --seed 0",
+      "sampled_records": 200,
+      "bands_confirmed": "2250/2261",
+      "records_fully_confirmed": "196/200",
+      "band_fidelity": 0.9951,
+      "record_fidelity": 0.98,
+      "pool": "PMC only",
+      "note": "Enlarged sample; Europe PMC full-text re-fetch; \u00b11 cm\u207b\u00b9 integer match"
+    }
+  },
+  "extraction_recall_proxy": {
+    "method": "Automatic recall proxy on the harvest path: re-fetch PMC-OA S3 plain text (fallback Europe PMC XML); re-run extract_records; compare IR band-sets to released IRexp rows for the same PMCID (\u00b11 cm\u207b\u00b9). Not a human recall audit.",
+    "sampled_papers": 120,
+    "fetched": 120,
+    "pool_pmcs": 15416,
+    "seed": 0,
+    "n": 120,
+    "text_sources": {
+      "s3": 120
+    },
+    "released_bands_confirmed_in_reextract": {
+      "hit": 7981,
+      "total": 8059,
+      "rate": 0.9903,
+      "wilson95": [
+        0.9879,
+        0.9922
+      ]
+    },
+    "reextract_lists_matched_to_release": {
+      "matched": 811,
+      "total": 871,
+      "rate": 0.9311,
+      "wilson95": [
+        0.9123,
+        0.9461
+      ]
+    },
+    "list_level_recall_proxy": 0.9848,
+    "list_level_recall_proxy_wilson95": [
+      0.9743,
+      0.9911
+    ],
+    "released_lists_unmatched_total": 13,
+    "released_lists_total": 858,
+    "papers_all_released_lists_recovered": {
+      "count": 115,
+      "of": 120,
+      "rate": 0.9583,
+      "wilson95": [
+        0.9062,
+        0.9821
+      ]
+    },
+    "papers_with_extra_reextract_lists": 18,
+    "source": "data/audit/extraction_recall_proxy_n120.json",
+    "command": "python3 scripts/audit_extraction_recall.py --n 120 --seed 0",
+    "prior_n40_source": "data/audit/extraction_recall_proxy.json"
+  },
+  "structure_nmr_consistency_sample": {
+    "corpus": "data/irexp_resolved/irexp_resolved.jsonl.gz",
+    "seed": 0,
+    "c13": {
+      "sample_size": 500,
+      "scored": 500,
+      "peaks_gt_carbon_count": 17,
+      "rate": 0.034
+    },
+    "h1": {
+      "sample_size": 500,
+      "scored": 497,
+      "integration_gt_formula_plus_2": 17,
+      "rate": 0.034,
+      "skipped_unparseable_integral": 3
+    },
+    "method": "Comma/semicolon-split 13C \u03b4 tokens (leading float in [-10,235]); RDKit carbon/hydrogen counts; 1H integrals from (nH) patterns"
+  },
+  "structure_nmr_quarantine_full_resolved": {
+    "description": "Full-corpus structure\u2013NMR/IR consistency quarantine on irexp_resolved",
+    "date": "2026-08-26",
+    "corpus": "data/irexp_resolved/irexp_resolved.jsonl.gz",
+    "n_records": 43060,
+    "n_with_c_nmr": 34231,
+    "n_with_h_nmr": 39672,
+    "n_quarantined": 1882,
+    "quarantine_rate_of_resolved": 0.0437,
+    "c13_peaks_gt_carbons": {
+      "count": 1194,
+      "among_with_c_nmr": 34231,
+      "rate": 0.0349
+    },
+    "h1_integration_gt_formula_plus_2": {
+      "count": 1141,
+      "among_with_h_nmr": 39672,
+      "rate": 0.0288
+    },
+    "ir_band_out_of_range": 0,
+    "smiles_unparseable": 0,
+    "reason_counts": {
+      "h1_integration_gt_formula_plus_2": 1141,
+      "c13_peaks_gt_carbons": 1194
+    },
+    "quarantine_file": "data/audit/structure_nmr_quarantine.jsonl.gz",
+    "method": "parse_h_peaks/parse_c_peaks on author strings; RDKit C/H counts; fail if 13C peak count > carbons, or 1H integral sum > formula H+2, or any IR band outside [350,4000] cm-1, or SMILES unparseable",
+    "note": "Quarantine is diagnostic \u2014 release files are unchanged. Re-users should filter these IDs before supervised training."
+  },
+  "ir_physical_window": {
+    "corpus": "data/irexp/irexp.jsonl.gz",
+    "bands_total": 1360866,
+    "out_of_range_outside_350_4000": 0,
+    "records": 121233
+  },
+  "provenance_counts": {
+    "irexp_total": 121233,
+    "pmc": 119345,
+    "chemotion": 1888,
+    "unique_pmc_accessions": 15416,
+    "seen_papers_scanned": 188016,
+    "structure_linked": 43060,
+    "full_quadruples": 33201,
+    "median_bands_pmc": 9,
+    "median_bands_chemotion": 39,
+    "licence_pool_commercial": 88545,
+    "licence_pool_non_commercial": 21823,
+    "licence_pool_empty_unknown": 8963,
+    "licence_pool_sharealike": 1897,
+    "licence_pool_other": 5
+  },
+  "harvest_provenance": {
+    "primary_s3_harvest_window": "2026-06-07 (UTC); incremental snapshots through evening of 2026-06-07",
+    "chemotion_ingest_date": "2026-06-07",
+    "discovery": "NCBI esearch with open access[filter] + IR characterisation query; not a walk of oa_comm/oa_noncomm package trees",
+    "fetch": "s3://pmc-oa-opendata flat keys PMC{id}.{v}/PMC{id}.{v}.txt via HTTPS",
+    "licence_alignment": "Post-hoc Europe PMC licence join (scripts/join_pmc_licences.py) segregates commercial vs NC vs empty/unknown; equivalent intent to oa_comm vs oa_noncomm but applied at article licence field, not S3 package directory"
+  },
+  "chemist_proxy_audit": {
+    "label": "automated_chemist_proxy",
+    "human_expert_audit": false,
+    "method": "Stratified multi-check automated chemist-proxy: IR window, band-list sanity, RDKit formula vs 13C/1H physics (structure-linked), PMC re-fetch transcription (\u00b11 cm\u207b\u00b9). Explicitly NOT a human molecular-skeleton audit.",
+    "seed": 0,
+    "n_requested": 280,
+    "n_scored": 280,
+    "strata": {
+      "pool_sizes": {
+        "pmc_ir_only": 78173,
+        "pmc_struct_commercial": 29263,
+        "pmc_struct_other_licence": 11909,
+        "chemotion": 1888
+      },
+      "quotas": {
+        "pmc_struct_commercial": 98,
+        "pmc_struct_other_licence": 42,
+        "pmc_ir_only": 98,
+        "chemotion": 42
+      }
+    },
+    "pass_rate": 0.9679,
+    "pass_count": 271,
+    "wilson95_pass": [
+      0.9401,
+      0.983
+    ],
+    "by_stratum": {
+      "chemotion": {
+        "n": 42,
+        "pass": 42,
+        "pass_rate": 1.0,
+        "wilson95": [
+          0.9162,
+          1.0
+        ]
+      },
+      "pmc_ir_only": {
+        "n": 98,
+        "pass": 97,
+        "pass_rate": 0.9898,
+        "wilson95": [
+          0.9444,
+          0.9982
+        ]
+      },
+      "pmc_struct_commercial": {
+        "n": 98,
+        "pass": 92,
+        "pass_rate": 0.9388,
+        "wilson95": [
+          0.8728,
+          0.9716
+        ]
+      },
+      "pmc_struct_other_licence": {
+        "n": 42,
+        "pass": 40,
+        "pass_rate": 0.9524,
+        "wilson95": [
+          0.8421,
+          0.9868
+        ]
+      }
+    },
+    "transcription_refetch": {
+      "records_fetched": 238,
+      "bands_confirmed": "2500/2508",
+      "band_fidelity": 0.9968,
+      "records_fully_confirmed": "236/238",
+      "record_fidelity": 0.9916
+    },
+    "structure_linked_in_sample": 182,
+    "structure_physics_fail_in_sample": 5,
+    "structure_physics_pass_rate": 0.9725,
+    "fail_reason_counts": {
+      "h1_integration_gt_formula_plus_2": 4,
+      "transcription_miss": 2,
+      "c13_peaks_gt_carbons": 1,
+      "duplicate_integer_bands": 2
+    },
+    "source": "data/audit/chemist_proxy_audit.json",
+    "command": "python3 scripts/audit_chemist_proxy.py --n 280 --seed 0"
+  },
+  "licence_pools": {
+    "source": "data/irexp/pmc_licence_summary.json",
+    "pools": {
+      "commercial": 88545,
+      "non_commercial": 21823,
+      "empty_unknown": 8963,
+      "other": 5,
+      "sharealike": 1897
+    },
+    "crossref_recovery": {
+      "generated_at": "2026-08-27T03:22:10.537961+00:00",
+      "policy": "Only promote when Crossref exposes Creative Commons or ACS authorchoice CC URLs; ignore Elsevier/Springer TDM-only links.",
+      "probe": "data/audit/empty_licence_crossref_probe.json",
+      "pmcids_promoted": 146,
+      "records_before_pools": {
+        "commercial": 87617,
+        "non_commercial": 20938,
+        "empty_unknown": 10781,
+        "sharealike": 1897
+      },
+      "records_after_pools": {
+        "commercial": 88545,
+        "non_commercial": 21823,
+        "empty_unknown": 8963,
+        "other": 5,
+        "sharealike": 1897
+      },
+      "records_moved": {
+        "empty_unknown->commercial": 928,
+        "empty_unknown->other": 5,
+        "empty_unknown->non_commercial": 885
+      },
+      "delta_commercial": 928,
+      "delta_empty_unknown": -1818,
+      "total_records": 121233,
+      "dry_run": false
+    },
+    "note": "Total records unchanged (121233); commercial +928 via Crossref/EPMC recovery of empty/unknown"
+  }
+}

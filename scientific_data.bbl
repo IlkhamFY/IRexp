@@ -1,0 +1,102 @@
+\begin{thebibliography}{10}
+\expandafter\ifx\csname url\endcsname\relax
+  \def\url#1{\burl{#1}}\fi
+\expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{URL }\fi
+\providecommand{\bibinfo}[2]{#2}
+\providecommand{\eprint}[2][]{\url{#2}}
+\providecommand{\doi}[1]{\url{https://doi.org/#1}}
+\bibcommenthead
+
+\bibitem{nist_webbook}
+\bibinfo{author}{{National Institute of Standards and Technology}}.
+\newblock \bibinfo{title}{{NIST Chemistry WebBook}, {SRD} 69}.
+\newblock \bibinfo{howpublished}{\url{https://webbook.nist.gov}}
+  (\bibinfo{year}{2026}).
+\newblock \bibinfo{note}{Doi:10.18434/T4D303; accessed 2026-01-01}.
+
+\bibitem{sdbs}
+\bibinfo{author}{{National Institute of Advanced Industrial Science and
+  Technology}}.
+\newblock \bibinfo{title}{{Spectral Database for Organic Compounds} ({SDBS})}.
+\newblock \bibinfo{howpublished}{\url{https://sdbs.db.aist.go.jp}}
+  (\bibinfo{year}{2026}).
+\newblock \bibinfo{note}{Accessed 2026-01-01}.
+
+\bibitem{zipoli2025uspto}
+\bibinfo{author}{Zipoli, F.}, \bibinfo{author}{Alberts, M.} \&
+  \bibinfo{author}{Laino, T.}
+\newblock \bibinfo{title}{{IR}-{NMR} multimodal computational spectra dataset
+  for 177{K} patent-extracted organic molecules}.
+\newblock \emph{\bibinfo{journal}{Sci. Data}} \textbf{\bibinfo{volume}{12}},
+  \bibinfo{pages}{1380} (\bibinfo{year}{2025}).
+
+\bibitem{wang2025nmrexp}
+\bibinfo{author}{Wang, J.-J.} \emph{et~al.}
+\newblock \bibinfo{title}{{NMRexp}: a database of 3.3 million experimental
+  {NMR} spectra}.
+\newblock \emph{\bibinfo{journal}{Sci. Data}} \textbf{\bibinfo{volume}{12}},
+  \bibinfo{pages}{1956} (\bibinfo{year}{2025}).
+
+\bibitem{yang2026nmrtrans}
+\bibinfo{author}{Yang, L.} \emph{et~al.}
+\newblock \emph{\bibinfo{title}{{NMRTrans}: structure elucidation from
+  experimental {NMR} spectra via set transformers}},
+  \bibinfo{pages}{12621--12632} (\bibinfo{year}{2026}).
+\newblock \bibinfo{note}{ArXiv:2602.10158; NMRSpec corpus context}.
+
+\bibitem{lowe2011opsin}
+\bibinfo{author}{Lowe, D.~M.}, \bibinfo{author}{Corbett, P.~T.},
+  \bibinfo{author}{Murray-Rust, P.} \& \bibinfo{author}{Glen, R.~C.}
+\newblock \bibinfo{title}{Chemical name to structure: {OPSIN}, an open source
+  solution}.
+\newblock \emph{\bibinfo{journal}{J. Chem. Inf. Model.}}
+  \textbf{\bibinfo{volume}{51}}, \bibinfo{pages}{739--753}
+  (\bibinfo{year}{2011}).
+
+\bibitem{landrum_rdkit}
+\bibinfo{author}{Landrum, G.}
+\newblock \bibinfo{title}{{RDKit}: Open-source cheminformatics}.
+\newblock \bibinfo{howpublished}{\url{https://www.rdkit.org}}
+  (\bibinfo{year}{2026}).
+\newblock \bibinfo{note}{Accessed 2026-01-01}.
+
+\bibitem{krenn2020selfies}
+\bibinfo{author}{Krenn, M.}, \bibinfo{author}{H{\"a}se, F.},
+  \bibinfo{author}{Nigam, A.}, \bibinfo{author}{Friederich, P.} \&
+  \bibinfo{author}{Aspuru-Guzik, A.}
+\newblock \bibinfo{title}{Self-referencing embedded strings ({SELFIES}): a
+  100\% robust molecular string representation}.
+\newblock \emph{\bibinfo{journal}{Mach. Learn.: Sci. Technol.}}
+  \textbf{\bibinfo{volume}{1}}, \bibinfo{pages}{045024} (\bibinfo{year}{2020}).
+
+\bibitem{yabbarov2026irspectra}
+\bibinfo{author}{Yabbarov, I.} \& \bibinfo{author}{Vargas-Hern{\'a}ndez, R.~A.}
+\newblock \bibinfo{title}{Generation recall, not verification, binds {LLM}
+  structure elucidation from literature spectra}.
+\newblock \emph{\bibinfo{journal}{ICLR}}  (\bibinfo{year}{2026}).
+\newblock \bibinfo{note}{Conference manuscript, in preparation}.
+
+\bibitem{pmc_oa}
+\bibinfo{author}{{National Library of Medicine}}.
+\newblock \bibinfo{title}{{NCBI PMC Open Access Subset}}.
+\newblock
+  \bibinfo{howpublished}{\url{https://www.ncbi.nlm.nih.gov/pmc/tools/openftlist/}}
+  (\bibinfo{year}{2026}).
+\newblock \bibinfo{note}{Accessed 2026-01-01}.
+
+\bibitem{chemotion2024}
+\bibinfo{author}{Jung, N.}, \bibinfo{author}{Tremouilhac, P.},
+  \bibinfo{author}{Punjabi, D.} \& \bibinfo{author}{Huang, P.-C.}
+\newblock \bibinfo{title}{{Chemotion Repository} -- data collection: {FT-IR}
+  spectroscopy data ({Chemotion IR})}.
+\newblock \bibinfo{type}{Tech. Rep.}, \bibinfo{institution}{Karlsruhe Institute
+  of Technology} (\bibinfo{year}{2024}).
+
+\bibitem{kim2023pubchem}
+\bibinfo{author}{Kim, S.} \emph{et~al.}
+\newblock \bibinfo{title}{{PubChem} 2023 update}.
+\newblock \emph{\bibinfo{journal}{Nucleic Acids Res.}}
+  \textbf{\bibinfo{volume}{51}}, \bibinfo{pages}{D1373--D1380}
+  (\bibinfo{year}{2023}).
+
+\end{thebibliography}
