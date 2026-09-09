@@ -1,6 +1,6 @@
 # IRexp: A database of experimental infrared band lists from open literature
 
-**Ilkham Yabbarov**^1,†^, **Rodrigo A. Vargas-Hernández**^1,2,3,†^
+**Ilkham Yabbarov**^1,†^, **Rudra Sondhi**^1, **Rodrigo A. Vargas-Hernández**^1,2,3,†^
 
 ^1^ Department of Chemistry and Chemical Biology, McMaster University, Hamilton, Ontario L8S 4L8, Canada.  
 ^2^ Brockhouse Institute for Materials Research, McMaster University, Hamilton, Ontario L8S 4L8, Canada.  
@@ -9,15 +9,14 @@
 † Corresponding authors. E-mail: yabbaroi@mcmaster.ca, vargashr@mcmaster.ca  
 (No equal-contribution footnote — distinct roles; both corresponding.)
 
-<!-- ORCID / funding — human blockers; do not invent values.
-       Sci Data authors: I.Y. + R.A.V.-H. only.
+<!-- ORCID — human blockers; do not invent values.
        I. Yabbarov            ORCID: [TODO: confirm]
        R. A. Vargas-Hernández ORCID: 0000-0002-5559-6521
 -->
 
 ## Abstract
 
-IRexp is a redistributable collection of **experimental infrared band lists** (cm⁻¹ peak positions) mined from open chemistry literature, optionally with **author-reported** ¹H/¹³C NMR strings and resolved structures. The release holds **121,233** records (119,345 PMC OA; 1,888 Chemotion/RADAR4Chem), with **43,060** structure-linked and **33,201** full IR + ¹H + ¹³C + structure quadruples. IRexp stores **numeric band lists**, not absorbance traces. Records carry `source_doi` and stamped `license` / `license_pool`. Licensing is **mixed**: after Europe PMC joins plus conservative Crossref recovery of empty licences, **88,545** commercial (CC-BY/CC0), **21,823** non-commercial (NC*), **8,963** empty/unknown (excluded from commercial Zenodo), **1,897** ShareAlike (Chemotion + rare PMC SA), and **5** other (ND) — see `docs/scientific_data/LICENCE_REMEDIATION.md`. Reuse: multimodal training, retrieval, and tool-input for spectroscopic agents. Technical validation covers automated transcription, n=120 harvest-path recall proxies, stratified chemist-proxy (n=280), and full-corpus quarantine; these are automated checks and do not claim NMRexp-equivalent human expert audits. Complementary elucidation benchmarks are described in a companion research manuscript and are not analysed here. Data: Hugging Face `ilkhamfy/IRexp`; Zenodo `[TODO: 10.5281/zenodo.XXXXXXX]` (data-only deposit). Code is MIT-licensed.
+IRexp is a redistributable collection of **experimental infrared band lists** (cm⁻¹ peak positions) mined from open chemistry literature, optionally with **author-reported** ¹H/¹³C NMR strings and resolved structures. The release holds **121,233** records (119,345 PMC OA; 1,888 Chemotion/RADAR4Chem), with **43,060** structure-linked and **33,201** full IR + ¹H + ¹³C + structure quadruples. IRexp stores **numeric band lists**, not absorbance traces. Records carry `source_doi` and a stamped licence pool (**88,545** commercially redistributable CC-BY/CC0). Reuse: multimodal training, retrieval, and tool input. Technical validation covers automated transcription, harvest-path recall proxies, stratified chemist-proxy (n=280), and full-corpus quarantine; these are automated checks and do not claim NMRexp-equivalent human expert audits. Complementary elucidation benchmarks are described in a companion research manuscript and are not analysed here. Dataset: Hugging Face `ilkhamfy/IRexp`. Paper/manifests: `IlkhamFY/IRexp`. Code: `IlkhamFY/spectro-agent`. Zenodo data-only DOI pending (to be minted with the PI).
 
 <!-- Abstract word count target ≤170. Count on edit before submission. -->
 
@@ -44,10 +43,9 @@ Among openly redistributable *text-derived IR band lists*, IRexp is large by rec
 |--------|------|---------|
 | Positioning vs peers | `figures/fig_irexp_positioning.pdf` | Background |
 | Construction pipeline | `figures/fig_irexp_pipeline.pdf` | Methods |
-| Release overview | `figures/fig_irexp_overview.pdf` | Data Records |
-| Technical validation | `figures/fig_irexp_validation.pdf` | Technical Validation |
+| Distribution + validation | `figures/fig_irexp_distribution.pdf` | Data Records / TV |
 
-Regenerate: `bash scripts/build_all_scidata_figures.sh` (or individual `scripts/make_fig_irexp_*.py`).
+Regenerate: `bash scripts/build_all_scidata_figures.sh` (or individual `scripts/make_fig_irexp_*.py`). Manuscript tables are ≤3 (schema; files+licence pools; chemist-proxy).
 
 **What this Data Descriptor does not contain.** No hypothesis tests, no large-language-model accuracy tables, and no stage-decomposition of elucidation performance. Those belong in the complementary research paper.
 
@@ -174,9 +172,10 @@ Median bands: **9** (PMC), **39** (Chemotion). All **1,360,866** released IR ban
 
 ### Access
 
-- **Hugging Face:** https://huggingface.co/datasets/ilkhamfy/IRexp (public mirror with commercial / NC / SA / empty_unknown configs — see `LICENCE_REMEDIATION.md`).
-- **GitHub development mirror:** https://github.com/IlkhamFY/spectro-agent
-- **Zenodo archival snapshot:** `[TODO: 10.5281/zenodo.XXXXXXX]` — mint a **data-only** deposit (commercial primary + SA companion); do not reuse the combined IRSpectra-Bench `.zenodo.json` as the Sci Data archival record.
+- **Hugging Face:** https://huggingface.co/datasets/ilkhamfy/IRexp (bulk JSONL; commercial / NC / SA / empty_unknown configs — see `LICENCE_REMEDIATION.md`).
+- **Manuscript + manifests:** https://github.com/IlkhamFY/IRexp
+- **Harvest / pipeline code:** https://github.com/IlkhamFY/spectro-agent
+- **Zenodo archival snapshot:** DOI pending — to be minted with the PI (data-only; commercial primary + SA companion). Do not invent a DOI.
 
 ## Technical Validation
 
@@ -240,9 +239,10 @@ Every band in the full 121,233-record release lies in **[350, 4000] cm⁻¹** (0
 
 IRexp numeric extracts are available at:
 
-- Hugging Face Datasets: https://huggingface.co/datasets/ilkhamfy/IRexp  
-- GitHub: https://github.com/IlkhamFY/spectro-agent (`data/irexp/`, `data/irexp_resolved/`, `data/irexp_release/`)  
-- Zenodo: `[TODO: 10.5281/zenodo.XXXXXXX]` (archival DOI at proof; **data-only** deposit — primary artifact = commercial pool, `cc-by-4.0` metadata + SA companion; do not reuse the combined IRSpectra-Bench `.zenodo.json`)
+- Hugging Face Datasets (bulk JSONL): https://huggingface.co/datasets/ilkhamfy/IRexp  
+- Manuscript + manifests: https://github.com/IlkhamFY/IRexp (no bulk JSONL under `data/`)  
+- Harvest / pipeline code: https://github.com/IlkhamFY/spectro-agent  
+- Zenodo: DOI pending — to be minted with the PI (**data-only** deposit; commercial pool primary). Do not invent a DOI.
 
 Licensing summary (honest):
 
@@ -252,11 +252,12 @@ Licensing summary (honest):
 
 ## Code Availability
 
-Harvesting, extraction, structure resolution, licence pool splitting, and validation scripts are in https://github.com/IlkhamFY/spectro-agent under the **MIT License** (`LICENSE`). Principal modules: `spectro_scraper/` (`extract.py`, `normalize.py`, `pipeline.py`, `quality.py`); release harvest `scripts/s3_ir_harvest.py`, `scripts/chemotion_to_irexp.py`; licence join `scripts/join_pmc_licences.py`; validation `scripts/audit_extraction.py`, `scripts/audit_extraction_recall.py`, `scripts/quarantine_structure_nmr.py`; pool split `scripts/split_license_pools.py`. The version corresponding to this Descriptor will be tagged at Zenodo deposit time.
+Manuscript and manifests: https://github.com/IlkhamFY/IRexp. Harvesting, extraction, licence-pool splitting, and validation scripts: https://github.com/IlkhamFY/spectro-agent (MIT License). A release tag (`irexp-scidata` placeholder) will be pinned at Zenodo deposit; until then `main` @ `6c18914` (2026-08-31) is the public script snapshot.
 
 ## Author contributions
 
 **I.Y.:** conceptualization, methodology, software, data curation, validation, writing (original draft).  
+**R.S.:** writing (review and editing).  
 **R.A.V.-H.:** conceptualization, supervision, writing (review and editing).
 
 ## Competing interests
@@ -265,9 +266,9 @@ The authors declare no competing interests.
 
 ## Acknowledgements
 
-<!-- Funding and institutional support — AUTHORS / PI — human blocker; do not invent -->
+We acknowledge the support of the Natural Sciences and Engineering Research Council of Canada (NSERC), funding reference number 596133-2025 (CREATE for Accelerated Discovery, AccelD), delivered through the Acceleration Consortium. We thank the Department of Chemistry and Chemical Biology, McMaster University, for institutional support.
 
-Funding and institutional support will be confirmed by the authors at submission / proof.
+Sponsor logos are omitted from this Data Descriptor (Nature style); use the official Acceleration Consortium mark on posters/slides if required by AccelD.
 
 ## References
 
