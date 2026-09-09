@@ -35,6 +35,8 @@ paper instead.
 
 ## Related
 
-- Data on Hugging Face: https://huggingface.co/datasets/ilkhamfy/IRexp
+- This Data Descriptor (paper + manifests): https://github.com/IlkhamFY/IRexp
+- Dataset card / bulk JSONL: https://huggingface.co/datasets/ilkhamfy/IRexp
+- Harvest / pipeline code: https://github.com/IlkhamFY/spectro-agent
 - Companion research: `IRSpectra-Bench` (ICLR track)
-- Historical monorepo: https://github.com/IlkhamFY/spectro-agent
+- Zenodo data-only deposit: pending (to be minted with the PI; do not invent a DOI)

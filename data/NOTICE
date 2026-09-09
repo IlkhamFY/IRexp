@@ -54,7 +54,8 @@ only. Chemotion-derived or mixed-SA redistributions must remain CC-BY-SA-4.0.
 
 Code
 ----
-The code in this repository is released under the MIT License (see top-level LICENSE).
+Harvest / pipeline code is in https://github.com/IlkhamFY/spectro-agent (MIT License).
+This manuscript repository (https://github.com/IlkhamFY/IRexp) is paper + manifests only.
 
 Hugging Face
 ------------
