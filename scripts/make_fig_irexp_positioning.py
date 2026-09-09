@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
-"""Fig 1 — IRexp vs major IR resources. Broken y-axis de-emphasizes Zipoli.
+"""Fig 1 — IRexp vs major IR resources. Broken y-axis; Zipoli as stub/callout only.
 Frozen counts only. Design system: DejaVu Sans, ink #111111, PDF fonttype 42, PNG 600 dpi.
+v0.8: no full-height Zipoli bar; wider IRexp gaps; view-only labels #444.
 """
 from __future__ import annotations
 
@@ -29,7 +30,7 @@ BLUE = "#4A7EBB"
 ORANGE = "#D97B32"
 GREEN = "#3D8B5E"
 INK = "#111111"
-NOTE = "#666666"
+NOTE = "#444444"  # view-only / secondary labels (was #999/#666 — quieter than IRexp bold)
 GRAY = "#9AA0A6"
 ZIPOLI_FILL = "#DCE6F0"
 ZIPOLI_EDGE = "#9BB0C4"
@@ -38,8 +39,8 @@ SOFT = "#F7F8FA"
 LINE = "#D0D4D8"
 FONT = "DejaVu Sans"
 
-# Broken-axis windows (IRexp cluster dominates bottom panel)
-Y_BOT_MAX = 135_000
+# Bottom axis holds all experimental bars (IRexp 121k); Zipoli lives in top callout only
+Y_BOT_MAX = 130_000
 Y_TOP_MIN = 165_000
 Y_TOP_MAX = 185_000
 
@@ -67,7 +68,6 @@ def main() -> None:
     )
 
     fig = plt.figure(figsize=(7.2, 3.85))
-    # Left: broken axis (top strip + bottom main); right: attribute card
     gs = fig.add_gridspec(
         1,
         2,
@@ -84,10 +84,10 @@ def main() -> None:
     axb = fig.add_subplot(gs[0, 1])
 
     x0 = [0.0, 1.05, 2.45, 3.95]
-    width_irexp = 0.28
-    gap = 0.34  # more gap between IRexp triple
+    width_irexp = 0.24
+    gap = 0.50  # wider gap so IRexp value labels do not crowd
 
-    def _draw_bars(ax_draw, clip_top: bool) -> None:
+    def _draw_experimental(ax_draw) -> None:
         ax_draw.axhline(0, color=INK, lw=0.55, zorder=2)
 
         # SDBS / NIST (view-only, hatched mid-gray)
@@ -103,41 +103,39 @@ def main() -> None:
                 zorder=3,
             )
             bars[0].set_hatch("///")
-            if not clip_top:
-                ax_draw.text(
-                    x,
-                    total + 3500,
-                    _fmt(total),
-                    ha="center",
-                    va="bottom",
-                    fontsize=7.0,
-                    fontweight="normal",
-                    color=NOTE,
-                )
+            ax_draw.text(
+                x,
+                total + 2800,
+                _fmt(total),
+                ha="center",
+                va="bottom",
+                fontsize=7.0,
+                fontweight="normal",
+                color=NOTE,
+            )
 
-        # Zipoli — de-emphasized light fill, thin stroke
+        # Zipoli — NO full-height bar. Narrow stub + "see ↑" in computed column only.
         x = x0[2]
+        stub_h = 12_000  # short marker, does not fill the strip / bottom panel
         ax_draw.bar(
             [x],
-            [ZIPOLI],
-            width=0.46,
+            [stub_h],
+            width=0.22,
             color=ZIPOLI_FILL,
             edgecolor=ZIPOLI_EDGE,
             linewidth=0.7,
             zorder=3,
         )
-        if clip_top:
-            # value lives on the top strip
-            ax_draw.text(
-                x,
-                ZIPOLI + 800,
-                _fmt(ZIPOLI) + " ↑",
-                ha="center",
-                va="bottom",
-                fontsize=6.4,
-                fontweight="normal",
-                color=NOTE,
-            )
+        ax_draw.text(
+            x,
+            stub_h + 3500,
+            "see ↑",
+            ha="center",
+            va="bottom",
+            fontsize=6.8,
+            fontweight="bold",
+            color=NOTE,
+        )
 
         # IRexp triple — strong fills, wider gaps, bold dark values
         x = x0[3]
@@ -153,28 +151,63 @@ def main() -> None:
             linewidth=0.35,
             zorder=3,
         )
-        if not clip_top:
-            for xv, v in zip(xs, vals):
-                ax_draw.text(
-                    xv,
-                    v + 2800,
-                    _fmt(v),
-                    ha="center",
-                    va="bottom",
-                    fontsize=7.0,
-                    fontweight="bold",
-                    color=INK,
-                )
+        for xv, v in zip(xs, vals):
+            ax_draw.text(
+                xv,
+                v + 2200,
+                _fmt(v),
+                ha="center",
+                va="bottom",
+                fontsize=7.0,
+                fontweight="bold",
+                color=INK,
+            )
 
-    _draw_bars(ax_top, clip_top=True)
-    _draw_bars(ax, clip_top=False)
+    def _draw_zipoli_callout(ax_draw) -> None:
+        """Top strip: thin marker + secondary label — never a full-width tall bar."""
+        x = x0[2]
+        # short horizontal stub / tick marker at mid of top window
+        y_mark = (Y_TOP_MIN + Y_TOP_MAX) / 2
+        ax_draw.plot(
+            [x - 0.14, x + 0.14],
+            [y_mark, y_mark],
+            color=ZIPOLI_EDGE,
+            lw=2.2,
+            solid_capstyle="round",
+            zorder=4,
+            clip_on=False,
+        )
+        ax_draw.plot(
+            [x],
+            [y_mark],
+            marker="o",
+            markersize=4.5,
+            color=ZIPOLI_FILL,
+            markeredgecolor=ZIPOLI_EDGE,
+            markeredgewidth=0.8,
+            zorder=5,
+            clip_on=False,
+        )
+        ax_draw.text(
+            x,
+            y_mark + 4500,
+            f"{_fmt(ZIPOLI)} (simulated)",
+            ha="center",
+            va="bottom",
+            fontsize=6.8,
+            fontweight="bold",
+            color=NOTE,
+            clip_on=False,
+        )
+
+    _draw_experimental(ax)
+    _draw_zipoli_callout(ax_top)
 
     ax_top.set_ylim(Y_TOP_MIN, Y_TOP_MAX)
     ax.set_ylim(0, Y_BOT_MAX)
     ax_top.set_xlim(-0.55, 4.65)
     ax.set_xlim(-0.55, 4.65)
 
-    # Hide spines between break
     ax_top.spines["bottom"].set_visible(False)
     ax.spines["top"].set_visible(False)
     ax_top.tick_params(axis="x", bottom=False, labelbottom=False, length=0)
@@ -182,7 +215,6 @@ def main() -> None:
     ax_top.spines["right"].set_visible(False)
     ax.spines["right"].set_visible(False)
 
-    # Diagonal break marks
     d = 0.015
     kwargs = dict(transform=ax_top.transAxes, color=INK, clip_on=False, lw=0.7)
     ax_top.plot((-d, +d), (-d * 3, +d * 3), **kwargs)
@@ -205,16 +237,15 @@ def main() -> None:
     ax.set_ylabel("Number of IR records", fontsize=9, color=INK, labelpad=4)
     for a in (ax, ax_top):
         a.yaxis.set_major_formatter(FuncFormatter(_thousands))
-        a.tick_params(length=3, color=NOTE, labelcolor=INK)
+        a.tick_params(length=3, color="#666666", labelcolor=INK)
         a.yaxis.grid(True, color=FAINT, lw=0.5, zorder=0)
         a.set_axisbelow(True)
 
-    # Brackets above top strip
     def _bracket(x1: float, x2: float, y: float, text: str) -> None:
         ax_top.plot(
             [x1, x1, x2, x2],
             [y - 2500, y, y, y - 2500],
-            color=NOTE,
+            color="#666666",
             lw=0.7,
             clip_on=False,
         )
@@ -225,7 +256,7 @@ def main() -> None:
             ha="center",
             va="bottom",
             fontsize=7.2,
-            color=NOTE,
+            color="#666666",
             fontweight="normal",
             clip_on=False,
         )
@@ -250,7 +281,7 @@ def main() -> None:
         Patch(facecolor=ORANGE, edgecolor="none", label="Structure-linked"),
         Patch(facecolor=BLUE, edgecolor="none", label="CC-BY/CC0"),
         Patch(facecolor=GRAY, edgecolor="#6E747A", hatch="///", label="View-only"),
-        Patch(facecolor=ZIPOLI_FILL, edgecolor=ZIPOLI_EDGE, label="Computed (de-emp.)"),
+        Patch(facecolor=ZIPOLI_FILL, edgecolor=ZIPOLI_EDGE, label="Computed (callout)"),
     ]
     ax.legend(
         handles=legend,
@@ -264,7 +295,7 @@ def main() -> None:
         handletextpad=0.4,
     )
 
-    # --- B: attribute card (type +1pt, more line-height) ---------------------
+    # --- B: attribute card ---------------------------------------------------
     axb.set_xlim(0, 1)
     axb.set_ylim(0, 1)
     axb.axis("off")
@@ -376,7 +407,7 @@ def main() -> None:
             ha="left",
             va="center",
             fontsize=7.6,
-            color=NOTE,
+            color="#666666",
             transform=axb.transAxes,
             zorder=2,
         )

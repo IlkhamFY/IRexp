@@ -269,7 +269,7 @@ def main() -> None:
         ha="right",
         va="bottom",
         fontsize=6.6,
-        color=NOTE,
+        color="#555555",
     )
 
     # e — elemental distribution
@@ -302,15 +302,15 @@ def main() -> None:
     _el(ax_e1, EL_TRACE, "Trace")
 
     # f — 2×2 validation histograms (real audit arrays)
-    gs_f = gs[1, 2].subgridspec(2, 2, hspace=1.15, wspace=0.70)
+    gs_f = gs[1, 2].subgridspec(2, 2, hspace=1.35, wspace=0.70)
     # letter on a phantom axes spanning the cell
     ax_f_phantom = fig.add_subplot(gs[1, 2])
     ax_f_phantom.set_axis_off()
     # letter only — avoid title collision with 2x2 subplot titles
-    _panel(ax_f_phantom, "f", x=-0.06, y=1.10)
+    _panel(ax_f_phantom, "f", x=-0.06, y=1.22)
     ax_f_phantom.text(
         0.0,
-        1.02,
+        1.14,
         "Automated validation",
         transform=ax_f_phantom.transAxes,
         fontsize=9.5,
