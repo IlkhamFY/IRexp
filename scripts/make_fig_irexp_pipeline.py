@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-"""Fig 2 — harvest / cleaning workflow. Frozen counts; postcard figures/ output."""
+"""Fig 2 — harvest / cleaning workflow. Orthogonal alignment; ≥8pt body / ≥9pt headers.
+Frozen counts. PDF fonttype 42 + PNG 600 dpi. Red highlights on bad QC tokens.
+"""
 from __future__ import annotations
 
 from pathlib import Path
@@ -8,7 +10,7 @@ import matplotlib
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
-from matplotlib.patches import FancyBboxPatch, FancyArrowPatch
+from matplotlib.patches import FancyArrowPatch, FancyBboxPatch, Rectangle
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "figures"
@@ -18,31 +20,58 @@ NAVY = "#1B3A4B"
 BLUE = "#4A7EBB"
 ORANGE = "#D97B32"
 GREEN = "#3D8B5E"
-INK = "#1A1A1A"
-NOTE = "#5C636A"
+INK = "#111111"
+NOTE = "#666666"
 LINE = "#C5C9CD"
 FILL = "#FFFFFF"
 SOFT = "#F4F6F8"
 RED = "#C44E52"
+RED_BG = "#FCECEC"
 FONT = "DejaVu Sans"
 
 
-def _box(ax, x, y, w, h, title, lines, header=BLUE):
+def _box(ax, x, y, w, h, title, lines, header=BLUE, body_fs=8.0, head_fs=9.0):
     ax.add_patch(
         FancyBboxPatch(
             (x, y),
             w,
             h,
             boxstyle="square,pad=0",
-            linewidth=0.7,
+            linewidth=0.8,
             edgecolor=header,
             facecolor=FILL,
         )
     )
-    ax.add_patch(plt.Rectangle((x, y + h - 0.28), w, 0.28, facecolor=header, edgecolor=header, lw=0))
-    ax.text(x + w / 2, y + h - 0.14, title, ha="center", va="center", color="white", fontsize=7.5, fontweight="bold")
+    hdr_h = 0.32
+    ax.add_patch(
+        Rectangle((x, y + h - hdr_h), w, hdr_h, facecolor=header, edgecolor=header, lw=0)
+    )
+    ax.text(
+        x + w / 2,
+        y + h - hdr_h / 2,
+        title,
+        ha="center",
+        va="center",
+        color="white",
+        fontsize=head_fs,
+        fontweight="bold",
+    )
+    # body lines centered in remaining area
+    body_top = y + h - hdr_h - 0.08
+    body_bot = y + 0.10
+    n = len(lines)
     for i, line in enumerate(lines):
-        ax.text(x + w / 2, y + 0.38 - i * 0.16, line, ha="center", va="center", fontsize=6.8, color=NOTE)
+        yy = body_top - (i + 0.5) * (body_top - body_bot) / max(n, 1)
+        ax.text(
+            x + w / 2,
+            yy,
+            line,
+            ha="center",
+            va="center",
+            fontsize=body_fs,
+            color=INK,
+            fontweight="normal",
+        )
 
 
 def _arrow(ax, x1, y1, x2, y2, color=BLUE):
@@ -51,8 +80,8 @@ def _arrow(ax, x1, y1, x2, y2, color=BLUE):
             (x1, y1),
             (x2, y2),
             arrowstyle="-|>",
-            mutation_scale=8,
-            lw=0.9,
+            mutation_scale=9,
+            lw=1.0,
             color=color,
             shrinkA=0,
             shrinkB=0,
@@ -60,149 +89,332 @@ def _arrow(ax, x1, y1, x2, y2, color=BLUE):
     )
 
 
+def _hl_text(ax, x, y, segments, fontsize=7.6, va="center"):
+    """Draw mixed ink/red segments left-aligned from x,y (axes coords)."""
+    # Use a single Annotation-like approach via fig.canvas measure is heavy;
+    # approximate with fixed advances for this fixed figure width.
+    cursor = x
+    for text, color, weight in segments:
+        ax.text(
+            cursor,
+            y,
+            text,
+            ha="left",
+            va=va,
+            fontsize=fontsize,
+            color=color,
+            fontweight=weight,
+            family=FONT,
+        )
+        # crude advance: ~0.095 data-units per character at fs~7.6 on xlim=10
+        cursor += 0.092 * len(text) * (fontsize / 7.6)
+
+
 def main() -> None:
     plt.rcParams.update(
         {
             "font.family": FONT,
-            "font.size": 8,
+            "font.size": 8.5,
             "pdf.fonttype": 42,
             "ps.fonttype": 42,
+            "savefig.dpi": 600,
         }
     )
     fig, (axa, axb) = plt.subplots(
         2,
         1,
-        figsize=(7.2, 5.35),
-        gridspec_kw={"height_ratios": [1.15, 0.95], "hspace": 0.18},
+        figsize=(7.2, 5.70),
+        gridspec_kw={"height_ratios": [1.20, 1.00], "hspace": 0.16},
     )
-    fig.subplots_adjust(left=0.04, right=0.98, top=0.93, bottom=0.04)
+    fig.subplots_adjust(left=0.035, right=0.98, top=0.94, bottom=0.035)
 
     # ----- A -----------------------------------------------------------------
     axa.set_xlim(0, 10)
-    axa.set_ylim(0, 4.2)
+    axa.set_ylim(0, 4.35)
     axa.axis("off")
-    axa.text(0.05, 4.05, "A", fontsize=12, fontweight="bold", va="top")
-    axa.text(0.35, 4.05, "Extraction and quality-control workflow", fontsize=9, fontweight="bold", va="top", color=INK)
+    axa.text(0.05, 4.22, "A", fontsize=12, fontweight="bold", va="top", color=INK)
+    axa.text(
+        0.40,
+        4.22,
+        "Extraction and quality-control workflow",
+        fontsize=10,
+        fontweight="bold",
+        va="top",
+        color=INK,
+    )
+
+    # Equal gaps: 5 boxes of width w with equal spacing across [0.25, 9.75]
+    w, h = 1.70, 1.22
+    gap = (9.50 - 5 * w) / 4  # equal gaps
+    xs = [0.25 + i * (w + gap) for i in range(5)]
+    y = 2.58
+    mid_y = y + h / 2
 
     steps = [
-        (0.25, "1", "PMC OA text", ["188,016 PMCIDs", "S3 plain text"], BLUE),
-        (2.15, "2", "IR extract", ["Regex band lists", "+ co-reported NMR"], BLUE),
-        (4.05, "3", "Structure resolve", ["OPSIN → RDKit", "SMILES / InChIKey"], BLUE),
-        (5.95, "4", "Licence join", ["Europe PMC", "+ Crossref"], ORANGE),
-        (7.85, "5", "Release pools", ["HF + Zenodo", "JSONL pools"], NAVY),
+        ("1", "PMC OA text", ["188,016 PMCIDs", "S3 plain text"], BLUE),
+        ("2", "IR extract", ["Regex band lists", "+ co-reported NMR"], BLUE),
+        ("3", "Structure resolve", ["OPSIN → RDKit", "SMILES / InChIKey"], BLUE),
+        ("4", "Licence join", ["Europe PMC", "+ Crossref"], ORANGE),
+        ("5", "Release pools", ["HF + Zenodo", "JSONL pools"], NAVY),
     ]
-    w, h = 1.72, 1.15
-    y = 2.55
-    for x, num, title, lines, col in steps:
-        axa.add_patch(plt.Circle((x + w / 2, 3.88), 0.13, facecolor=col, edgecolor="none"))
-        axa.text(x + w / 2, 3.88, num, ha="center", va="center", color="white", fontsize=7, fontweight="bold")
-        _box(axa, x, y, w, h, title, lines, header=col)
-    for i in range(4):
-        x1 = steps[i][0] + w
-        x2 = steps[i + 1][0]
-        _arrow(axa, x1 + 0.02, y + h / 2, x2 - 0.02, y + h / 2, steps[i + 1][4])
+    for i, (num, title, lines, col) in enumerate(steps):
+        x = xs[i]
+        cx = x + w / 2
+        # numbered circle perfectly centered above box
+        circ_y = y + h + 0.22
+        axa.add_patch(plt.Circle((cx, circ_y), 0.145, facecolor=col, edgecolor="none", zorder=5))
+        axa.text(
+            cx,
+            circ_y,
+            num,
+            ha="center",
+            va="center",
+            color="white",
+            fontsize=8,
+            fontweight="bold",
+            zorder=6,
+        )
+        _box(axa, x, y, w, h, title, lines, header=col, body_fs=8.0, head_fs=9.0)
 
-    # Chemotion join
+    # straight orthogonal mid-box arrows
+    for i in range(4):
+        x1 = xs[i] + w
+        x2 = xs[i + 1]
+        _arrow(axa, x1 + 0.03, mid_y, x2 - 0.03, mid_y, steps[i + 1][3])
+
+    # Chemotion ELN — under step 2, green arrow straight up into box 2
+    chem_x = xs[1]
+    chem_w = w
+    chem_y = 1.48
+    chem_h = 0.78
     axa.add_patch(
         FancyBboxPatch(
-            (0.25, 1.55),
-            1.72,
-            0.72,
+            (chem_x, chem_y),
+            chem_w,
+            chem_h,
             boxstyle="square,pad=0",
-            linewidth=0.7,
+            linewidth=0.8,
             edgecolor=GREEN,
             facecolor=FILL,
         )
     )
-    axa.text(1.11, 2.05, "Chemotion ELN", ha="center", va="center", fontsize=7.5, fontweight="bold", color=GREEN)
-    axa.text(1.11, 1.78, "1,888 CC-BY-SA", ha="center", va="center", fontsize=6.8, color=NOTE)
-    _arrow(axa, 1.97, 1.95, 2.15, 2.55, GREEN)
+    axa.text(
+        chem_x + chem_w / 2,
+        chem_y + chem_h - 0.24,
+        "Chemotion ELN",
+        ha="center",
+        va="center",
+        fontsize=9.0,
+        fontweight="bold",
+        color=GREEN,
+    )
+    axa.text(
+        chem_x + chem_w / 2,
+        chem_y + 0.26,
+        "1,888 CC-BY-SA",
+        ha="center",
+        va="center",
+        fontsize=8.0,
+        color=INK,
+        fontweight="normal",
+    )
+    # vertical orthogonal arrow into bottom of box 2
+    _arrow(axa, chem_x + chem_w / 2, chem_y + chem_h + 0.02, xs[1] + w / 2, y - 0.02, GREEN)
 
-    # Cleaning rules
+    # Cleaning rules — aligned under steps 3–4; leave gap before Final
+    rules_x = xs[2]
+    rules_right = xs[3] + w
+    fin_x = xs[4]
+    fin_w = w
+    # breathing room between rules and final
+    rules_w = min(rules_right - rules_x, fin_x - rules_x - 0.28)
+    rules_y = 0.12
+    rules_h = 1.18
     axa.add_patch(
         FancyBboxPatch(
-            (2.55, 0.22),
-            4.55,
-            1.15,
+            (rules_x, rules_y),
+            rules_w,
+            rules_h,
             boxstyle="square,pad=0",
-            linewidth=0.7,
+            linewidth=0.8,
             edgecolor=ORANGE,
             facecolor=SOFT,
         )
     )
-    axa.text(4.82, 1.18, "Cleaning rules", ha="center", va="center", fontsize=7.5, fontweight="bold", color=ORANGE)
     axa.text(
-        4.82,
-        0.72,
-        "Band count ≥ 3 in 350–4000 cm$^{-1}$   ·   Reject duplicate integers\n"
-        r"$^{1}$H integral ≤ formula H+2   ·   $^{13}$C peaks ≤ carbon count",
+        rules_x + rules_w / 2,
+        rules_y + rules_h - 0.22,
+        "Cleaning rules",
         ha="center",
         va="center",
-        fontsize=6.6,
-        color=NOTE,
+        fontsize=9.0,
+        fontweight="bold",
+        color=ORANGE,
     )
-    _arrow(axa, 6.81, 2.55, 5.9, 1.38, ORANGE)
+    # three short centered lines clipped to box (no spill into Final)
+    rule_lines = [
+        r"Band count ≥ 3 in 350–4000 cm$^{-1}$",
+        r"Reject duplicate integers",
+        r"$^{1}$H ≤ formula H+2  ·  $^{13}$C ≤ carbon count",
+    ]
+    for i, line in enumerate(rule_lines):
+        axa.text(
+            rules_x + rules_w / 2,
+            rules_y + 0.68 - i * 0.22,
+            line,
+            ha="center",
+            va="center",
+            fontsize=7.2,
+            color=INK,
+            clip_on=True,
+        )
+    rules_cx = rules_x + rules_w / 2
+    span_cx = (xs[2] + xs[3] + w) / 2
+    _arrow(axa, span_cx, y - 0.02, rules_cx, rules_y + rules_h + 0.02, ORANGE)
 
-    # Final
+    # Final IRexp — under step 5; arrow centered on both boxes
+    fin_y = rules_y
+    fin_h = rules_h
     axa.add_patch(
         FancyBboxPatch(
-            (7.55, 0.22),
-            2.15,
-            1.15,
+            (fin_x, fin_y),
+            fin_w,
+            fin_h,
             boxstyle="square,pad=0",
-            linewidth=0.8,
+            linewidth=0.9,
             edgecolor=NAVY,
             facecolor=FILL,
         )
     )
-    axa.text(8.62, 1.12, "Final IRexp", ha="center", va="center", fontsize=7.5, fontweight="bold", color=NAVY)
-    axa.text(8.62, 0.78, "121,233 band lists", ha="center", va="center", fontsize=7.2, color=INK)
-    axa.text(8.62, 0.52, "43,060 structure-linked", ha="center", va="center", fontsize=6.8, color=NOTE)
-    _arrow(axa, 8.71, 2.55, 8.62, 1.38, NAVY)
+    axa.text(
+        fin_x + fin_w / 2,
+        fin_y + fin_h - 0.28,
+        "Final IRexp",
+        ha="center",
+        va="center",
+        fontsize=9.0,
+        fontweight="bold",
+        color=NAVY,
+    )
+    axa.text(
+        fin_x + fin_w / 2,
+        fin_y + fin_h * 0.48,
+        "121,233 band lists",
+        ha="center",
+        va="center",
+        fontsize=8.0,
+        fontweight="bold",
+        color=INK,
+    )
+    axa.text(
+        fin_x + fin_w / 2,
+        fin_y + fin_h * 0.22,
+        "43,060 structure-linked",
+        ha="center",
+        va="center",
+        fontsize=7.6,
+        fontweight="bold",
+        color=ORANGE,
+    )
+    fin_cx = fin_x + fin_w / 2
+    _arrow(axa, xs[4] + w / 2, y - 0.02, fin_cx, fin_y + fin_h + 0.02, NAVY)
 
-    # ----- B -----------------------------------------------------------------
+    # ----- B — QC rejections with red callout rectangles + highlighted tokens -
     axb.set_xlim(0, 10)
-    axb.set_ylim(0, 3.2)
+    axb.set_ylim(0, 3.35)
     axb.axis("off")
-    axb.text(0.05, 3.1, "B", fontsize=12, fontweight="bold", va="top")
-    axb.text(0.35, 3.1, "Automated QC rejections", fontsize=9, fontweight="bold", va="top", color=INK)
+    axb.text(0.05, 3.25, "B", fontsize=12, fontweight="bold", va="top", color=INK)
+    axb.text(
+        0.40,
+        3.25,
+        "Automated QC rejections",
+        fontsize=10,
+        fontweight="bold",
+        va="top",
+        color=INK,
+    )
 
     examples = [
         (
             "Band count too low",
-            r"IR (KBr): 3421, 2923, 2854 cm$^{-1}$ — <3 unique peaks after de-duplication.",
+            [
+                ("IR (KBr): ", INK, "normal"),
+                ("3421, 2923, 2854", RED, "bold"),
+                (r" cm$^{-1}$ — <3 unique peaks after de-duplication.", INK, "normal"),
+            ],
+            "3021–2854 group collapsed to duplicates / too few unique bands",
         ),
         (
             "IR band outside window",
-            r"IR (neat): 3200, 2958, 4180, 1520 cm$^{-1}$ — 4180 outside 350–4000 cm$^{-1}$.",
+            [
+                ("IR (neat): 3200, 2958, ", INK, "normal"),
+                ("4180", RED, "bold"),
+                (r", 1520 cm$^{-1}$ — 4180 outside 350–4000 cm$^{-1}$.", INK, "normal"),
+            ],
+            None,
         ),
         (
             r"$^{1}$H integral vs formula",
-            r"$^{1}$H: (5H)+(5H)+(10H)=20H; C$_6$H$_5$NO$_2$ (7H) — integral > H+2.",
+            [
+                (r"$^{1}$H: ", INK, "normal"),
+                ("(5H)+(5H)+(10H)=20H", RED, "bold"),
+                (r"; C$_6$H$_5$NO$_2$ (7H) — integral > H+2.", INK, "normal"),
+            ],
+            None,
         ),
     ]
-    for i, (title, body) in enumerate(examples):
-        y = 2.35 - i * 0.95
+
+    # Draw once so we can measure text extents for mixed-color body lines
+    fig.canvas.draw()
+    renderer = fig.canvas.get_renderer()
+
+    for i, (title, segs, _note) in enumerate(examples):
+        y0 = 2.45 - i * 1.00
         axb.add_patch(
             FancyBboxPatch(
-                (0.25, y),
-                9.45,
-                0.82,
-                boxstyle="square,pad=0",
-                linewidth=0.5,
-                edgecolor=LINE,
-                facecolor=SOFT,
+                (0.22, y0),
+                9.50,
+                0.88,
+                boxstyle="round,pad=0.02,rounding_size=0.04",
+                linewidth=1.0,
+                edgecolor=RED,
+                facecolor=RED_BG,
             )
         )
-        axb.text(0.45, y + 0.55, "⊘", fontsize=11, color=RED, va="center")
-        axb.text(0.85, y + 0.55, title, fontsize=7.5, fontweight="bold", color=RED, va="center")
-        axb.text(0.85, y + 0.24, body, fontsize=7, color=INK, va="center")
+        axb.text(0.42, y0 + 0.60, "⊘", fontsize=12, color=RED, va="center", fontweight="bold")
+        axb.text(
+            0.85,
+            y0 + 0.60,
+            title,
+            fontsize=9.0,
+            fontweight="bold",
+            color=RED,
+            va="center",
+        )
+        x_cursor = 0.85
+        y_body = y0 + 0.26
+        for frag, color, weight in segs:
+            t = axb.text(
+                x_cursor,
+                y_body,
+                frag,
+                ha="left",
+                va="center",
+                fontsize=8.0,
+                color=color,
+                fontweight=weight,
+            )
+            fig.canvas.draw()
+            bb = t.get_window_extent(renderer=fig.canvas.get_renderer())
+            bb_data = bb.transformed(axb.transData.inverted())
+            x_cursor = bb_data.x1 + 0.02
 
-    fig.savefig(OUT / "fig_irexp_pipeline.pdf", dpi=300, bbox_inches="tight")
-    fig.savefig(OUT / "fig_irexp_pipeline.png", dpi=300, bbox_inches="tight")
+    fig.savefig(OUT / "fig_irexp_pipeline.pdf", dpi=600, bbox_inches="tight")
+    fig.savefig(OUT / "fig_irexp_pipeline.png", dpi=600, bbox_inches="tight")
     fig.savefig(OUT / "fig_irexp_pipeline.svg", bbox_inches="tight")
     plt.close(fig)
     print(f"wrote {OUT / 'fig_irexp_pipeline.pdf'}")
+    print(f"wrote {OUT / 'fig_irexp_pipeline.png'}")
 
 
 if __name__ == "__main__":
