@@ -8,8 +8,10 @@
 *.fdb_latexmk
 *.synctex.gz
 *.blg
+*.bbl
 *.bcf
 *.run.xml
+scientific_data.pdf
 .DS_Store
 __pycache__/
 *.pyc
