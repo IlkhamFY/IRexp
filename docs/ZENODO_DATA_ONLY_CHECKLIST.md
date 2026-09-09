@@ -24,7 +24,7 @@ Do **not** upload IRSpectra-Bench predictions, leaderboards, or model-result tab
 - **Title:** `IRexp: experimental infrared band lists from open literature (data release)`
 - **Creators:** Ilkham Yabbarov; Rodrigo A. Vargas-Hernández (ORCID when confirmed)
 - **Description (skeleton):** Redistributable experimental IR **band lists** (cm⁻¹), not absorbance traces. Full research corpus is multi-licence; this deposit’s primary file is the commercial CC-BY/CC0 pool (88,545). ShareAlike companion is separate. NC* and empty/unknown are excluded from the commercial artifact (optional labelled files only). See LICENCE_REMEDIATION.md. Companion ICLR/IRSpectra-Bench results are **out of scope**.
-- **Related identifiers:** GitHub `IlkhamFY/spectro-agent`; HF `ilkhamfy/IRexp`; forthcoming Sci Data Data Descriptor; companion research manuscript (cross-cite, no results).
+- **Related identifiers:** GitHub paper/manifests `IlkhamFY/IRexp`; code `IlkhamFY/spectro-agent`; HF `ilkhamfy/IRexp`; forthcoming Sci Data Data Descriptor; companion research manuscript (cross-cite, no results).
 
 ## After mint
 

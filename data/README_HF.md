@@ -35,7 +35,7 @@ configs:
 
 # IRexp — experimental IR band lists from open-access literature
 
-**Paper:** [IRexp and IRSpectra-Bench: redistributable experimental IR band lists, a blind peak-list benchmark, and a recall-bound diagnosis of LLM elucidation](https://github.com/IlkhamFY/spectro-agent) (manuscript in preparation, 2026)
+**Data Descriptor:** [IRexp: A database of experimental infrared band lists from open literature](https://github.com/IlkhamFY/IRexp) (*Scientific Data* manuscript). Bulk JSONL is this Hugging Face dataset; harvest/pipeline code is [IlkhamFY/spectro-agent](https://github.com/IlkhamFY/spectro-agent).
 
 IRexp is the largest **openly redistributable** collection of **experimental infrared band lists** mined from open-access chemistry papers, often with co-reported ¹H/¹³C shift lists and resolved structures.
 
@@ -146,9 +146,10 @@ python scripts/build_train_no_bench.py --require-nmr  # 32,949 rows (H+C require
 ## Links
 
 - **Dataset (Hugging Face):** https://huggingface.co/datasets/ilkhamfy/IRexp
-- **Code & benchmark:** https://github.com/IlkhamFY/spectro-agent
-- **Leaderboard:** https://github.com/IlkhamFY/spectro-agent/blob/main/docs/LEADERBOARD.md
-- **Zenodo:** DOI minted at publication
-- **Licence details:** `NOTICE` / `LICENCE_REMEDIATION.md` in this repository (and `data/NOTICE`, `docs/scientific_data/LICENCE_REMEDIATION.md` in the GitHub mirror)
+- **Data Descriptor (paper + manifests):** https://github.com/IlkhamFY/IRexp
+- **Harvest / pipeline code:** https://github.com/IlkhamFY/spectro-agent
+- **Companion benchmark:** https://github.com/IlkhamFY/spectro-agent/blob/main/docs/LEADERBOARD.md
+- **Zenodo:** DOI pending — to be minted with the PI (data-only deposit)
+- **Licence details:** `NOTICE` / `LICENCE_REMEDIATION.md` (this card’s sibling files; also `docs/LICENCE_REMEDIATION.md` on IRexp)
 
 When uploading to Hugging Face, this file is the repository `README.md`.
