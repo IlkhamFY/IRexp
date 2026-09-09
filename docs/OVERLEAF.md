@@ -15,6 +15,6 @@
 
 ## Bibliography
 `latexmkrc` sets `TEXINPUTS` / `BSTINPUTS` so pdfLaTeX and BibTeX find `sn-jnl.cls`
-and `sn-nature.bst` under `tex/`. Do not add a second `\\bibliographystyle` — the
+and `sn-nature.bst` under `tex/`. Do not add a second `\bibliographystyle` — the
 class option `[sn-nature]` already writes one, and a duplicate is a BibTeX error.
 
