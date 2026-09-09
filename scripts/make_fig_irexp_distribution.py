@@ -1,5 +1,17 @@
-#!/usr/bin/env python3
-"""Fig 3 — composition + automated validation. Frozen counts only (no bulk JSONL)."""
+"""Fig 3 - composition + automated validation. Frozen counts only (no bulk JSONL).
+
+IMPORTANT - publication assets:
+  Panel (d) must remain a real band-count HISTOGRAM with median line, and panel (f)
+  must keep mini-histograms / clear metrics. Those panels require bulk JSONL /
+  validation artefacts that are NOT in this postcard repo. Regenerating from this
+  script alone yields a degraded median-bar + text-card figure (v0.5 regression).
+
+  Keep the frozen PNG/PDF under figures/ (restored from release v0.4 / commit
+  3f7e128). Do NOT overwrite fig_irexp_distribution.png/.pdf from this script
+  unless bulk inputs are restored and panel d/f match v0.4 quality.
+
+  Guard: set IREXP_REGEN_DISTRIBUTION=1 to force regeneration.
+"""
 from __future__ import annotations
 
 from pathlib import Path
@@ -143,7 +155,7 @@ def main() -> None:
         "Modality linkage",
     )
 
-    # d — published medians only (bulk JSONL / per-record histogram not in this repo)
+    # d - published medians only (bulk JSONL / per-record histogram not in this repo)
     ax_d = fig.add_subplot(gs[1, 0])
     _panel(ax_d, "d")
     med_labels = ["PMC", "Chemotion"]
@@ -197,8 +209,8 @@ def main() -> None:
     ax_f.axis("off")
     cells = [
         (0.15, 5.25, "Transcription  n=200", "99.51% bands", "MAE 0.0049"),
-        (5.25, 5.25, "Band recall  n=120", "0.9903", "CI 0.9879–0.9922"),
-        (0.15, 0.35, "List match  n=120", "0.9848", "CI 0.9743–0.9911"),
+        (5.25, 5.25, "Band recall  n=120", "0.9903", "CI 0.9879-0.9922"),
+        (0.15, 0.35, "List match  n=120", "0.9848", "CI 0.9743-0.9911"),
         (5.25, 0.35, "Chemist-proxy  n=280", "271/280", "fail 0.0321"),
     ]
     for x, y, title, big, small in cells:
@@ -214,4 +226,12 @@ def main() -> None:
 
 
 if __name__ == "__main__":
+    import os
+    # FROZEN_DISTRIBUTION_ASSETS: refuse overwrite unless explicitly forced.
+    if os.environ.get("IREXP_REGEN_DISTRIBUTION") != "1":
+        raise SystemExit(
+            "Refusing to overwrite fig_irexp_distribution.* - frozen v0.4 "
+            "histogram assets require bulk JSONL. Set IREXP_REGEN_DISTRIBUTION=1 "
+            "to force."
+        )
     main()
