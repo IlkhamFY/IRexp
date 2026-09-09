@@ -162,55 +162,50 @@ def main() -> None:
     ax_d.yaxis.grid(True, color=FAINT, lw=0.5)
     ax_d.set_axisbelow(True)
 
-    ax_e = fig.add_subplot(gs[1, 1])
-    _panel(ax_e, "e")
-    ax_e.set_title("Elemental distribution", fontsize=9, fontweight="bold", color=INK, pad=6, loc="left")
-    ax_e.text(0.22, 1.02, "Major", transform=ax_e.transAxes, fontsize=7, color=NOTE, ha="center")
-    ax_e.text(0.78, 1.02, "Trace", transform=ax_e.transAxes, fontsize=7, color=NOTE, ha="center")
+    gs_e = gs[1, 1].subgridspec(1, 2, wspace=0.55)
+    ax_e0 = fig.add_subplot(gs_e[0, 0])
+    ax_e1 = fig.add_subplot(gs_e[0, 1])
+    _panel(ax_e0, "e")
+    ax_e0.set_title("Elemental distribution", fontsize=9, fontweight="bold", color=INK, pad=8, loc="left")
     y = np.arange(len(EL_MAJOR))
-    left_vals = [v for _, v in EL_MAJOR]
-    right_vals = [v for _, v in EL_TRACE]
-    gap = max(left_vals) * 1.35
-    ax_e.barh(y, left_vals, color=BLUE, height=0.58, edgecolor="white", linewidth=0.3)
-    ax_e.barh(y, right_vals, left=gap, color=BLUE, height=0.58, edgecolor="white", linewidth=0.3)
-    ax_e.set_yticks(list(y) + list(y))
-    # two label columns via text
-    ax_e.set_yticks(y)
-    ax_e.set_yticklabels([lab for lab, _ in EL_MAJOR], fontsize=7)
-    ax_e.invert_yaxis()
-    for i, (lab, val) in enumerate(EL_TRACE):
-        ax_e.text(gap - max(left_vals) * 0.04, i, lab, ha="right", va="center", fontsize=7, color=INK)
-        ax_e.text(gap + val + max(right_vals) * 0.08, i, f"{val:,}", ha="left", va="center", fontsize=6.2, color=NOTE)
-    for i, val in enumerate(left_vals):
-        ax_e.text(val + max(left_vals) * 0.02, i, f"{val:,}", ha="left", va="center", fontsize=6.2, color=NOTE)
-    ax_e.set_xlim(0, gap + max(right_vals) * 1.55)
-    ax_e.axvline(gap * 0.96, color=INK, lw=0.5)
-    ax_e.spines["top"].set_visible(False)
-    ax_e.spines["right"].set_visible(False)
-    ax_e.spines["bottom"].set_visible(False)
-    ax_e.tick_params(axis="x", length=0, labelbottom=False)
-    ax_e.tick_params(axis="y", length=0)
 
-    # f — published aggregate rates (no per-record audit dump in this repo)
+    def _el(ax, pairs, heading: str) -> None:
+        labs = [p[0] for p in pairs]
+        vals = [p[1] for p in pairs]
+        ax.barh(y, vals, color=BLUE, height=0.58, edgecolor="white", linewidth=0.3)
+        ax.set_yticks(y)
+        ax.set_yticklabels(labs, fontsize=7)
+        ax.invert_yaxis()
+        ax.set_xlabel(heading, fontsize=7, color=NOTE)
+        xmax = max(vals) * 1.45 if max(vals) else 1
+        ax.set_xlim(0, xmax)
+        for i, v in enumerate(vals):
+            ax.text(v + xmax * 0.03, i, f"{v:,}", ha="left", va="center", fontsize=6.2, color=NOTE)
+        ax.spines["top"].set_visible(False)
+        ax.spines["right"].set_visible(False)
+        ax.tick_params(axis="x", length=0, labelbottom=False)
+        ax.tick_params(axis="y", length=0)
+
+    _el(ax_e0, EL_MAJOR, "Major")
+    _el(ax_e1, EL_TRACE, "Trace")
+
     ax_f = fig.add_subplot(gs[1, 2])
     _panel(ax_f, "f")
     ax_f.set_title("Automated validation", fontsize=9, fontweight="bold", color=INK, pad=6, loc="left")
-    ax_f.set_xlim(0, 1)
-    ax_f.set_ylim(0, 1)
+    ax_f.set_xlim(0, 10)
+    ax_f.set_ylim(0, 10)
     ax_f.axis("off")
-    metrics = [
-        (0.78, 0.72, "Transcription\n(n=200)", "99.51% bands", "MAE 0.0049"),
-        (0.78, 0.22, "Band recall\n(n=120)", "0.9903", "Wilson [0.9879, 0.9922]"),
-        (0.22, 0.72, "List match\n(n=120)", "0.9848", "Wilson [0.9743, 0.9911]"),
-        (0.22, 0.22, "Chemist-proxy\n(n=280)", "271/280 pass", "fail rate 0.0321"),
+    cells = [
+        (0.15, 5.25, "Transcription  n=200", "99.51% bands", "MAE 0.0049"),
+        (5.25, 5.25, "Band recall  n=120", "0.9903", "CI 0.9879–0.9922"),
+        (0.15, 0.35, "List match  n=120", "0.9848", "CI 0.9743–0.9911"),
+        (5.25, 0.35, "Chemist-proxy  n=280", "271/280", "fail 0.0321"),
     ]
-    for x, y, title, big, small in metrics:
-        ax_f.text(x, y + 0.18, title, ha="center", va="bottom", fontsize=7, color=NOTE)
-        ax_f.text(x, y + 0.02, big, ha="center", va="center", fontsize=8.5, fontweight="bold", color=NAVY)
-        ax_f.text(x, y - 0.08, small, ha="center", va="top", fontsize=6.4, color=ORANGE)
-        ax_f.add_patch(
-            plt.Rectangle((x - 0.20, y - 0.14), 0.40, 0.42, fill=False, edgecolor=FAINT, lw=0.6, transform=ax_f.transData)
-        )
+    for x, y, title, big, small in cells:
+        ax_f.add_patch(plt.Rectangle((x, y), 4.6, 4.4, fill=True, facecolor=TRACK, edgecolor=FAINT, lw=0.6))
+        ax_f.text(x + 2.3, y + 3.5, title, ha="center", va="center", fontsize=6.6, color=NOTE)
+        ax_f.text(x + 2.3, y + 2.2, big, ha="center", va="center", fontsize=8.2, fontweight="bold", color=NAVY)
+        ax_f.text(x + 2.3, y + 1.1, small, ha="center", va="center", fontsize=6.2, color=ORANGE)
 
     fig.savefig(OUT / "fig_irexp_distribution.pdf", dpi=300, bbox_inches="tight")
     fig.savefig(OUT / "fig_irexp_distribution.png", dpi=300, bbox_inches="tight")

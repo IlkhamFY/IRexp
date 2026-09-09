@@ -200,6 +200,7 @@ def main() -> None:
 
     fig.savefig(OUT / "fig_irexp_pipeline.pdf", dpi=300, bbox_inches="tight")
     fig.savefig(OUT / "fig_irexp_pipeline.png", dpi=300, bbox_inches="tight")
+    fig.savefig(OUT / "fig_irexp_pipeline.svg", bbox_inches="tight")
     plt.close(fig)
     print(f"wrote {OUT / 'fig_irexp_pipeline.pdf'}")
 
