@@ -76,12 +76,14 @@ Chemotion, FAIR data, licence pools, data descriptor}
 
 \section{Background \& Summary}\label{sec:background}
 
-Infrared (IR) spectroscopy is routine in organic characterisation, yet open,
+Infrared (IR) spectroscopy is routine in organic characterisation~\citep{silverstein2014sioc,blum2012atrftir}, yet open,
 redistributable collections of \emph{experimental} IR data remain sparse relative
-to modern machine-learning needs.
+to modern machine-learning needs and FAIR reuse goals~\citep{wilkinson2016fair}.
 Digitised absorbance libraries such as the NIST Chemistry WebBook~\citep{nist_webbook}
 and AIST SDBS~\citep{sdbs} are valuable but either modest in size or view-only
 (no bulk redistribution).
+Peer open spectral resources in adjacent modalities (for example MassBank~\citep{horai2010massbank,neumann2026massbank})
+illustrate how community repositories can expose experimental peak objects with persistent identifiers.
 Computational IR--NMR resources published in \textit{Scientific Data} expand
 multimodal coverage with simulated spectra~\citep{zipoli2025uspto}, while large
 literature mines for NMR peak lists (notably NMRexp~\citep{wang2025nmrexp}) show
@@ -91,6 +93,9 @@ Concurrent literature corpora that include IR among other modalities
 (for example NMRSpec/NMRTrans~\citep{yang2026nmrtrans}) further motivate an
 IR-focused, redistributable band-list resource rather than another closed
 spectrum archive.
+Venue-peer literature-mined chemistry datasets such as BigSolDB~\citep{krasnov2025bigsoldb}
+likewise show that experimental numeric tables extracted from open literature are in
+scope for Data Descriptors.
 
 \paragraph{Relation to NMRexp and other peers.}
 NMRexp is the natural comparator: $\sim$3.3~million experimental NMR records mined
@@ -99,14 +104,15 @@ consistency metrics~\citep{wang2025nmrexp}.
 IRexp is \emph{not} an NMR database, does not claim size superiority, and is
 orders of magnitude smaller.
 Its contribution is complementary: redistributable \emph{IR band lists}
-(cm$^{-1}$ positions only) from PMC Open Access full text plus a Chemotion ELN
-deposit, with per-record licence pools suitable for commercial vs non-commercial
-reuse.
+(cm$^{-1}$ positions only) from PMC Open Access full text plus a Chemotion ELN /
+Repository deposit~\citep{tremouilhac2017chemotion,tremouilhac2020chemotionrepo,chemotion2024},
+with per-record licence pools suitable for commercial vs non-commercial
+reuse~\citep{hrynaszkiewicz2012open,carroll2011openaccess}.
 Absorbance-curve libraries (NIST, SDBS) remain the right choice when full
 digitised spectra are required; computational IR--NMR sets remain the right
 choice when simulated multimodal coverage is required~\citep{zipoli2025uspto}.
 
-\begin{figure}[ht]
+\begin{figure}[tbp]
 \centering
 \includegraphics[width=\textwidth]{fig_irexp_positioning.pdf}
 \caption{Major \emph{IR} resources (NMRexp omitted as a bar competitor).
@@ -139,9 +145,11 @@ IRexp therefore:
   \item Extracts deterministic numeric IR band lists (and co-reported NMR strings
         where present).
   \item Resolves compound names to canonical structures with OPSIN~\citep{lowe2011opsin},
-        RDKit~\citep{landrum_rdkit}, and SELFIES~\citep{krenn2020selfies} where possible.
+        RDKit~\citep{landrum_rdkit}, and SELFIES~\citep{krenn2020selfies} where possible,
+        recording InChIKey~\citep{heller2013inchi} when resolution succeeds.
   \item Releases extracted numbers only: no PDFs, figures, or article full text,
-        with source accessions for attribution.
+        with source accessions for attribution, aligning with FAIR findability and
+        reuse~\citep{wilkinson2016fair}.
 \end{enumerate}
 
 Among openly redistributable \emph{text-derived IR band lists}, IRexp is large by
@@ -184,7 +192,7 @@ A harvest snapshot records 188,016 distinct PMC identifiers scanned
 The released corpus retains records from 15,416 unique \texttt{PMC:*} accessions.
 Extraction operates on open-access plain text objects at flat S3 keys
 \texttt{PMC<id>.<v>/PMC<id>.<v>.txt}.
-Europe PMC full-text XML is used for some validation re-fetches.
+Europe PMC full-text XML~\citep{rosonovski2024europepmc} is used for some validation re-fetches.
 The released IRexp DOIs are exclusively \texttt{PMC:*} accessions or the Chemotion
 deposit DOI; no paywalled publisher DOI appears in the 121,233-record file.
 
@@ -202,10 +210,10 @@ Licence truth for redistribution is applied post-hoc: every unique PMCID in IRex
 \texttt{license\_pool}.
 A second-pass recovery (\texttt{scripts/apply\_crossref\_licence\_recovery.py})
 promoted 1,818 previously empty/unknown rows into commercial, non-commercial, or
-other pools when Crossref exposed an explicit Creative Commons or ACS
+other pools when Crossref~\citep{kemp2022crossref} exposed an explicit Creative Commons or ACS
 AuthorChoice CC URL, or when a fresh Europe PMC query returned a licence string;
 Elsevier/Springer TDM-only Crossref links were ignored.
-Commercial-use (CC-BY/CC0) rows form the intended Zenodo / Sci Data primary pool;
+Commercial-use (CC-BY/CC0) rows form the intended Zenodo / Sci Data primary pool~\citep{hrynaszkiewicz2012open};
 NC* are held aside; remaining empty/unknown are excluded from the commercial
 deposit --- aligning redistributable intent with the OA commercial/non-commercial
 distinction via article-level licences rather than S3 package paths
@@ -222,7 +230,8 @@ Third parties should treat \texttt{seen\_papers} + the released JSONL as the
 reproducible snapshot, not a fresh API crawl.
 
 \paragraph{Chemotion / RADAR4Chem.}
-1,888 records come from the Chemotion Repository FT-IR collection deposited at
+1,888 records come from the Chemotion Repository~\citep{tremouilhac2020chemotionrepo}
+FT-IR collection (ELN ecosystem~\citep{tremouilhac2017chemotion}) deposited at
 RADAR4Chem (DOI \texttt{10.22000/OGoEQGlsZGElrgst})~\citep{chemotion2024}, licensed
 CC-BY-SA-4.0.
 Ingest (\texttt{scripts/chemotion\_to\_irexp.py}, 2026-06-07): download the
@@ -260,7 +269,7 @@ in the code repository but contributes 0 records to the released IRexp
         intermediate prose fields; the curated release is \texttt{irexp.jsonl.gz}).
 \end{enumerate}
 
-\begin{figure}[ht]
+\begin{figure}[tbp]
 \centering
 \includegraphics[width=\textwidth]{fig_irexp_pipeline.pdf}
 \caption{Construction and cleaning.
@@ -284,7 +293,8 @@ Methods for IRexp as published here cite only PMC-OA S3 + Chemotion.
 \subsection{Extraction (band lists, not spectra)}
 
 A deterministic regular-expression pipeline (\texttt{spectro\_scraper/extract.py})
-segments experimental text per compound and extracts:
+segments experimental text per compound and extracts IR/NMR strings
+(complementary to general chemical IE toolkits such as ChemDataExtractor~\citep{swain2016chemdataextractor}):
 \begin{itemize}
   \item IR wavenumbers $\to$ \texttt{ir\_bands\_cm-1} (list of floats, cm$^{-1}$);
   \item $^{1}$H and $^{13}$C payloads $\to$ \texttt{h\_nmr} / \texttt{c\_nmr}
@@ -298,7 +308,7 @@ stored.
 
 Where an IUPAC or systematic name is available, names are converted with
 OPSIN~\citep{lowe2011opsin}, canonicalised with RDKit~\citep{landrum_rdkit}, and
-encoded as InChIKey and SELFIES~\citep{krenn2020selfies}.
+encoded as InChIKey~\citep{heller2013inchi} and SELFIES~\citep{krenn2020selfies}.
 An optional PubChem~\citep{kim2023pubchem} name fallback (\texttt{USE\_PUBCHEM})
 handles trivial names.
 Name$\to$structure failures are expected for trade names, mixtures, and
@@ -401,9 +411,19 @@ File & Records & Description \\
 \end{tabular}
 \end{table}
 
-\begin{figure}[ht]
+
+\paragraph{Composition.}
+The full release comprises 121,233 band lists (119,345 PMC; 1,888 Chemotion)
+from 15,416 unique PMC accessions
+(Figure~\ref{fig:distribution}a).
+87,075 records (72\%) carry $^{1}$H and/or $^{13}$C NMR strings; 43,060 (35.5\%)
+are structure-linked; 40,702 have structure plus any NMR; 33,201 are full
+IR~$+$~$^{1}$H~$+$~$^{13}$C~$+$~structure quadruples
+(Figure~\ref{fig:distribution}c).
+
+\begin{figure}[!tbp]
 \centering
-\includegraphics[width=\textwidth]{fig_irexp_distribution.pdf}
+\includegraphics[width=0.95\textwidth]{fig_irexp_distribution.pdf}
 \caption{Release composition and automated validation.
 \textbf{(a)}~Provenance (PMC vs Chemotion/RADAR4Chem).
 \textbf{(b)}~Licence pools after Europe PMC joins and Crossref recovery.
@@ -416,14 +436,6 @@ Panel~(f) is not an NMRexp-parity human audit.}
 \label{fig:distribution}
 \end{figure}
 
-\paragraph{Composition.}
-The full release comprises 121,233 band lists (119,345 PMC; 1,888 Chemotion)
-from 15,416 unique PMC accessions
-(Figure~\ref{fig:distribution}a).
-87,075 records (72\%) carry $^{1}$H and/or $^{13}$C NMR strings; 43,060 (35.5\%)
-are structure-linked; 40,702 have structure plus any NMR; 33,201 are full
-IR~$+$~$^{1}$H~$+$~$^{13}$C~$+$~structure quadruples
-(Figure~\ref{fig:distribution}c).
 
 \paragraph{Licence pools.}
 After the Europe PMC join and Crossref recovery (15,416 unique PMCIDs;
