@@ -138,27 +138,16 @@ def main() -> None:
         linewidth=0.4,
         zorder=3,
     )
-    # Align all three labels at same y just above max IRexp height; thin leaders to bar tops
-    label_y = max(vals) + 6500
+    # Per-bar labels (same style as Zipoli/SDBS): total + 4200 offset
     for xv, v in zip(xs, vals):
-        ax.plot(
-            [xv, xv],
-            [v + 1800, label_y - 1200],
-            color=NOTE,
-            lw=0.55,
-            solid_capstyle="butt",
-            zorder=4,
-            clip_on=False,
-        )
         ax.text(
             xv,
-            label_y,
+            v + 4200,
             _fmt(v),
             ha="center",
             va="bottom",
-            fontsize=6.2,
+            fontsize=6.8,
             color=NOTE,
-            zorder=5,
         )
 
     ax.set_xticks(x0)
