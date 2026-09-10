@@ -129,7 +129,7 @@ That textual convention is the object many elucidation pipelines consume, and it
 is a different object from a digitised spectrum.
 Models and retrieval tools that consume literature peak lists need
 redistributable numeric records with DOI attribution and explicit licence pools.
-IRexp is built as that substrate --- without embedding diagnosis benchmarks or
+IRexp is built as that substrate, without embedding diagnosis benchmarks or
 model leaderboards in this Descriptor.
 
 IRexp therefore:
@@ -140,7 +140,7 @@ IRexp therefore:
         where present).
   \item Resolves compound names to canonical structures with OPSIN~\citep{lowe2011opsin},
         RDKit~\citep{landrum_rdkit}, and SELFIES~\citep{krenn2020selfies} where possible.
-  \item Releases extracted numbers only --- no PDFs, figures, or article full text ---
+  \item Releases extracted numbers only: no PDFs, figures, or article full text,
         with source accessions for attribution.
 \end{enumerate}
 
@@ -149,17 +149,17 @@ record count (121,233).
 It does not claim to replace SDBS or NIST absorbance libraries; SDBS alone holds
 more structure-linked \emph{spectra} than IRexp holds structure-linked band lists.
 The contribution of this Descriptor is the curated dataset, harvest provenance,
-licence segregation, and validation artefacts --- not elucidation accuracy.
+licence segregation, and validation artefacts.
 Intended reuse is multimodal pretraining, supervised IR$\to$structure modelling
 on \texttt{irexp\_resolved}, and as the literature substrate for complementary
-elucidation benchmarks described elsewhere (forthcoming ICLR manuscript on
-IRSpectra-Bench; cite that work for protocol and model results --- not
+elucidation benchmarks described in a companion research manuscript
+(IRSpectra-Bench; cite that work for protocol and model results, not
 reproduced here)~\citep{yabbarov2026irspectra}.
 
 \paragraph{What this Data Descriptor does not contain.}
 No hypothesis tests, no large-language-model accuracy tables, and no
 stage-decomposition of elucidation performance.
-Those belong in the complementary research paper.
+Those belong in the companion research manuscript.
 
 \section{Methods}\label{sec:methods}
 
@@ -452,9 +452,7 @@ Provenance files shipped with the dataset (not in Table~\ref{tab:files}):
         \url{https://github.com/IlkhamFY/IRexp}
   \item Harvest / pipeline code: \url{https://github.com/IlkhamFY/spectro-agent}
         (Section~\ref{sec:codeavail})
-  \item Zenodo archival snapshot: DOI to be minted with the PI
-        (data-only deposit; commercial pool primary --- not the combined
-        IRSpectra-Bench research archive). Pending; no DOI is claimed here.
+  \item Archival DOI: see Data Availability (pending Zenodo mint with the PI).
 \end{itemize}
 
 \section{Technical Validation}\label{sec:techval}
@@ -580,7 +578,7 @@ or ATR vs transmission metadata.
         (commercial 88,545).
   \item Transcription fidelity $n=60$ and $n=200$ --- done (automated re-fetch).
   \item Extraction-recall automatic proxy ($n=120$ papers) --- done
-        (human recall still optional).
+        (Human mark-up of every IR string in every paper --- deferred).
   \item Stratified chemist-proxy audit ($n=280$) --- done
         (automated; Table~\ref{tab:chemistproxy}; not a human expert audit).
   \item Full-corpus structure--NMR quarantine --- done
@@ -624,9 +622,9 @@ or ATR vs transmission metadata.
         set; drop quarantine IDs; keep \texttt{source\_doi} / \texttt{pmcid} for
         attribution; prefer \texttt{irexp\_resolved} when SMILES is required.
         ShareAlike Chemotion rows may be remixed only under CC-BY-SA terms.
-  \item \textbf{Attribution.} Cite this Data Descriptor and the Zenodo DOI (when
-        minted) and attribute originating articles through each record's
-        \texttt{source\_doi}.
+  \item \textbf{Attribution.} Cite this Data Descriptor and each record's
+        originating \texttt{source\_doi}. Add the Zenodo DOI when minted; no
+        archival DOI is claimed in this Descriptor.
 \end{itemize}
 
 \subsection{Limitations}\label{sec:limitations}
@@ -651,26 +649,34 @@ or ATR vs transmission metadata.
         (88,545 after Crossref recovery of previously empty rows).
   \item \textbf{Scope of this paper.} Elucidation benchmarks and model results are
         out of scope for this Data Descriptor; cite the companion research manuscript
-        (IRSpectra-Bench / ICLR track) for those claims.
+        (IRSpectra-Bench) for those claims.
         Do not treat this Descriptor and the companion paper as interchangeable
         publications of the same results.
 \end{itemize}
 
 \section{Data Availability}\label{sec:dataavail}
 
+Hugging Face Datasets (\url{https://huggingface.co/datasets/ilkhamfy/IRexp}) is
+the live bulk download for the JSONL release.
+GitHub \url{https://github.com/IlkhamFY/IRexp} holds this manuscript, frozen count
+manifests, and figures (no bulk JSONL under \texttt{data/}).
+Harvest and validation code lives in spectro-agent
+(\url{https://github.com/IlkhamFY/spectro-agent}; Section~\ref{sec:codeavail}).
+A Zenodo archival DOI for the commercial-pool primary deposit will be minted with
+the PI before or at revision for Scientific Data repository compliance; no DOI is
+claimed here.
+Do not reuse the combined IRSpectra-Bench research \texttt{.zenodo.json} as the
+Sci Data archival record.
+
 \begin{itemize}
   \item Dataset (bulk JSONL): Hugging Face Datasets,
         \url{https://huggingface.co/datasets/ilkhamfy/IRexp}
   \item Manuscript, frozen count manifests, and figures:
         \url{https://github.com/IlkhamFY/IRexp}
-        (no bulk JSONL under \texttt{data/} in that repository)
   \item Harvest / pipeline source: \url{https://github.com/IlkhamFY/spectro-agent}
         (Section~\ref{sec:codeavail})
-  \item Zenodo: archival DOI pending --- to be minted with the PI for a
-        \emph{data-only} deposit (primary artifact = commercial pool,
-        \texttt{cc-by-4.0} metadata + SA companion).
-        Do not reuse the combined IRSpectra-Bench research \texttt{.zenodo.json}
-        as the Sci Data archival record. No DOI is invented here.
+  \item Zenodo archival DOI: pending mint with the PI (commercial-pool primary
+        deposit). No DOI claimed in this Descriptor.
 \end{itemize}
 
 Licensing summary:
@@ -703,11 +709,20 @@ licence join \texttt{scripts/join\_pmc\_licences.py},
 \texttt{scripts/audit\_chemist\_proxy.py},
 \texttt{scripts/quarantine\_structure\_nmr.py}; pool split
 \texttt{scripts/split\_license\_pools.py}.
-A release tag matching this Descriptor will be pinned on spectro-agent when the
-Zenodo archive is minted (placeholder: \texttt{irexp-scidata}; record the commit
-SHA at deposit). Until then, \texttt{main} at
-\texttt{6c18914} (2026-08-31) is the public snapshot corresponding to the
-harvest/validation scripts cited here.
+Until archival deposit, \texttt{main} at \texttt{6c18914} (2026-08-31) is the
+public spectro-agent snapshot corresponding to the harvest and validation scripts
+cited here.
+A release tag matching this Descriptor, and a Zenodo/software DOI of that exact
+commit, will be recorded when the archival deposit is minted; no software DOI is
+claimed here.
+
+\bibliography{references}
+
+\section*{Funding}
+
+This work was supported by the Natural Sciences and Engineering Research Council
+of Canada (NSERC), funding reference number 596133-2025 (CREATE for Accelerated
+Discovery, AccelD), delivered through the Acceleration Consortium.
 
 \section*{Author contributions}
 
@@ -722,12 +737,8 @@ The authors declare no competing interests.
 
 \section*{Acknowledgements}
 
-We acknowledge the support of the Natural Sciences and Engineering Research
-Council of Canada (NSERC), funding reference number 596133-2025 (CREATE for
-Accelerated Discovery, AccelD), delivered through the Acceleration Consortium.
 We thank the Department of Chemistry and Chemical Biology, McMaster University,
 for institutional support.
-
-\bibliography{references}
+Funding details are given in the Funding section.
 
 \end{document}
