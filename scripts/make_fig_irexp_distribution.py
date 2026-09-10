@@ -1,12 +1,19 @@
-#!/usr/bin/env python3
-"""Fig 3 — composition + band-count histogram + validation.
-Uses serialized histogram/audit arrays under data/ (from spectro-agent irexp.jsonl.gz).
-Design: DejaVu Sans, ink #111111, values bold in right columns, PDF42 + PNG 600dpi.
+"""Fig 3 - composition + automated validation. Frozen counts only (no bulk JSONL).
+
+IMPORTANT - publication assets:
+  Panel (d) must remain a real band-count HISTOGRAM with median line, and panel (f)
+  must keep mini-histograms / clear metrics. Those panels require bulk JSONL /
+  validation artefacts that are NOT in this postcard repo. Regenerating from this
+  script alone yields a degraded median-bar + text-card figure (v0.5 regression).
+
+  Keep the frozen PNG/PDF under figures/ (restored from release v0.4 / commit
+  3f7e128). Do NOT overwrite fig_irexp_distribution.png/.pdf from this script
+  unless bulk inputs are restored and panel d/f match v0.4 quality.
+
+  Guard: set IREXP_REGEN_DISTRIBUTION=1 to force regeneration.
 """
 from __future__ import annotations
 
-import json
-import os
 from pathlib import Path
 
 import matplotlib
@@ -24,13 +31,15 @@ BLUE = "#4A7EBB"
 BLUE_SOFT = "#8FB4D9"
 ORANGE = "#D97B32"
 GREEN = "#3D8B5E"
-GRAY = "#9AA0A6"
-INK = "#111111"
-NOTE = "#666666"
+GRAY = "#B7BDC3"
+PEACH = "#E8B86D"
+INK = "#1A1A1A"
+NOTE = "#5C636A"
 FAINT = "#E8EAEC"
 TRACK = "#EEF1F4"
 FONT = "DejaVu Sans"
 
+# Frozen (data/irexp_stats.json, data/qc_structure_nmr.json, resolved_stats.json)
 PMC = 119_345
 CHEM = 1_888
 COMM = 88_545
@@ -42,9 +51,9 @@ ALL = 121_233
 NMR = 87_075
 STRUCT = 43_060
 QUAD = 33_201
-MED_PMC = 9
-MED_CHEM = 39
 
+# Elemental presence in structure-linked subset, transcribed from the
+# previous frozen figure (do not invent new chemistry counts).
 EL_MAJOR = [
     ("C", 43_047),
     ("O", 38_870),
@@ -77,149 +86,58 @@ def _style() -> None:
             "axes.linewidth": 0.6,
             "pdf.fonttype": 42,
             "ps.fonttype": 42,
-            "savefig.dpi": 600,
         }
     )
 
 
-def _hbar_col(ax, labels, values, colors, title: str) -> None:
-    """Horizontal bars with ALL counts in one right-aligned numeric column outside bars."""
+def _hbar(ax, labels, values, colors, title: str, log: bool = False) -> None:
     y = np.arange(len(labels))
-    vmax = max(values)
-    # leave room on the right for the numeric column
-    ax.set_xlim(0, vmax * 1.52)
-    ax.barh(y, values, color=colors, height=0.62, edgecolor="white", linewidth=0.35, zorder=3)
+    ax.barh(y, values, color=colors, height=0.62, edgecolor="white", linewidth=0.4)
     ax.set_yticks(y)
-    ax.set_yticklabels(labels, fontsize=7.6, color=INK, fontweight="normal")
+    ax.set_yticklabels(labels, fontsize=7.5, color=INK)
     ax.invert_yaxis()
-    ax.set_title(title, fontsize=9.5, fontweight="bold", color=INK, pad=7, loc="left")
+    ax.set_title(title, fontsize=9, fontweight="bold", color=INK, pad=6, loc="left")
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
     ax.tick_params(length=0, labelcolor=INK)
-    ax.xaxis.grid(True, color=FAINT, lw=0.5, zorder=0)
+    ax.xaxis.grid(True, color=FAINT, lw=0.5)
     ax.set_axisbelow(True)
-    # snap numeric column to a fixed x (right side), right-aligned
-    x_col = vmax * 1.50
+    if log:
+        ax.set_xscale("log")
+        ax.set_xlabel(r"log$_{10}$ records", fontsize=7, color=NOTE)
+    xmax = max(values) * (1.28 if not log else 2.2)
+    if not log:
+        ax.set_xlim(0, xmax)
     for yi, v in zip(y, values):
-        ax.text(
-            x_col,
-            yi,
-            f"{v:,}",
-            va="center",
-            ha="right",
-            fontsize=7.5,
-            fontweight="bold",
-            color=INK,
-            zorder=4,
-            family=FONT,
-        )
+        ax.text(v * (1.03 if not log else 1.15), yi, f"{v:,}", va="center", ha="left", fontsize=6.8, color=NOTE)
 
 
-def _panel(ax, letter: str, x: float = -0.14, y: float = 1.14) -> None:
-    ax.text(
-        x,
-        y,
-        letter,
-        transform=ax.transAxes,
-        fontsize=12,
-        fontweight="bold",
-        va="bottom",
-        color=INK,
-    )
-
-
-def _load_hist():
-    path = ROOT / "data" / "band_count_histogram.json"
-    data = json.loads(path.read_text())
-    return list(data["binned_x"]), list(data["binned_y"])
-
-
-def _load_validation():
-    path = ROOT / "data" / "validation_distributions.json"
-    return json.loads(path.read_text())
-
-
-def _validation_histogram(ax, title: str, data: np.ndarray, aggregate: float,
-                          xlabel: str, xmax: float, agg_label: str = "Rate") -> None:
-    bins = np.linspace(0, xmax, min(25, max(10, len(np.unique(data)) + 2)))
-    ax.hist(data, bins=bins, color=BLUE, edgecolor="white", linewidth=0.3, zorder=2)
-    ax.set_xlim(0, xmax)
-    ax.set_xlabel(xlabel, fontsize=6.2, fontweight="normal", color=NOTE, labelpad=1)
-    ax.set_title(title, fontsize=6.8, fontweight="bold", color=INK, pad=3)
-    ax.spines["top"].set_visible(False)
-    ax.spines["right"].set_visible(False)
-    ax.tick_params(axis="y", left=False, labelleft=False, labelcolor=INK)
-    ax.tick_params(axis="x", labelsize=5.8, labelcolor=INK, pad=1)
-    med = float(np.median(data))
-    ymax = ax.get_ylim()[1]
-    # compact corner annotations (stay inside axes; no elbow lines that spill)
-    ax.axvline(med, color=NOTE, lw=0.6, ls=(0, (2, 2)), zorder=4)
-    ax.axvline(aggregate, color=ORANGE, lw=0.6, ls=(0, (2, 2)), zorder=4)
-    # put labels on the opposite side of the mass to avoid bar occlusion / clipping
-    side_right = aggregate < 0.45 * xmax
-    tx = 0.97 if side_right else 0.03
-    ha = "right" if side_right else "left"
-    ax.text(
-        tx,
-        0.92,
-        f"{agg_label} {aggregate:.3f}",
-        transform=ax.transAxes,
-        ha=ha,
-        va="top",
-        fontsize=5.8,
-        fontweight="bold",
-        color=INK,
-        clip_on=True,
-    )
-    ax.text(
-        tx,
-        0.78,
-        f"Median {med:.3f}",
-        transform=ax.transAxes,
-        ha=ha,
-        va="top",
-        fontsize=5.8,
-        fontweight="bold",
-        color=NOTE,
-        clip_on=True,
-    )
+def _panel(ax, letter: str) -> None:
+    ax.text(-0.12, 1.12, letter, transform=ax.transAxes, fontsize=12, fontweight="bold", va="bottom")
 
 
 def main() -> None:
     _style()
-    bx, by = _load_hist()
-    # clip display to 0–40 bands (matches published v0.1 visual; long tail omitted)
-    mask = [x <= 40 for x in bx]
-    bx_d = [x for x, m in zip(bx, mask) if m]
-    by_d = [y for y, m in zip(by, mask) if m]
-
-    vf = _load_validation()
-    tx_err = np.array(vf["transcription_errors"], dtype=float)
-    paper_recall = np.array(vf["paper_recall"], dtype=float)
-    list_match = np.array(vf["list_match"], dtype=float)
-    fail_ct = np.array(vf["chemist_fail_counts"], dtype=float)
-    agg = vf["aggregates"]
-
-    fig = plt.figure(figsize=(7.4, 7.15))
+    fig = plt.figure(figsize=(7.2, 6.55))
     gs = fig.add_gridspec(
         2,
         3,
-        height_ratios=[0.95, 1.25],
-        hspace=0.58,
-        wspace=0.50,
-        left=0.09,
-        right=0.99,
-        top=0.94,
-        bottom=0.06,
+        height_ratios=[1.0, 1.12],
+        hspace=0.55,
+        wspace=0.55,
+        left=0.10,
+        right=0.98,
+        top=0.93,
+        bottom=0.07,
     )
 
     ax_a = fig.add_subplot(gs[0, 0])
     _panel(ax_a, "a")
-    _hbar_col(ax_a, ["PMC OA", "Chemotion"], [PMC, CHEM], [BLUE, GREEN], "Source")
+    _hbar(ax_a, ["PMC OA", "Chemotion"], [PMC, CHEM], [BLUE, GREEN], "Source")
 
     ax_b = fig.add_subplot(gs[0, 1])
     _panel(ax_b, "b")
-    _hbar_col(
+    _hbar(
         ax_b,
         ["commercial", "non-commercial", "empty / unknown", "ShareAlike", "other (ND)"],
         [COMM, NC, EMPTY, SA, OTHER],
@@ -229,7 +147,7 @@ def main() -> None:
 
     ax_c = fig.add_subplot(gs[0, 2])
     _panel(ax_c, "c")
-    _hbar_col(
+    _hbar(
         ax_c,
         ["all records", "+ NMR string", "structure-linked", "full quadruplet"],
         [ALL, NMR, STRUCT, QUAD],
@@ -237,142 +155,83 @@ def main() -> None:
         "Modality linkage",
     )
 
-    # d — real band-count HISTOGRAM with median line (from serialized spectro-agent counts)
+    # d - published medians only (bulk JSONL / per-record histogram not in this repo)
     ax_d = fig.add_subplot(gs[1, 0])
     _panel(ax_d, "d")
-    ax_d.bar(bx_d, by_d, width=1.8, color=BLUE, edgecolor="white", linewidth=0.3, zorder=3)
-    ax_d.set_xlabel("IR bands per record", fontsize=8.0, fontweight="normal", color=INK)
-    ax_d.set_title("Band-count distribution", fontsize=9.5, fontweight="bold", color=INK, pad=6, loc="left")
+    med_labels = ["PMC", "Chemotion"]
+    med_vals = [9, 39]
+    ax_d.bar([0, 1], med_vals, color=[BLUE, GREEN], width=0.55, edgecolor="white", linewidth=0.4)
+    for x, v in zip((0, 1), med_vals):
+        ax_d.text(x, v + 1.2, str(v), ha="center", va="bottom", fontsize=8, color=NOTE)
+    ax_d.set_xticks([0, 1])
+    ax_d.set_xticklabels(med_labels, fontsize=8)
+    ax_d.set_ylabel("Median bands / record", fontsize=7.5, color=INK)
+    ax_d.set_ylim(0, 48)
+    ax_d.set_title("Band-count medians", fontsize=9, fontweight="bold", color=INK, pad=6, loc="left")
     ax_d.spines["top"].set_visible(False)
     ax_d.spines["right"].set_visible(False)
-    ax_d.set_xlim(0, 42)
-    ax_d.yaxis.grid(True, color=FAINT, lw=0.5, zorder=0)
+    ax_d.tick_params(length=3, color=NOTE, labelcolor=INK)
+    ax_d.yaxis.grid(True, color=FAINT, lw=0.5)
     ax_d.set_axisbelow(True)
-    ax_d.tick_params(length=3, color=NOTE, labelcolor=INK, labelsize=7.2)
-    ymax = max(by_d) if by_d else 1
-    ax_d.axvline(MED_PMC, color=NOTE, lw=0.9, ls=(0, (3, 2)), zorder=4)
-    ax_d.text(
-        MED_PMC + 0.7,
-        ymax * 0.92,
-        f"PMC median {MED_PMC}",
-        fontsize=7.2,
-        fontweight="bold",
-        color=INK,
-        zorder=5,
-    )
-    # subtle Chemotion note
-    ax_d.text(
-        0.98,
-        0.04,
-        f"Chemotion median {MED_CHEM}",
-        transform=ax_d.transAxes,
-        ha="right",
-        va="bottom",
-        fontsize=6.6,
-        color="#555555",
-    )
 
-    # e — elemental distribution
-    gs_e = gs[1, 1].subgridspec(1, 2, wspace=0.45)
+    gs_e = gs[1, 1].subgridspec(1, 2, wspace=0.55)
     ax_e0 = fig.add_subplot(gs_e[0, 0])
     ax_e1 = fig.add_subplot(gs_e[0, 1])
-    _panel(ax_e0, "e", x=-0.28)
-    ax_e0.set_title("Elemental distribution", fontsize=9.5, fontweight="bold", color=INK, pad=8, loc="left")
+    _panel(ax_e0, "e")
+    ax_e0.set_title("Elemental distribution", fontsize=9, fontweight="bold", color=INK, pad=8, loc="left")
+    y = np.arange(len(EL_MAJOR))
 
     def _el(ax, pairs, heading: str) -> None:
         labs = [p[0] for p in pairs]
         vals = [p[1] for p in pairs]
-        y = np.arange(len(labs))
-        ax.barh(y, vals, color=BLUE, height=0.58, edgecolor="white", linewidth=0.3, zorder=3)
+        ax.barh(y, vals, color=BLUE, height=0.58, edgecolor="white", linewidth=0.3)
         ax.set_yticks(y)
-        ax.set_yticklabels(labs, fontsize=7.2, color=INK, fontweight="normal")
+        ax.set_yticklabels(labs, fontsize=7)
         ax.invert_yaxis()
-        ax.set_xlabel(heading, fontsize=7.0, color=NOTE)
-        xmax = max(vals) * 1.55 if max(vals) else 1
+        ax.set_xlabel(heading, fontsize=7, color=NOTE)
+        xmax = max(vals) * 1.45 if max(vals) else 1
         ax.set_xlim(0, xmax)
-        x_col = xmax * 0.98
         for i, v in enumerate(vals):
-            ax.text(x_col, i, f"{v:,}", ha="right", va="center", fontsize=6.6, fontweight="bold", color=INK)
+            ax.text(v + xmax * 0.03, i, f"{v:,}", ha="left", va="center", fontsize=6.2, color=NOTE)
         ax.spines["top"].set_visible(False)
         ax.spines["right"].set_visible(False)
         ax.tick_params(axis="x", length=0, labelbottom=False)
-        ax.tick_params(axis="y", length=0, labelcolor=INK)
+        ax.tick_params(axis="y", length=0)
 
     _el(ax_e0, EL_MAJOR, "Major")
     _el(ax_e1, EL_TRACE, "Trace")
 
-    # f — 2×2 validation histograms (real audit arrays)
-    gs_f = gs[1, 2].subgridspec(2, 2, hspace=1.35, wspace=0.70)
-    # letter on a phantom axes spanning the cell
-    ax_f_phantom = fig.add_subplot(gs[1, 2])
-    ax_f_phantom.set_axis_off()
-    # letter only — avoid title collision with 2x2 subplot titles
-    _panel(ax_f_phantom, "f", x=-0.06, y=1.22)
-    ax_f_phantom.text(
-        0.0,
-        1.14,
-        "Automated validation",
-        transform=ax_f_phantom.transAxes,
-        fontsize=9.5,
-        fontweight="bold",
-        color=INK,
-        va="bottom",
-        ha="left",
-        clip_on=False,
-    )
+    ax_f = fig.add_subplot(gs[1, 2])
+    _panel(ax_f, "f")
+    ax_f.set_title("Automated validation", fontsize=9, fontweight="bold", color=INK, pad=6, loc="left")
+    ax_f.set_xlim(0, 10)
+    ax_f.set_ylim(0, 10)
+    ax_f.axis("off")
+    cells = [
+        (0.15, 5.25, "Transcription  n=200", "99.51% bands", "MAE 0.0049"),
+        (5.25, 5.25, "Band recall  n=120", "0.9903", "CI 0.9879-0.9922"),
+        (0.15, 0.35, "List match  n=120", "0.9848", "CI 0.9743-0.9911"),
+        (5.25, 0.35, "Chemist-proxy  n=280", "271/280", "fail 0.0321"),
+    ]
+    for x, y, title, big, small in cells:
+        ax_f.add_patch(plt.Rectangle((x, y), 4.6, 4.4, fill=True, facecolor=TRACK, edgecolor=FAINT, lw=0.6))
+        ax_f.text(x + 2.3, y + 3.5, title, ha="center", va="center", fontsize=6.6, color=NOTE)
+        ax_f.text(x + 2.3, y + 2.2, big, ha="center", va="center", fontsize=8.2, fontweight="bold", color=NAVY)
+        ax_f.text(x + 2.3, y + 1.1, small, ha="center", va="center", fontsize=6.2, color=ORANGE)
 
-    ax_f1 = fig.add_subplot(gs_f[0, 0])
-    _validation_histogram(
-        ax_f1,
-        "Transcription (n=200)",
-        tx_err,
-        float(agg["mae_proxy"]),
-        "error rate",
-        1.05,
-        agg_label="MAE proxy",
-    )
-    ax_f2 = fig.add_subplot(gs_f[0, 1])
-    _validation_histogram(
-        ax_f2,
-        "Band recall (n=120)",
-        paper_recall,
-        float(agg["band_recall_rate"]),
-        "band rate",
-        1.05,
-        agg_label="Pool",
-    )
-    ax_f3 = fig.add_subplot(gs_f[1, 0])
-    _validation_histogram(
-        ax_f3,
-        "List match (n=120)",
-        list_match,
-        float(agg["list_match_rate"]),
-        "list rate",
-        1.05,
-        agg_label="Pool",
-    )
-    ax_f4 = fig.add_subplot(gs_f[1, 1])
-    _validation_histogram(
-        ax_f4,
-        "Chemist-proxy (n=280)",
-        fail_ct,
-        float(agg["chemist_fail_rate"]),
-        "fail count",
-        max(4.0, float(fail_ct.max()) + 0.5),
-        agg_label="Fail rate",
-    )
-
-    fig.savefig(OUT / "fig_irexp_distribution.pdf", dpi=600, bbox_inches="tight")
-    fig.savefig(OUT / "fig_irexp_distribution.png", dpi=600, bbox_inches="tight")
+    fig.savefig(OUT / "fig_irexp_distribution.pdf", dpi=300, bbox_inches="tight")
+    fig.savefig(OUT / "fig_irexp_distribution.png", dpi=300, bbox_inches="tight")
     plt.close(fig)
     print(f"wrote {OUT / 'fig_irexp_distribution.pdf'}")
-    print(f"wrote {OUT / 'fig_irexp_distribution.png'}")
 
 
 if __name__ == "__main__":
+    import os
+    # FROZEN_DISTRIBUTION_ASSETS: refuse overwrite unless explicitly forced.
     if os.environ.get("IREXP_REGEN_DISTRIBUTION") != "1":
         raise SystemExit(
-            "Refusing to overwrite fig_irexp_distribution.* without "
-            "IREXP_REGEN_DISTRIBUTION=1 (requires data/band_count_histogram.json)."
+            "Refusing to overwrite fig_irexp_distribution.* - frozen v0.4 "
+            "histogram assets require bulk JSONL. Set IREXP_REGEN_DISTRIBUTION=1 "
+            "to force."
         )
     main()
