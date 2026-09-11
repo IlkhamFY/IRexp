@@ -1,0 +1,54 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\pagenumbering{gobble}
+
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+
+
+\renewcommand{\headrulewidth}{-4pt}
+\fancyhead[L]{
+\includegraphics[width=3cm]{./mcm-col_png.png}
+}
+\pagestyle{fancy}
+
+\begin{document}
+
+%\noindent
+$\;$\\
+\vspace{-0.3cm}
+
+\begin{flushright}
+\today
+\end{flushright}
+
+\vspace{-0.1cm}
+Dear Editor,\\
+\vspace{0.2cm}
+
+
+%----------------------------------------------------------------------------------------
+We submit our manuscript entitled ``\emph{ParetoMol: A Free Web Application for Multi-Objective Pareto Analysis of Molecular Safety and Pharmacokinetics}'' for consideration as a Research Article in \emph{Digital Discovery}.
+Prioritizing compounds in drug discovery requires the simultaneous assessment of potency, selectivity, pharmacokinetics, and safety — yet freely available tools present these properties one endpoint at a time, forcing medicinal chemists to manually reconcile trade-offs. \texttt{ParetoMol} addresses this directly: it is an open-source web application that computes Pareto dominance across user-defined molecular objectives and provides 14 synchronized visualization tabs for interactive exploration of compound trade-offs. All physicochemical computations run client-side via RDKit.js WebAssembly, ensuring that no molecular data leaves the browser unless the user explicitly enables ADMET prediction.
+
+We demonstrate three distinct analytical capabilities:
+\begin{enumerate}
+\itemsep-0.3em
+    \item Safety-augmented Pareto analysis of 1,949 FDA-approved drugs expands the Pareto front 3.6-fold, rescuing 131 compounds---including metformin, captopril, and allopurinol---overlooked by physicochemical-only ranking.
+    \item Scaffold-level analysis of 50 EGFR inhibitors reveals universal predicted AhR activation across the 4-anilinoquinazoline class (100\% above threshold vs.\ 50\% in matched controls; $p = 5.61 \times 10^{-10}$), a liability invisible to per-compound tools.
+    \item Cross-class comparison of 92 compounds across six drug classes uncovers orthogonal predicted risk profiles that single-endpoint screening cannot detect.
+\end{enumerate}
+
+We believe ParetoMol will interest medicinal chemists navigating multi-parameter compound decisions, particularly those balancing efficacy against ADMET liabilities during lead optimization. The software, datasets, and validation scripts are openly available at \url{https://paretomol.com} and the main repository at \url{https://github.com/IlkhamFY/paretomol}.\\
+
+All authors confirm that this manuscript has not been previously published and is not under consideration elsewhere. The authors have approved the submitted version and agree to \emph{Digital Discovery}'s submission policies.
+
+\vspace{0.5cm}
+
+Best regards,\vspace{0.5cm}\\
+\begin{center}
+Rodrigo A. Vargas-Hern\'{a}ndez, on behalf of all authors \\
+email: vargashr@mcmaster.ca
+\end{center}
+\end{document}
