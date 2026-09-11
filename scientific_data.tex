@@ -449,12 +449,14 @@ Provenance files shipped with the dataset (not in Table~\ref{tab:files}):
 \subsection{Access}
 
 \begin{itemize}
-  \item Dataset (Hugging Face): \url{https://huggingface.co/datasets/ilkhamfy/IRexp}
+  \item Dataset (Hugging Face): \url{https://huggingface.co/datasets/ilkhamfy/IRexp},
+        revision \texttt{2fb44992d33b389e2ba30d6d03a6ac76a261855a}
+        (commercial dataset of record; Section~\ref{sec:dataavail})
   \item This Data Descriptor, manifests, and figures:
         \url{https://github.com/IlkhamFY/IRexp}
   \item Harvest / pipeline code: \url{https://github.com/IlkhamFY/spectro-agent}
         (Section~\ref{sec:codeavail})
-  \item Archival DOI: see Data Availability (pending Zenodo mint).
+  \item Archival DOI: see Data Availability (pending Zenodo mint; no DOI claimed).
 \end{itemize}
 
 \section{Technical Validation}\label{sec:techval}
@@ -635,9 +637,11 @@ or ATR vs transmission metadata.
         generally absent; the IR window check is necessary but narrow.
   \item \textbf{Structure coverage and name resolution.} Only 35.5\% of records are
         structure-linked; OPSIN/PubChem failures leave many IR lists without SMILES.
-  \item \textbf{Licence mix.} The full \texttt{irexp.jsonl.gz} is multi-licence;
-        commercial redistribution is the commercial pool only (88,545 after Crossref
-        recovery of previously empty rows).
+  \item \textbf{Licence mix.} The full multi-licence corpus described for
+        construction/methodology is multi-licence on disk; Scientific Data /
+        commercial redistribution uses the commercial pool only (88,545 after
+        Crossref recovery of previously empty rows; Hub revision cited in
+        Section~\ref{sec:dataavail}).
   \item \textbf{Scope of this paper.} Elucidation benchmarks and model results are
         out of scope for this Data Descriptor; cite the companion research manuscript
         (IRSpectra-Bench) for those claims.
@@ -645,25 +649,38 @@ or ATR vs transmission metadata.
 
 \section{Data Availability}\label{sec:dataavail}
 
-Hugging Face Datasets (\url{https://huggingface.co/datasets/ilkhamfy/IRexp}) is
-the live bulk download for the JSONL release.
+For Scientific Data redistribution, the \textbf{dataset of record} is the
+commercial CC-BY/CC0 pool ($n=88{,}545$), published on Hugging Face Datasets at
+\url{https://huggingface.co/datasets/ilkhamfy/IRexp}, revision
+\texttt{2fb44992d33b389e2ba30d6d03a6ac76a261855a}.
+That Hub revision ships the commercial deposit with F2/F3 quality flags
+(\texttt{ir\_shared\_in\_paper}, \texttt{ir\_table\_flatten\_suspect}) retained as
+fields (rows not dropped), plus companion configs
+\texttt{resolved\_commercial} ($n=28{,}899$) and
+\texttt{train\_no\_bench\_commercial} ($n=29{,}111$).
+An F1 thousands-separator fix was applied in spectro-agent and band lists were
+reparsed for this commercial rebuild; commercial pool size is unchanged versus
+the pre-F1 stamp.
+The full multi-licence corpus ($n=121{,}233$) described in Methods and Data
+Records remains the construction and methodology reference; it is not the Sci Data
+commercial redistribution artifact in this Hub revision.
 GitHub \url{https://github.com/IlkhamFY/IRexp} holds this manuscript, frozen count
 manifests, and figures (no bulk JSONL under \texttt{data/}).
 Harvest and validation code lives in spectro-agent
 (\url{https://github.com/IlkhamFY/spectro-agent}; Section~\ref{sec:codeavail}).
-A Zenodo archival DOI for the commercial-pool primary deposit will be minted
-before or at revision for Scientific Data repository compliance; no DOI is claimed
-here.
+A Zenodo archival DOI for the commercial-pool primary deposit remains pending
+with the PI; no DOI is claimed here.
 
 \begin{itemize}
-  \item Dataset (bulk JSONL): Hugging Face Datasets,
-        \url{https://huggingface.co/datasets/ilkhamfy/IRexp}
+  \item Dataset of record (commercial CC-BY/CC0, $n=88{,}545$): Hugging Face
+        Datasets, \url{https://huggingface.co/datasets/ilkhamfy/IRexp}, revision
+        \texttt{2fb44992d33b389e2ba30d6d03a6ac76a261855a}
   \item Manuscript, frozen count manifests, and figures:
         \url{https://github.com/IlkhamFY/IRexp}
   \item Harvest / pipeline source: \url{https://github.com/IlkhamFY/spectro-agent}
         (Section~\ref{sec:codeavail})
-  \item Zenodo archival DOI: pending mint (commercial-pool primary deposit). No DOI
-        claimed in this Descriptor.
+  \item Zenodo archival DOI: pending with PI (commercial-pool primary deposit).
+        No DOI claimed in this Descriptor.
 \end{itemize}
 
 Licensing summary:
