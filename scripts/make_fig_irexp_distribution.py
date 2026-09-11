@@ -145,43 +145,23 @@ def _validation_histogram(ax, title: str, data: np.ndarray, aggregate: float,
     ax.hist(data, bins=bins, color=BLUE, edgecolor="white", linewidth=0.3, zorder=2)
     ax.set_xlim(0, xmax)
     ax.set_xlabel(xlabel, fontsize=6.2, fontweight="normal", color=NOTE, labelpad=1)
-    ax.set_title(title, fontsize=6.8, fontweight="bold", color=INK, pad=3)
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
     ax.tick_params(axis="y", left=False, labelleft=False, labelcolor=INK)
     ax.tick_params(axis="x", labelsize=5.8, labelcolor=INK, pad=1)
     med = float(np.median(data))
-    ymax = ax.get_ylim()[1]
-    # compact corner annotations (stay inside axes; no elbow lines that spill)
     ax.axvline(med, color=NOTE, lw=0.6, ls=(0, (2, 2)), zorder=4)
     ax.axvline(aggregate, color=ORANGE, lw=0.6, ls=(0, (2, 2)), zorder=4)
-    # put labels on the opposite side of the mass to avoid bar occlusion / clipping
-    side_right = aggregate < 0.45 * xmax
-    tx = 0.97 if side_right else 0.03
-    ha = "right" if side_right else "left"
-    ax.text(
-        tx,
-        0.92,
-        f"{agg_label} {aggregate:.3f}",
-        transform=ax.transAxes,
-        ha=ha,
-        va="top",
-        fontsize=5.8,
+    # stats live in the title block: mini-axes are ~55 px wide, so interior
+    # corner strings were wider than the plot and sat on the edge spikes
+    pretty = {"MAE proxy": "MAE", "Fail rate": "Fail"}.get(agg_label, agg_label)
+    ax.set_title(
+        f"{title}\n{pretty} {aggregate:.3f}\nMedian {med:.3f}",
+        fontsize=6.0,
         fontweight="bold",
         color=INK,
-        clip_on=True,
-    )
-    ax.text(
-        tx,
-        0.78,
-        f"Median {med:.3f}",
-        transform=ax.transAxes,
-        ha=ha,
-        va="top",
-        fontsize=5.8,
-        fontweight="bold",
-        color=NOTE,
-        clip_on=True,
+        pad=4,
+        linespacing=1.12,
     )
 
 
@@ -302,15 +282,15 @@ def main() -> None:
     _el(ax_e1, EL_TRACE, "Trace")
 
     # f ΓÇö 2├ù2 validation histograms (real audit arrays)
-    gs_f = gs[1, 2].subgridspec(2, 2, hspace=1.35, wspace=0.70)
+    gs_f = gs[1, 2].subgridspec(2, 2, hspace=1.80, wspace=1.05)
     # letter on a phantom axes spanning the cell
     ax_f_phantom = fig.add_subplot(gs[1, 2])
     ax_f_phantom.set_axis_off()
-    # letter only ΓÇö avoid title collision with 2x2 subplot titles
-    _panel(ax_f_phantom, "f", x=-0.06, y=1.22)
+    # lift heading so multi-line mini-titles do not run into it
+    _panel(ax_f_phantom, "f", x=-0.06, y=1.34)
     ax_f_phantom.text(
         0.0,
-        1.14,
+        1.24,
         "Automated validation",
         transform=ax_f_phantom.transAxes,
         fontsize=9.5,
@@ -324,7 +304,7 @@ def main() -> None:
     ax_f1 = fig.add_subplot(gs_f[0, 0])
     _validation_histogram(
         ax_f1,
-        "Transcription (n=200)",
+        "Transcription\n(n=200)",
         tx_err,
         float(agg["mae_proxy"]),
         "error rate",
@@ -334,7 +314,7 @@ def main() -> None:
     ax_f2 = fig.add_subplot(gs_f[0, 1])
     _validation_histogram(
         ax_f2,
-        "Band recall (n=120)",
+        "Band recall\n(n=120)",
         paper_recall,
         float(agg["band_recall_rate"]),
         "band rate",
@@ -344,7 +324,7 @@ def main() -> None:
     ax_f3 = fig.add_subplot(gs_f[1, 0])
     _validation_histogram(
         ax_f3,
-        "List match (n=120)",
+        "List match\n(n=120)",
         list_match,
         float(agg["list_match_rate"]),
         "list rate",
@@ -354,10 +334,10 @@ def main() -> None:
     ax_f4 = fig.add_subplot(gs_f[1, 1])
     _validation_histogram(
         ax_f4,
-        "Chemist-proxy (n=280)",
+        "Chemist-proxy\n(n=280)",
         fail_ct,
         float(agg["chemist_fail_rate"]),
-        "fail count",
+        "fail rate",
         1.05,  # fail *rate* axis (0-1), match siblings a-c; not count scale
         agg_label="Fail rate",
     )
