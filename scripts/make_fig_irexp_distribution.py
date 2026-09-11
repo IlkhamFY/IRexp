@@ -268,11 +268,14 @@ def main() -> None:
         ax.set_yticklabels(labs, fontsize=7.2, color=INK, fontweight="normal")
         ax.invert_yaxis()
         ax.set_xlabel(heading, fontsize=7.0, color=NOTE)
-        xmax = max(vals) * 1.55 if max(vals) else 1
+        vmax = max(vals) if max(vals) else 1
+        # right-aligned column at xmax*0.98 collided with C/O/N; park a
+        # left-aligned numeric column just past the longest bar
+        xmax = vmax * 2.05
         ax.set_xlim(0, xmax)
-        x_col = xmax * 0.98
+        x_col = vmax * 1.12
         for i, v in enumerate(vals):
-            ax.text(x_col, i, f"{v:,}", ha="right", va="center", fontsize=6.6, fontweight="bold", color=INK)
+            ax.text(x_col, i, f"{v:,}", ha="left", va="center", fontsize=6.6, fontweight="bold", color=INK)
         ax.spines["top"].set_visible(False)
         ax.spines["right"].set_visible(False)
         ax.tick_params(axis="x", length=0, labelbottom=False)
