@@ -98,20 +98,28 @@ Venue-peer literature-mined chemistry datasets such as BigSolDB~\citep{krasnov20
 likewise show that experimental numeric tables extracted from open literature are in
 scope for Data Descriptors.
 
-\paragraph{Relation to NMRexp and other peers.}
-NMRexp is the natural comparator: $\sim$3.3~million experimental NMR records mined
-from supporting-information PDFs, with expert-scale manual checks and replicate
+This Descriptor releases IRexp, a redistributable collection of experimental IR
+band lists (cm$^{-1}$ positions) mined from PMC Open Access full text and from a
+Chemotion electronic laboratory notebook / repository
+deposit~\citep{tremouilhac2017chemotion,tremouilhac2020chemotionrepo,chemotion2024}.
+The release holds 121,233 band lists, including 88,545 commercially
+redistributable CC-BY/CC0 records and 43,060 structure-linked entries; each
+record carries a source accession and a stamped licence
+pool~\citep{hrynaszkiewicz2012open,carroll2011openaccess}.
+
+\paragraph{Positioning among peer resources.}
+NMRexp compiles experimental NMR peak lists mined from supporting-information
+PDFs ($\sim$3.3~million records), with expert-scale manual checks and replicate
 consistency metrics~\citep{wang2025nmrexp}.
-IRexp is \emph{not} an NMR database, does not claim size superiority, and is
-orders of magnitude smaller.
-Its contribution is complementary: redistributable \emph{IR band lists}
-(cm$^{-1}$ positions only) from PMC Open Access full text plus a Chemotion ELN /
-Repository deposit~\citep{tremouilhac2017chemotion,tremouilhac2020chemotionrepo,chemotion2024},
-with per-record licence pools suitable for commercial vs non-commercial
-reuse~\citep{hrynaszkiewicz2012open,carroll2011openaccess}.
-Absorbance-curve libraries (NIST, SDBS) remain the right choice when full
-digitised spectra are required; computational IR--NMR sets remain the right
-choice when simulated multimodal coverage is required~\citep{zipoli2025uspto}.
+IRexp compiles experimental IR band lists of the same object class---numeric
+peak lists with DOI/accession provenance---from literature full text and an
+ELN deposit.
+The two resources share experimental-list form and literature provenance and
+differ in modality (NMR chemical shifts versus IR wavenumbers).
+Absorbance-curve libraries (NIST, SDBS) remain the appropriate resource when
+full digitised spectra are required; computational IR--NMR sets remain the
+appropriate resource when simulated multimodal coverage is
+required~\citep{zipoli2025uspto}.
 
 \begin{figure}[tbp]
 \centering
