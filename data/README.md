@@ -15,6 +15,7 @@ Full redistributable dumps are **not** stored in this manuscript repository (siz
 
 - `pmc_licence_summary.json` — Europe PMC licence join summary
 - `irexp_stats.json` / `release_stats.json` / `resolved_stats.json` — frozen counts
+- `chem_composition.json` — unique-InChIKey MW / aromatic-ring / N-atom / carbonyl histograms (Fig. 3e)
 - `train_no_bench_stats.json` (+ `_nmr`) — held-out split stats
 - `NOTICE` — redistribution / licence policy
 - `README_HF.md` — Hugging Face dataset card source

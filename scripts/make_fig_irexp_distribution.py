@@ -1,6 +1,7 @@
 ﻿#!/usr/bin/env python3
-"""Fig 3 ΓÇö composition + band-count histogram + validation.
+"""Fig 3 — composition + band-count histogram + validation.
 Uses serialized histogram/audit arrays under data/ (from spectro-agent irexp.jsonl.gz).
+Panel e: unique-InChIKey chem composition (data/chem_composition.json).
 Design: DejaVu Sans, ink #111111, values bold in right columns, PDF42 + PNG 600dpi.
 """
 from __future__ import annotations
@@ -44,30 +45,6 @@ STRUCT = 43_060
 QUAD = 33_201
 MED_PMC = 9
 MED_CHEM = 39
-
-EL_MAJOR = [
-    ("C", 43_047),
-    ("O", 38_870),
-    ("N", 36_292),
-    ("S", 12_258),
-    ("Cl", 7_675),
-    ("F", 5_939),
-    ("Br", 3_923),
-    ("Si", 959),
-    ("P", 855),
-]
-EL_TRACE = [
-    ("I", 904),
-    ("Se", 384),
-    ("B", 270),
-    ("Fe", 119),
-    ("Te", 73),
-    ("Sn", 64),
-    ("K", 24),
-    ("Na", 16),
-    ("Ge", 1),
-]
-
 
 def _style() -> None:
     plt.rcParams.update(
@@ -137,6 +114,33 @@ def _load_hist():
 def _load_validation():
     path = ROOT / "data" / "validation_distributions.json"
     return json.loads(path.read_text())
+
+
+def _load_chem():
+    path = ROOT / "data" / "chem_composition.json"
+    return json.loads(path.read_text())
+
+
+def _count_xy(raw: dict, xmax: int):
+    xs = list(range(0, xmax + 1))
+    ys = [int(raw.get(str(i), 0)) for i in xs]
+    return xs, ys
+
+
+def _mini_bars(ax, xs, ys, title: str, xlabel: str, width: float, show_ylabel: bool) -> None:
+    ax.bar(xs, ys, width=width, color=BLUE, edgecolor="white", linewidth=0.3, zorder=2, align="center")
+    ax.set_title(title, fontsize=6.2, fontweight="bold", color=INK, pad=3)
+    ax.set_xlabel(xlabel, fontsize=5.8, fontweight="normal", color=NOTE, labelpad=1)
+    if show_ylabel:
+        ax.set_ylabel("count", fontsize=5.6, color=NOTE, labelpad=1)
+    ax.spines["top"].set_visible(False)
+    ax.spines["right"].set_visible(False)
+    ax.yaxis.grid(True, color=FAINT, lw=0.45, zorder=0)
+    ax.set_axisbelow(True)
+    ax.tick_params(axis="x", labelsize=5.6, labelcolor=INK, pad=1, length=2, color=NOTE)
+    ax.tick_params(axis="y", labelsize=5.4, labelcolor=INK, pad=1, length=2, color=NOTE)
+    if not show_ylabel:
+        ax.tick_params(axis="y", labelleft=False)
 
 
 def _validation_histogram(ax, title: str, data: np.ndarray, aggregate: float,
@@ -252,37 +256,50 @@ def main() -> None:
         color="#555555",
     )
 
-    # e ΓÇö elemental distribution
-    gs_e = gs[1, 1].subgridspec(1, 2, wspace=0.45)
-    ax_e0 = fig.add_subplot(gs_e[0, 0])
-    ax_e1 = fig.add_subplot(gs_e[0, 1])
-    _panel(ax_e0, "e", x=-0.28)
-    ax_e0.set_title("Elemental distribution", fontsize=9.5, fontweight="bold", color=INK, pad=8, loc="left")
+    # e — 2×2 chem-composition histos (unique InChIKey; no C–F panel)
+    chem = _load_chem()
+    gs_e = gs[1, 1].subgridspec(2, 2, hspace=0.95, wspace=0.55)
+    ax_e_ph = fig.add_subplot(gs[1, 1])
+    ax_e_ph.set_axis_off()
+    _panel(ax_e_ph, "e", x=-0.06, y=1.34)
+    ax_e_ph.text(
+        0.0,
+        1.24,
+        "Chemical composition",
+        transform=ax_e_ph.transAxes,
+        fontsize=9.5,
+        fontweight="bold",
+        color=INK,
+        va="bottom",
+        ha="left",
+        clip_on=False,
+    )
 
-    def _el(ax, pairs, heading: str) -> None:
-        labs = [p[0] for p in pairs]
-        vals = [p[1] for p in pairs]
-        y = np.arange(len(labs))
-        ax.barh(y, vals, color=BLUE, height=0.58, edgecolor="white", linewidth=0.3, zorder=3)
-        ax.set_yticks(y)
-        ax.set_yticklabels(labs, fontsize=7.2, color=INK, fontweight="normal")
-        ax.invert_yaxis()
-        ax.set_xlabel(heading, fontsize=7.0, color=NOTE)
-        vmax = max(vals) if max(vals) else 1
-        # right-aligned column at xmax*0.98 collided with C/O/N; park a
-        # left-aligned numeric column just past the longest bar
-        xmax = vmax * 2.05
-        ax.set_xlim(0, xmax)
-        x_col = vmax * 1.12
-        for i, v in enumerate(vals):
-            ax.text(x_col, i, f"{v:,}", ha="left", va="center", fontsize=6.6, fontweight="bold", color=INK)
-        ax.spines["top"].set_visible(False)
-        ax.spines["right"].set_visible(False)
-        ax.tick_params(axis="x", length=0, labelbottom=False)
-        ax.tick_params(axis="y", length=0, labelcolor=INK)
+    ax_e1 = fig.add_subplot(gs_e[0, 0])
+    mw_left = chem["mw"]["bin_left"]
+    mw_w = float(chem["mw"]["bin_width"])
+    mw_c = [x + mw_w / 2.0 for x in mw_left]
+    _mini_bars(ax_e1, mw_c, chem["mw"]["counts"], "Molecular weight", "Da", mw_w * 0.92, True)
+    ax_e1.set_xlim(150, 1000)
+    ax_e1.set_xticks([200, 600, 1000])
 
-    _el(ax_e0, EL_MAJOR, "Major")
-    _el(ax_e1, EL_TRACE, "Trace")
+    ax_e2 = fig.add_subplot(gs_e[0, 1])
+    xs, ys = _count_xy(chem["aromatic_rings"], 8)
+    _mini_bars(ax_e2, xs, ys, "Aromatic rings", "rings / molecule", 0.82, False)
+    ax_e2.set_xlim(-0.6, 8.6)
+    ax_e2.set_xticks(range(0, 9, 2))
+
+    ax_e3 = fig.add_subplot(gs_e[1, 0])
+    xs, ys = _count_xy(chem["n_atoms"], 8)
+    _mini_bars(ax_e3, xs, ys, "N atoms", "N / molecule", 0.82, True)
+    ax_e3.set_xlim(-0.6, 8.6)
+    ax_e3.set_xticks(range(0, 9, 2))
+
+    ax_e4 = fig.add_subplot(gs_e[1, 1])
+    xs, ys = _count_xy(chem["carbonyl"], 6)
+    _mini_bars(ax_e4, xs, ys, "Carbonyl C=O", "C=O / molecule", 0.82, False)
+    ax_e4.set_xlim(-0.6, 6.6)
+    ax_e4.set_xticks(range(0, 7, 2))
 
     # f ΓÇö 2├ù2 validation histograms (real audit arrays)
     gs_f = gs[1, 2].subgridspec(2, 2, hspace=1.80, wspace=1.05)
@@ -356,6 +373,7 @@ if __name__ == "__main__":
     if os.environ.get("IREXP_REGEN_DISTRIBUTION") != "1":
         raise SystemExit(
             "Refusing to overwrite fig_irexp_distribution.* without "
-            "IREXP_REGEN_DISTRIBUTION=1 (requires data/band_count_histogram.json)."
+            "IREXP_REGEN_DISTRIBUTION=1 (requires data/band_count_histogram.json "
+            "and data/chem_composition.json)."
         )
     main()
