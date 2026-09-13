@@ -86,10 +86,9 @@ illustrate how community repositories can expose experimental peak objects with 
 Computational IR--NMR resources published in \textit{Scientific Data} expand
 multimodal coverage with simulated spectra~\citep{zipoli2025uspto,krishnadas2026squirl},
 while large multimodal simulated spectroscopic corpora (for example Alberts
-\textit{et al.}~\citep{alberts2024multimodal}) and literature mines for NMR peak
-lists (notably NMRexp~\citep{wang2025nmrexp}) show that peer-reviewed spectral
-\emph{lists} and multimodal spectroscopic datasets with DOI traceability are in
-scope for data-oriented venues.
+\textit{et al.}~\citep{alberts2024multimodal}) and literature-mined NMR peak
+lists show that peer-reviewed spectral \emph{lists} and multimodal spectroscopic
+datasets with DOI traceability are in scope for data-oriented venues.
 Concurrent literature corpora that include IR among other modalities
 (for example NMRSpec/NMRTrans~\citep{yang2026nmrtrans}) further motivate an
 IR-focused, redistributable band-list resource rather than another closed
@@ -107,14 +106,8 @@ redistributable CC-BY/CC0 records and 43,060 structure-linked entries; each
 record carries a source accession and a stamped licence
 pool~\citep{hrynaszkiewicz2012open,carroll2011openaccess}.
 
-NMRexp compiles experimental NMR peak lists mined from supporting-information
-PDFs ($\sim$3.3~million records), with expert-scale manual checks and replicate
-consistency metrics~\citep{wang2025nmrexp}.
-IRexp compiles experimental IR band lists of the same object class---numeric
-peak lists with DOI/accession provenance---from literature full text and an
-ELN deposit.
-The two resources share experimental-list form and literature provenance and
-differ in modality (NMR chemical shifts versus IR wavenumbers).
+NMRexp~\citep{wang2025nmrexp} is a literature-mined experimental NMR peak-list
+corpus; IRexp is the corresponding object for infrared band lists.
 Absorbance-curve libraries (NIST, SDBS) remain the appropriate resource when
 full digitised spectra are required; computational IR--NMR sets remain the
 appropriate resource when simulated multimodal coverage is
@@ -124,8 +117,6 @@ required~\citep{zipoli2025uspto}.
 \centering
 \includegraphics[width=\textwidth]{fig_irexp_positioning.pdf}
 \caption{Major open \emph{IR} resources by object type and redistributability.
-NMRexp is an NMR peak-list corpus and is therefore excluded from this IR bar
-comparison.
 \textbf{IRexp} holds 121,233 experimental band lists (cm$^{-1}$ positions) with
 bulk redistribution and per-record licence pools; grouped bars show
 structure-linked (43,060) and commercial CC-BY/CC0 (88,545) subsets.
@@ -429,7 +420,11 @@ IR~$+$~$^{1}$H~$+$~$^{13}$C~$+$~structure quadruples
 \textbf{(b)}~Licence pools after Europe PMC joins and Crossref recovery.
 \textbf{(c)}~Modality cascade to 33,201 full quadruples.
 \textbf{(d)}~Median IR bands per record (PMC 9; Chemotion 39).
-\textbf{(e)}~Elements in the structure-linked subset (43,060).
+\textbf{(e)}~Chemical composition of structure-linked unique molecules
+($n=42{,}879$ InChIKeys from 43,060 records): molecular weight, aromatic rings,
+nitrogen atoms per molecule, and carbonyl $\mathrm{C{=}O}$ count (RDKit: number
+of carbon--oxygen double bonds).
+Only $\sim$14\% of uniques have $\geq$1 $\mathrm{C{-}F}$ bond (not shown).
 \textbf{(f)}~Automated checks: transcription error ($n=200$), band recall and
 list match ($n=120$), consistency-audit fails ($n=280$).}
 \label{fig:distribution}
