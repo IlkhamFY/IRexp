@@ -143,7 +143,7 @@ def _mini_bars(ax, xs, ys, title: str, xlabel: str, width: float, show_ylabel: b
         ax.tick_params(axis="y", labelleft=False)
 
 
-def _validation_histogram(ax, title: str, data: np.ndarray, aggregate: float,
+def _validation_histogram(ax, title: str, data: np.ndarray, aggregate: float | None,
                           xlabel: str, xmax: float, agg_label: str = "Rate") -> None:
     bins = np.linspace(0, xmax, min(25, max(10, len(np.unique(data)) + 2)))
     ax.hist(data, bins=bins, color=BLUE, edgecolor="white", linewidth=0.3, zorder=2)
@@ -155,10 +155,20 @@ def _validation_histogram(ax, title: str, data: np.ndarray, aggregate: float,
     ax.tick_params(axis="x", labelsize=5.8, labelcolor=INK, pad=1)
     med = float(np.median(data))
     ax.axvline(med, color=NOTE, lw=0.6, ls=(0, (2, 2)), zorder=4)
-    ax.axvline(aggregate, color=ORANGE, lw=0.6, ls=(0, (2, 2)), zorder=4)
     # stats live in the title block: mini-axes are ~55 px wide, so interior
     # corner strings were wider than the plot and sat on the edge spikes
-    pretty = {"MAE proxy": "MAE", "Fail rate": "Fail"}.get(agg_label, agg_label)
+    if aggregate is None:
+        ax.set_title(
+            f"{title}\nMedian {med:.3f}",
+            fontsize=6.0,
+            fontweight="bold",
+            color=INK,
+            pad=4,
+            linespacing=1.12,
+        )
+        return
+    ax.axvline(aggregate, color=ORANGE, lw=0.6, ls=(0, (2, 2)), zorder=4)
+    pretty = {"Fail rate": "Fail"}.get(agg_label, agg_label)
     ax.set_title(
         f"{title}\n{pretty} {aggregate:.3f}\nMedian {med:.3f}",
         fontsize=6.0,
@@ -326,10 +336,9 @@ def main() -> None:
         ax_f1,
         "Transcription\n(n=200)",
         tx_err,
-        float(agg["mae_proxy"]),
+        None,  # MAE not claimed; show per-record error-rate histogram only
         "error rate",
         1.05,
-        agg_label="MAE proxy",
     )
     ax_f2 = fig.add_subplot(gs_f[0, 1])
     _validation_histogram(
@@ -354,7 +363,7 @@ def main() -> None:
     ax_f4 = fig.add_subplot(gs_f[1, 1])
     _validation_histogram(
         ax_f4,
-        "Chemist-proxy\n(n=280)",
+        "Consistency\naudit (n=280)",
         fail_ct,
         float(agg["chemist_fail_rate"]),
         "fail rate",

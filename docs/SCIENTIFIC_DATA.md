@@ -16,7 +16,7 @@
 
 ## Abstract
 
-IRexp is a redistributable collection of **experimental infrared band lists** (cm⁻¹ peak positions) mined from open chemistry literature, optionally with **author-reported** ¹H/¹³C NMR strings and resolved structures. The release holds **121,233** records (119,345 PMC OA; 1,888 Chemotion/RADAR4Chem), with **43,060** structure-linked and **33,201** full IR + ¹H + ¹³C + structure quadruples. IRexp stores **numeric band lists**, not absorbance traces. Records carry `source_doi` and a stamped licence pool (**88,545** commercially redistributable CC-BY/CC0). Reuse: multimodal training, retrieval, and tool input. Technical validation covers automated transcription, harvest-path recall proxies, stratified chemist-proxy (n=280), and full-corpus quarantine; these are automated checks and do not claim NMRexp-equivalent human expert audits. Complementary elucidation benchmarks are described in a companion research manuscript and are not analysed here. Dataset: Hugging Face `ilkhamfy/IRexp`. Paper/manifests: `IlkhamFY/IRexp`. Code: `IlkhamFY/spectro-agent`. Zenodo data-only DOI pending (to be minted with the PI).
+IRexp is a redistributable collection of **experimental infrared band lists** (cm⁻¹ peak positions) mined from open chemistry literature, optionally with **author-reported** ¹H/¹³C NMR strings and resolved structures. The release holds **121,233** records (119,345 PMC OA; 1,888 Chemotion/RADAR4Chem), with **43,060** structure-linked and **33,201** full IR + ¹H + ¹³C + structure quadruples. IRexp stores **numeric band lists**, not absorbance traces. Records carry `source_doi` and a stamped licence pool (**88,545** commercially redistributable CC-BY/CC0). Reuse: multimodal training, retrieval, and tool input. Technical validation covers automated transcription, harvest-path recall proxies, stratified chemist-proxy (n=280), and full-corpus quarantine; these are automated checks and do not claim NMRexp-equivalent human expert audits. Complementary elucidation benchmarks are described in a companion research manuscript and are not analysed here. Dataset: Hugging Face `ilkhamfy/IRexp`. Paper/manifests: `IlkhamFY/IRexp`. Code: `IlkhamFY/spectro-agent`. Archival DOI not yet minted; no DOI claimed.
 
 <!-- Abstract word count target ≤170. Count on edit before submission. -->
 
@@ -175,7 +175,7 @@ Median bands: **9** (PMC), **39** (Chemotion). All **1,360,866** released IR ban
 - **Hugging Face:** https://huggingface.co/datasets/ilkhamfy/IRexp (bulk JSONL; commercial / NC / SA / empty_unknown configs — see `LICENCE_REMEDIATION.md`).
 - **Manuscript + manifests:** https://github.com/IlkhamFY/IRexp
 - **Harvest / pipeline code:** https://github.com/IlkhamFY/spectro-agent
-- **Zenodo archival snapshot:** DOI pending — to be minted with the PI (data-only; commercial primary + SA companion). Do not invent a DOI.
+- **Archival snapshot:** DOI not yet minted; no DOI claimed (data-only; commercial primary + SA companion).
 
 ## Technical Validation
 
@@ -242,7 +242,7 @@ IRexp numeric extracts are available at:
 - Hugging Face Datasets (bulk JSONL): https://huggingface.co/datasets/ilkhamfy/IRexp  
 - Manuscript + manifests: https://github.com/IlkhamFY/IRexp (no bulk JSONL under `data/`)  
 - Harvest / pipeline code: https://github.com/IlkhamFY/spectro-agent  
-- Zenodo: DOI pending — to be minted with the PI (**data-only** deposit; commercial pool primary). Do not invent a DOI.
+- Archival DOI not yet minted; no DOI claimed (**data-only** deposit; commercial pool primary).
 
 Licensing summary (honest):
 

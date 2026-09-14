@@ -75,6 +75,15 @@ Chemotion, FAIR data, licence pools, data descriptor}
 
 \section{Background \& Summary}\label{sec:background}
 
+IRexp is a redistributable collection of experimental IR band lists
+(cm$^{-1}$ positions) mined from PMC Open Access full text and from a
+Chemotion electronic laboratory notebook / repository
+deposit~\citep{tremouilhac2017chemotion,tremouilhac2020chemotionrepo,chemotion2024}.
+The release holds 121,233 band lists, including 88,545 commercially
+redistributable CC-BY/CC0 records and 43,060 structure-linked entries; each
+record carries a source accession and a stamped licence
+pool~\citep{hrynaszkiewicz2012open,carroll2011openaccess}.
+
 Infrared (IR) spectroscopy is routine in organic characterisation~\citep{silverstein2014sioc,blum2012atrftir}, yet open,
 redistributable collections of \emph{experimental} IR data remain sparse relative
 to modern machine-learning needs and FAIR reuse goals~\citep{wilkinson2016fair}.
@@ -96,15 +105,6 @@ spectrum archive.
 Venue-peer literature-mined chemistry datasets such as BigSolDB~\citep{krasnov2025bigsoldb}
 likewise show that experimental numeric tables extracted from open literature are in
 scope for Data Descriptors.
-
-This Descriptor releases IRexp, a redistributable collection of experimental IR
-band lists (cm$^{-1}$ positions) mined from PMC Open Access full text and from a
-Chemotion electronic laboratory notebook / repository
-deposit~\citep{tremouilhac2017chemotion,tremouilhac2020chemotionrepo,chemotion2024}.
-The release holds 121,233 band lists, including 88,545 commercially
-redistributable CC-BY/CC0 records and 43,060 structure-linked entries; each
-record carries a source accession and a stamped licence
-pool~\citep{hrynaszkiewicz2012open,carroll2011openaccess}.
 
 NMRexp~\citep{wang2025nmrexp} is a literature-mined experimental NMR peak-list
 corpus; IRexp is the corresponding object for infrared band lists.
@@ -155,20 +155,14 @@ IRexp therefore:
 
 Among openly redistributable \emph{text-derived IR band lists}, IRexp is large by
 record count (121,233).
-It does not claim to replace SDBS or NIST absorbance libraries; SDBS alone holds
+SDBS and NIST remain the reference absorbance-curve libraries; SDBS alone holds
 more structure-linked \emph{spectra} than IRexp holds structure-linked band lists.
 The contribution of this Descriptor is the curated dataset, harvest provenance,
 licence segregation, and validation artefacts.
 Intended reuse is multimodal pretraining, supervised IR$\to$structure modelling
 on \texttt{irexp\_resolved}, and as the literature substrate for complementary
 elucidation benchmarks described in a companion research manuscript
-(IRSpectra-Bench; cite that work for protocol and model results, not
-reproduced here)~\citep{yabbarov2026irspectra}.
-
-\paragraph{What this Data Descriptor does not contain.}
-No hypothesis tests, no large-language-model accuracy tables, and no
-stage-decomposition of elucidation performance.
-Those belong in the companion research manuscript.
+(IRSpectra-Bench; cite that work for protocol and model results)~\citep{yabbarov2026irspectra}.
 
 \section{Methods}\label{sec:methods}
 
@@ -269,21 +263,24 @@ in the code repository but contributes 0 records to the released IRexp
 \begin{figure}[tbp]
 \centering
 \includegraphics[width=\textwidth]{fig_irexp_pipeline.pdf}
-\caption{Construction and cleaning.
+\caption{Construction and release.
 \textbf{(A)}~188,016 PMC Open Access identifiers scanned; regex extraction of IR
 band lists and co-reported NMR strings; OPSIN/RDKit structure resolution;
-Europe PMC licence join with Crossref recovery; segregation into redistribution
-pools.
-Inset gates: band count, duplicates, and structure--NMR physics.
+Europe PMC licence join with Crossref recovery; segregation into Hugging Face
+redistribution pools (no archival cylinder; an archival DOI is not yet minted).
+Optional physics and quality gates (IR window 400--4000\,cm$^{-1}$, band-count
+and duplicate sanity, structure--NMR consistency) are post-hoc diagnostics;
+they are not hard filters on the 121,233-record release (quarantine is
+diagnostic; release files unchanged).
 Release: 121,233 band lists / 43,060 structure-linked.
-\textbf{(B)}~Representative automated QC rejections (red = failure reason).}
+\textbf{(B)}~Representative automated QC examples (red = diagnostic fail reason;
+not used to drop released rows).}
 \label{fig:pipeline}
 \end{figure}
 
 \paragraph{Publisher adapters (non-release).}
-Publisher-page adapters exist for exploration outside the release construction
-path; the published corpus uses only PMC-OA S3 and Chemotion.
-No released \texttt{source\_doi} is a paywalled publisher DOI.
+Non-release publisher-page adapters are not on the IRexp construction path; the
+published corpus uses only PMC-OA S3 and Chemotion.
 
 \subsection{Extraction (band lists, not spectra)}
 
@@ -296,6 +293,11 @@ segments experimental text per compound and extracts IR/NMR strings
         (author strings, when present).
 \end{itemize}
 Gates reject scan-range artefacts and common prose false positives.
+F1 denotes a parser repair for US thousands separators in IR lists: before
+matching, \texttt{\_parse\_ir\_bands} strips grouping commas (for example
+PMC6268696 reports $2{,}976$\,cm$^{-1}$, previously stored as 976 and now as
+2976).
+Commercial pool size is unchanged versus the pre-F1 stamp.
 No curve digitisation is performed: figures are not traced; JCAMP-DX is not
 stored.
 
@@ -358,10 +360,14 @@ has\_structure & bool & True when SMILES present \\
 license / license\_pool & string & Per-article stamp (Europe PMC join or Chemotion) \\
 license\_raw / license\_source & string & Upstream licence token + join provenance \\
 source & string & Chemotion rows only (\texttt{Chemotion}) \\
+ir\_shared\_in\_paper & bool & F2 (commercial DoR): identical IR list shared by $\geq$2 records in one paper; flag-only \\
+ir\_table\_flatten\_suspect & bool & F3 (commercial DoR): suspected table-flatten / column-misread list; flag-only \\
 \bottomrule
 \end{tabular}
 \end{table}
 
+The commercial dataset of record additionally ships F2/F3 as retained flag
+fields (rows not dropped; rates in Technical Validation).
 Frozen field definitions and validation counts:
 \texttt{data/qc\_structure\_nmr.json} in this manuscript repository.
 Not included: absorbance traces, intensities, instrument metadata beyond what
@@ -424,9 +430,8 @@ IR~$+$~$^{1}$H~$+$~$^{13}$C~$+$~structure quadruples
 ($n=42{,}879$ InChIKeys from 43,060 records): molecular weight, aromatic rings,
 nitrogen atoms per molecule, and carbonyl $\mathrm{C{=}O}$ count (RDKit: number
 of carbon--oxygen double bonds).
-Only $\sim$14\% of uniques have $\geq$1 $\mathrm{C{-}F}$ bond (not shown).
 \textbf{(f)}~Automated checks: transcription error ($n=200$), band recall and
-list match ($n=120$), consistency-audit fails ($n=280$).}
+list match ($n=120$), stratified automated consistency-audit fails ($n=280$).}
 \label{fig:distribution}
 \end{figure}
 
@@ -458,7 +463,7 @@ Provenance files shipped with the dataset (not in Table~\ref{tab:files}):
         \url{https://github.com/IlkhamFY/IRexp}
   \item Harvest / pipeline code: \url{https://github.com/IlkhamFY/spectro-agent}
         (Section~\ref{sec:codeavail})
-  \item Archival DOI: see Data Availability (pending Zenodo mint; no DOI claimed).
+  \item Archival DOI: see Data Availability (archival DOI not yet minted; no DOI claimed).
 \end{itemize}
 
 \section{Technical Validation}\label{sec:techval}
@@ -516,7 +521,7 @@ $^{1}$H integral physics on structure-linked rows; PMC Europe~PMC + S3
 transcription re-confirm ($\pm$1\,cm$^{-1}$).
 
 \begin{table}[ht]
-\caption{Automated consistency audit ($n=280$, seed~0).}\label{tab:chemistproxy}
+\caption{Stratified automated consistency audit ($n=280$, seed~0).}\label{tab:consistency}
 \small
 \begin{tabular}{@{}lrrr@{}}
 \toprule
@@ -570,6 +575,16 @@ Every band in the full 121,233-record release lies in $[400, 4000]$\,cm$^{-1}$
 This is a necessary range gate only: IRexp does not store intensities, solvents,
 or ATR vs transmission metadata.
 
+\subsection{Commercial quality flags (F2/F3)}
+
+The commercial dataset of record ($n=88{,}545$; Hub revision in
+Section~\ref{sec:dataavail}) retains two flag-only fields; rows are not dropped.
+F2 (\texttt{ir\_shared\_in\_paper}) is true for 18,651 rows; F3
+(\texttt{ir\_table\_flatten\_suspect}) is true for 3,154; the union is 21,075
+rows (23.8\%).
+Rates are from the Hub revision's \texttt{data/f1\_commercial\_build\_stats.json}
+(mirrored here as \texttt{data/f1\_commercial\_build\_stats.json}).
+
 \subsection{QC status}
 
 \begin{itemize}
@@ -579,9 +594,11 @@ or ATR vs transmission metadata.
   \item Extraction-recall automatic proxy ($n=120$ papers) --- done
         (Human mark-up of every IR string in every paper --- deferred).
   \item Stratified automated consistency audit ($n=280$) --- done
-        (Table~\ref{tab:chemistproxy}).
+        (Table~\ref{tab:consistency}).
   \item Full-corpus structure--NMR quarantine --- done
         (1,882 / 43,060 flagged).
+  \item Commercial F2/F3 flags --- done (flag-only; 18,651 / 3,154 / union 21,075
+        of 88,545).
   \item Expert human structure spot-check ($n\geq 100$) --- deferred.
   \item Replicate MAE for IR lists --- not applicable / not claimed.
 \end{itemize}
@@ -622,8 +639,8 @@ or ATR vs transmission metadata.
         attribution; prefer \texttt{irexp\_resolved} when SMILES is required.
         ShareAlike Chemotion rows may be remixed only under CC-BY-SA terms.
   \item \textbf{Attribution.} Cite this Data Descriptor and each record's
-        originating \texttt{source\_doi}. Add the Zenodo DOI when minted; no
-        archival DOI is claimed in this Descriptor.
+        originating \texttt{source\_doi}. An archival DOI is not yet minted; no
+        DOI is claimed in this Descriptor.
 \end{itemize}
 
 \subsection{Limitations}\label{sec:limitations}
@@ -647,53 +664,6 @@ or ATR vs transmission metadata.
   \item \textbf{Scope of this paper.} Elucidation benchmarks and model results are
         out of scope for this Data Descriptor; cite the companion research manuscript
         (IRSpectra-Bench) for those claims.
-\end{itemize}
-
-\section{Data Availability}\label{sec:dataavail}
-
-For Scientific Data redistribution, the \textbf{dataset of record} is the
-commercial CC-BY/CC0 pool ($n=88{,}545$), published on Hugging Face Datasets at
-\url{https://huggingface.co/datasets/ilkhamfy/IRexp}, revision
-\texttt{2fb44992d33b389e2ba30d6d03a6ac76a261855a}.
-That Hub revision ships the commercial deposit with F2/F3 quality flags
-(\texttt{ir\_shared\_in\_paper}, \texttt{ir\_table\_flatten\_suspect}) retained as
-fields (rows not dropped), plus companion configs
-\texttt{resolved\_commercial} ($n=28{,}899$) and
-\texttt{train\_no\_bench\_commercial} ($n=29{,}111$).
-An F1 thousands-separator fix was applied in spectro-agent and band lists were
-reparsed for this commercial rebuild; commercial pool size is unchanged versus
-the pre-F1 stamp.
-The full multi-licence corpus ($n=121{,}233$) described in Methods and Data
-Records remains the construction and methodology reference; it is not the Sci Data
-commercial redistribution artifact in this Hub revision.
-GitHub \url{https://github.com/IlkhamFY/IRexp} holds this manuscript, frozen count
-manifests, and figures (no bulk JSONL under \texttt{data/}).
-Harvest and validation code lives in spectro-agent
-(\url{https://github.com/IlkhamFY/spectro-agent}; Section~\ref{sec:codeavail}).
-A Zenodo archival DOI for the commercial-pool primary deposit remains pending
-with the PI; no DOI is claimed here.
-
-\begin{itemize}
-  \item Dataset of record (commercial CC-BY/CC0, $n=88{,}545$): Hugging Face
-        Datasets, \url{https://huggingface.co/datasets/ilkhamfy/IRexp}, revision
-        \texttt{2fb44992d33b389e2ba30d6d03a6ac76a261855a}
-  \item Manuscript, frozen count manifests, and figures:
-        \url{https://github.com/IlkhamFY/IRexp}
-  \item Harvest / pipeline source: \url{https://github.com/IlkhamFY/spectro-agent}
-        (Section~\ref{sec:codeavail})
-  \item Zenodo archival DOI: pending with PI (commercial-pool primary deposit).
-        No DOI claimed in this Descriptor.
-\end{itemize}
-
-Licensing summary:
-\begin{itemize}
-  \item Chemotion (1,888): CC-BY-SA-4.0~\citep{chemotion2024}.
-  \item PMC (119,345): mixed Creative Commons --- stamped per article; commercial
-        redistributable 88,545 (CC-BY/CC0); NC* 21,823 held aside; empty/unknown
-        8,963 excluded from the commercial Zenodo deposit
-        (\texttt{docs/LICENCE\_REMEDIATION.md}).
-  \item Only extracted numeric fields and identifiers are redistributed; source full
-        texts are not.
 \end{itemize}
 
 \section{Code Availability}\label{sec:codeavail}
@@ -723,12 +693,58 @@ validation scripts live in the code repository
         \texttt{scripts/quarantine\_structure\_nmr.py}
   \item Training split helper: \texttt{scripts/build\_train\_no\_bench.py}
 \end{itemize}
-Until archival deposit, \texttt{main} at \texttt{6c18914} (2026-08-31) is the
-public spectro-agent snapshot corresponding to the harvest and validation scripts
-cited here.
-A release tag matching this Descriptor, and a Zenodo/software DOI of that exact
-commit, will be recorded when the archival deposit is minted; no software DOI is
-claimed here.
+The F1 thousands-separator parse fix is
+\texttt{35808ead98bea04f1cd5a27a9f4cb60c631d44f6} (merged as \texttt{432932a},
+2026-09-11).
+Until archival deposit, \texttt{main} at
+\texttt{3af6f5af244cbec0c8f763973fedd5d93af3de20} (2026-09-11) is the public
+spectro-agent snapshot that includes that fix plus F2/F3 flag tooling.
+An archival software DOI of that exact commit is not yet minted; no software DOI
+is claimed here.
+
+\section{Data Availability}\label{sec:dataavail}
+
+For Scientific Data redistribution, the \textbf{dataset of record} is the
+commercial CC-BY/CC0 pool ($n=88{,}545$), published on Hugging Face Datasets at
+\url{https://huggingface.co/datasets/ilkhamfy/IRexp}, revision
+\texttt{2fb44992d33b389e2ba30d6d03a6ac76a261855a}.
+That Hub revision ships the commercial deposit with F2/F3 quality flags
+(\texttt{ir\_shared\_in\_paper}, \texttt{ir\_table\_flatten\_suspect}) retained as
+fields (rows not dropped), plus companion configs
+\texttt{resolved\_commercial} ($n=28{,}899$) and
+\texttt{train\_no\_bench\_commercial} ($n=29{,}111$).
+Band lists on this revision include the F1 repair defined in Methods.
+The full multi-licence corpus ($n=121{,}233$) described in Methods and Data
+Records remains the construction and methodology reference; it is not the Sci Data
+commercial redistribution artifact in this Hub revision.
+GitHub \url{https://github.com/IlkhamFY/IRexp} holds this manuscript, frozen count
+manifests, and figures (no bulk JSONL under \texttt{data/}).
+Harvest and validation code lives in spectro-agent
+(\url{https://github.com/IlkhamFY/spectro-agent}; Section~\ref{sec:codeavail}).
+An archival DOI for the commercial-pool primary deposit is not yet minted; no DOI
+is claimed here.
+
+\begin{itemize}
+  \item Dataset of record (commercial CC-BY/CC0, $n=88{,}545$): Hugging Face
+        Datasets, \url{https://huggingface.co/datasets/ilkhamfy/IRexp}, revision
+        \texttt{2fb44992d33b389e2ba30d6d03a6ac76a261855a}
+  \item Manuscript, frozen count manifests, and figures:
+        \url{https://github.com/IlkhamFY/IRexp}
+  \item Harvest / pipeline source: \url{https://github.com/IlkhamFY/spectro-agent}
+        (Section~\ref{sec:codeavail})
+  \item Archival DOI not yet minted; no DOI claimed.
+\end{itemize}
+
+Licensing summary:
+\begin{itemize}
+  \item Chemotion (1,888): CC-BY-SA-4.0~\citep{chemotion2024}.
+  \item PMC (119,345): mixed Creative Commons --- stamped per article; commercial
+        redistributable 88,545 (CC-BY/CC0); NC* 21,823 held aside; empty/unknown
+        8,963 excluded from the commercial archival deposit
+        (\texttt{docs/LICENCE\_REMEDIATION.md}).
+  \item Only extracted numeric fields and identifiers are redistributed; source full
+        texts are not.
+\end{itemize}
 
 \section*{Author contributions}
 

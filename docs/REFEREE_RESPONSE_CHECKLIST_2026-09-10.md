@@ -26,9 +26,23 @@ Internal tracking for pre-submit editorial / M6 cleanups. Postcard root stays cl
 | Sci Data dataset of record = commercial 88,545 | **Done** | Clarify commercial CC-BY/CC0 DoR (n=88,545) with F2/F3 flags `ir_shared_in_paper`, `ir_table_flatten_suspect` (flag-only). Companion Hub configs: `resolved_commercial` 28,899; `train_no_bench_commercial` 29,111. |
 | F1 thousands-separator note | **Done** | Note spectro-agent F1 fix + band reparse; commercial pool size unchanged vs pre-F1 stamp. |
 | Full multi-licence vs commercial DoR | **Done** | Keep paper-wide 121,233 methodology headlines; state clearly that Sci Data / commercial redistribution uses the 88,545 commercial deposit while full multi-licence corpus remains construction reference. |
-| Zenodo DOI | **Unchanged (honest)** | Still pending with PI — **no DOI invented or claimed**. |
+| Zenodo DOI | **Unchanged (honest)** | Archival DOI not yet minted; no DOI invented or claimed. |
 | Headline counts 121,233 | **Untouched** | No paper-wide rebuild of full-corpus headlines in v0.16. |
 | Figure binaries | **Untouched** | No PDF/PNG regeneration in v0.16. |
+
+## Done in release v0.23 (manuscript + figures; Hub-only items untouched)
+
+| Item | Status | Notes |
+|---|---|---|
+| Fig 2 IR window 400–4000 | **Done** | Pipeline graphic + caption; gates labeled post-hoc / optional. |
+| Fig 2 no Zenodo cylinder | **Done** | Step 5 = Hugging Face JSONL pools. |
+| Fig 3e C–F leftover | **Done** | Caption sentence deleted. |
+| Fig 3f chemist-proxy / MAE | **Done** | Consistency-audit label; MAE removed from transcription panel. |
+| Background open with IRexp | **Done** | Peer situating after; “does not contain” paragraph removed. |
+| End-matter order | **Done** | Usage Notes → Code Availability → Data Availability. |
+| F2/F3 fields + rates | **Done** | Data Records table + TV; Hub stats 18651 / 3154 / 21075. |
+| F1 defined once | **Done** | PMC6268696 thousands-separator example in Methods. |
+| spectro-agent F1 commit | **Done** | `35808ea` / snapshot `3af6f5a` (2026-09-11). |
 
 ## Open / pending (not in v0.16)
 
