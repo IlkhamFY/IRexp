@@ -1,0 +1,22 @@
+{
+  "source": "https://huggingface.co/datasets/ilkhamfy/IRexp/resolve/2fb44992d33b389e2ba30d6d03a6ac76a261855a/data/f1_commercial_build_stats.json",
+  "hub_revision": "2fb44992d33b389e2ba30d6d03a6ac76a261855a",
+  "note": "Mirrored from Hub for the commercial dataset of record. F2/F3 are flag-only; rows not dropped.",
+  "commercial": {
+    "n_commercial": 88545,
+    "f2": 18651,
+    "f3": 3154,
+    "f2_or_f3": 21075
+  },
+  "resolved_commercial": {
+    "n_commercial": 28899,
+    "f2": 1708,
+    "f3": 785,
+    "f2_or_f3": 2425
+  },
+  "train_no_bench_commercial": {
+    "n_commercial": 29111,
+    "f2": 1698,
+    "f3": 782
+  }
+}

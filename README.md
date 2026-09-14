@@ -39,4 +39,4 @@ paper instead.
 - Dataset card / bulk JSONL: https://huggingface.co/datasets/ilkhamfy/IRexp
 - Harvest / pipeline code: https://github.com/IlkhamFY/spectro-agent
 - Companion research: `IRSpectra-Bench` (ICLR track)
-- Zenodo data-only deposit: pending (to be minted with the PI; do not invent a DOI)
+- Archival DOI not yet minted; no DOI claimed.
