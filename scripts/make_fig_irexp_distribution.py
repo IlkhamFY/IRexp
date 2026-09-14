@@ -129,16 +129,16 @@ def _count_xy(raw: dict, xmax: int):
 
 def _mini_bars(ax, xs, ys, title: str, xlabel: str, width: float, show_ylabel: bool) -> None:
     ax.bar(xs, ys, width=width, color=BLUE, edgecolor="white", linewidth=0.3, zorder=2, align="center")
-    ax.set_title(title, fontsize=6.2, fontweight="bold", color=INK, pad=3)
-    ax.set_xlabel(xlabel, fontsize=5.8, fontweight="normal", color=NOTE, labelpad=1)
+    ax.set_title(title, fontsize=6.2, fontweight="bold", color=INK, pad=7)
+    ax.set_xlabel(xlabel, fontsize=5.8, fontweight="normal", color=NOTE, labelpad=2)
     if show_ylabel:
-        ax.set_ylabel("count", fontsize=5.6, color=NOTE, labelpad=1)
+        ax.set_ylabel("count", fontsize=5.6, color=NOTE, labelpad=3)
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
     ax.yaxis.grid(True, color=FAINT, lw=0.45, zorder=0)
     ax.set_axisbelow(True)
-    ax.tick_params(axis="x", labelsize=5.6, labelcolor=INK, pad=1, length=2, color=NOTE)
-    ax.tick_params(axis="y", labelsize=5.4, labelcolor=INK, pad=1, length=2, color=NOTE)
+    ax.tick_params(axis="x", labelsize=5.6, labelcolor=INK, pad=1.5, length=2, color=NOTE)
+    ax.tick_params(axis="y", labelsize=5.4, labelcolor=INK, pad=2.5, length=2, color=NOTE)
     if not show_ylabel:
         ax.tick_params(axis="y", labelleft=False)
 
@@ -232,11 +232,23 @@ def main() -> None:
     )
 
     # d ΓÇö real band-count HISTOGRAM with median line (from serialized spectro-agent counts)
+    # Same heading coordinates as e/f phantoms so d/e/f letters and titles align.
     ax_d = fig.add_subplot(gs[1, 0])
-    _panel(ax_d, "d")
+    _panel(ax_d, "d", x=-0.06, y=1.34)
+    ax_d.text(
+        0.0,
+        1.24,
+        "Band-count distribution",
+        transform=ax_d.transAxes,
+        fontsize=9.5,
+        fontweight="bold",
+        color=INK,
+        va="bottom",
+        ha="left",
+        clip_on=False,
+    )
     ax_d.bar(bx_d, by_d, width=1.8, color=BLUE, edgecolor="white", linewidth=0.3, zorder=3)
     ax_d.set_xlabel("IR bands per record", fontsize=8.0, fontweight="normal", color=INK)
-    ax_d.set_title("Band-count distribution", fontsize=9.5, fontweight="bold", color=INK, pad=6, loc="left")
     ax_d.spines["top"].set_visible(False)
     ax_d.spines["right"].set_visible(False)
     ax_d.set_xlim(0, 42)
@@ -254,21 +266,25 @@ def main() -> None:
         color=INK,
         zorder=5,
     )
-    # subtle Chemotion note
+    # Chemotion median: vline + label in empty upper-right (not on the tail bars)
+    ax_d.axvline(MED_CHEM, color=GREEN, lw=0.9, ls=(0, (3, 2)), zorder=4)
     ax_d.text(
-        0.98,
-        0.04,
+        0.97,
+        0.62,
         f"Chemotion median {MED_CHEM}",
         transform=ax_d.transAxes,
         ha="right",
-        va="bottom",
-        fontsize=6.6,
-        color="#555555",
+        va="center",
+        fontsize=7.2,
+        fontweight="bold",
+        color=GREEN,
+        zorder=5,
+        clip_on=False,
     )
 
     # e — 2×2 chem-composition histos (unique InChIKey; no C–F panel)
     chem = _load_chem()
-    gs_e = gs[1, 1].subgridspec(2, 2, hspace=0.95, wspace=0.55)
+    gs_e = gs[1, 1].subgridspec(2, 2, hspace=1.28, wspace=0.82)
     ax_e_ph = fig.add_subplot(gs[1, 1])
     ax_e_ph.set_axis_off()
     _panel(ax_e_ph, "e", x=-0.06, y=1.34)
