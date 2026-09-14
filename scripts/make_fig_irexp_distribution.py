@@ -266,20 +266,23 @@ def main() -> None:
         color=INK,
         zorder=5,
     )
-    # Chemotion median: vline + label in empty upper-right (not on the tail bars)
+    # Chemotion median: keep vline at 39; two-line label immediately left of
+    # the line (ha=right), just above the axes so the bbox sits in the empty
+    # tail (x≳30) and never crosses a bar.
     ax_d.axvline(MED_CHEM, color=GREEN, lw=0.9, ls=(0, (3, 2)), zorder=4)
     ax_d.text(
-        0.97,
-        0.62,
-        f"Chemotion median {MED_CHEM}",
-        transform=ax_d.transAxes,
+        MED_CHEM - 0.35,
+        1.02,
+        f"Chemotion\nmedian {MED_CHEM}",
+        transform=ax_d.get_xaxis_transform(),
         ha="right",
-        va="center",
+        va="bottom",
         fontsize=7.2,
         fontweight="bold",
         color=GREEN,
         zorder=5,
         clip_on=False,
+        linespacing=1.05,
     )
 
     # e — 2×2 chem-composition histos (unique InChIKey; no C–F panel)
