@@ -457,7 +457,7 @@ Provenance files shipped with the dataset (not in Table~\ref{tab:files}):
 
 \begin{itemize}
   \item Dataset (Hugging Face): \url{https://huggingface.co/datasets/ilkhamfy/IRexp},
-        revision \texttt{2fb44992d33b389e2ba30d6d03a6ac76a261855a}
+        revision \texttt{8db58466e3ddfd2fbe09bd47fdd5eb4cfc3e1975}
         (commercial dataset of record; Section~\ref{sec:dataavail})
   \item This Data Descriptor, manifests, and figures:
         \url{https://github.com/IlkhamFY/IRexp}
@@ -707,12 +707,14 @@ is claimed here.
 For Scientific Data redistribution, the \textbf{dataset of record} is the
 commercial CC-BY/CC0 pool ($n=88{,}545$), published on Hugging Face Datasets at
 \url{https://huggingface.co/datasets/ilkhamfy/IRexp}, revision
-\texttt{2fb44992d33b389e2ba30d6d03a6ac76a261855a}.
+\texttt{8db58466e3ddfd2fbe09bd47fdd5eb4cfc3e1975}.
 That Hub revision ships the commercial deposit with F2/F3 quality flags
 (\texttt{ir\_shared\_in\_paper}, \texttt{ir\_table\_flatten\_suspect}) retained as
 fields (rows not dropped), plus companion configs
 \texttt{resolved\_commercial} ($n=28{,}899$) and
-\texttt{train\_no\_bench\_commercial} ($n=29{,}111$).
+\texttt{train\_no\_bench\_commercial} ($n=28{,}753$; rebuilt as a subset of
+\texttt{resolved\_commercial}).
+The Hub card is data-only (LEADERBOARD purged).
 Band lists on this revision include the F1 repair defined in Methods.
 The full multi-licence corpus ($n=121{,}233$) described in Methods and Data
 Records remains the construction and methodology reference; it is not the Sci Data
@@ -721,13 +723,12 @@ GitHub \url{https://github.com/IlkhamFY/IRexp} holds this manuscript, frozen cou
 manifests, and figures (no bulk JSONL under \texttt{data/}).
 Harvest and validation code lives in spectro-agent
 (\url{https://github.com/IlkhamFY/spectro-agent}; Section~\ref{sec:codeavail}).
-An archival DOI for the commercial-pool primary deposit is not yet minted; no DOI
-is claimed here.
+An archival DOI is not yet minted; no DOI is claimed here.
 
 \begin{itemize}
   \item Dataset of record (commercial CC-BY/CC0, $n=88{,}545$): Hugging Face
         Datasets, \url{https://huggingface.co/datasets/ilkhamfy/IRexp}, revision
-        \texttt{2fb44992d33b389e2ba30d6d03a6ac76a261855a}
+        \texttt{8db58466e3ddfd2fbe09bd47fdd5eb4cfc3e1975}
   \item Manuscript, frozen count manifests, and figures:
         \url{https://github.com/IlkhamFY/IRexp}
   \item Harvest / pipeline source: \url{https://github.com/IlkhamFY/spectro-agent}

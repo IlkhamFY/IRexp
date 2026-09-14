@@ -22,8 +22,8 @@ Internal tracking for pre-submit editorial / M6 cleanups. Postcard root stays cl
 
 | Item | Status | Notes |
 |---|---|---|
-| Cite HF revision after F1 commercial publish | **Done** | Pin Hub revision `2fb44992d33b389e2ba30d6d03a6ac76a261855a` in Access + Data Availability. |
-| Sci Data dataset of record = commercial 88,545 | **Done** | Clarify commercial CC-BY/CC0 DoR (n=88,545) with F2/F3 flags `ir_shared_in_paper`, `ir_table_flatten_suspect` (flag-only). Companion Hub configs: `resolved_commercial` 28,899; `train_no_bench_commercial` 29,111. |
+| Cite HF revision after F1 commercial publish | **Superseded (v0.24)** | Pin Hub revision `8db58466e3ddfd2fbe09bd47fdd5eb4cfc3e1975` in Access + Data Availability (was `2fb44992…`). |
+| Sci Data dataset of record = commercial 88,545 | **Done (v0.24 counts)** | Commercial CC-BY/CC0 DoR (n=88,545) with F2/F3 flags `ir_shared_in_paper`, `ir_table_flatten_suspect` (flag-only). Companion Hub configs: `resolved_commercial` 28,899; `train_no_bench_commercial` **28,753** (⊆ resolved; 29,111 was wrong). |
 | F1 thousands-separator note | **Done** | Note spectro-agent F1 fix + band reparse; commercial pool size unchanged vs pre-F1 stamp. |
 | Full multi-licence vs commercial DoR | **Done** | Keep paper-wide 121,233 methodology headlines; state clearly that Sci Data / commercial redistribution uses the 88,545 commercial deposit while full multi-licence corpus remains construction reference. |
 | Zenodo DOI | **Unchanged (honest)** | Archival DOI not yet minted; no DOI invented or claimed. |
@@ -43,6 +43,14 @@ Internal tracking for pre-submit editorial / M6 cleanups. Postcard root stays cl
 | F2/F3 fields + rates | **Done** | Data Records table + TV; Hub stats 18651 / 3154 / 21075. |
 | F1 defined once | **Done** | PMC6268696 thousands-separator example in Methods. |
 | spectro-agent F1 commit | **Done** | `35808ea` / snapshot `3af6f5a` (2026-09-11). |
+
+## Done in release v0.24 (DAS pin after Hub B1+B3)
+
+| Item | Status | Notes |
+|---|---|---|
+| Hub revision pin | **Done** | Access + Data Availability cite `8db58466e3ddfd2fbe09bd47fdd5eb4cfc3e1975`. |
+| `train_no_bench_commercial` | **Done** | n=28,753 (⊆ `resolved_commercial` 28,899); 29,111 withdrawn. |
+| LEADERBOARD / card | **Done (cite)** | Hub card is data-only; LEADERBOARD purged; archival DOI not yet minted. |
 
 ## Open / pending (not in v0.16)
 
@@ -66,4 +74,4 @@ Internal tracking for pre-submit editorial / M6 cleanups. Postcard root stays cl
 
 - Manuscript / manifests: https://github.com/IlkhamFY/IRexp
 - Code: https://github.com/IlkhamFY/spectro-agent
-- Dataset (commercial DoR): https://huggingface.co/datasets/ilkhamfy/IRexp (rev `2fb44992d33b389e2ba30d6d03a6ac76a261855a`)
+- Dataset (commercial DoR): https://huggingface.co/datasets/ilkhamfy/IRexp (rev `8db58466e3ddfd2fbe09bd47fdd5eb4cfc3e1975`)
