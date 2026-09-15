@@ -142,7 +142,7 @@ def main() -> None:
         ("2", "IR extract", ["Regex band lists", "+ co-reported NMR"], BLUE),
         ("3", "Structure resolve", ["OPSIN → RDKit", "SMILES / InChIKey"], BLUE),
         ("4", "Licence join", ["Europe PMC", "+ Crossref"], ORANGE),
-        ("5", "Release pools", ["Hugging Face", "JSONL pools"], NAVY),
+        ("5", "Release pools", ["HF + Zenodo", "JSONL pools"], NAVY),
     ]
     circle_centers = []
     for i, (num, title, lines, col) in enumerate(steps):
@@ -207,7 +207,7 @@ def main() -> None:
     )
     _arrow(axa, chem_x + chem_w / 2, chem_y + chem_h + 0.02, xs[1] + w / 2, y - 0.02, GREEN)
 
-    # Diagnostic gates — under steps 3–4; leave gap before Final
+    # Cleaning rules — under steps 3–4; leave gap before Final
     rules_x = xs[2]
     rules_right = xs[3] + w
     fin_x = xs[4]
@@ -229,7 +229,7 @@ def main() -> None:
     axa.text(
         rules_x + rules_w / 2,
         rules_y + rules_h - 0.20,
-        "Diagnostic gates",
+        "Cleaning rules",
         ha="center",
         va="center",
         fontsize=9.0,
@@ -237,7 +237,7 @@ def main() -> None:
         color=ORANGE,
     )
     rule_lines = [
-        r"Band count ≥ 3 in 400–4000 cm$^{-1}$",
+        r"Band count ≥ 3 in 350–4000 cm$^{-1}$",
         r"Reject duplicate integers",
         r"$^{1}$H ≤ formula H+2  ·  $^{13}$C ≤ carbon count",
     ]
@@ -335,7 +335,7 @@ def main() -> None:
             [
                 ("IR (neat): 3200, 2958, ", INK, "normal"),
                 ("4180", RED, "bold"),
-                (r", 1520 cm$^{-1}$ — 4180 outside 400–4000 cm$^{-1}$.", INK, "normal"),
+                (r", 1520 cm$^{-1}$ — 4180 outside 350–4000 cm$^{-1}$.", INK, "normal"),
             ],
         ),
         (
