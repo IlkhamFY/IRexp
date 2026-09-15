@@ -90,27 +90,20 @@ to modern machine-learning needs and FAIR reuse goals~\citep{wilkinson2016fair}.
 Digitised absorbance libraries such as the NIST Chemistry WebBook~\citep{nist_webbook}
 and AIST SDBS~\citep{sdbs} are valuable but either modest in size or view-only
 (no bulk redistribution).
-Peer open spectral resources in adjacent modalities (for example MassBank~\citep{horai2010massbank,neumann2026massbank})
-illustrate how community repositories can expose experimental peak objects with persistent identifiers.
-Computational IR--NMR resources published in \textit{Scientific Data} expand
-multimodal coverage with simulated spectra~\citep{zipoli2025uspto,krishnadas2026squirl},
-while large multimodal simulated spectroscopic corpora (for example Alberts
-\textit{et al.}~\citep{alberts2024multimodal}) and literature-mined NMR peak
-lists show that peer-reviewed spectral \emph{lists} and multimodal spectroscopic
-datasets with DOI traceability are in scope for data-oriented venues.
-Concurrent literature corpora that include IR among other modalities
-(for example NMRSpec/NMRTrans~\citep{yang2026nmrtrans}) further motivate an
-IR-focused, redistributable band-list resource rather than another closed
-spectrum archive.
-Venue-peer literature-mined chemistry datasets such as BigSolDB~\citep{krasnov2025bigsoldb}
-likewise show that experimental numeric tables extracted from open literature are in
-scope for Data Descriptors.
-
-NMRexp~\citep{wang2025nmrexp} is a literature-mined experimental NMR peak-list
-corpus; IRexp is the corresponding object for infrared band lists.
-Absorbance-curve libraries (NIST, SDBS) remain the appropriate resource when
-full digitised spectra are required; computational IR--NMR sets remain the
-appropriate resource when simulated multimodal coverage is
+Adjacent community resources show what a reusable spectral object can look like:
+MassBank exposes experimental mass-spectral peaks with persistent
+identifiers~\citep{horai2010massbank,neumann2026massbank}; NMRexp provides a
+literature-mined NMR peak-list corpus at Data Descriptor
+scale~\citep{wang2025nmrexp}; and computational IR--NMR sets in
+\textit{Scientific Data} supply simulated multimodal
+coverage~\citep{zipoli2025uspto,krishnadas2026squirl,alberts2024multimodal}.
+Literature-mined numeric tables in chemistry more broadly (for example
+BigSolDB~\citep{krasnov2025bigsoldb} and IR-inclusive corpora such as
+NMRSpec/NMRTrans~\citep{yang2026nmrtrans}) likewise sit in scope for Data
+Descriptors.
+IRexp is the corresponding experimental object for infrared band lists: not a
+replacement for absorbance-curve libraries when full digitised spectra are
+required, and not a simulated multimodal corpus when computed coverage is
 required~\citep{zipoli2025uspto}.
 
 \begin{figure}[tbp]
@@ -133,11 +126,13 @@ Experimental sections of chemistry papers conventionally report per-compound
 IR band lists (wavenumbers in cm$^{-1}$) together with $^{1}$H/$^{13}$C NMR shift
 lists.
 That textual convention is the object many elucidation pipelines consume, and it
-is a different object from a digitised spectrum.
+differs from a digitised spectrum.
 Models and retrieval tools that consume literature peak lists need
 redistributable numeric records with DOI attribution and explicit licence pools.
-IRexp is built as that substrate, without embedding diagnosis benchmarks or
-model leaderboards in this Descriptor.
+IRexp is built as that substrate.
+This Descriptor does not embed diagnosis benchmarks, large-language-model
+accuracy tables, or model leaderboards; those belong in the companion research
+manuscript.
 
 IRexp therefore:
 \begin{enumerate}
@@ -155,14 +150,15 @@ IRexp therefore:
 
 Among openly redistributable \emph{text-derived IR band lists}, IRexp is large by
 record count (121,233).
-SDBS and NIST remain the reference absorbance-curve libraries; SDBS alone holds
+It does not claim to replace SDBS or NIST absorbance libraries; SDBS alone holds
 more structure-linked \emph{spectra} than IRexp holds structure-linked band lists.
 The contribution of this Descriptor is the curated dataset, harvest provenance,
 licence segregation, and validation artefacts.
 Intended reuse is multimodal pretraining, supervised IR$\to$structure modelling
 on \texttt{irexp\_resolved}, and as the literature substrate for complementary
 elucidation benchmarks described in a companion research manuscript
-(IRSpectra-Bench; cite that work for protocol and model results)~\citep{yabbarov2026irspectra}.
+(IRSpectra-Bench; cite that work for protocol and model results, not
+reproduced here)~\citep{yabbarov2026irspectra}.
 
 \section{Methods}\label{sec:methods}
 
