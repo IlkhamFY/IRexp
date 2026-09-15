@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
-"""Fig 2 — harvest / cleaning workflow. Orthogonal alignment; ≥8pt body / ≥9pt headers.
-Frozen counts. PDF fonttype 42 + PNG 600 dpi. Red highlights on bad QC tokens.
-v0.8 layout (pre-v0.23 visual): title clear of numbered circles; QC icon clear
-of panel B title; equal box gaps. Honest labels: IR window 400–4000; Hugging
-Face only (no Zenodo cylinder); gates diagnostic (not release filters).
+"""Fig 2 — harvest / release workflow. Orthogonal alignment; ≥8pt body / ≥9pt headers.
+Frozen counts. PDF fonttype 42 + PNG 600 dpi.
+v0.23: IR window 400–4000; physics/quality gates post-hoc optional (not release
+filters); Hugging Face only (no Zenodo cylinder).
 """
 from __future__ import annotations
 
@@ -120,7 +119,7 @@ def main() -> None:
     title_txt = axa.text(
         0.42,
         title_y,
-        "Extraction and quality-control workflow",
+        "Extraction and release workflow",
         fontsize=10,
         fontweight="bold",
         va="center",
@@ -144,7 +143,7 @@ def main() -> None:
         ("2", "IR extract", ["Regex band lists", "+ co-reported NMR"], BLUE),
         ("3", "Structure resolve", ["OPSIN → RDKit", "SMILES / InChIKey"], BLUE),
         ("4", "Licence join", ["Europe PMC", "+ Crossref"], ORANGE),
-        ("5", "Release pools", ["Hugging Face", "JSONL pools"], NAVY),
+        ("5", "HF release", ["Hugging Face", "JSONL pools"], NAVY),
     ]
     circle_centers = []
     for i, (num, title, lines, col) in enumerate(steps):
@@ -209,7 +208,7 @@ def main() -> None:
     )
     _arrow(axa, chem_x + chem_w / 2, chem_y + chem_h + 0.02, xs[1] + w / 2, y - 0.02, GREEN)
 
-    # Cleaning rules — under steps 3–4; leave gap before Final
+    # Post-hoc / optional diagnostics — under steps 3–4; NOT on the release path
     rules_x = xs[2]
     rules_right = xs[3] + w
     fin_x = xs[4]
@@ -223,40 +222,48 @@ def main() -> None:
             rules_w,
             rules_h,
             boxstyle="square,pad=0",
-            linewidth=0.8,
+            linewidth=0.9,
             edgecolor=ORANGE,
             facecolor=SOFT,
+            linestyle=(0, (3.2, 2.0)),
         )
     )
     axa.text(
         rules_x + rules_w / 2,
-        rules_y + rules_h - 0.20,
-        "Diagnostic gates",
+        rules_y + rules_h - 0.18,
+        "Post-hoc diagnostics",
         ha="center",
         va="center",
-        fontsize=9.0,
+        fontsize=8.6,
         fontweight="bold",
         color=ORANGE,
     )
+    axa.text(
+        rules_x + rules_w / 2,
+        rules_y + rules_h - 0.36,
+        "optional · not release filters",
+        ha="center",
+        va="center",
+        fontsize=6.6,
+        fontstyle="italic",
+        color=NOTE,
+    )
     rule_lines = [
-        r"IR window 400–4000 cm$^{-1}$",
-        r"Duplicate-integer sanity",
-        r"$^{1}$H / $^{13}$C physics (diagnostic)",
+        r"IR window 400–4000 cm$^{-1}$ (range check)",
+        r"Duplicate-integer sanity (diagnostic)",
+        r"$^{1}$H / $^{13}$C physics quarantine (TV only)",
     ]
     for i, line in enumerate(rule_lines):
         axa.text(
             rules_x + rules_w / 2,
-            rules_y + 0.64 - i * 0.20,
+            rules_y + 0.50 - i * 0.16,
             line,
             ha="center",
             va="center",
-            fontsize=7.0,
+            fontsize=6.8,
             color=INK,
             clip_on=True,
         )
-    rules_cx = rules_x + rules_w / 2
-    span_cx = (xs[2] + xs[3] + w) / 2
-    _arrow(axa, span_cx, y - 0.02, rules_cx, rules_y + rules_h + 0.02, ORANGE)
 
     # Final IRexp — under step 5; arrow centered on both boxes
     fin_y = rules_y
@@ -316,11 +323,20 @@ def main() -> None:
     axb.text(
         0.42,
         b_title_y,
-        "Automated QC rejections",
+        "Diagnostic QC examples",
         fontsize=10,
         fontweight="bold",
         va="center",
         color=INK,
+    )
+    axb.text(
+        4.55,
+        b_title_y,
+        "optional · not used to drop the 121,233-record release",
+        fontsize=7.0,
+        fontstyle="italic",
+        va="center",
+        color=NOTE,
     )
 
     examples = [
