@@ -63,7 +63,9 @@ Intended reuse is multimodal training, retrieval, and tool input for
 spectroscopic workflows that need structured, attributable experimental peak
 lists rather than paywalled PDFs or view-only archives.
 Technical validation covers automated transcription, harvest-path recall
-proxies, stratified automated consistency audits, and full-corpus quarantine.
+proxies, stratified automated consistency audits, full-corpus quarantine,
+and a partial stratified expert human band-list audit (161/200 scored;
+39 pending).
 Complementary elucidation benchmarks are described in a companion research
 manuscript and are not analysed here.
 }
@@ -593,6 +595,15 @@ Rates are from the Hub revision's \texttt{data/f1\_commercial\_build\_stats.json
         (1,882 / 43,060 flagged).
   \item Commercial F2/F3 flags --- done (flag-only; 18,651 / 3,154 / union 21,075
         of 88,545).
+  \item Stratified expert human band-list audit (sample $n=200$) ---
+        \textbf{partial}: 161/200 scored to date (39 pending; stratum~E
+        untouched). Among scored: source found 160/161; bands exact 143,
+        subset\_ok 13, mismatch 4, cannot\_tell 1; truncation absent 153/161;
+        completeness full 149/161; auditor confidence 4--5 in 138/160.
+        Dominant note themes: mass/MW/LC--MS values co-captured in IR lists,
+        R$^{2}$/non-IR numerics, and missing peaks. Not claimed complete at
+        $n=200$. Sheet:
+        \texttt{data/audit\_irexp\_f1\_20260910/scoring\_sheet\_rudra\_20260915.csv}.
   \item Expert human structure spot-check ($n\geq 100$) --- deferred.
   \item Replicate MAE for IR lists --- not applicable / not claimed.
 \end{itemize}
@@ -644,8 +655,9 @@ Rates are from the Hub revision's \texttt{data/f1\_commercial\_build\_stats.json
         library and not an NMR resource in scale or annotation richness.
   \item \textbf{Technical Validation depth.} Automated transcription ($n=200$),
         harvest-path recall proxies ($n=120$ papers), and a stratified consistency
-        audit ($n=280$) are machine checks; no human molecular-skeleton audit has
-        been completed for IRexp.
+        audit ($n=280$) are machine checks. A stratified expert human band-list
+        audit is under way (161/200 scored; 39 pending) and is not yet complete;
+        no human molecular-skeleton audit has been completed for IRexp.
   \item \textbf{Metadata sparsity.} Intensities, solvents, and instrument modes are
         generally absent; the IR window check is necessary but narrow.
   \item \textbf{Structure coverage and name resolution.} Only 35.5\% of records are
