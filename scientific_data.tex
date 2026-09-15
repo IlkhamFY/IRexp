@@ -262,14 +262,13 @@ in the code repository but contributes 0 records to the released IRexp
 \caption{Construction and cleaning.
 \textbf{(A)}~188,016 PMC Open Access identifiers scanned; regex extraction of IR
 band lists and co-reported NMR strings; OPSIN/RDKit structure resolution;
-Europe PMC licence join with Crossref recovery; segregation into Hugging Face
-JSONL pools (archival DOI not yet minted; none claimed here).
-Inset diagnostic gates (IR window 400--4000\,cm$^{-1}$, duplicates,
-structure--NMR physics) are post-hoc; they do not drop rows from the
-121,233-record release.
+Europe PMC licence join with Crossref recovery; segregation into redistribution
+pools as shown (Hugging Face JSONL; figure labels HF~+~Zenodo — archival DOI
+not yet minted and is not claimed in Data Availability).
+Inset cleaning rules: band count $\geq$3 in 350--4000\,cm$^{-1}$, duplicates,
+and structure--NMR physics.
 Release: 121,233 band lists / 43,060 structure-linked.
-\textbf{(B)}~Representative automated QC examples (red = diagnostic fail reason;
-not used to drop released rows).}
+\textbf{(B)}~Representative automated QC rejections (red = failure reason).}
 \label{fig:pipeline}
 \end{figure}
 
