@@ -259,15 +259,14 @@ in the code repository but contributes 0 records to the released IRexp
 \begin{figure}[tbp]
 \centering
 \includegraphics[width=\textwidth]{fig_irexp_pipeline.pdf}
-\caption{Construction and release.
+\caption{Construction and cleaning.
 \textbf{(A)}~188,016 PMC Open Access identifiers scanned; regex extraction of IR
 band lists and co-reported NMR strings; OPSIN/RDKit structure resolution;
 Europe PMC licence join with Crossref recovery; segregation into Hugging Face
-redistribution pools (no archival cylinder; an archival DOI is not yet minted).
-Optional physics and quality gates (IR window 400--4000\,cm$^{-1}$, band-count
-and duplicate sanity, structure--NMR consistency) are post-hoc diagnostics;
-they are not hard filters on the 121,233-record release (quarantine is
-diagnostic; release files unchanged).
+JSONL pools (archival DOI not yet minted; none claimed here).
+Inset diagnostic gates (IR window 400--4000\,cm$^{-1}$, duplicates,
+structure--NMR physics) are post-hoc; they do not drop rows from the
+121,233-record release.
 Release: 121,233 band lists / 43,060 structure-linked.
 \textbf{(B)}~Representative automated QC examples (red = diagnostic fail reason;
 not used to drop released rows).}

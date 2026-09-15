@@ -1,9 +1,7 @@
 #!/usr/bin/env python3
 """Fig 2 — harvest / cleaning workflow. Orthogonal alignment; ≥8pt body / ≥9pt headers.
 Frozen counts. PDF fonttype 42 + PNG 600 dpi. Red highlights on bad QC tokens.
-v0.8 layout (pre-v0.23 visual): title clear of numbered circles; QC icon clear
-of panel B title; equal box gaps. Honest labels: IR window 400–4000; Hugging
-Face only (no Zenodo cylinder); gates diagnostic (not release filters).
+v0.8: title clear of numbered circles; QC icon clear of panel B title; equal box gaps.
 """
 from __future__ import annotations
 
@@ -209,7 +207,7 @@ def main() -> None:
     )
     _arrow(axa, chem_x + chem_w / 2, chem_y + chem_h + 0.02, xs[1] + w / 2, y - 0.02, GREEN)
 
-    # Cleaning rules — under steps 3–4; leave gap before Final
+    # Diagnostic gates — under steps 3–4; leave gap before Final
     rules_x = xs[2]
     rules_right = xs[3] + w
     fin_x = xs[4]
@@ -239,9 +237,9 @@ def main() -> None:
         color=ORANGE,
     )
     rule_lines = [
-        r"IR window 400–4000 cm$^{-1}$",
-        r"Duplicate-integer sanity",
-        r"$^{1}$H / $^{13}$C physics (diagnostic)",
+        r"Band count ≥ 3 in 400–4000 cm$^{-1}$",
+        r"Reject duplicate integers",
+        r"$^{1}$H ≤ formula H+2  ·  $^{13}$C ≤ carbon count",
     ]
     for i, line in enumerate(rule_lines):
         axa.text(
