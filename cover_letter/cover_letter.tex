@@ -28,27 +28,25 @@ Dear Editor,\\
 \vspace{0.2cm}
 
 
-%----------------------------------------------------------------------------------------
-We submit our manuscript entitled ``\emph{ParetoMol: A Free Web Application for Multi-Objective Pareto Analysis of Molecular Safety and Pharmacokinetics}'' for consideration as a Research Article in \emph{Digital Discovery}.
-Prioritizing compounds in drug discovery requires the simultaneous assessment of potency, selectivity, pharmacokinetics, and safety — yet freely available tools present these properties one endpoint at a time, forcing medicinal chemists to manually reconcile trade-offs. \texttt{ParetoMol} addresses this directly: it is an open-source web application that computes Pareto dominance across user-defined molecular objectives and provides 14 synchronized visualization tabs for interactive exploration of compound trade-offs. All physicochemical computations run client-side via RDKit.js WebAssembly, ensuring that no molecular data leaves the browser unless the user explicitly enables ADMET prediction.
+We submit our manuscript entitled ``\emph{IRexp: A database of experimental infrared band lists from open literature}'' for consideration as a Data Descriptor in \emph{Scientific Data}.
+IRexp is a redistributable collection of experimental infrared band lists (cm$^{-1}$ peak positions) mined from open chemistry literature.
+The full construction corpus comprises $n=121{,}233$ records; for Scientific Data redistribution, the dataset of record is the commercial CC-BY/CC0 pool ($n=88{,}545$), published on Hugging Face Datasets (\texttt{ilkhamfy/IRexp}).
+An archival DOI is not yet minted; none is claimed here.
 
-We demonstrate three distinct analytical capabilities:
-\begin{enumerate}
-\itemsep-0.3em
-    \item Safety-augmented Pareto analysis of 1,949 FDA-approved drugs expands the Pareto front 3.6-fold, rescuing 131 compounds---including metformin, captopril, and allopurinol---overlooked by physicochemical-only ranking.
-    \item Scaffold-level analysis of 50 EGFR inhibitors reveals universal predicted AhR activation across the 4-anilinoquinazoline class (100\% above threshold vs.\ 50\% in matched controls; $p = 5.61 \times 10^{-10}$), a liability invisible to per-compound tools.
-    \item Cross-class comparison of 92 compounds across six drug classes uncovers orthogonal predicted risk profiles that single-endpoint screening cannot detect.
-\end{enumerate}
+Technical validation includes automated transcription and recall-proxy checks, stratified automated consistency audits, full-corpus quarantine, and a stratified expert human band-list audit with 161 records scored on the commercial Hugging Face dataset of record.
+IRexp stores numeric band lists with source DOIs and stamped licence pools---not absorbance traces---and is intended for multimodal training, retrieval, and spectroscopic workflows that need structured, attributable experimental peak lists.
 
-We believe ParetoMol will interest medicinal chemists navigating multi-parameter compound decisions, particularly those balancing efficacy against ADMET liabilities during lead optimization. The software, datasets, and validation scripts are openly available at \url{https://paretomol.com} and the main repository at \url{https://github.com/IlkhamFY/paretomol}.\\
+This work was supported by NSERC funding reference number 596133-2025 (CREATE for Accelerated Discovery, AccelD), delivered through the Acceleration Consortium.
 
-All authors confirm that this manuscript has not been previously published and is not under consideration elsewhere. The authors have approved the submitted version and agree to \emph{Digital Discovery}'s submission policies.
+All authors confirm that this manuscript has not been previously published and is not under consideration elsewhere.
+The authors have approved the submitted version and agree to \emph{Scientific Data}'s submission policies.
 
 \vspace{0.5cm}
 
 Best regards,\vspace{0.5cm}\\
 \begin{center}
-Rodrigo A. Vargas-Hern\'{a}ndez, on behalf of all authors \\
-email: vargashr@mcmaster.ca
+Ilkham Yabbarov, on behalf of all authors \\
+(coauthors: Rudra Sondhi, Rodrigo A.\ Vargas-Hern\'{a}ndez) \\
+email: yabbaroi@mcmaster.ca
 \end{center}
 \end{document}
