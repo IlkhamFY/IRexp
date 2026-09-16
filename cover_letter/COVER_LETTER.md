@@ -1,12 +1,11 @@
 # Cover letter — IRexp (Scientific Data)
 
-**Manuscript:** IRexp: A database of experimental infrared band lists from open literature  
-**Article type:** Data Descriptor  
-**Journal:** Scientific Data  
-**Corresponding author:** Ilkham Yabbarov (yabbaroi@mcmaster.ca)  
-**Coauthors:** Rudra Sondhi; Rodrigo A. Vargas-Hernández  
-
-**LaTeX:** cover_letter/cover_letter.tex (McMaster letterhead asset mcm-col_png.png)
+**Template:** McMaster letterhead LaTeX uploaded by Rodrigo to Overleaf (`cover_letter/cover_letter.tex` + `mcm-col_png.png`); same shell as ParetoMol cover letters.
+**Manuscript:** IRexp: A database of experimental infrared band lists from open literature
+**Article type:** Data Descriptor
+**Journal:** Scientific Data
+**Signatory (template convention):** Rodrigo A. Vargas-Hernández (vargashr@mcmaster.ca), on behalf of all authors
+**Coauthors:** Ilkham Yabbarov; Rudra Sondhi; Rodrigo A. Vargas-Hernández
 
 ---
 
@@ -22,10 +21,8 @@ IRexp stores numeric band lists with source DOIs and stamped licence pools—not
 
 This work was supported by NSERC funding reference number 596133-2025 (CREATE for Accelerated Discovery, AccelD), delivered through the Acceleration Consortium.
 
-All authors confirm that this manuscript has not been previously published and is not under consideration elsewhere.
-The authors have approved the submitted version and agree to *Scientific Data*'s submission policies.
+All authors confirm that this manuscript has not been previously published and is not under consideration elsewhere. The authors have approved the submitted version and agree to *Scientific Data*'s submission policies.
 
 Best regards,  
-Ilkham Yabbarov, on behalf of all authors  
-(coauthors: Rudra Sondhi, Rodrigo A. Vargas-Hernández)  
-email: yabbaroi@mcmaster.ca
+Rodrigo A. Vargas-Hernández, on behalf of all authors  
+email: vargashr@mcmaster.ca
