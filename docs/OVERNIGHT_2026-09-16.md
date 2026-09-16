@@ -1,4 +1,4 @@
-# Overnight pass — 2026-09-16 (release v0.37)
+# Overnight pass — 2026-09-16 (release v0.37–v0.38)
 
 Point-fixes only. No figure redesign. No invented ORCID, Zenodo DOI, or Rudra scores.
 
@@ -30,8 +30,13 @@ Rudra sheet re-counted (not re-scored): 161 scored / 39 unscored; 160/161 source
 ### Cover letter
 
 - Still Rodrigo template (McMaster letterhead PNG, sign-off Rodrigo A. Vargas-Hernández / `vargashr@mcmaster.ca`).
-- TV sentence now names the **39** NC*/SA rows as absent from the commercial HF publish and **intentionally unscored** (same honesty as the Descriptor).
+- TV now two sentences: **161 scored** on the commercial HF DoR; **39** NC*/SA rows absent from that publish and **intentionally unscored**.
 - 121,233 / 88,545 / AccelD / no archival DOI: unchanged.
+
+### Compile (local, not committed)
+
+- `scientific_data.tex`: tectonic + `sn-jnl` search path → PDF; BibTeX `sn-nature.bst` clean (no undefined citations). Remaining overfull boxes are pre-existing table/URL lines.
+- Cover letter: compiles with letterhead; a ~5.6 pt overfull is the pre-existing “stores numeric band lists…” sentence, not a new citation problem.
 
 ### Docs (hygiene, not new science)
 
