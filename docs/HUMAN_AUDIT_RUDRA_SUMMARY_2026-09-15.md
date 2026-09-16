@@ -3,7 +3,7 @@
 **Sheet:** data/audit_irexp_f1_20260910/scoring_sheet_rudra_20260915.csv  
 **Auditor:** Rudra Sondhi  
 **Sample:** stratified F1 commercial / multi-pool audit queue, *n* = 200  
-**Status:** **partial** — 161 scored, **39 pending** (do not report *n* = 200 complete)
+**Status:** **161 scored** on rows in the commercial HF dataset of record; **39** stratified NC*/ShareAlike queue rows are absent from that publish and were intentionally left unscored (do not report *n* = 200 complete multi-pool audit)
 
 ## Headline rates (among 161 scored)
 
@@ -24,7 +24,7 @@ Notes: one scored row (stratum B) lacks confidence / 	runcation_artifact (source
 
 ## Coverage by stratum
 
-| Stratum | Quota | Scored | Pending | Notes |
+| Stratum | Quota | Scored | Unscored (absent from HF commercial publish) | Notes |
 |---------|------:|-------:|--------:|-------|
 | A | 40 | 40 | 0 | Commercial structure-linked |
 | B | 30 | 22 | 8 | Mostly IR-only / mixed licence; pending = NC* rows absent from HF publish |
@@ -75,8 +75,8 @@ ame_structure_ok = N despite exact bands.
 
 ## Manuscript / release wording
 
-- Report human audit as **n = 161 scored of 200** (partial; 39 pending).  
-- Do **not** claim the stratified human audit is complete at *n* = 200.  
+- Report human audit as **161 scored** from the commercial HF dataset of record (design sample *n* = 200; 39 NC*/SA queue rows absent from that publish, intentionally unscored).  
+- Do **not** claim a complete *n* = 200 multi-pool human audit.  
 - Expert human **structure / molecular-skeleton** spot-check remains deferred (distinct from this band-list source audit).
 
 ## Remaining blockers

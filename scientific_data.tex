@@ -64,8 +64,9 @@ spectroscopic workflows that need structured, attributable experimental peak
 lists rather than paywalled PDFs or view-only archives.
 Technical validation covers automated transcription, harvest-path recall
 proxies, stratified automated consistency audits, full-corpus quarantine,
-and a partial stratified expert human band-list audit (161/200 scored;
-39 pending).
+and a stratified expert human band-list audit of 161 records available on
+the commercial Hugging Face dataset of record (39 stratified NC*/ShareAlike
+queue rows are absent from that publish and were not scored).
 Complementary elucidation benchmarks are described in a companion research
 manuscript and are not analysed here.
 }
@@ -101,12 +102,12 @@ scale~\citep{wang2025nmrexp}; and computational IR--NMR sets in
 coverage~\citep{zipoli2025uspto,krishnadas2026squirl,alberts2024multimodal}.
 Literature-mined numeric tables in chemistry more broadly (for example
 BigSolDB~\citep{krasnov2025bigsoldb} and IR-inclusive corpora such as
-NMRSpec/NMRTrans~\citep{yang2026nmrtrans}) likewise sit in scope for Data
-Descriptors.
-IRexp is the corresponding experimental object for infrared band lists: not a
-replacement for absorbance-curve libraries when full digitised spectra are
-required, and not a simulated multimodal corpus when computed coverage is
-required~\citep{zipoli2025uspto}.
+NMRSpec/NMRTrans~\citep{yang2026nmrtrans}) likewise illustrate the Data
+Descriptor format for mined chemistry tables.
+IRexp supplies the corresponding experimental object for infrared band lists.
+It is not a replacement for absorbance-curve libraries when full digitised
+spectra are required, nor a simulated multimodal corpus when computed coverage
+is required~\citep{zipoli2025uspto}.
 
 \begin{figure}[tbp]
 \centering
@@ -130,11 +131,10 @@ lists.
 That textual convention is the object many elucidation pipelines consume, and it
 differs from a digitised spectrum.
 Models and retrieval tools that consume literature peak lists need
-redistributable numeric records with DOI attribution and explicit licence pools.
+redistributable numeric records with DOI attribution and explicit licence pools;
 IRexp is built as that substrate.
-This Descriptor does not embed diagnosis benchmarks, large-language-model
-accuracy tables, or model leaderboards; those belong in the companion research
-manuscript.
+Diagnosis benchmarks, large-language-model accuracy tables, and model
+leaderboards belong in the companion research manuscript, not here.
 
 IRexp therefore:
 \begin{enumerate}
@@ -152,23 +152,23 @@ IRexp therefore:
 
 Among openly redistributable \emph{text-derived IR band lists}, IRexp is large by
 record count (121,233).
-It does not claim to replace SDBS or NIST absorbance libraries; SDBS alone holds
-more structure-linked \emph{spectra} than IRexp holds structure-linked band lists.
-The contribution of this Descriptor is the curated dataset, harvest provenance,
-licence segregation, and validation artefacts.
-Intended reuse is multimodal pretraining, supervised IR$\to$structure modelling
-on \texttt{irexp\_resolved}, and as the literature substrate for complementary
-elucidation benchmarks described in a companion research manuscript
-(IRSpectra-Bench; cite that work for protocol and model results, not
-reproduced here)~\citep{yabbarov2026irspectra}.
+SDBS alone still holds more structure-linked \emph{spectra} than IRexp holds
+structure-linked band lists; the two object types are complementary.
+This Descriptor contributes the curated dataset, harvest provenance, licence
+segregation, and validation artefacts.
+Intended reuse includes multimodal pretraining, supervised IR$\to$structure
+modelling on \texttt{irexp\_resolved}, and as the literature substrate for
+complementary elucidation benchmarks described in a companion research
+manuscript (IRSpectra-Bench; cite that work for protocol and model results,
+not reproduced here)~\citep{yabbarov2026irspectra}.
 
 \section{Methods}\label{sec:methods}
 
-Harvest, extraction, licence-join, and validation code lives in the
+Harvest, extraction, licence-join, and validation code live in the
 spectro-agent repository (\url{https://github.com/IlkhamFY/spectro-agent};
 Section~\ref{sec:codeavail}).
-Methods name principal modules lightly; full script inventory is in Code
-Availability.
+Principal modules are named lightly below; the full script inventory is in
+Code Availability.
 
 \subsection{Source corpora}
 
@@ -265,10 +265,10 @@ in the code repository but contributes 0 records to the released IRexp
 \textbf{(A)}~188,016 PMC Open Access identifiers scanned; regex extraction of IR
 band lists and co-reported NMR strings; OPSIN/RDKit structure resolution;
 Europe PMC licence join with Crossref recovery; segregation into redistribution
-pools as shown (Hugging Face JSONL; figure labels HF~+~Zenodo — archival DOI
+pools as shown (Hugging Face JSONL; figure labels HF~+~Zenodo --- archival DOI
 not yet minted and is not claimed in Data Availability).
-Inset cleaning rules: band count $\geq$3 in 350--4000\,cm$^{-1}$, duplicates,
-and structure--NMR physics.
+Inset Cleaning rules: band count $\geq$3 in 350--4000\,cm$^{-1}$, duplicate
+bands, and structure--NMR physics.
 Release: 121,233 band lists / 43,060 structure-linked.
 \textbf{(B)}~Representative automated QC rejections (red = failure reason).}
 \label{fig:pipeline}
@@ -293,7 +293,7 @@ F1 denotes a parser repair for US thousands separators in IR lists: before
 matching, \texttt{\_parse\_ir\_bands} strips grouping commas (for example
 PMC6268696 reports $2{,}976$\,cm$^{-1}$, previously stored as 976 and now as
 2976).
-Commercial pool size is unchanged versus the pre-F1 stamp.
+Commercial pool size is unchanged relative to the pre-F1 stamp.
 No curve digitisation is performed: figures are not traced; JCAMP-DX is not
 stored.
 
@@ -459,7 +459,7 @@ Provenance files shipped with the dataset (not in Table~\ref{tab:files}):
         \url{https://github.com/IlkhamFY/IRexp}
   \item Harvest / pipeline code: \url{https://github.com/IlkhamFY/spectro-agent}
         (Section~\ref{sec:codeavail})
-  \item Archival DOI: see Data Availability (archival DOI not yet minted; no DOI claimed).
+  \item Archival DOI: see Data Availability (not yet minted; none claimed).
 \end{itemize}
 
 \section{Technical Validation}\label{sec:techval}
@@ -468,9 +468,9 @@ Machine-readable package: \texttt{data/qc\_structure\_nmr.json} in this
 repository (audit artefacts under \texttt{data/audit/} in the code repository).
 Numbers below are seed-fixed descriptive checks; Wilson 95\% intervals are
 reported for the expanded recall proxy and automated consistency-audit pass rates.
-\textbf{All checks below are automated} unless marked otherwise: they are not
-expert-audited in the sense of NMRexp's human molecular-skeleton and PDF mark-up
-protocol~\citep{wang2025nmrexp}.
+\textbf{All checks below are automated} unless marked otherwise.
+They are not expert-audited in the sense of NMRexp's human molecular-skeleton
+and PDF mark-up protocol~\citep{wang2025nmrexp}.
 
 Figure~\ref{fig:distribution}f summarises the automated validation package;
 details below expand each check.
@@ -504,7 +504,7 @@ Of 871 re-extracted IR lists, 811 matched a released list (0.9311);
 18/120 papers yielded \emph{extra} re-extracted lists relative to the curated
 release (parser over-fire vs post-harvest dedup/curation, not missed released
 compounds).
-This is not a substitute for expert human recall.
+This automatic proxy does not replace expert human recall.
 
 \subsection{Stratified automated consistency audit}
 
@@ -595,14 +595,17 @@ Rates are from the Hub revision's \texttt{data/f1\_commercial\_build\_stats.json
         (1,882 / 43,060 flagged).
   \item Commercial F2/F3 flags --- done (flag-only; 18,651 / 3,154 / union 21,075
         of 88,545).
-  \item Stratified expert human band-list audit (sample $n=200$) ---
-        \textbf{partial}: 161/200 scored to date (39 pending; stratum~E
-        untouched). Among scored: source found 160/161; bands exact 143,
-        subset\_ok 13, mismatch 4, cannot\_tell 1; truncation absent 153/161;
-        completeness full 149/161; auditor confidence 4--5 in 138/160.
+  \item Stratified expert human band-list audit (design sample $n=200$) ---
+        \textbf{161 scored} on rows present in the commercial Hugging Face
+        dataset of record. The remaining 39 queue rows (9 non-commercial/
+        empty-unknown; 30 Chemotion ShareAlike, stratum~E) have band lists
+        absent from that HF publish and were intentionally left unscored.
+        Among scored: source found 160/161; bands exact 143, subset\_ok 13,
+        mismatch 4, cannot\_tell 1; truncation absent 153/161; completeness
+        full 149/161; auditor confidence 4--5 in 138/160.
         Dominant note themes: mass/MW/LC--MS values co-captured in IR lists,
-        R$^{2}$/non-IR numerics, and missing peaks. Not claimed complete at
-        $n=200$. Sheet:
+        R$^{2}$/non-IR numerics, and missing peaks.
+        Not claimed as a complete $n=200$ multi-pool audit. Sheet:
         \texttt{data/audit\_irexp\_f1\_20260910/scoring\_sheet\_rudra\_20260915.csv}.
   \item Expert human structure spot-check ($n\geq 100$) --- deferred.
   \item Replicate MAE for IR lists --- not applicable / not claimed.
@@ -644,28 +647,29 @@ Rates are from the Hub revision's \texttt{data/f1\_commercial\_build\_stats.json
         attribution; prefer \texttt{irexp\_resolved} when SMILES is required.
         ShareAlike Chemotion rows may be remixed only under CC-BY-SA terms.
   \item \textbf{Attribution.} Cite this Data Descriptor and each record's
-        originating \texttt{source\_doi}. An archival DOI is not yet minted; no
-        DOI is claimed in this Descriptor.
+        originating \texttt{source\_doi}. An archival DOI is not yet minted; none
+        is claimed here.
 \end{itemize}
 
 \subsection{Limitations}\label{sec:limitations}
 
 \begin{itemize}
   \item \textbf{Object.} IRexp is a band-list corpus, not an absorbance-spectrum
-        library and not an NMR resource in scale or annotation richness.
+        library; co-reported NMR strings are retained where present but are not
+        a stand-alone NMR resource.
   \item \textbf{Technical Validation depth.} Automated transcription ($n=200$),
         harvest-path recall proxies ($n=120$ papers), and a stratified consistency
         audit ($n=280$) are machine checks. A stratified expert human band-list
-        audit is under way (161/200 scored; 39 pending) and is not yet complete;
-        no human molecular-skeleton audit has been completed for IRexp.
+        audit scored 161 records available on the commercial Hugging Face dataset
+        of record (39 stratified NC*/ShareAlike queue rows are absent from that
+        publish); no human molecular-skeleton audit has been completed for IRexp.
   \item \textbf{Metadata sparsity.} Intensities, solvents, and instrument modes are
         generally absent; the IR window check is necessary but narrow.
   \item \textbf{Structure coverage and name resolution.} Only 35.5\% of records are
         structure-linked; OPSIN/PubChem failures leave many IR lists without SMILES.
-  \item \textbf{Licence mix.} The full multi-licence corpus described for
-        construction/methodology is multi-licence on disk; Scientific Data /
-        commercial redistribution uses the commercial pool only (88,545 after
-        Crossref recovery of previously empty rows; Hub revision cited in
+  \item \textbf{Licence mix.} The full construction corpus is multi-licence on
+        disk; Scientific Data / commercial redistribution uses the commercial
+        pool only (88,545 after Crossref recovery; Hub revision in
         Section~\ref{sec:dataavail}).
   \item \textbf{Scope of this paper.} Elucidation benchmarks and model results are
         out of scope for this Data Descriptor; cite the companion research manuscript
@@ -739,7 +743,6 @@ An archival DOI is not yet minted; no DOI is claimed here.
         \url{https://github.com/IlkhamFY/IRexp}
   \item Harvest / pipeline source: \url{https://github.com/IlkhamFY/spectro-agent}
         (Section~\ref{sec:codeavail})
-  \item Archival DOI not yet minted; no DOI claimed.
 \end{itemize}
 
 Licensing summary:
@@ -757,7 +760,7 @@ Licensing summary:
 
 \textbf{I.Y.:} conceptualization, methodology, software, data curation, validation,
 writing (original draft).\\
-\textbf{R.S.:} writing (review and editing).\\
+\textbf{R.S.:} validation (human band-list audit), writing (review and editing).\\
 \textbf{R.A.V.-H.:} conceptualization, supervision, writing (review and editing).
 
 \section*{Competing interests}
