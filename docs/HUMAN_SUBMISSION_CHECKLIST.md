@@ -18,6 +18,7 @@ Agent-addressable TV / licence / remirror / overview work is complete on this br
 |---|---|---|
 | 5 | Expert human structure spot-check n≥100 | ☐ deferred |
 | 6 | Human extraction-recall mark-up (paper-level) | ☐ deferred |
+| 7 | Score remaining 39 NC*/ShareAlike queue rows | ☐ optional; not required for commercial-DoR honesty |
 
 ## Already done (agent) — do not redo unless counts drift
 
@@ -26,6 +27,7 @@ Agent-addressable TV / licence / remirror / overview work is complete on this br
 - Overview figure `figures/fig_irexp_overview.pdf`
 - Dual-publication fence + honest Data/Code Availability placeholders
 - Automated TV pack (transcription n=200, recall n=120, chemist-proxy n=280, quarantine)
+- Stratified expert human band-list audit: **161 scored** on commercial HF DoR; **39** NC*/SA queue rows absent from that publish, intentionally unscored (do not invent remaining scores)
 
 ## Contacts for placeholders
 

@@ -157,10 +157,10 @@ structure-linked band lists; the two object types are complementary.
 This Descriptor contributes the curated dataset, harvest provenance, licence
 segregation, and validation artefacts.
 Intended reuse includes multimodal pretraining, supervised IR$\to$structure
-modelling on \texttt{irexp\_resolved}, and as the literature substrate for
-complementary elucidation benchmarks described in a companion research
+modelling on \texttt{irexp\_resolved}, and serving as the literature substrate
+for complementary elucidation benchmarks described in a companion research
 manuscript (IRSpectra-Bench; cite that work for protocol and model results,
-not reproduced here)~\citep{yabbarov2026irspectra}.
+which are not reproduced here)~\citep{yabbarov2026irspectra}.
 
 \section{Methods}\label{sec:methods}
 
@@ -254,7 +254,7 @@ in the code repository but contributes 0 records to the released IRexp
         (\texttt{PMC<id>.<v>.txt}).
   \item Ingest Chemotion deposit author-curated band lists + structures.
   \item Persist harvest provenance in \texttt{seen\_papers.txt.gz} and optional
-        rawer rows in \texttt{ir\_harvest\_snapshot.jsonl.gz} (134,893 rows including
+        raw rows in \texttt{ir\_harvest\_snapshot.jsonl.gz} (134,893 rows including
         intermediate prose fields; the curated release is \texttt{irexp.jsonl.gz}).
 \end{enumerate}
 
@@ -282,7 +282,8 @@ published corpus uses only PMC-OA S3 and Chemotion.
 
 A deterministic regular-expression pipeline (\texttt{spectro\_scraper/extract.py})
 segments experimental text per compound and extracts IR/NMR strings
-(complementary to general chemical IE toolkits such as ChemDataExtractor~\citep{swain2016chemdataextractor}):
+(complementary to general chemical information-extraction toolkits such as
+ChemDataExtractor~\citep{swain2016chemdataextractor}):
 \begin{itemize}
   \item IR wavenumbers $\to$ \texttt{ir\_bands\_cm-1} (list of floats, cm$^{-1}$);
   \item $^{1}$H and $^{13}$C payloads $\to$ \texttt{h\_nmr} / \texttt{c\_nmr}
@@ -443,8 +444,8 @@ The full \texttt{irexp.jsonl.gz} remains multi-licence on disk; commercial
 redistribution must use the commercial pool.
 
 Median bands: 9 (PMC), 39 (Chemotion).
-All 1,360,866 released IR band values fall inside 400--4000\,cm$^{-1}$
-(full-corpus range check; Technical Validation).
+All 1,360,866 released IR band values fall inside 350--4000\,cm$^{-1}$
+(full-corpus range check; Fig.~\ref{fig:pipeline} Cleaning rules).
 Provenance files shipped with the dataset (not in Table~\ref{tab:files}):
 \texttt{seen\_papers.txt.gz} (188,016 PMC IDs scanned) and
 \texttt{ir\_harvest\_snapshot.jsonl.gz} (134,893 intermediate harvest rows).
@@ -566,8 +567,9 @@ deferred.
 
 \subsection{IR physical window}
 
-Every band in the full 121,233-record release lies in $[400, 4000]$\,cm$^{-1}$
-(0 / 1,360,866 out of range).
+Every band in the full 121,233-record release lies in $[350, 4000]$\,cm$^{-1}$
+(0 / 1,360,866 out of range), matching the construction window in
+Fig.~\ref{fig:pipeline} Cleaning rules.
 This is a necessary range gate only: IRexp does not store intensities, solvents,
 or ATR vs transmission metadata.
 
@@ -588,7 +590,7 @@ Rates are from the Hub revision's \texttt{data/f1\_commercial\_build\_stats.json
         (commercial 88,545).
   \item Transcription fidelity $n=60$ and $n=200$ --- done (automated re-fetch).
   \item Extraction-recall automatic proxy ($n=120$ papers) --- done
-        (Human mark-up of every IR string in every paper --- deferred).
+        (human mark-up of every IR string in every paper --- deferred).
   \item Stratified automated consistency audit ($n=280$) --- done
         (Table~\ref{tab:consistency}).
   \item Full-corpus structure--NMR quarantine --- done
@@ -616,7 +618,7 @@ Rates are from the Hub revision's \texttt{data/f1\_commercial\_build\_stats.json
 \begin{itemize}
   \item \textbf{Band lists $\neq$ spectra.} Do not evaluate models trained on IRexp as
         if they had seen full absorbance curves.
-  \item \textbf{Licence filter.} Productized reuse must filter by
+  \item \textbf{Licence filter.} Reuse must filter by
         \texttt{license\_pool} (commercial vs NC* vs ShareAlike) rather than
         treating the full dump as a single licence.
         Prefer the JSON band-list fields and \texttt{source\_doi} for retrieval
@@ -728,7 +730,7 @@ The Hub card is data-only (LEADERBOARD purged).
 Band lists on this revision include the F1 repair defined in Methods.
 The full multi-licence corpus ($n=121{,}233$) described in Methods and Data
 Records remains the construction and methodology reference; it is not the Sci Data
-commercial redistribution artifact in this Hub revision.
+commercial redistribution artefact in this Hub revision.
 GitHub \url{https://github.com/IlkhamFY/IRexp} holds this manuscript, frozen count
 manifests, and figures (no bulk JSONL under \texttt{data/}).
 Harvest and validation code lives in spectro-agent

@@ -59,7 +59,7 @@ Internal tracking for pre-submit editorial / M6 cleanups. Postcard root stays cl
 |---|---|---|
 | **F1 code** | **Done** (spectro-agent + Hub commercial DoR) | Thousands-separator fix applied; bands reparsed; commercial Hub revision cited in v0.16. |
 | **Data rebuild (full multi-licence headlines)** | **Pending** | Commercial DoR published on Hub; do **not** change paper-wide 121,233 headlines until a consistent full vs commercial rebuild lands. |
-| Band-window QC gate vs prose | **Pending rebuild sync** | Prose now states 400–4000; QC JSON still documents historical `[350,4000]` gate — align on rebuild. |
+| Band-window QC gate vs prose | **Aligned (v0.37)** | Prose restored to **350–4000** to match locked Fig.~2 H (Cleaning rules) and frozen QC `out_of_range_outside_350_4000=0`. Do not redesign Fig.~2. |
 | Zenodo data-only DOI mint | **Open (human)** | Commercial-pool primary deposit; see `ZENODO_DATA_ONLY_CHECKLIST.md`. |
 | ORCID confirmation (authors) | **Open (human)** | See `HUMAN_SUBMISSION_CHECKLIST.md`. |
 | Expert human structure spot-check ($n\geq100$) | **Deferred** | Optional TV strengthen vs NMRexp. |
