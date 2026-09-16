@@ -20,23 +20,23 @@
 | Completeness: major_missing | 12 / 161 | 7.5% |
 | Confidence 4–5 | 138 / 160 | 86.3% |
 
-Notes: one scored row (stratum B) lacks confidence / 	runcation_artifact (source_found = N / cannot_tell path). Pairing and name–structure fields are sparsely filled outside commercial structure-linked strata (many unsure / blank in B–C).
+Notes: one scored row (stratum B) lacks confidence / truncation_artifact (source_found = N / cannot_tell path). Pairing and name–structure fields are sparsely filled outside commercial structure-linked strata (many unsure / blank in B–C).
 
 ## Coverage by stratum
 
 | Stratum | Quota | Scored | Unscored (absent from HF commercial publish) | Notes |
 |---------|------:|-------:|--------:|-------|
 | A | 40 | 40 | 0 | Commercial structure-linked |
-| B | 30 | 22 | 8 | Mostly IR-only / mixed licence; pending = NC* rows absent from HF publish |
-| C | 20 | 19 | 1 | Pending = NC* row absent from HF publish |
+| B | 30 | 22 | 8 | Mostly IR-only / mixed licence; unscored = NC*/empty-unknown rows absent from HF publish |
+| C | 20 | 19 | 1 | Unscored = NC* row absent from HF publish |
 | D | 20 | 20 | 0 | |
-| E | 30 | 0 | 30 | **Untouched** — Chemotion ShareAlike; band lists absent from HF publish |
+| E | 30 | 0 | 30 | Intentionally unscored — Chemotion ShareAlike; band lists absent from HF publish |
 | F | 20 | 20 | 0 | |
 | G | 20 | 20 | 0 | |
 | H | 20 | 20 | 0 | |
 | **Total** | **200** | **161** | **39** | |
 
-Pending queue also mirrored as scoring_queue_unscored_39.csv. All 39 require rows from data/irexp_rebuild_20260910/ (or equivalent non-commercial / ShareAlike publish) before band-match / completeness can be finished; stratum E source pages are otherwise verifiable on Chemotion.
+Unscored queue also mirrored as scoring_queue_unscored_39.csv. All 39 require rows from data/irexp_rebuild_20260910/ (or equivalent non-commercial / ShareAlike publish) before band-match / completeness can be finished; stratum E source pages are otherwise verifiable on Chemotion.
 
 ## Rates by stratum (scored only)
 
@@ -64,14 +64,13 @@ Themes called out in free-text notes (mass / MW / LC–MS in IR lists; R²; miss
    Stratum B: R² values transcribed instead of wavenumbers (one case with corrected IR list 1772, 1702, 1397, 1281 and no structure); another B row has normalised maximum HRR instead of IR; one B row has wrong values with a full corrected list supplied in notes.
 
 3. **Missing peaks / truncation (subset_ok or major_missing).**  
-   Explicit missing wavenumbers (e.g. 981 and 952; 758 and 673; 757 and 672; 672 and 470). Seven scored rows carry 	runcation_artifact = Y.
+   Explicit missing wavenumbers (e.g. 981 and 952; 758 and 673; 757 and 672; 672 and 470). Seven scored rows carry truncation_artifact = Y.
 
 4. **Range expansion.**  
    Two notes (C, D): hyphenated source ranges (e.g. 3669–3200; 2964–2869) expanded into four discrete endpoints in the release.
 
 5. **Other.**  
-   One A note: four compounds in paper share the same IR string (pairing still OK). One B cannot_tell with incomplete fields. One G row: pairing_ok = N / 
-ame_structure_ok = N despite exact bands.
+   One A note: four compounds in paper share the same IR string (pairing still OK). One B cannot_tell with incomplete fields. One G row: pairing_ok = N / name_structure_ok = N despite exact bands.
 
 ## Manuscript / release wording
 
