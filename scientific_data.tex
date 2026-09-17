@@ -16,6 +16,21 @@
 \usepackage{booktabs,array,tabularx}
 \usepackage{xcolor}
 \usepackage{enumitem}
+\usepackage{listings}
+\lstdefinestyle{irexpjson}{
+  basicstyle=\ttfamily\footnotesize,
+  breaklines=true,
+  columns=fullflexible,
+  keepspaces=true,
+  showstringspaces=false,
+  frame=single,
+  rulecolor=\color{black!25},
+  xleftmargin=0.4em,
+  xrightmargin=0.4em,
+  aboveskip=0.5em,
+  belowskip=0.4em,
+  literate={-}{-}1
+}
 \setlist{nosep,leftmargin=1.4em}
 
 % Paragraphs are used as run-in heads (Nature-like), not bookmark levels 4.
@@ -87,9 +102,9 @@ redistributable CC-BY/CC0 records and 43,060 structure-linked entries; each
 record carries a source accession and a stamped licence
 pool~\citep{hrynaszkiewicz2012open,carroll2011openaccess}.
 
-Infrared (IR) spectroscopy is routine in organic characterisation~\citep{silverstein2014sioc,blum2012atrftir}, yet open,
+Infrared (IR) spectroscopy is routine in materials characterisation~\citep{silverstein2014sioc,blum2012atrftir}, yet open,
 redistributable collections of \emph{experimental} IR data remain sparse relative
-to modern machine-learning needs and FAIR reuse goals~\citep{wilkinson2016fair}.
+to modern machine-learning needs and FAIR reuse goals.\footnote{FAIR: Findable, Accessible, Interoperable, Reusable~\citep{wilkinson2016fair}.}
 Digitised absorbance libraries such as the NIST Chemistry WebBook~\citep{nist_webbook}
 and AIST SDBS~\citep{sdbs} are valuable but either modest in size or view-only
 (no bulk redistribution).
@@ -130,11 +145,19 @@ IR band lists (wavenumbers in cm$^{-1}$) together with $^{1}$H/$^{13}$C NMR shif
 lists.
 That textual convention is the object many elucidation pipelines consume, and it
 differs from a digitised spectrum.
+Computer-assisted structure elucidation (CASE) systems ingest IR
+characteristic-frequency peak tables together with NMR~\citep{elyashberg2009case},
+and database-independent elucidators take author-style IR, $^{1}$H/$^{13}$C NMR,
+and MS tabular lists as input~\citep{pesek2021elucidation}.
+Related IR$\to$structure and spectral-embedding models that operate on digitised
+absorbance traces rather than literature band lists include Spectro and
+j-IR-vis~\citep{chacko2024spectro,sondhi2025jirvis} and transformer elucidation
+from IR spectra~\citep{alberts2024irstruct,alberts2024multimodal}.
 Models and retrieval tools that consume literature peak lists need
 redistributable numeric records with DOI attribution and explicit licence pools;
 IRexp is built as that substrate.
 Diagnosis benchmarks, large-language-model accuracy tables, and model
-leaderboards belong in the companion research manuscript, not here.
+leaderboards are out of scope for this Data Descriptor.
 
 IRexp therefore:
 \begin{enumerate}
@@ -158,9 +181,7 @@ This Descriptor contributes the curated dataset, harvest provenance, licence
 segregation, and validation artefacts.
 Intended reuse includes multimodal pretraining, supervised IR$\to$structure
 modelling on \texttt{irexp\_resolved}, and serving as the literature substrate
-for complementary elucidation benchmarks described in a companion research
-manuscript (IRSpectra-Bench; cite that work for protocol and model results,
-which are not reproduced here)~\citep{yabbarov2026irspectra}.
+for complementary elucidation benchmarks if needed.
 
 \section{Methods}\label{sec:methods}
 
@@ -363,6 +384,28 @@ ir\_table\_flatten\_suspect & bool & F3 (commercial DoR): suspected table-flatte
 \end{tabular}
 \end{table}
 
+A representative structure-linked record from the commercial dataset of record
+is shown in Listing~\ref{lst:example}: nine experimental IR bands
+(cm$^{-1}$) mined from PMC13029360, with a resolved SMILES/InChIKey and
+co-reported $^{1}$H/$^{13}$C NMR strings retained on the row (omitted from the
+snippet).
+
+\begin{lstlisting}[float=ht,style=irexpjson,caption={Example IRexp JSON record (commercial Hugging Face dataset of record).},label={lst:example}]
+{
+  "id": "NTJIYHYWVZYBEX-UHFFFAOYSA-N",
+  "ir_bands_cm-1": [3337.0, 2969.0, 1633.0, 1556.0,
+                    1505.0, 1240.0, 1181.0, 1071.0, 826.0],
+  "ir_source": "experimental",
+  "source_doi": "PMC:13029360",
+  "pmcid": "PMC13029360",
+  "smiles": "COc1ccc(NC(=O)NC2CCC2)cc1",
+  "inchikey": "NTJIYHYWVZYBEX-UHFFFAOYSA-N",
+  "has_structure": true,
+  "license": "CC-BY",
+  "license_pool": "commercial"
+}
+\end{lstlisting}
+
 The commercial dataset of record additionally ships F2/F3 as retained flag
 fields (rows not dropped; rates in Technical Validation).
 Frozen field definitions and validation counts:
@@ -392,7 +435,7 @@ File & Records & Description \\
 \midrule
 \texttt{irexp.jsonl.gz} & 121,233 & Full curated release (multi-licence) \\
 \texttt{irexp\_resolved.jsonl.gz} & 43,060 & 100\% structure-linked \\
-\texttt{train\_no\_bench.jsonl.gz} & 42,808 & Resolved minus IRSpectra-Bench InChIKeys \\
+\texttt{train\_no\_bench.jsonl.gz} & 42,808 & Resolved minus held-out benchmark InChIKeys \\
 \texttt{train\_no\_bench\_nmr.jsonl.gz} & 32,949 & Same with both $^{1}$H and $^{13}$C \\
 \texttt{pretrain\_ir.jsonl.gz} & 119,345 & PMC-only IR pretrain pool \\
 \midrule
@@ -460,7 +503,6 @@ Provenance files shipped with the dataset (not in Table~\ref{tab:files}):
         \url{https://github.com/IlkhamFY/IRexp}
   \item Harvest / pipeline code: \url{https://github.com/IlkhamFY/spectro-agent}
         (Section~\ref{sec:codeavail})
-  \item Archival DOI: see Data Availability (not yet minted; none claimed).
 \end{itemize}
 
 \section{Technical Validation}\label{sec:techval}
@@ -636,11 +678,10 @@ Rates are from the Hub revision's \texttt{data/f1\_commercial\_build\_stats.json
         \texttt{irexp\_resolved}, drop IDs in
         \texttt{structure\_nmr\_quarantine.jsonl.gz} by default
         ($\sim$4.4\% of resolved rows) unless a noisier training set is intentional.
-  \item \textbf{Training without benchmark leakage.} If using the complementary
-        IRSpectra-Bench problems (companion research paper), fine-tune from
+  \item \textbf{Training without benchmark leakage.} If holding out structures used
+        in a complementary elucidation benchmark, fine-tune from
         \texttt{train\_no\_bench.jsonl.gz} (or rebuild with
-        \texttt{scripts/build\_train\_no\_bench.py}) so benchmark InChIKeys are withheld.
-        Protocol and model results live only in that companion manuscript.
+        \texttt{scripts/build\_train\_no\_bench.py}) so those InChIKeys are withheld.
   \item \textbf{Structure coverage.} Prefer \texttt{irexp\_resolved} for supervised
         structure tasks; 64.5\% of records lack SMILES.
   \item \textbf{FAIR reuse example.} Load only
@@ -649,8 +690,7 @@ Rates are from the Hub revision's \texttt{data/f1\_commercial\_build\_stats.json
         attribution; prefer \texttt{irexp\_resolved} when SMILES is required.
         ShareAlike Chemotion rows may be remixed only under CC-BY-SA terms.
   \item \textbf{Attribution.} Cite this Data Descriptor and each record's
-        originating \texttt{source\_doi}. An archival DOI is not yet minted; none
-        is claimed here.
+        originating \texttt{source\_doi}.
 \end{itemize}
 
 \subsection{Limitations}\label{sec:limitations}
@@ -674,8 +714,7 @@ Rates are from the Hub revision's \texttt{data/f1\_commercial\_build\_stats.json
         pool only (88,545 after Crossref recovery; Hub revision in
         Section~\ref{sec:dataavail}).
   \item \textbf{Scope of this paper.} Elucidation benchmarks and model results are
-        out of scope for this Data Descriptor; cite the companion research manuscript
-        (IRSpectra-Bench) for those claims.
+        out of scope for this Data Descriptor.
 \end{itemize}
 
 \section{Code Availability}\label{sec:codeavail}
@@ -735,7 +774,6 @@ GitHub \url{https://github.com/IlkhamFY/IRexp} holds this manuscript, frozen cou
 manifests, and figures (no bulk JSONL under \texttt{data/}).
 Harvest and validation code lives in spectro-agent
 (\url{https://github.com/IlkhamFY/spectro-agent}; Section~\ref{sec:codeavail}).
-An archival DOI is not yet minted; no DOI is claimed here.
 
 \begin{itemize}
   \item Dataset of record (commercial CC-BY/CC0, $n=88{,}545$): Hugging Face
