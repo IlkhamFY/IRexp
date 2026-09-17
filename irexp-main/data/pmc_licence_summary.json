@@ -1,0 +1,62 @@
+{
+  "generated_at": "2026-08-27T03:22:20.111557+00:00",
+  "license_counts": {
+    "CC-BY": 88516,
+    "CC-BY-NC": 10546,
+    "UNKNOWN": 109,
+    "CC-BY-NC-ND": 10548,
+    "CC-BY-NC-SA": 729,
+    "CC-BY-ND": 5,
+    "EMPTY": 8854,
+    "CC0": 29,
+    "CC-BY-SA": 9,
+    "CC-BY-SA-4.0": 1888
+  },
+  "pool_record_counts": {
+    "commercial": 88545,
+    "non_commercial": 21823,
+    "empty_unknown": 8963,
+    "other": 5,
+    "sharealike": 1897
+  },
+  "source_counts": {
+    "pmc": 119345,
+    "chemotion": 1888
+  },
+  "total_records": 121233,
+  "unique_pmcids": 15416,
+  "rebuilt_from_stamped_corpus": true,
+  "source": "data/irexp/irexp.jsonl.gz",
+  "crossref_recovery_applied": true,
+  "crossref_recovery": {
+    "pmcids_promoted": 146,
+    "records_moved": {
+      "empty_unknown->commercial": 928,
+      "empty_unknown->other": 5,
+      "empty_unknown->non_commercial": 885
+    },
+    "delta_commercial": 928
+  },
+  "policy": {
+    "commercial_includes": [
+      "CC0",
+      "CC-BY"
+    ],
+    "commercial_zenodo_primary": true,
+    "empty_unknown": "excluded from commercial Zenodo pool",
+    "non_commercial": "held aside in irexp_non_commercial.jsonl.gz",
+    "other": "held aside (includes CC-BY-ND / non-CC terms)",
+    "sharealike_includes": [
+      "CC-BY-SA",
+      "CC-BY-SA-4.0 (Chemotion)"
+    ],
+    "crossref_recovery": "empty/unknown promoted only on explicit CC / ACS AuthorChoice Crossref URLs or late Europe PMC licence strings; TDM-only ignored"
+  },
+  "pool_files": {
+    "commercial": "data/irexp/licence_pools/irexp_commercial.jsonl.gz",
+    "empty_unknown": "data/irexp/licence_pools/irexp_empty_unknown.jsonl.gz",
+    "non_commercial": "data/irexp/licence_pools/irexp_non_commercial.jsonl.gz",
+    "other": "data/irexp/licence_pools/irexp_other.jsonl.gz",
+    "sharealike": "data/irexp/licence_pools/irexp_sharealike.jsonl.gz"
+  }
+}
