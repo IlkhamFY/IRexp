@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 """Fig 2 — harvest / cleaning workflow. Orthogonal alignment; ≥8pt body / ≥9pt headers.
 Frozen counts. PDF fonttype 42 + PNG 600 dpi. Red highlights on bad QC tokens.
-v0.8: title clear of numbered circles; QC icon clear of panel B title; equal box gaps.
+v0.8 layout (pre-v0.23 visual): title clear of numbered circles; QC icon clear
+of panel B title; equal box gaps. Honest labels: IR window 400–4000; Hugging
+Face only (no Zenodo cylinder); gates diagnostic (not release filters).
 """
 from __future__ import annotations
 
@@ -142,7 +144,7 @@ def main() -> None:
         ("2", "IR extract", ["Regex band lists", "+ co-reported NMR"], BLUE),
         ("3", "Structure resolve", ["OPSIN → RDKit", "SMILES / InChIKey"], BLUE),
         ("4", "Licence join", ["Europe PMC", "+ Crossref"], ORANGE),
-        ("5", "Release pools", ["HF + Zenodo", "JSONL pools"], NAVY),
+        ("5", "Release pools", ["Hugging Face", "JSONL pools"], NAVY),
     ]
     circle_centers = []
     for i, (num, title, lines, col) in enumerate(steps):
@@ -229,7 +231,7 @@ def main() -> None:
     axa.text(
         rules_x + rules_w / 2,
         rules_y + rules_h - 0.20,
-        "Cleaning rules",
+        "Diagnostic gates",
         ha="center",
         va="center",
         fontsize=9.0,
@@ -237,9 +239,9 @@ def main() -> None:
         color=ORANGE,
     )
     rule_lines = [
-        r"Band count ≥ 3 in 350–4000 cm$^{-1}$",
-        r"Reject duplicate integers",
-        r"$^{1}$H ≤ formula H+2  ·  $^{13}$C ≤ carbon count",
+        r"IR window 400–4000 cm$^{-1}$",
+        r"Duplicate-integer sanity",
+        r"$^{1}$H / $^{13}$C physics (diagnostic)",
     ]
     for i, line in enumerate(rule_lines):
         axa.text(
@@ -335,7 +337,7 @@ def main() -> None:
             [
                 ("IR (neat): 3200, 2958, ", INK, "normal"),
                 ("4180", RED, "bold"),
-                (r", 1520 cm$^{-1}$ — 4180 outside 350–4000 cm$^{-1}$.", INK, "normal"),
+                (r", 1520 cm$^{-1}$ — 4180 outside 400–4000 cm$^{-1}$.", INK, "normal"),
             ],
         ),
         (
