@@ -13,7 +13,7 @@ scientific_data.tex     # source of truth (repo root)
 references.bib
 latexmkrc               # TEXINPUTS / BSTINPUTS → tex/
 tex/                    # sn-jnl.cls + *.bst + sn-article provenance
-figures/                # positioning / pipeline / distribution / example mol3d
+figures/                # positioning / pipeline / distribution
 data/                   # manifests + HF/Zenodo pointers (no large dumps)
 docs/                   # checklists and working notes
 scripts/build_pdf.py
