@@ -13,6 +13,7 @@
 %%%% Standard / manuscript packages (keep minimal; sn-jnl loads natbib/hyperref)
 \usepackage{graphicx}
 \usepackage{float}
+\usepackage{framed}
 \usepackage{amsmath,amssymb}
 \usepackage{booktabs,array,tabularx}
 \usepackage{xcolor}
@@ -394,9 +395,8 @@ ir\_table\_flatten\_suspect & bool & F3 (commercial DoR): suspected table-flatte
 (commercial DoR).
 \label{lst:example}
 \vspace{0.35em}
-\noindent\fbox{%
-\begin{minipage}{0.97\textwidth}
-\vspace{0.25em}
+\begin{framed}
+\noindent
 \begin{minipage}[c]{0.62\textwidth}
 \begin{lstlisting}[style=irexpjson,frame=none]
 {
@@ -420,9 +420,7 @@ ir\_table\_flatten\_suspect & bool & F3 (commercial DoR): suspected table-flatte
 \centering
 \includegraphics[width=\linewidth]{fig_example_mol_rdkit.pdf}
 \end{minipage}
-\vspace{0.25em}
-\end{minipage}%
-}
+\end{framed}
 \end{figure}
 
 The commercial dataset of record additionally ships F2/F3 as retained flag
