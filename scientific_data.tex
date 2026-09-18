@@ -357,7 +357,7 @@ Each IRexp record is a JSON object; see Table~\ref{tab:fields}.
 A representative structure-linked record from the commercial dataset of record
 is shown in Listing~\ref{lst:example}: nine experimental IR bands
 (cm$^{-1}$) mined from PMC13029360, with a resolved SMILES/InChIKey and
-co-reported $^{1}$H/$^{13}$C NMR strings on the row, shown beside an RDKit drawing of the resolved structure.
+co-reported $^{1}$H/$^{13}$C NMR strings on the row, shown beside a PubChem 3D conformer of the resolved structure (CID 23966138).
 % Required chemistry fields for an IR entry:
 
 \begin{table}[ht]
@@ -392,7 +392,7 @@ ir\_table\_flatten\_suspect & bool & F3 (commercial DoR): suspected table-flatte
 \phantomsection
 \refstepcounter{lstlisting}%
 \noindent\textbf{\lstlistingname~\thelstlisting.} Example IRexp JSON record
-(commercial DoR) with an RDKit drawing of the resolved structure.
+(commercial DoR) with a PubChem 3D conformer of the resolved structure (CID 23966138).
 \label{lst:example}
 \vspace{0.35em}
 \noindent
