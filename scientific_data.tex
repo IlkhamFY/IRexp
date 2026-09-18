@@ -16,19 +16,22 @@
 \usepackage{booktabs,array,tabularx}
 \usepackage{xcolor}
 \usepackage{enumitem}
+\usepackage{float}
 \usepackage{listings}
 \lstdefinestyle{irexpjson}{
   basicstyle=\ttfamily\footnotesize,
   breaklines=true,
+  breakatwhitespace=false,
   columns=fullflexible,
   keepspaces=true,
   showstringspaces=false,
   frame=single,
   rulecolor=\color{black!25},
-  xleftmargin=0.4em,
-  xrightmargin=0.4em,
-  aboveskip=0.5em,
-  belowskip=0.4em,
+  xleftmargin=0.3em,
+  xrightmargin=0.3em,
+  aboveskip=0.35em,
+  belowskip=0.25em,
+  linewidth=\linewidth,
   literate={-}{-}1
 }
 \setlist{nosep,leftmargin=1.4em}
@@ -356,10 +359,46 @@ in Section~\ref{sec:codeavail}.
 Each IRexp record is a JSON object; see Table~\ref{tab:fields}.
 A representative structure-linked record from the commercial dataset of record
 is shown in Listing~\ref{lst:example}: nine experimental IR bands
-(cm$^{-1}$) mined from PMC13029360, with a resolved SMILES/InChIKey and
-co-reported $^{1}$H/$^{13}$C NMR strings retained on the row (omitted from the
-snippet).
+(cm$^{-1}$) mined from PMC13029360, with resolved SMILES, SELFIES, and InChIKey
+encodings, co-reported $^{1}$H/$^{13}$C NMR strings, licence-join fields, and
+a ball-and-stick 3D view of the structure.
 % Required chemistry fields for an IR entry:
+
+\begin{figure}[H]
+\phantomsection
+\refstepcounter{lstlisting}%
+\noindent\textbf{\lstlistingname~\thelstlisting.} Example IRexp JSON record
+with a ball-and-stick 3D view of the resolved structure.
+\label{lst:example}
+
+\vspace{0.35em}
+\noindent
+\begin{minipage}[c]{0.58\textwidth}
+\begin{lstlisting}[style=irexpjson]
+{
+  "id": "NTJIYHYWVZYBEX-UHFFFAOYSA-N",
+  "ir_bands_cm-1": [3337.0, 2969.0, 1633.0, 1556.0, 1505.0, 1240.0, 1181.0, 1071.0, 826.0],
+  "ir_source": "experimental",
+  "source_doi": "PMC:13029360",
+  "pmcid": "PMC13029360",
+  "h_nmr": "8.07 (brs, 1H, NH), 7.25 (d, J = 7.3 Hz, 2H, Ar), 6.78 (d, J = 7.3 Hz, 2H, Ar), 6.25 (d, J = 8.1 Hz, 1H, NH), 4.10 (hex, J = 8.1 Hz, 1H, CH), 3.66 (s, 3H, OCH3), 2.23-2.09 (m, 2H, CH2), 1.90-1.71 (m, 2H, CH2), 1.64-1.51 (m, 2H, CH2)",
+  "c_nmr": "154.8, 154.4, 134.0, 119.9, 114.3, 55.5, 45.0, 31.8, 14.8",
+  "smiles": "COc1ccc(NC(=O)NC2CCC2)cc1",
+  "selfies": "[C][O][C][=C][C][=C][Branch1][=N][N][C][=Branch1][C][=O][N][C][C][C][C][Ring1][Ring2][C][=C][Ring1][=C]",
+  "inchikey": "NTJIYHYWVZYBEX-UHFFFAOYSA-N",
+  "has_structure": true,
+  "license": "CC-BY",
+  "license_pool": "commercial",
+  "license_raw": "cc by",
+  "license_source": "europepmc"
+}
+\end{lstlisting}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.40\textwidth}
+\centering
+\includegraphics[width=\linewidth]{fig_example_mol3d.pdf}
+\end{minipage}
+\end{figure}
 
 \begin{table}[ht]
 \caption{Core fields of an IRexp JSON record.}\label{tab:fields}
@@ -386,24 +425,6 @@ ir\_table\_flatten\_suspect & bool & F3 (commercial DoR): suspected table-flatte
 \bottomrule
 \end{tabular}
 \end{table}
-
-
-
-\begin{lstlisting}[float=ht,style=irexpjson,caption={Example IRexp JSON record.},label={lst:example}]
-{
-  "id": "NTJIYHYWVZYBEX-UHFFFAOYSA-N",
-  "ir_bands_cm-1": [3337.0, 2969.0, 1633.0, 1556.0,
-                    1505.0, 1240.0, 1181.0, 1071.0, 826.0],
-  "ir_source": "experimental",
-  "source_doi": "PMC:13029360",
-  "pmcid": "PMC13029360",
-  "smiles": "COc1ccc(NC(=O)NC2CCC2)cc1",
-  "inchikey": "NTJIYHYWVZYBEX-UHFFFAOYSA-N",
-  "has_structure": true,
-  "license": "CC-BY",
-  "license_pool": "commercial"
-}
-\end{lstlisting}
 
 The commercial dataset of record additionally ships F2/F3 as retained flag
 fields (rows not dropped; rates in Technical Validation).
