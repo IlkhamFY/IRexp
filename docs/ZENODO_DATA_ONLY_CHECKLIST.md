@@ -1,6 +1,11 @@
 # Zenodo data-only mint checklist (human)
 
-**Do not invent a DOI.** Fill this after minting; then replace `[TODO: 10.5281/zenodo.XXXXXXX]` in `scientific_data.tex` / `SCIENTIFIC_DATA.md`.
+**Minted (data-only commercial pool).** Prefer the version DOI
+`https://doi.org/10.5281/zenodo.22822285` (`10.5281/zenodo.22822285`).
+Concept DOI: `10.5281/zenodo.22822284`. Record:
+https://zenodo.org/records/22822285.
+Mirrors Hugging Face `ilkhamfy/IRexp` revision
+`8db58466e3ddfd2fbe09bd47fdd5eb4cfc3e1975` (commercial n=88,545).
 
 ## Why a separate deposit
 
@@ -28,7 +33,8 @@ Do **not** upload IRSpectra-Bench predictions, leaderboards, or model-result tab
 
 ## After mint
 
-1. Paste DOI into TeX Access + Data Availability and MD TODOs.  
-2. Tag the Git commit that matches the uploaded files.  
-3. Update HF card Zenodo line if desired.  
+1. Paste DOI into TeX Access + Data Availability and MD TODOs. **Done**
+   (`scientific_data.tex` cites `https://doi.org/10.5281/zenodo.22822285`).
+2. Tag the Git commit that matches the uploaded files.
+3. Update HF card Zenodo line if desired.
 4. Tick the matching row in `HUMAN_SUBMISSION_CHECKLIST.md`.

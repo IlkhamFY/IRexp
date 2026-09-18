@@ -264,6 +264,8 @@ Rows carry \texttt{license=CC-BY-SA-4.0}, \texttt{source=Chemotion}, and
 AIST SDBS (view-only; no bulk export)~\citep{sdbs}; NIST WebBook join code exists
 in the code repository but contributes 0 records to the released IRexp
 (\texttt{ir\_source} is always \texttt{experimental} for released rows).
+NIST Chemistry WebBook gas-phase IR entries are largely historical
+digitizations (mid--late 20th century vintage) and remain view-only.
 
 \subsection{Discovery and fetch (released corpus)}
 
@@ -287,7 +289,7 @@ in the code repository but contributes 0 records to the released IRexp
 band lists and co-reported NMR strings; OPSIN/RDKit structure resolution;
 Europe PMC licence join with Crossref recovery; segregation into redistribution
 pools as shown (Hugging Face JSONL; figure labels HF~+~Zenodo --- archival DOI
-not yet minted and is not claimed in Data Availability).
+\url{https://doi.org/10.5281/zenodo.22822285}; see Data Availability).
 Inset Cleaning rules: band count $\geq$3 in 350--4000\,cm$^{-1}$, duplicate
 bands, and structure--NMR physics.
 Release: 121,233 band lists / 43,060 structure-linked.
@@ -499,6 +501,9 @@ Provenance files shipped with the dataset (not in Table~\ref{tab:files}):
   \item Dataset (Hugging Face): \url{https://huggingface.co/datasets/ilkhamfy/IRexp},
         revision \texttt{8db58466e3ddfd2fbe09bd47fdd5eb4cfc3e1975}
         (commercial dataset of record; Section~\ref{sec:dataavail})
+  \item Archival deposit (Zenodo; same commercial pool / Hub revision):
+        \url{https://doi.org/10.5281/zenodo.22822285}
+        (Section~\ref{sec:dataavail})
   \item This Data Descriptor, manifests, and figures:
         \url{https://github.com/IlkhamFY/IRexp}
   \item Harvest / pipeline code: \url{https://github.com/IlkhamFY/spectro-agent}
@@ -759,6 +764,8 @@ For Scientific Data redistribution, the \textbf{dataset of record} is the
 commercial CC-BY/CC0 pool ($n=88{,}545$), published on Hugging Face Datasets at
 \url{https://huggingface.co/datasets/ilkhamfy/IRexp}, revision
 \texttt{8db58466e3ddfd2fbe09bd47fdd5eb4cfc3e1975}.
+An archival Zenodo deposit of the same commercial pool, mirroring that Hub
+revision, is available at \url{https://doi.org/10.5281/zenodo.22822285}.
 That Hub revision ships the commercial deposit with F2/F3 quality flags
 (\texttt{ir\_shared\_in\_paper}, \texttt{ir\_table\_flatten\_suspect}) retained as
 fields (rows not dropped), plus companion configs
@@ -779,6 +786,8 @@ Harvest and validation code lives in spectro-agent
   \item Dataset of record (commercial CC-BY/CC0, $n=88{,}545$): Hugging Face
         Datasets, \url{https://huggingface.co/datasets/ilkhamfy/IRexp}, revision
         \texttt{8db58466e3ddfd2fbe09bd47fdd5eb4cfc3e1975}
+  \item Archival deposit (Zenodo; same commercial pool, same Hub revision):
+        \url{https://doi.org/10.5281/zenodo.22822285}
   \item Manuscript, frozen count manifests, and figures:
         \url{https://github.com/IlkhamFY/IRexp}
   \item Harvest / pipeline source: \url{https://github.com/IlkhamFY/spectro-agent}
