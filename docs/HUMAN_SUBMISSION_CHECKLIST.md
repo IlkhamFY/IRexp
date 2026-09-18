@@ -7,7 +7,7 @@ Agent-addressable TV / licence / remirror / overview work is complete on this br
 
 | # | Action | Status | Notes / stub |
 |---|---|---|---|
-| 1 | Mint **data-only** Zenodo DOI | ☐ | Follow `ZENODO_DATA_ONLY_CHECKLIST.md`. Primary = commercial 88,545; SA companion. **Do not** reuse combined `.zenodo.json`. |
+| 1 | Mint **data-only** Zenodo DOI | ☑ | Done — version DOI https://doi.org/10.5281/zenodo.22822285 (concept 10.5281/zenodo.22822284). See `ZENODO_DATA_ONLY_CHECKLIST.md`. |
 | 2 | Confirm ORCID — **I. Yabbarov** | ☐ | Paste into TeX author block / eJP. MD still has `[TODO: confirm]`. |
 | 3 | Confirm ORCID — **R. A. Vargas-Hernández** | ☐ | Known candidate: `0000-0002-5559-6521` (confirm before submit). |
 | 4 | Replace Acknowledgements / funding placeholder | ☑ | NSERC 596133-2025 (CREATE AccelD via Acceleration Consortium) + McMaster Chemistry. Text-only (no sponsor logo in the Descriptor). |
