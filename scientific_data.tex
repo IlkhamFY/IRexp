@@ -157,8 +157,9 @@ Models and retrieval tools that consume literature peak lists need
 redistributable numeric records with DOI attribution and explicit licence pools;
 IRexp is built as that substrate.
 Diagnosis benchmarks, large-language-model accuracy tables, and model
-leaderboards are out of scope for this Data Descriptor.
+leaderboards are out of scope for this Data Descriptor.\\
 
+\noindent
 IRexp therefore:
 \begin{enumerate}
   \item Harvests open-access full text from the PMC Open Access Subset bulk S3
@@ -186,9 +187,9 @@ for complementary elucidation benchmarks if needed.
 \section{Methods}\label{sec:methods}
 
 Harvest, extraction, licence-join, and validation code live in the
-spectro-agent repository (\url{https://github.com/IlkhamFY/spectro-agent};
+spectro-agent repository (\url{https://github.com/IlkhamFY/spectro-agent}; see
 Section~\ref{sec:codeavail}).
-Principal modules are named lightly below; the full script inventory is in
+Principal modules are named briefly below; the full script inventory is in
 Code Availability.
 
 \subsection{Source corpora}
@@ -261,11 +262,7 @@ Rows carry \texttt{license=CC-BY-SA-4.0}, \texttt{source=Chemotion}, and
 \texttt{source\_doi} equal to the deposit DOI.
 
 \paragraph{Excluded.}
-AIST SDBS (view-only; no bulk export)~\citep{sdbs}; NIST WebBook join code exists
-in the code repository but contributes 0 records to the released IRexp
-(\texttt{ir\_source} is always \texttt{experimental} for released rows).
-NIST Chemistry WebBook gas-phase IR entries are largely historical
-digitizations (mid--late 20th century vintage) and remain view-only.
+AIST SDBS (view-only; no bulk export)~\citep{sdbs}. NIST Chemistry WebBook gas-phase IR entries are largely historical mid--late 20th century digitizations and remain view-only; they are not in released IRexp rows (join code exists in the repository but contributes 0 records; \texttt{ir\_source} is always \texttt{experimental}).
 
 \subsection{Discovery and fetch (released corpus)}
 
@@ -288,8 +285,7 @@ digitizations (mid--late 20th century vintage) and remain view-only.
 \textbf{(A)}~188,016 PMC Open Access identifiers scanned; regex extraction of IR
 band lists and co-reported NMR strings; OPSIN/RDKit structure resolution;
 Europe PMC licence join with Crossref recovery; segregation into redistribution
-pools as shown (Hugging Face JSONL; figure labels HF~+~Zenodo --- archival DOI
-\url{https://doi.org/10.5281/zenodo.22822285}; see Data Availability).
+pools as shown (Hugging Face JSONL; figure labels HF~+~Zenodo; archival version DOI \url{https://doi.org/10.5281/zenodo.22822285}).
 Inset Cleaning rules: band count $\geq$3 in 350--4000\,cm$^{-1}$, duplicate
 bands, and structure--NMR physics.
 Release: 121,233 band lists / 43,060 structure-linked.
@@ -357,8 +353,13 @@ in Section~\ref{sec:codeavail}.
 
 \subsection{Object definition}
 
-Each IRexp record is a JSON object.
-Required chemistry fields for an IR entry:
+Each IRexp record is a JSON object; see Table~\ref{tab:fields}.
+A representative structure-linked record from the commercial dataset of record
+is shown in Listing~\ref{lst:example}: nine experimental IR bands
+(cm$^{-1}$) mined from PMC13029360, with a resolved SMILES/InChIKey and
+co-reported $^{1}$H/$^{13}$C NMR strings retained on the row (omitted from the
+snippet).
+% Required chemistry fields for an IR entry:
 
 \begin{table}[ht]
 \caption{Core fields of an IRexp JSON record.}\label{tab:fields}
@@ -386,13 +387,9 @@ ir\_table\_flatten\_suspect & bool & F3 (commercial DoR): suspected table-flatte
 \end{tabular}
 \end{table}
 
-A representative structure-linked record from the commercial dataset of record
-is shown in Listing~\ref{lst:example}: nine experimental IR bands
-(cm$^{-1}$) mined from PMC13029360, with a resolved SMILES/InChIKey and
-co-reported $^{1}$H/$^{13}$C NMR strings retained on the row (omitted from the
-snippet).
 
-\begin{lstlisting}[float=ht,style=irexpjson,caption={Example IRexp JSON record (commercial Hugging Face dataset of record).},label={lst:example}]
+
+\begin{lstlisting}[float=ht,style=irexpjson,caption={Example IRexp JSON record.},label={lst:example}]
 {
   "id": "NTJIYHYWVZYBEX-UHFFFAOYSA-N",
   "ir_bands_cm-1": [3337.0, 2969.0, 1633.0, 1556.0,
@@ -501,9 +498,6 @@ Provenance files shipped with the dataset (not in Table~\ref{tab:files}):
   \item Dataset (Hugging Face): \url{https://huggingface.co/datasets/ilkhamfy/IRexp},
         revision \texttt{8db58466e3ddfd2fbe09bd47fdd5eb4cfc3e1975}
         (commercial dataset of record; Section~\ref{sec:dataavail})
-  \item Archival deposit (Zenodo; same commercial pool / Hub revision):
-        \url{https://doi.org/10.5281/zenodo.22822285}
-        (Section~\ref{sec:dataavail})
   \item This Data Descriptor, manifests, and figures:
         \url{https://github.com/IlkhamFY/IRexp}
   \item Harvest / pipeline code: \url{https://github.com/IlkhamFY/spectro-agent}
@@ -723,14 +717,12 @@ Rates are from the Hub revision's \texttt{data/f1\_commercial\_build\_stats.json
 \end{itemize}
 
 \section{Code Availability}\label{sec:codeavail}
-
-This Data Descriptor repository (\url{https://github.com/IlkhamFY/IRexp}) holds
-the manuscript, figures, and frozen count manifests.
-
 Harvesting, extraction, structure resolution, licence-pool splitting, and
 validation scripts live in the code repository
 \url{https://github.com/IlkhamFY/spectro-agent} under the MIT License
-(\texttt{LICENSE}).
+% The Data Descriptor repository (\url{https://github.com/IlkhamFY/IRexp}) holds
+% the manuscript, figures, and frozen count manifests.
+
 
 \begin{itemize}
   \item Core package: \texttt{spectro\_scraper/}
@@ -761,11 +753,7 @@ is claimed here.
 \section{Data Availability}\label{sec:dataavail}
 
 For Scientific Data redistribution, the \textbf{dataset of record} is the
-commercial CC-BY/CC0 pool ($n=88{,}545$), published on Hugging Face Datasets at
-\url{https://huggingface.co/datasets/ilkhamfy/IRexp}, revision
-\texttt{8db58466e3ddfd2fbe09bd47fdd5eb4cfc3e1975}.
-An archival Zenodo deposit of the same commercial pool, mirroring that Hub
-revision, is available at \url{https://doi.org/10.5281/zenodo.22822285}.
+commercial CC-BY/CC0 pool ($n=88{,}545$).
 That Hub revision ships the commercial deposit with F2/F3 quality flags
 (\texttt{ir\_shared\_in\_paper}, \texttt{ir\_table\_flatten\_suspect}) retained as
 fields (rows not dropped), plus companion configs
@@ -775,57 +763,51 @@ fields (rows not dropped), plus companion configs
 The Hub card is data-only (LEADERBOARD purged).
 Band lists on this revision include the F1 repair defined in Methods.
 The full multi-licence corpus ($n=121{,}233$) described in Methods and Data
-Records remains the construction and methodology reference; it is not the Sci Data
-commercial redistribution artefact in this Hub revision.
-GitHub \url{https://github.com/IlkhamFY/IRexp} holds this manuscript, frozen count
-manifests, and figures (no bulk JSONL under \texttt{data/}).
-Harvest and validation code lives in spectro-agent
-(\url{https://github.com/IlkhamFY/spectro-agent}; Section~\ref{sec:codeavail}).
+Records remains the construction and methodology reference.
+%it is not the Sci Data commercial redistribution artefact in this Hub revision.
+% GitHub \url{https://github.com/IlkhamFY/IRexp} holds this manuscript, frozen count
+% manifests, and figures (no bulk JSONL under \texttt{data/}).
+% Harvest and validation code lives in spectro-agent
+% (\url{https://github.com/IlkhamFY/spectro-agent}; Section~\ref{sec:codeavail}).
 
 \begin{itemize}
-  \item Dataset of record (commercial CC-BY/CC0, $n=88{,}545$): Hugging Face
-        Datasets, \url{https://huggingface.co/datasets/ilkhamfy/IRexp}, revision
-        \texttt{8db58466e3ddfd2fbe09bd47fdd5eb4cfc3e1975}
-  \item Archival deposit (Zenodo; same commercial pool, same Hub revision):
-        \url{https://doi.org/10.5281/zenodo.22822285}
-  \item Manuscript, frozen count manifests, and figures:
-        \url{https://github.com/IlkhamFY/IRexp}
-  \item Harvest / pipeline source: \url{https://github.com/IlkhamFY/spectro-agent}
+  \item \textbf{Dataset of record}: 
+        \begin{itemize}
+            \item Hugging Face Datasets, \url{https://huggingface.co/datasets/ilkhamfy/IRexp}, revision \texttt{8db58466e3ddfd2fbe09bd47fdd5eb4cfc3e1975},
+        \item \url{https://doi.org/10.5281/zenodo.22822285}.
+        \end{itemize}
+  % \item Manuscript, frozen count manifests, and figures:
+        % \url{https://github.com/IlkhamFY/IRexp}
+  \item \textbf{Harvest/pipeline source}: \url{https://github.com/IlkhamFY/spectro-agent}
         (Section~\ref{sec:codeavail})
+   \item \textbf{License:}
+    \begin{itemize}
+          \item Chemotion (1,888): CC-BY-SA-4.0~\citep{chemotion2024}.
+          \item PMC (119,345): mixed Creative Commons --- stamped per article; commercial
+                redistributable 88,545 (CC-BY/CC0); NC* 21,823 held aside; empty/unknown
+                8,963 excluded from the commercial archival deposit
+                (\texttt{docs/LICENCE\_REMEDIATION.md}).
+          \item Only extracted numeric fields and identifiers are redistributed; source full
+                texts are not.
+    \end{itemize}
 \end{itemize}
 
-Licensing summary:
-\begin{itemize}
-  \item Chemotion (1,888): CC-BY-SA-4.0~\citep{chemotion2024}.
-  \item PMC (119,345): mixed Creative Commons --- stamped per article; commercial
-        redistributable 88,545 (CC-BY/CC0); NC* 21,823 held aside; empty/unknown
-        8,963 excluded from the commercial archival deposit
-        (\texttt{docs/LICENCE\_REMEDIATION.md}).
-  \item Only extracted numeric fields and identifiers are redistributed; source full
-        texts are not.
-\end{itemize}
 
 \section*{Author contributions}
 
-\textbf{I.Y.:} conceptualization, methodology, software, data curation, validation,
-writing (original draft).\\
-\textbf{R.S.:} validation (human band-list audit), writing (review and editing).\\
-\textbf{R.A.V.-H.:} conceptualization, supervision, writing (review and editing).
+\textbf{I.Y.} conceptualization, methodology, software, data curation, validation,
+writing (original draft).
+\textbf{R.S.} validation (human band-list audit), writing (review and editing).
+\textbf{R.A.V.H.} conceptualization, supervision, writing (review and editing).
 
 \section*{Competing interests}
 
 The authors declare no competing interests.
 
-\section*{Funding}
-
-This work was supported by the Natural Sciences and Engineering Research Council
-of Canada (NSERC), funding reference number 596133-2025 (CREATE for Accelerated
-Discovery, AccelD), delivered through the Acceleration Consortium.
-
 \section*{Acknowledgements}
+This research was enabled by support from the Digital Research Alliance of Canada, Compute Ontario, and NSERC Discovery Grant No.~RGPIN-2024-06594.
+IY and RS acknowledge support from the Acceleration Consortium through the CREATE program, funding reference number 596133-2025.
 
-We thank the Department of Chemistry and Chemical Biology, McMaster University,
-for institutional support.
 
 \bibliography{references}
 
