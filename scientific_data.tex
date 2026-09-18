@@ -12,6 +12,7 @@
 
 %%%% Standard / manuscript packages (keep minimal; sn-jnl loads natbib/hyperref)
 \usepackage{graphicx}
+\usepackage{float}
 \usepackage{amsmath,amssymb}
 \usepackage{booktabs,array,tabularx}
 \usepackage{xcolor}
@@ -357,7 +358,7 @@ Each IRexp record is a JSON object; see Table~\ref{tab:fields}.
 A representative structure-linked record from the commercial dataset of record
 is shown in Listing~\ref{lst:example}: nine experimental IR bands
 (cm$^{-1}$) mined from PMC13029360, with a resolved SMILES/InChIKey and
-co-reported $^{1}$H/$^{13}$C NMR strings on the row, shown beside a PubChem 3D conformer of the resolved structure (CID 23966138).
+co-reported $^{1}$H/$^{13}$C NMR strings on the row.
 % Required chemistry fields for an IR entry:
 
 \begin{table}[ht]
@@ -386,18 +387,18 @@ ir\_table\_flatten\_suspect & bool & F3 (commercial DoR): suspected table-flatte
 \end{tabular}
 \end{table}
 
-
-
-\begin{figure}[ht]
+\begin{figure}[H]
 \phantomsection
 \refstepcounter{lstlisting}%
 \noindent\textbf{\lstlistingname~\thelstlisting.} Example IRexp JSON record
-(commercial DoR) with a PubChem 3D conformer of the resolved structure (CID 23966138).
+(commercial DoR).
 \label{lst:example}
 \vspace{0.35em}
-\noindent
+\noindent\fbox{%
+\begin{minipage}{0.97\textwidth}
+\vspace{0.25em}
 \begin{minipage}[c]{0.62\textwidth}
-\begin{lstlisting}[style=irexpjson]
+\begin{lstlisting}[style=irexpjson,frame=none]
 {
   "id": "NTJIYHYWVZYBEX-UHFFFAOYSA-N",
   "ir_bands_cm-1": [3337.0, 2969.0, 1633.0, 1556.0,
@@ -415,10 +416,13 @@ ir\_table\_flatten\_suspect & bool & F3 (commercial DoR): suspected table-flatte
 }
 \end{lstlisting}
 \end{minipage}\hfill
-\begin{minipage}[c]{0.35\textwidth}
+\begin{minipage}[c]{0.34\textwidth}
 \centering
 \includegraphics[width=\linewidth]{fig_example_mol_rdkit.pdf}
 \end{minipage}
+\vspace{0.25em}
+\end{minipage}%
+}
 \end{figure}
 
 The commercial dataset of record additionally ships F2/F3 as retained flag
