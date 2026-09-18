@@ -16,7 +16,7 @@
 
 ## Abstract
 
-IRexp is a redistributable collection of **experimental infrared band lists** (cm⁻¹ peak positions) mined from open chemistry literature, optionally with **author-reported** ¹H/¹³C NMR strings and resolved structures. The release holds **121,233** records (119,345 PMC OA; 1,888 Chemotion/RADAR4Chem), with **43,060** structure-linked and **33,201** full IR + ¹H + ¹³C + structure quadruples. IRexp stores **numeric band lists**, not absorbance traces. Records carry `source_doi` and a stamped licence pool (**88,545** commercially redistributable CC-BY/CC0). Reuse: multimodal training, retrieval, and tool input. Technical validation covers automated transcription, harvest-path recall proxies, stratified automated consistency audits (n=280), full-corpus quarantine, and a stratified expert human band-list audit of **161** records on the commercial Hugging Face dataset of record (**39** stratified NC*/ShareAlike queue rows are absent from that publish and were intentionally left unscored). Complementary elucidation benchmarks are described in a companion research manuscript and are not analysed here. Dataset: Hugging Face `ilkhamfy/IRexp`. Paper/manifests: `IlkhamFY/IRexp`. Code: `IlkhamFY/spectro-agent`. Archival DOI not yet minted; no DOI claimed.
+IRexp is a redistributable collection of **experimental infrared band lists** (cm⁻¹ peak positions) mined from open chemistry literature, optionally with **author-reported** ¹H/¹³C NMR strings and resolved structures. The release holds **121,233** records (119,345 PMC OA; 1,888 Chemotion/RADAR4Chem), with **43,060** structure-linked and **33,201** full IR + ¹H + ¹³C + structure quadruples. IRexp stores **numeric band lists**, not absorbance traces. Records carry `source_doi` and a stamped licence pool (**88,545** commercially redistributable CC-BY/CC0). Reuse: multimodal training, retrieval, and tool input. Technical validation covers automated transcription, harvest-path recall proxies, stratified automated consistency audits (n=280), full-corpus quarantine, and a stratified expert human band-list audit of **161** records on the commercial Hugging Face dataset of record (**39** stratified NC*/ShareAlike queue rows are absent from that publish and were intentionally left unscored). Complementary elucidation benchmarks are described in a companion research manuscript and are not analysed here. Dataset: Hugging Face `ilkhamfy/IRexp`. Paper/manifests: `IlkhamFY/IRexp`. Code: `IlkhamFY/spectro-agent`. Archival DOI: https://doi.org/10.5281/zenodo.22822285.
 
 <!-- Abstract word count target ≤170. Count on edit before submission. -->
 
@@ -175,7 +175,7 @@ Median bands: **9** (PMC), **39** (Chemotion). All **1,360,866** released IR ban
 - **Hugging Face:** https://huggingface.co/datasets/ilkhamfy/IRexp (bulk JSONL; commercial / NC / SA / empty_unknown configs — see `LICENCE_REMEDIATION.md`).
 - **Manuscript + manifests:** https://github.com/IlkhamFY/IRexp
 - **Harvest / pipeline code:** https://github.com/IlkhamFY/spectro-agent
-- **Archival snapshot:** DOI not yet minted; no DOI claimed (data-only; commercial primary + SA companion).
+- **Archival snapshot:** https://doi.org/10.5281/zenodo.22822285 (data-only; same commercial pool / Hub revision `8db58466e3ddfd2fbe09bd47fdd5eb4cfc3e1975`).
 
 ## Technical Validation
 
@@ -225,7 +225,7 @@ Every band in the full 121,233-record release lies in **[350, 4000] cm⁻¹** (0
 - **Structure–NMR quarantine.** Before supervised training on `irexp_resolved`, **drop** IDs in `data/audit/structure_nmr_quarantine.jsonl.gz` by default (~4.4% of resolved rows) unless a noisier set is intentional.
 - **Training without benchmark leakage.** If using complementary IRSpectra-Bench problems, fine-tune from `train_no_bench.jsonl.gz` (or rebuild with `scripts/build_train_no_bench.py`). Protocol and model results live only in the companion manuscript.
 - **Structure coverage.** Prefer `irexp_resolved` for supervised structure tasks; 64.5% of records lack SMILES.
-- **Attribution.** Cite this Data Descriptor / Zenodo DOI (when minted) and attribute originating articles through each record’s `source_doi`.
+- **Attribution.** Cite this Data Descriptor and the archival version DOI https://doi.org/10.5281/zenodo.22822285, and attribute originating articles through each record’s `source_doi`.
 
 ### Limitations
 
@@ -240,10 +240,10 @@ Every band in the full 121,233-record release lies in **[350, 4000] cm⁻¹** (0
 
 IRexp numeric extracts are available at:
 
-- Hugging Face Datasets (bulk JSONL): https://huggingface.co/datasets/ilkhamfy/IRexp  
+- Hugging Face Datasets (bulk JSONL): https://huggingface.co/datasets/ilkhamfy/IRexp, revision `8db58466e3ddfd2fbe09bd47fdd5eb4cfc3e1975`  
 - Manuscript + manifests: https://github.com/IlkhamFY/IRexp (no bulk JSONL under `data/`)  
 - Harvest / pipeline code: https://github.com/IlkhamFY/spectro-agent  
-- Archival DOI not yet minted; no DOI claimed (**data-only** deposit; commercial pool primary).
+- Archival deposit (Zenodo; same commercial pool / same Hub revision): https://doi.org/10.5281/zenodo.22822285 (`10.5281/zenodo.22822285`)
 
 Licensing summary (honest):
 
