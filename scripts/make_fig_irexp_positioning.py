@@ -21,7 +21,7 @@ OUT.mkdir(parents=True, exist_ok=True)
 
 # Frozen release counts (data/irexp_stats.json / manuscript caption)
 N_ALL = 121_233
-N_STRUCT = 43_060
+N_STRUCT = 57_646
 N_COMM = 88_545
 SDBS = 54_100
 NIST = 17_000

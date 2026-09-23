@@ -16,7 +16,7 @@
 
 ## Abstract
 
-IRexp is a redistributable collection of **experimental infrared band lists** (cm⁻¹ peak positions) mined from open chemistry literature, optionally with **author-reported** ¹H/¹³C NMR strings and resolved structures. The release holds **121,233** records (119,345 PMC OA; 1,888 Chemotion/RADAR4Chem), with **43,060** structure-linked and **33,201** full IR + ¹H + ¹³C + structure quadruples. IRexp stores **numeric band lists**, not absorbance traces. Records carry `source_doi` and a stamped licence pool (**88,545** commercially redistributable CC-BY/CC0). Reuse: multimodal training, retrieval, and tool input. Technical validation covers automated transcription, harvest-path recall proxies, stratified chemist-proxy (n=280), and full-corpus quarantine; these are automated checks and do not claim NMRexp-equivalent human expert audits. Complementary elucidation benchmarks are described in a companion research manuscript and are not analysed here. Dataset: Hugging Face `ilkhamfy/IRexp`. Paper/manifests: `IlkhamFY/IRexp`. Code: `IlkhamFY/spectro-agent`. Archival DOI not yet minted; no DOI claimed.
+IRexp is a redistributable collection of **experimental infrared band lists** (cm⁻¹ peak positions) mined from open chemistry literature, optionally with **author-reported** ¹H/¹³C NMR strings and resolved structures. The release holds **121,233** records (119,345 PMC OA; 1,888 Chemotion/RADAR4Chem), with **57,646** structure-linked and **39,118** full IR + ¹H + ¹³C + structure quadruples. IRexp stores **numeric band lists**, not absorbance traces. Records carry `source_doi` and a stamped licence pool (**88,545** commercially redistributable CC-BY/CC0). Reuse: multimodal training, retrieval, and tool input. Technical validation covers automated transcription, harvest-path recall proxies, stratified chemist-proxy (n=280), and full-corpus quarantine; these are automated checks and do not claim NMRexp-equivalent human expert audits. Complementary elucidation benchmarks are described in a companion research manuscript and are not analysed here. Dataset: Hugging Face `ilkhamfy/IRexp`. Paper/manifests: `IlkhamFY/IRexp`. Code: `IlkhamFY/spectro-agent`. Archival DOI not yet minted; no DOI claimed.
 
 <!-- Abstract word count target ≤170. Count on edit before submission. -->
 
@@ -83,7 +83,7 @@ Gates reject scan-range artefacts and common prose false positives (for example 
 
 ### Structure resolution
 
-Where an IUPAC or systematic name is available, names are converted with OPSIN (py2opsin)[@lowe2011opsin], canonicalised with RDKit[@landrum_rdkit], and encoded as InChIKey and SELFIES[@krenn2020selfies]. An optional PubChem[@kim2023pubchem] name fallback (`USE_PUBCHEM`) handles trivial names. Name→structure failures are expected for trade names, mixtures, and non-IUPAC prose; unresolved rows keep `has_structure=false`. Structure coverage of the full release is **35.5%** (43,060 / 121,233). The structure-complete split is shipped as `irexp_resolved`.
+Where an IUPAC or systematic name is available, names are converted with OPSIN (py2opsin)[@lowe2011opsin], canonicalised with RDKit[@landrum_rdkit], and encoded as InChIKey and SELFIES[@krenn2020selfies]. An optional PubChem[@kim2023pubchem] name fallback (`USE_PUBCHEM`) handles trivial names. Name→structure failures are expected for trade names, mixtures, and non-IUPAC prose; unresolved rows keep `has_structure=false`. Structure coverage of the full release is **47.5%** (57,646 / 121,233). The structure-complete split is shipped as `irexp_resolved`.
 
 ### Licence handling
 
@@ -130,7 +130,7 @@ Paths relative to the project repository / Hugging Face mirror.
 | File | Records | Description |
 |---|---:|---|
 | `data/irexp/irexp.jsonl.gz` | 121,233 | Full curated release |
-| `data/irexp_resolved/irexp_resolved.jsonl.gz` | 43,060 | 100% structure-linked |
+| `data/irexp_resolved/irexp_resolved.jsonl.gz` | 57,646 | 100% structure-linked |
 | `data/irexp_release/train_no_bench.jsonl.gz` | 42,808 | Resolved minus IRSpectra-Bench InChIKeys |
 | `data/irexp_release/train_no_bench_nmr.jsonl.gz` | 32,949 | Same with both ¹H and ¹³C |
 | `data/irexp_release/pretrain_ir.jsonl.gz` | 119,345 | PMC-only IR pretrain pool |
@@ -147,9 +147,9 @@ Paths relative to the project repository / Hugging Face mirror.
 |---|---:|
 | All IR band-list records | 121,233 |
 | With ¹H and/or ¹³C NMR | 87,075 (72%) |
-| With resolved structure | 43,060 (35.5%) |
-| Structure + any NMR | 40,702 |
-| Full IR + ¹H + ¹³C + structure | 33,201 |
+| With resolved structure | 57,646 (47.5%) |
+| Structure + any NMR | 47,521 |
+| Full IR + ¹H + ¹³C + structure | 39,118 |
 | PMC OA provenance | 119,345 |
 | Chemotion provenance | 1,888 |
 | Unique PMC accessions | 15,416 |
@@ -197,7 +197,7 @@ A human mark-up of every IR string in every paper remains the gold standard. As 
 
 **Sample (prior).** On **500** `irexp_resolved` records with ¹³C text (seed 0): **17/500 (3.4%)** listed more peaks than carbons. On **500** with ¹H text: integrals > formula H+2 in **17/497 (3.4%)**.
 
-**Full resolved corpus.** `scripts/quarantine_structure_nmr.py` applied the same physics gates to all **43,060** structure-linked rows. **1,882 (4.37%)** fail ≥1 hard check and are listed in `data/audit/structure_nmr_quarantine.jsonl.gz` (diagnostic only — release files unchanged). Among rows with the relevant modality: ¹³C peaks > carbons **1,194/34,231 (3.49%)**; ¹H integral > formula+2 **1,141/39,672 (2.88%)**; IR out-of-range **0**; unparseable SMILES **0**. Sample rates and full-corpus rates agree closely. Re-users should **drop** quarantined IDs by default before supervised training. These rates are integrity diagnostics, **not** an expert skeleton audit (NMRexp-scale n≈300 manual checks remain optional future work).
+**Full resolved corpus.** `scripts/quarantine_structure_nmr.py` applied the same physics gates to all **57,646** structure-linked rows. **1,882 (~3.3%)** fail ≥1 hard check and are listed in `data/audit/structure_nmr_quarantine.jsonl.gz` (diagnostic only — release files unchanged). Among rows with the relevant modality: ¹³C peaks > carbons **1,194/34,231 (3.49%)**; ¹H integral > formula+2 **1,141/39,672 (2.88%)**; IR out-of-range **0**; unparseable SMILES **0**. Sample rates and full-corpus rates agree closely. Re-users should **drop** quarantined IDs by default before supervised training. These rates are integrity diagnostics, **not** an expert skeleton audit (NMRexp-scale n≈300 manual checks remain optional future work).
 
 ### IR physical window
 
@@ -211,7 +211,7 @@ Every band in the full 121,233-record release lies in **[350, 4000] cm⁻¹** (0
 | Transcription fidelity n=60 and n=200 | **Done** (automated re-fetch) |
 | Extraction-recall automatic proxy (n=120 papers) | **Done** (human recall still optional) |
 | Stratified chemist-proxy audit (n=280) | **Done** (automated; not human expert) |
-| Full-corpus structure–NMR quarantine | **Done** — 1,882 / 43,060 flagged |
+| Full-corpus structure–NMR quarantine | **Done** — 1,882 / 57,646 flagged |
 | Expert human structure spot-check (n≥100) | Deferred (human) |
 | NMRexp-style replicate MAE for IR lists | Not applicable / not claimed |
 
@@ -221,9 +221,9 @@ Every band in the full 121,233-record release lies in **[350, 4000] cm⁻¹** (0
 - **AI agents / LLM tool-use.** Prefer JSON band-list fields and `source_doi`; filter by `license_pool` rather than treating the full dump as a single licence.
 - **Separate pools by density and licence.** PMC (sparse) vs Chemotion (denser ELN lists). Higher median band count ≠ more complete vibrational assignment. Combined redistribution of Chemotion-derived rows must honour CC-BY-SA-4.0; do not relicence SA rows as CC-BY.
 - **Do not assume PMC = CC-BY-4.0.** Filter to `license_pool == "commercial"` (or use `irexp_commercial.jsonl.gz`) for commercial redistribution; attribute via `source_doi` / `pmcid`.
-- **Structure–NMR quarantine.** Before supervised training on `irexp_resolved`, **drop** IDs in `data/audit/structure_nmr_quarantine.jsonl.gz` by default (~4.4% of resolved rows) unless a noisier set is intentional.
+- **Structure–NMR quarantine.** Before supervised training on `irexp_resolved`, **drop** IDs in `data/audit/structure_nmr_quarantine.jsonl.gz` by default (~3.3% of resolved rows) unless a noisier set is intentional.
 - **Training without benchmark leakage.** If using complementary IRSpectra-Bench problems, fine-tune from `train_no_bench.jsonl.gz` (or rebuild with `scripts/build_train_no_bench.py`). Protocol and model results live only in the companion manuscript.
-- **Structure coverage.** Prefer `irexp_resolved` for supervised structure tasks; 64.5% of records lack SMILES.
+- **Structure coverage.** Prefer `irexp_resolved` for supervised structure tasks; 52.5% of records lack SMILES.
 - **Attribution.** Cite this Data Descriptor / Zenodo DOI (when minted) and attribute originating articles through each record’s `source_doi`.
 
 ### Limitations
@@ -231,7 +231,7 @@ Every band in the full 121,233-record release lies in **[350, 4000] cm⁻¹** (0
 - **Object.** Band-list corpus — not an absorbance-spectrum library and not an NMR resource comparable to NMRexp in scale or annotation richness.
 - **Technical Validation depth.** Automated transcription (n=200), harvest-path recall proxies (n=120 papers with Wilson intervals), and stratified chemist-proxy (n=280) close the sample-size gap vs NMRexp’s n≈300 audits but remain machine checks — weaker than NMRexp’s manual PDF mark-up and replicate MAE. No human molecular-skeleton audit has been completed for IRexp.
 - **Metadata sparsity.** Intensities, solvents, and instrument modes are generally absent; the IR window check is necessary but narrow.
-- **Structure coverage and name resolution.** Only 35.5% of records are structure-linked; OPSIN/PubChem failures leave many IR lists without SMILES.
+- **Structure coverage and name resolution.** Only 47.5% of records are structure-linked; OPSIN/PubChem failures leave many IR lists without SMILES.
 - **Licence mix.** The full `irexp.jsonl.gz` is multi-licence; commercial Zenodo/Sci Data redistribution is the commercial pool only.
 - **Scope of this paper.** Elucidation benchmarks and model results are out of scope; cite the companion research manuscript for those claims.
 

@@ -54,7 +54,7 @@ IRexp is a redistributable collection of experimental infrared band lists
 (cm$^{-1}$ peak positions) mined from open chemistry literature, optionally with
 author-reported $^{1}$H/$^{13}$C NMR strings and resolved structures.
 The release holds 121,233 records (119,345 PMC Open Access Subset; 1,888
-Chemotion/RADAR4Chem), including 43,060 structure-linked entries and 33,201
+Chemotion/RADAR4Chem), including 57,646 structure-linked entries and 39,118
 IR~$+$~$^{1}$H~$+$~$^{13}$C~$+$~structure quadruples.
 IRexp stores numeric band lists, not absorbance traces; each record carries a
 source DOI and a stamped licence pool (88,545 commercially redistributable
@@ -82,7 +82,7 @@ IRexp is a redistributable collection of experimental IR band lists
 Chemotion electronic laboratory notebook / repository
 deposit~\citep{tremouilhac2017chemotion,tremouilhac2020chemotionrepo,chemotion2024}.
 The release holds 121,233 band lists, including 88,545 commercially
-redistributable CC-BY/CC0 records and 43,060 structure-linked entries; each
+redistributable CC-BY/CC0 records and 57,646 structure-linked entries; each
 record carries a source accession and a stamped licence
 pool~\citep{hrynaszkiewicz2012open,carroll2011openaccess}.
 
@@ -114,7 +114,7 @@ required~\citep{zipoli2025uspto}.
 \caption{Major open \emph{IR} resources by object type and redistributability.
 \textbf{IRexp} holds 121,233 experimental band lists (cm$^{-1}$ positions) with
 bulk redistribution and per-record licence pools; grouped bars show
-structure-linked (43,060) and commercial CC-BY/CC0 (88,545) subsets.
+structure-linked (57,646) and commercial CC-BY/CC0 (88,545) subsets.
 \textbf{SDBS} FT-IR ($\sim$54,000 digitised absorbance spectra; AIST 2015) and
 \textbf{NIST} WebBook ($\sim$17,000 gas-phase IR; approximate) are view-only.
 \textbf{Zipoli et al.}~\citep{zipoli2025uspto} contribute 177,461 \emph{computed}
@@ -269,7 +269,7 @@ pools as shown (Hugging Face JSONL; figure labels HF~+~Zenodo — archival DOI
 not yet minted and is not claimed in Data Availability).
 Inset cleaning rules: band count $\geq$3 in 350--4000\,cm$^{-1}$, duplicates,
 and structure--NMR physics.
-Release: 121,233 band lists / 43,060 structure-linked.
+Release: 121,233 band lists / 57,646 structure-linked.
 \textbf{(B)}~Representative automated QC rejections (red = failure reason).}
 \label{fig:pipeline}
 \end{figure}
@@ -307,7 +307,7 @@ handles trivial names.
 Name$\to$structure failures are expected for trade names, mixtures, and
 non-IUPAC prose; unresolved rows keep \texttt{has\_structure=false} and null
 structure fields.
-Structure coverage of the full release is 35.5\% (43,060 / 121,233).
+Structure coverage of the full release is 47.5\% (57,646 / 121,233).
 The structure-complete split is shipped as \texttt{irexp\_resolved}.
 
 \subsection{Licence handling}
@@ -390,7 +390,7 @@ and \texttt{data/irexp/licence\_pools/}.}\label{tab:files}
 File & Records & Description \\
 \midrule
 \texttt{irexp.jsonl.gz} & 121,233 & Full curated release (multi-licence) \\
-\texttt{irexp\_resolved.jsonl.gz} & 43,060 & 100\% structure-linked \\
+\texttt{irexp\_resolved.jsonl.gz} & 57,646 & 100\% structure-linked \\
 \texttt{train\_no\_bench.jsonl.gz} & 42,808 & Resolved minus IRSpectra-Bench InChIKeys \\
 \texttt{train\_no\_bench\_nmr.jsonl.gz} & 32,949 & Same with both $^{1}$H and $^{13}$C \\
 \texttt{pretrain\_ir.jsonl.gz} & 119,345 & PMC-only IR pretrain pool \\
@@ -409,8 +409,8 @@ File & Records & Description \\
 The full release comprises 121,233 band lists (119,345 PMC; 1,888 Chemotion)
 from 15,416 unique PMC accessions
 (Figure~\ref{fig:distribution}a).
-87,075 records (72\%) carry $^{1}$H and/or $^{13}$C NMR strings; 43,060 (35.5\%)
-are structure-linked; 40,702 have structure plus any NMR; 33,201 are full
+87,075 records (72\%) carry $^{1}$H and/or $^{13}$C NMR strings; 57,646 (47.5\%)
+are structure-linked; 47,521 have structure plus any NMR; 39,118 are full
 IR~$+$~$^{1}$H~$+$~$^{13}$C~$+$~structure quadruples
 (Figure~\ref{fig:distribution}c).
 
@@ -420,10 +420,10 @@ IR~$+$~$^{1}$H~$+$~$^{13}$C~$+$~structure quadruples
 \caption{Release composition and automated validation.
 \textbf{(a)}~Provenance (PMC vs Chemotion/RADAR4Chem).
 \textbf{(b)}~Licence pools after Europe PMC joins and Crossref recovery.
-\textbf{(c)}~Modality cascade to 33,201 full quadruples.
+\textbf{(c)}~Modality cascade to 39,118 full quadruples.
 \textbf{(d)}~Median IR bands per record (PMC 9; Chemotion 39).
 \textbf{(e)}~Chemical composition of structure-linked unique molecules
-($n=42{,}879$ InChIKeys from 43,060 records): molecular weight, aromatic rings,
+($n=54{,}985$ InChIKeys from 57,646 records): molecular weight, aromatic rings,
 nitrogen atoms per molecule, and carbonyl $\mathrm{C{=}O}$ count (RDKit: number
 of carbon--oxygen double bonds).
 \textbf{(f)}~Automated checks: transcription error ($n=200$), band recall and
@@ -549,8 +549,8 @@ On 500 \texttt{irexp\_resolved} records with $^{13}$C text (seed 0):
 On 500 with $^{1}$H text: integrals $>$ formula H+2 in 17/497 (3.4\%).
 
 \paragraph{Full resolved corpus.}
-The same physics gates were applied to all 43,060 structure-linked rows.
-1,882 (4.37\%) fail $\geq$1 hard check and are listed in
+The same physics gates were applied to all 57,646 structure-linked rows.
+1,882 ($\sim$3.3\%) fail $\geq$1 hard check and are listed in
 \texttt{structure\_nmr\_quarantine.jsonl.gz} (diagnostic only --- release
 files unchanged).
 Among rows with the relevant modality: $^{13}$C peaks $>$ carbons
@@ -592,7 +592,7 @@ Rates are from the Hub revision's \texttt{data/f1\_commercial\_build\_stats.json
   \item Stratified automated consistency audit ($n=280$) --- done
         (Table~\ref{tab:consistency}).
   \item Full-corpus structure--NMR quarantine --- done
-        (1,882 / 43,060 flagged).
+        (1,882 / 57,646 flagged).
   \item Commercial F2/F3 flags --- done (flag-only; 18,651 / 3,154 / union 21,075
         of 88,545).
   \item Stratified expert human band-list audit (sample $n=200$) ---
@@ -630,14 +630,14 @@ Rates are from the Hub revision's \texttt{data/f1\_commercial\_build\_stats.json
   \item \textbf{Structure--NMR quarantine.} Before supervised training on
         \texttt{irexp\_resolved}, drop IDs in
         \texttt{structure\_nmr\_quarantine.jsonl.gz} by default
-        ($\sim$4.4\% of resolved rows) unless a noisier training set is intentional.
+        ($\sim$3.3\% of resolved rows) unless a noisier training set is intentional.
   \item \textbf{Training without benchmark leakage.} If using the complementary
         IRSpectra-Bench problems (companion research paper), fine-tune from
         \texttt{train\_no\_bench.jsonl.gz} (or rebuild with
         \texttt{scripts/build\_train\_no\_bench.py}) so benchmark InChIKeys are withheld.
         Protocol and model results live only in that companion manuscript.
   \item \textbf{Structure coverage.} Prefer \texttt{irexp\_resolved} for supervised
-        structure tasks; 64.5\% of records lack SMILES.
+        structure tasks; 52.5\% of records lack SMILES.
   \item \textbf{FAIR reuse example.} Load only
         \texttt{license\_pool == "commercial"} rows for a redistributable training
         set; drop quarantine IDs; keep \texttt{source\_doi} / \texttt{pmcid} for
@@ -660,7 +660,7 @@ Rates are from the Hub revision's \texttt{data/f1\_commercial\_build\_stats.json
         no human molecular-skeleton audit has been completed for IRexp.
   \item \textbf{Metadata sparsity.} Intensities, solvents, and instrument modes are
         generally absent; the IR window check is necessary but narrow.
-  \item \textbf{Structure coverage and name resolution.} Only 35.5\% of records are
+  \item \textbf{Structure coverage and name resolution.} Only 47.5\% of records are
         structure-linked; OPSIN/PubChem failures leave many IR lists without SMILES.
   \item \textbf{Licence mix.} The full multi-licence corpus described for
         construction/methodology is multi-licence on disk; Scientific Data /

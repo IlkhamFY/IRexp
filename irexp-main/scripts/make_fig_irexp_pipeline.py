@@ -293,7 +293,7 @@ def main() -> None:
     axa.text(
         fin_x + fin_w / 2,
         fin_y + fin_h * 0.22,
-        "43,060 structure-linked",
+        "57,646 structure-linked",
         ha="center",
         va="center",
         fontsize=7.6,
