@@ -50,8 +50,8 @@ IRexp is the largest **openly redistributable** collection of **experimental inf
 | `irexp_non_commercial.jsonl.gz` | 21,823 | CC-BY-NC* held aside |
 | `irexp_sharealike.jsonl.gz` | 1,897 | Chemotion CC-BY-SA-4.0 + rare PMC SA |
 | `irexp_empty_unknown.jsonl.gz` | 8,963 | Empty/unknown — excluded from commercial Zenodo |
-| `irexp_resolved.jsonl.gz` | 43,060 | Structure-linked (100%; multi-licence — filter by `license_pool`) |
-| … full IR + ¹H + ¹³C + structure | 33,201 | Multimodal quadruples |
+| `irexp_resolved.jsonl.gz` | 57,646 | Structure-linked (100%; multi-licence — filter by `license_pool`) |
+| … full IR + ¹H + ¹³C + structure | 39,118 | Multimodal quadruples |
 | `train_no_bench.jsonl.gz` | 42,808 | **Recommended for training** — `irexp_resolved` minus all IRSpectra-Bench InChIKey-14 |
 | `train_no_bench_nmr.jsonl.gz` | 32,949 | Same, requiring both ¹H and ¹³C |
 
@@ -64,7 +64,7 @@ IRexp is the largest **openly redistributable** collection of **experimental inf
 ```python
 from datasets import load_dataset
 
-# Structure-linked corpus (43,060 records; filter license_pool for commercial use)
+# Structure-linked corpus (57,646 records; filter license_pool for commercial use)
 ds = load_dataset("ilkhamfy/IRexp", "resolved", split="train")
 
 # Preferred redistributable commercial pool
