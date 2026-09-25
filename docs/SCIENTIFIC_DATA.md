@@ -1,6 +1,8 @@
 # IRexp: A database of experimental infrared band lists from open literature
 
-**Ilkham Yabbarov**^1,†^, **Rudra Sondhi**^1, **Rodrigo A. Vargas-Hernández**^1,2,3,†^
+**Ilkham Yabbarov**^1,†^ — https://orcid.org/0009-0004-9393-9822
+**Rudra Sondhi**^1^ — https://orcid.org/0009-0003-3034-7347
+**Rodrigo A. Vargas-Hernández**^1,2,3,†^ — https://orcid.org/0000-0002-5559-6521
 
 ^1^ Department of Chemistry and Chemical Biology, McMaster University, Hamilton, Ontario L8S 4L8, Canada.  
 ^2^ Brockhouse Institute for Materials Research, McMaster University, Hamilton, Ontario L8S 4L8, Canada.  
@@ -9,9 +11,10 @@
 † Corresponding authors. E-mail: yabbaroi@mcmaster.ca, vargashr@mcmaster.ca  
 (No equal-contribution footnote — distinct roles; both corresponding.)
 
-<!-- ORCID — human blockers; do not invent values.
-       I. Yabbarov            ORCID: [TODO: confirm]
-       R. A. Vargas-Hernández ORCID: 0000-0002-5559-6521
+<!-- ORCID — confirmed; same URLs as scientific_data.tex \orcid.
+       Ilkham Yabbarov               https://orcid.org/0009-0004-9393-9822
+       Rudra Sondhi                  https://orcid.org/0009-0003-3034-7347
+       Rodrigo A. Vargas-Hernández   https://orcid.org/0000-0002-5559-6521
 -->
 
 ## Abstract

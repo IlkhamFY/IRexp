@@ -38,6 +38,6 @@ Point-fixes in `scientific_data.tex` (no figure redesign).
 
 ## Remaining soft blockers (unchanged)
 
-- ORCID confirmation for authors (I.Y. TODO; R.A.V.-H. known in notes).
+- ORCID confirmation for authors was still open on this pass (later confirmed in `scientific_data.tex`; see `HUMAN_SUBMISSION_CHECKLIST.md`).
 - Zenodo archival DOI mint (commercial pool).
 - Optional: stage NC*/SA rows if a full *n*=200 multi-pool human audit is desired later (not required for commercial DoR honesty).

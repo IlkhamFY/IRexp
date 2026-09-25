@@ -61,7 +61,7 @@ Internal tracking for pre-submit editorial / M6 cleanups. Postcard root stays cl
 | **Data rebuild (full multi-licence headlines)** | **Pending** | Commercial DoR published on Hub; do **not** change paper-wide 121,233 headlines until a consistent full vs commercial rebuild lands. |
 | Band-window QC gate vs prose | **Aligned (v0.37)** | Prose restored to **350–4000** to match locked Fig.~2 H (Cleaning rules) and frozen QC `out_of_range_outside_350_4000=0`. Do not redesign Fig.~2. |
 | Zenodo data-only DOI mint | **Done** | Commercial-pool primary deposit: https://doi.org/10.5281/zenodo.22822285. See `ZENODO_DATA_ONLY_CHECKLIST.md`. |
-| ORCID confirmation (authors) | **Open (human)** | See `HUMAN_SUBMISSION_CHECKLIST.md`. |
+| ORCID confirmation (authors) | **Done** | Ilkham Yabbarov https://orcid.org/0009-0004-9393-9822; Rudra Sondhi https://orcid.org/0009-0003-3034-7347; Rodrigo A. Vargas-Hernández https://orcid.org/0000-0002-5559-6521. In `scientific_data.tex`. |
 | Expert human structure spot-check ($n\geq100$) | **Deferred** | Optional TV strengthen vs NMRexp. |
 | Human extraction-recall mark-up | **Deferred** | Optional. |
 | Software / release tag + software DOI | **Open** | Pin spectro-agent snapshot when archival deposit minted. |

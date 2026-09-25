@@ -11,7 +11,7 @@
 | Field | Value |
 |---|---|
 | **Title** | IRexp: A database of experimental infrared band lists from open literature |
-| **Authors** | Ilkham Yabbarov\* (yabbaroi@mcmaster.ca); Rudra Sondhi; Rodrigo A. Vargas-Hernández\* (vargashr@mcmaster.ca) |
+| **Authors** | Ilkham Yabbarov\* (yabbaroi@mcmaster.ca; https://orcid.org/0009-0004-9393-9822); Rudra Sondhi (https://orcid.org/0009-0003-3034-7347); Rodrigo A. Vargas-Hernández\* (vargashr@mcmaster.ca; https://orcid.org/0000-0002-5559-6521) |
 | **Affiliations** | (1) Department of Chemistry and Chemical Biology, McMaster University, Hamilton, Ontario L8S 4L8, Canada; (2) Brockhouse Institute for Materials Research, McMaster University; (3) School of Computational Science and Engineering, McMaster University. \* corresponding |
 | **Signatory (cover)** | Rodrigo Vargas-Hernández \<vargashr@mcmaster.ca\> |
 | **Funding** | NSERC #596133-2025 (CREATE AccelD / Acceleration Consortium) |
@@ -50,8 +50,9 @@ IRexp is a redistributable collection of experimental infrared band lists (cm⁻
 - [x] Manuscript compiles clean on Overleaf (~18 pp, 0 errors) — human-confirmed
 - [x] Software DOI hedge left intentional
 - [ ] **Keep** GitHub manuscript public through ChemRxiv + Sci Data upload (**hide only after real submit**)
-- [ ] Confirm ORCID — I. Yabbarov (still open in `HUMAN_SUBMISSION_CHECKLIST.md`)
-- [ ] Confirm ORCID — R. A. Vargas-Hernández (candidate `0000-0002-5559-6521` — confirm before eJP)
+- [x] ORCID — Ilkham Yabbarov — https://orcid.org/0009-0004-9393-9822 (`scientific_data.tex`)
+- [x] ORCID — Rudra Sondhi — https://orcid.org/0009-0003-3034-7347 (`scientific_data.tex`)
+- [x] ORCID — Rodrigo A. Vargas-Hernández — https://orcid.org/0000-0002-5559-6521 (`scientific_data.tex`)
 - [ ] Suggested reviewers — **ask Rodrigo** (none listed in repo files)
 - [ ] Export final PDFs from Overleaf: manuscript + cover letter
 - [ ] ChemRxiv preprint upload, then Scientific Data eJP (order: ChemRxiv first is usual; follow journal policy)
@@ -97,7 +98,7 @@ Also see: `docs/HUMAN_SUBMISSION_CHECKLIST.md`, `docs/ZENODO_DATA_ONLY_CHECKLIST
 | Manuscript repo | https://github.com/IlkhamFY/IRexp (**public at submit time**) |
 | HF dataset | https://huggingface.co/datasets/ilkhamfy/IRexp |
 | **Suggested reviewers** | **ask Rodrigo** — no suggested-reviewer list found in repo files |
-| ORCID | Confirm before submit (see human checklist) |
+| ORCID | Ilkham Yabbarov https://orcid.org/0009-0004-9393-9822; Rudra Sondhi https://orcid.org/0009-0003-3034-7347; Rodrigo A. Vargas-Hernández https://orcid.org/0000-0002-5559-6521 |
 
 ### Upload file list (Sci Data)
 
