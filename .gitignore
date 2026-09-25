@@ -12,6 +12,7 @@
 *.bcf
 *.run.xml
 scientific_data.pdf
+*-eps-converted-to.pdf
 .DS_Store
 __pycache__/
 *.pyc

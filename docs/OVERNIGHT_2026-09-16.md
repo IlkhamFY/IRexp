@@ -15,7 +15,7 @@ Started from `origin/main` at **v0.36** (`bd11755`).
 | AccelD Grant #596133-2025 | `\section*{Funding}` + cover letter |
 | Cover letter: McMaster letterhead, Rodrigo / `vargashr@mcmaster.ca` | Unchanged sign-off |
 | Archival / Zenodo DOI | Data-only version DOI https://doi.org/10.5281/zenodo.22822285 (commercial CC-BY/CC0 pool). No software DOI claimed. |
-| ORCID | Still absent from TeX author block (not invented) |
+| ORCID | Absent from the TeX author block on this date (not invented). Confirmed later in `scientific_data.tex`; see `HUMAN_SUBMISSION_CHECKLIST.md`. |
 
 Rudra sheet re-counted (not re-scored): 161 scored / 39 unscored; 160/161 source Y; bands exact 143, subset_ok 13, mismatch 4, cannot_tell 1. Unscored pools: 7 NC + 2 empty_unknown + 30 ShareAlike.
 
@@ -42,22 +42,23 @@ Rudra sheet re-counted (not re-scored): 161 scored / 39 unscored; 160/161 source
 
 - `docs/SCIENTIFIC_DATA.md` working notes: abstract / QC / Limitations / R.S. contributions aligned to 161/39 (was still “chemist-proxy only”).
 - `docs/HUMAN_AUDIT_RUDRA_SUMMARY_2026-09-15.md`: tab-corrupted field names; “pending/untouched” wording that implied unfinished auditor work.
-- `docs/HUMAN_SUBMISSION_CHECKLIST.md`: 161/39 marked done; ORCID + Zenodo remain blockers; optional NC/SA scoring listed as optional.
+- `docs/HUMAN_SUBMISSION_CHECKLIST.md`: 161/39 marked done; ORCID + Zenodo were still listed as blockers; optional NC/SA scoring listed as optional.
 - `docs/REFEREE_RESPONSE_CHECKLIST_2026-09-10.md`: band-window row updated for the 350–4000 realignment.
 - `references.bib`: missing blank line after the companion-manuscript entry (no citation invented).
 
 ## What still blocks submit (human only)
 
-1. **ORCID — I. Yabbarov** — still `[TODO: confirm]` in MD notes; do not invent; paste into TeX / eJP when confirmed.
-2. **ORCID — R. A. Vargas-Hernández** — known candidate `0000-0002-5559-6521`; confirm before paste (do not assume).
-3. **Zenodo data-only DOI** — minted: https://doi.org/10.5281/zenodo.22822285 (commercial CC-BY/CC0 pool). No software DOI.
-4. Optional, not required for commercial-DoR honesty: stage NC*/SA rows and finish the 39-row queue if a full *n*=200 multi-pool audit is desired later.
+1. **ORCID — I. Yabbarov** — unconfirmed in the MD notes on this date. Later: https://orcid.org/0009-0004-9393-9822 in `scientific_data.tex`.
+2. **ORCID — R. A. Vargas-Hernández** — candidate later confirmed as https://orcid.org/0000-0002-5559-6521 in `scientific_data.tex`.
+3. **ORCID — Rudra Sondhi** — not yet recorded on this date. Later: https://orcid.org/0009-0003-3034-7347 in `scientific_data.tex`.
+4. **Zenodo data-only DOI** — minted: https://doi.org/10.5281/zenodo.22822285 (commercial CC-BY/CC0 pool). No software DOI.
+5. Optional, not required for commercial-DoR honesty: stage NC*/SA rows and finish the 39-row queue if a full *n*=200 multi-pool audit is desired later.
 
 ## Morning actions
 
 1. Overleaf: **Pull from GitHub** (no force) → `scientific_data.tex` is main.
 2. Compile pdfLaTeX + BibTeX; skim Fig.~2 caption vs the locked H figure (350–4000 / HF+Zenodo / Cleaning rules / Automated QC) — binaries were not regenerated.
-3. Confirm ORCIDs; only then add `\orcid` (or eJP metadata).
+3. ORCID iDs were added later with `\orcid{https://orcid.org/...}` in `scientific_data.tex` (see `HUMAN_SUBMISSION_CHECKLIST.md`).
 4. Data-only archival DOI is https://doi.org/10.5281/zenodo.22822285; do not revert Data Availability to an unminted claim.
 5. Cover letter: confirm letterhead PNG still sits beside `cover_letter.tex` on Overleaf; date is `\today`.
 6. Do **not** run figure redesign sweeps; do **not** fill Rudra’s 39 unscored rows from memory.
