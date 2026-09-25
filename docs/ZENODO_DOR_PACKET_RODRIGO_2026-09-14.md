@@ -38,9 +38,9 @@ Do **not** invent filenames — if the Hub UI export is awkward, download the re
 
 ## 5. Metadata (creators)
 
-1. Ilkham Yabbarov (McMaster; ORCID if available)  
-2. Rudra Sondhi (McMaster)  
-3. Rodrigo A. Vargas-Hernández (McMaster) — corresponding  
+1. Ilkham Yabbarov (McMaster; https://orcid.org/0009-0004-9393-9822)  
+2. Rudra Sondhi (McMaster; https://orcid.org/0009-0003-3034-7347)  
+3. Rodrigo A. Vargas-Hernández (McMaster; https://orcid.org/0000-0002-5559-6521) — corresponding  
 
 **Description (paste):** Redistributable experimental IR band lists (cm⁻¹ positions) mined from PMC Open Access and Chemotion. This archival deposit mirrors Hugging Face `ilkhamfy/IRexp` revision `8db58466…` (n=88,545 commercial CC-BY/CC0 records with F2/F3 flags). Full multi-licence construction corpus is described in the Scientific Data manuscript on GitHub `IlkhamFY/IRexp`.
 
