@@ -26,7 +26,7 @@ Internal tracking for pre-submit editorial / M6 cleanups. Postcard root stays cl
 | Sci Data dataset of record = commercial 88,545 | **Done (v0.24 counts)** | Commercial CC-BY/CC0 DoR (n=88,545) with F2/F3 flags `ir_shared_in_paper`, `ir_table_flatten_suspect` (flag-only). Companion Hub configs: `resolved_commercial` 28,899; `train_no_bench_commercial` **28,753** (⊆ resolved; 29,111 was wrong). |
 | F1 thousands-separator note | **Done** | Note spectro-agent F1 fix + band reparse; commercial pool size unchanged vs pre-F1 stamp. |
 | Full multi-licence vs commercial DoR | **Done** | Keep paper-wide 121,233 methodology headlines; state clearly that Sci Data / commercial redistribution uses the 88,545 commercial deposit while full multi-licence corpus remains construction reference. |
-| Zenodo DOI | **Unchanged (honest)** | Archival DOI not yet minted; no DOI invented or claimed. |
+| Zenodo DOI | **Minted later (data-only)** | v0.16 left the archival DOI unminted. Data-only version DOI is now https://doi.org/10.5281/zenodo.22822285 (commercial CC-BY/CC0 pool). No software DOI is claimed. |
 | Headline counts 121,233 | **Untouched** | No paper-wide rebuild of full-corpus headlines in v0.16. |
 | Figure binaries | **Untouched** | No PDF/PNG regeneration in v0.16. |
 
@@ -50,7 +50,7 @@ Internal tracking for pre-submit editorial / M6 cleanups. Postcard root stays cl
 |---|---|---|
 | Hub revision pin | **Done** | Access + Data Availability cite `8db58466e3ddfd2fbe09bd47fdd5eb4cfc3e1975`. |
 | `train_no_bench_commercial` | **Done** | n=28,753 (⊆ `resolved_commercial` 28,899); 29,111 withdrawn. |
-| LEADERBOARD / card | **Done (cite)** | Hub card is data-only; LEADERBOARD purged; archival DOI not yet minted. |
+| LEADERBOARD / card | **Done (cite)** | Hub card is data-only; LEADERBOARD purged. Data-only archival DOI https://doi.org/10.5281/zenodo.22822285. |
 
 ## Open / pending (not in v0.16)
 
@@ -60,7 +60,7 @@ Internal tracking for pre-submit editorial / M6 cleanups. Postcard root stays cl
 | **F1 code** | **Done** (spectro-agent + Hub commercial DoR) | Thousands-separator fix applied; bands reparsed; commercial Hub revision cited in v0.16. |
 | **Data rebuild (full multi-licence headlines)** | **Pending** | Commercial DoR published on Hub; do **not** change paper-wide 121,233 headlines until a consistent full vs commercial rebuild lands. |
 | Band-window QC gate vs prose | **Aligned (v0.37)** | Prose restored to **350–4000** to match locked Fig.~2 H (Cleaning rules) and frozen QC `out_of_range_outside_350_4000=0`. Do not redesign Fig.~2. |
-| Zenodo data-only DOI mint | **Open (human)** | Commercial-pool primary deposit; see `ZENODO_DATA_ONLY_CHECKLIST.md`. |
+| Zenodo data-only DOI mint | **Done** | Commercial-pool primary deposit: https://doi.org/10.5281/zenodo.22822285. See `ZENODO_DATA_ONLY_CHECKLIST.md`. |
 | ORCID confirmation (authors) | **Open (human)** | See `HUMAN_SUBMISSION_CHECKLIST.md`. |
 | Expert human structure spot-check ($n\geq100$) | **Deferred** | Optional TV strengthen vs NMRexp. |
 | Human extraction-recall mark-up | **Deferred** | Optional. |

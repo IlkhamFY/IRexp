@@ -149,7 +149,7 @@ python scripts/build_train_no_bench.py --require-nmr  # 32,949 rows (H+C require
 - **Data Descriptor (paper + manifests):** https://github.com/IlkhamFY/IRexp
 - **Harvest / pipeline code:** https://github.com/IlkhamFY/spectro-agent
 - **Companion benchmark:** https://github.com/IlkhamFY/spectro-agent/blob/main/docs/LEADERBOARD.md
-- **Zenodo:** archival DOI not yet minted; no DOI claimed (data-only deposit)
+- **Zenodo:** data-only archival deposit of the commercial CC-BY/CC0 pool, https://doi.org/10.5281/zenodo.22822285 (`10.5281/zenodo.22822285`)
 - **Licence details:** `NOTICE` / `LICENCE_REMEDIATION.md` (this card’s sibling files; also `docs/LICENCE_REMEDIATION.md` on IRexp)
 
 When uploading to Hugging Face, this file is the repository `README.md`.
