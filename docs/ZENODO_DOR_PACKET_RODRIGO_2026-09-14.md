@@ -1,6 +1,6 @@
 # IRexp Zenodo / DoR packet — for Rodrigo (one page)
 
-**Date:** 2026-09-14 · **Owner:** Ilkham · **Action:** mint archival DOI (do not invent one in the manuscript first)
+**Date:** 2026-09-14 · **Owner:** Ilkham · **Status:** minted — data-only version DOI https://doi.org/10.5281/zenodo.22822285 (commercial CC-BY/CC0 pool). No software DOI.
 
 ## 1. What to mint
 
@@ -48,7 +48,7 @@ Do **not** invent filenames — if the Hub UI export is awkward, download the re
 
 ## 6. After mint — what Ilkham needs
 
-Send the **DOI string** (e.g. `10.5281/zenodo.XXXX`). Ilkham will patch `scientific_data.tex` Data Availability (replace “archival DOI not yet minted; no DOI claimed”) and recompile Overleaf.
+Data-only version DOI: https://doi.org/10.5281/zenodo.22822285. `scientific_data.tex` Data Availability cites that record. No software DOI is claimed.
 
 ## 7. Rodrigo checklist
 
