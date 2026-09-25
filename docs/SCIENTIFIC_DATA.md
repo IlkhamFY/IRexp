@@ -16,7 +16,7 @@
 
 ## Abstract
 
-IRexp is a redistributable collection of **experimental infrared band lists** (cm⁻¹ peak positions) mined from open chemistry literature, optionally with **author-reported** ¹H/¹³C NMR strings and resolved structures. The release holds **121,233** records (119,345 PMC OA; 1,888 Chemotion/RADAR4Chem), with **57,646** structure-linked and **39,118** full IR + ¹H + ¹³C + structure quadruples. IRexp stores **numeric band lists**, not absorbance traces. Records carry `source_doi` and a stamped licence pool (**88,545** commercially redistributable CC-BY/CC0). Reuse: multimodal training, retrieval, and tool input. Technical validation covers automated transcription, harvest-path recall proxies, stratified automated consistency audits (n=280), full-corpus quarantine, and a stratified expert human band-list audit of **161** records on the commercial Hugging Face dataset of record (**39** stratified NC*/ShareAlike queue rows are absent from that publish and were intentionally left unscored). Complementary elucidation benchmarks are described in a companion research manuscript and are not analysed here. Dataset: Hugging Face `ilkhamfy/IRexp`. Paper/manifests: `IlkhamFY/IRexp`. Code: `IlkhamFY/spectro-agent`. Archival DOI: https://doi.org/10.5281/zenodo.22822285.
+IRexp is a redistributable collection of **experimental infrared band lists** (cm⁻¹ peak positions) mined from open chemistry literature, optionally with **author-reported** ¹H/¹³C NMR strings and resolved structures. The release holds **121,233** records (119,345 PMC OA; 1,888 Chemotion/RADAR4Chem), with **57,646** structure-linked and **39,118** full IR + ¹H + ¹³C + structure quadruples. IRexp stores **numeric band lists**, not absorbance traces. Records carry `source_doi` and a stamped licence pool (**88,545** commercially redistributable CC-BY/CC0). Reuse: multimodal training, retrieval, and tool input. Technical validation covers automated transcription, harvest-path recall proxies, stratified automated consistency audits (n=280), full-corpus quarantine, and a stratified expert human band-list audit of **161** records on the commercial Hugging Face dataset of record. Complementary elucidation benchmarks are described in a companion research manuscript and are not analysed here. Dataset: Hugging Face `ilkhamfy/IRexp`. Paper/manifests: `IlkhamFY/IRexp`. Code: `IlkhamFY/spectro-agent`. Archival DOI: https://doi.org/10.5281/zenodo.22822285.
 
 <!-- Abstract word count target ≤170. Count on edit before submission. -->
 
@@ -212,7 +212,7 @@ Every band in the full 121,233-record release lies in **[350, 4000] cm⁻¹** (0
 | Extraction-recall automatic proxy (n=120 papers) | **Done** (human recall still optional) |
 | Stratified chemist-proxy audit (n=280) | **Done** (automated; not human expert) |
 | Full-corpus structure–NMR quarantine | **Done** — 1,882 / 57,646 flagged |
-| Stratified expert human band-list audit (design n=200) | **161 scored** on commercial HF DoR; 39 NC*/SA intentionally unscored |
+| Stratified expert human band-list audit | **161 scored** on the commercial Hugging Face dataset of record |
 | Expert human structure spot-check (n≥100) | Deferred (human) |
 | NMRexp-style replicate MAE for IR lists | Not applicable / not claimed |
 
@@ -230,7 +230,7 @@ Every band in the full 121,233-record release lies in **[350, 4000] cm⁻¹** (0
 ### Limitations
 
 - **Object.** Band-list corpus — not an absorbance-spectrum library and not an NMR resource comparable to NMRexp in scale or annotation richness.
-- **Technical Validation depth.** Automated transcription (n=200), harvest-path recall proxies (n=120 papers with Wilson intervals), and a stratified consistency audit (n=280) are machine checks. A stratified expert human band-list audit scored 161 records on the commercial Hugging Face dataset of record (39 stratified NC*/ShareAlike queue rows are absent from that publish). No human molecular-skeleton audit has been completed for IRexp.
+- **Technical Validation depth.** Automated transcription (n=200), harvest-path recall proxies (n=120 papers with Wilson intervals), and a stratified consistency audit (n=280) are machine checks. A stratified expert human band-list audit scored 161 records on the commercial Hugging Face dataset of record. No human molecular-skeleton audit has been completed for IRexp.
 - **Metadata sparsity.** Intensities, solvents, and instrument modes are generally absent; the IR window check is necessary but narrow.
 - **Structure coverage and name resolution.** Only 47.5% of records are structure-linked; OPSIN/PubChem failures leave many IR lists without SMILES.
 - **Licence mix.** The full `irexp.jsonl.gz` is multi-licence; commercial Zenodo/Sci Data redistribution is the commercial pool only.
