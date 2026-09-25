@@ -15,7 +15,7 @@ Full redistributable dumps are **not** stored in this manuscript repository (siz
 
 - `pmc_licence_summary.json` — Europe PMC licence join summary
 - `irexp_stats.json` / `release_stats.json` / `resolved_stats.json` — frozen counts
-- `f1_commercial_build_stats.json` — Hub commercial DoR F2/F3 rates (flag-only)
+- `f1_commercial_build_stats.json` — Hub commercial dataset-of-record shared-IR and table-flatten flag rates (flag-only; schema fields `ir_shared_in_paper`, `ir_table_flatten_suspect`)
 - `chem_composition.json` — unique-InChIKey MW / aromatic-ring / N-atom / carbonyl histograms (Fig. 3e)
 - `train_no_bench_stats.json` (+ `_nmr`) — held-out split stats
 - `NOTICE` — redistribution / licence policy
