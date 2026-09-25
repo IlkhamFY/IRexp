@@ -7,7 +7,9 @@
 4. Styles resolve via `latexmkrc` → `tex/`.
 
 ## Root (postcard)
-`README.md`, `LICENSE`, `scientific_data.tex`, `references.bib`, `.gitignore`, `latexmkrc`.
+`README.md`, `LICENSE`, `scientific_data.tex`, `Orcidlogo.eps`, `references.bib`, `.gitignore`, `latexmkrc`.
+
+`Orcidlogo.eps` sits beside the main file. `sn-jnl`’s `\orcid` includes that filename with no path; pdfLaTeX converts it via epstopdf. After GitHub has the ORCID lines, **Pull** in Overleaf (do not push a stale Overleaf copy over GitHub).
 
 ## Folders
 - `tex/` — sn-jnl.cls, bst files, sn-article provenance
