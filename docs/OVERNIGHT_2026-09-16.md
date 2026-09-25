@@ -14,7 +14,7 @@ Started from `origin/main` at **v0.36** (`bd11755`).
 | Construction *n* = 121,233; commercial DoR 88,545 on HF `ilkhamfy/IRexp` | Abstract, Background, Data Records, DAS, cover letter agree |
 | AccelD Grant #596133-2025 | `\section*{Funding}` + cover letter |
 | Cover letter: McMaster letterhead, Rodrigo / `vargashr@mcmaster.ca` | Unchanged sign-off |
-| Archival / Zenodo DOI | Still “not yet minted; none claimed” |
+| Archival / Zenodo DOI | Data-only version DOI https://doi.org/10.5281/zenodo.22822285 (commercial CC-BY/CC0 pool). No software DOI claimed. |
 | ORCID | Still absent from TeX author block (not invented) |
 
 Rudra sheet re-counted (not re-scored): 161 scored / 39 unscored; 160/161 source Y; bands exact 143, subset_ok 13, mismatch 4, cannot_tell 1. Unscored pools: 7 NC + 2 empty_unknown + 30 ShareAlike.
@@ -31,7 +31,7 @@ Rudra sheet re-counted (not re-scored): 161 scored / 39 unscored; 160/161 source
 
 - Still Rodrigo template (McMaster letterhead PNG, sign-off Rodrigo A. Vargas-Hernández / `vargashr@mcmaster.ca`).
 - TV now two sentences: **161 scored** on the commercial HF DoR; **39** NC*/SA rows absent from that publish and **intentionally unscored**.
-- 121,233 / 88,545 / AccelD / no archival DOI: unchanged.
+- 121,233 / 88,545 / AccelD were left as they stood that night. The data-only archival DOI is https://doi.org/10.5281/zenodo.22822285.
 
 ### Compile (local, not committed)
 
@@ -50,7 +50,7 @@ Rudra sheet re-counted (not re-scored): 161 scored / 39 unscored; 160/161 source
 
 1. **ORCID — I. Yabbarov** — still `[TODO: confirm]` in MD notes; do not invent; paste into TeX / eJP when confirmed.
 2. **ORCID — R. A. Vargas-Hernández** — known candidate `0000-0002-5559-6521`; confirm before paste (do not assume).
-3. **Zenodo data-only DOI** — Rodrigo mints from the commercial DoR packet (`docs/ZENODO_DOR_PACKET_RODRIGO_2026-09-14.md`); Ilkham pastes the real `10.5281/zenodo.…` into Access + Data Availability. **Do not invent a placeholder DOI.**
+3. **Zenodo data-only DOI** — minted: https://doi.org/10.5281/zenodo.22822285 (commercial CC-BY/CC0 pool). No software DOI.
 4. Optional, not required for commercial-DoR honesty: stage NC*/SA rows and finish the 39-row queue if a full *n*=200 multi-pool audit is desired later.
 
 ## Morning actions
@@ -58,7 +58,7 @@ Rudra sheet re-counted (not re-scored): 161 scored / 39 unscored; 160/161 source
 1. Overleaf: **Pull from GitHub** (no force) → `scientific_data.tex` is main.
 2. Compile pdfLaTeX + BibTeX; skim Fig.~2 caption vs the locked H figure (350–4000 / HF+Zenodo / Cleaning rules / Automated QC) — binaries were not regenerated.
 3. Confirm ORCIDs; only then add `\orcid` (or eJP metadata).
-4. Ping Rodrigo for the Zenodo mint; keep DAS as “not yet minted” until the DOI exists.
+4. Data-only archival DOI is https://doi.org/10.5281/zenodo.22822285; do not revert Data Availability to an unminted claim.
 5. Cover letter: confirm letterhead PNG still sits beside `cover_letter.tex` on Overleaf; date is `\today`.
 6. Do **not** run figure redesign sweeps; do **not** fill Rudra’s 39 unscored rows from memory.
 

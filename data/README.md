@@ -9,7 +9,7 @@ Full redistributable dumps are **not** stored in this manuscript repository (siz
 | This manuscript + frozen manifests | https://github.com/IlkhamFY/IRexp (`data/` here is manifests only — no bulk JSONL) |
 | Hugging Face dataset (bulk JSONL) | https://huggingface.co/datasets/ilkhamfy/IRexp |
 | Harvest / pipeline code | https://github.com/IlkhamFY/spectro-agent |
-| Archival deposit | *DOI not yet minted; no DOI claimed. See `ZENODO_DATA_ONLY_CHECKLIST.md`* |
+| Archival deposit | Zenodo data-only deposit of the commercial CC-BY/CC0 pool, https://doi.org/10.5281/zenodo.22822285 (`10.5281/zenodo.22822285`). See `ZENODO_DATA_ONLY_CHECKLIST.md` |
 
 ## Local manifests (this repo)
 
