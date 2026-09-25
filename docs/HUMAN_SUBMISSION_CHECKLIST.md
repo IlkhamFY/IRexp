@@ -8,9 +8,9 @@ Critical submit blockers below are done. Optional human checks remain open. Do n
 | # | Action | Status | Notes / stub |
 |---|---|---|---|
 | 1 | Mint **data-only** Zenodo DOI | ☑ | Done — version DOI https://doi.org/10.5281/zenodo.22822285 (concept 10.5281/zenodo.22822284). See `ZENODO_DATA_ONLY_CHECKLIST.md`. |
-| 2 | ORCID — **Ilkham Yabbarov** | ☑ | https://orcid.org/0009-0004-9393-9822 — `\orcid` in `scientific_data.tex`. |
-| 3 | ORCID — **Rudra Sondhi** | ☑ | https://orcid.org/0009-0003-3034-7347 — `\orcid` in `scientific_data.tex`. |
-| 4 | ORCID — **Rodrigo A. Vargas-Hernández** | ☑ | https://orcid.org/0000-0002-5559-6521 — `\orcid` in `scientific_data.tex`. |
+| 2 | ORCID — **I. Yabbarov** | ☑ | https://orcid.org/0009-0004-9393-9822 — `\orcid` immediately after `\author` / `\email` in `scientific_data.tex`. |
+| 3 | ORCID — **R. A. Vargas-Hernández** | ☑ | https://orcid.org/0000-0002-5559-6521 — `\orcid` immediately after `\author` / `\email` in `scientific_data.tex`. |
+| 4 | ORCID — **Rudra Sondhi** | ☑ | https://orcid.org/0009-0003-3034-7347 — `\orcid` immediately after `\author` in `scientific_data.tex`. |
 | 5 | Funding heading separate from Acknowledgements | ☑ | Funding: NSERC Discovery Grant No. RGPIN-2024-06594 and NSERC 596133-2025 (CREATE for Accelerated Discovery, AccelD) via the Acceleration Consortium. Acknowledgements: Digital Research Alliance of Canada and Compute Ontario computational support only. |
 
 ## Optional (strengthen TV vs NMRexp)
