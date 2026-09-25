@@ -19,11 +19,11 @@
 
 ## Abstract
 
-IRexp is a collection of experimental infrared band lists (cm⁻¹ peak positions) mined from open chemistry literature, optionally with author-reported ¹H/¹³C NMR strings and resolved structures. The multi-licence research corpus holds 121,233 records (119,345 PMC Open Access Subset; 1,888 Chemotion/RADAR4Chem), including 57,646 structure-linked entries and 39,118 IR + ¹H + ¹³C + structure quadruples. IRexp stores numeric band lists, not absorbance traces. Each record carries a source identifier and a stamped source licence. Public redistribution is limited to stamped-licence pools. The commercial dataset of record is the CC-BY/CC0 pool of 88,545 records, packaged under CC-BY-4.0. Intended reuse is multimodal training, retrieval, and tool input. Technical validation covers automated transcription, harvest-path recall proxies, stratified automated consistency audits, full-corpus quarantine, and a stratified expert human band-list audit of 161 records on the commercial dataset of record. Complementary elucidation benchmarks are described in a companion research manuscript and are not analysed here.
+IRexp is a collection of experimental infrared band lists (cm⁻¹ peak positions) mined from open chemistry literature, optionally with author-reported ¹H/¹³C NMR strings and resolved structures. The multi-licence research corpus holds 121,233 records (119,345 PMC Open Access Subset; 1,888 Chemotion/RADAR4Chem), including 57,646 structure-linked entries and 39,118 IR + ¹H + ¹³C + structure quadruples. IRexp stores numeric band lists, not absorbance traces. Each record carries a source identifier and a stamped source licence. The public dataset of record is the commercial CC-BY/CC0 pool of 88,545 records, packaged under CC-BY-4.0. Intended reuse is multimodal training, retrieval, and tool input. Technical validation covers automated transcription, harvest-path recall proxies, stratified automated consistency audits, full-corpus quarantine, and a stratified expert human band-list audit of 161 records on the commercial dataset of record. Complementary elucidation benchmarks are described in a companion research manuscript and are not analysed here.
 
-<!-- Abstract word count: 143 (whitespace tokens after expanding math). Cap ≤170. Filenames are in Data Records, not here. -->
+<!-- Abstract word count: 137 (whitespace tokens after expanding math). Cap ≤170. Filenames are in Data Records, not here. -->
 
-Dataset: Hugging Face `ilkhamfy/IRexp`. Paper/manifests: `IlkhamFY/IRexp`. Code: `IlkhamFY/spectro-agent`. Archival DOI: https://doi.org/10.5281/zenodo.22822285. File names and packaging for ShareAlike, NC*, and ND are in Data Records.
+Dataset: Hugging Face `ilkhamfy/IRexp` (commercial DoR only). Paper/manifests: `IlkhamFY/IRexp`. Code: `IlkhamFY/spectro-agent`. Archival DOI: https://doi.org/10.5281/zenodo.22822285. ShareAlike, NC*, and ND remain corpus pools and are not in that Hub upload (Data Records).
 
 ## Background & Summary
 
@@ -40,7 +40,7 @@ IRexp fills a specific wedge. Experimental sections of chemistry papers conventi
 3. Resolves compound names to canonical structures with OPSIN[@lowe2011opsin], RDKit[@landrum_rdkit], and SELFIES[@krenn2020selfies] where possible.
 4. Releases **extracted numbers only** — no PDFs, figures, or article full text — with source accessions for attribution.
 
-Among openly redistributable *text-derived IR band lists*, IRexp's public release is the stamped-licence pools in Data Records. SDBS is a view-only archive of digitised absorbance spectra (~54,000 FT-IR entries). Those pools are redistributable text-mined band lists. The two resources are complementary object types. The scientific contribution of this Descriptor is the curated dataset, harvest provenance, licence segregation, and validation artefacts. The intended reuse is multimodal pretraining and supervised IR→structure modelling on structure-linked rows from a stamped-licence pool.
+Among openly redistributable *text-derived IR band lists*, IRexp's public release is the commercial dataset of record in Data Records. SDBS is a view-only archive of digitised absorbance spectra (~54,000 FT-IR entries). That commercial pool is a redistributable collection of text-mined band lists. The two resources are complementary object types. The scientific contribution of this Descriptor is the curated dataset, harvest provenance, licence segregation, and validation artefacts. The intended reuse is multimodal pretraining and supervised IR→structure modelling on structure-linked commercial rows.
 
 **Figures (see `FIGURE_DESIGN_BRIEF.md`).**
 
@@ -94,11 +94,11 @@ Where an IUPAC or systematic name is available, names are converted with OPSIN (
 
 | Pool | Records | Stamp |
 |---|---:|---|
-| commercial (CC-BY + CC0) | **88,545** | Public; CC-BY-4.0 packaging; per-record stamps |
-| non_commercial (CC-BY-NC*) | 21,823 | Public; source-stamped NC*; redistribution under those terms |
-| sharealike (Chemotion + rare PMC SA) | 1,897 | Public; CC-BY-SA-4.0 |
-| other (CC-BY-ND) | 5 | Public; source-stamped CC-BY-ND; redistribution under those terms |
-| empty_unknown | 8,963 | Research-corpus count; not redistributed |
+| commercial (CC-BY + CC0) | **88,545** | Public Hub DoR and Zenodo primary; CC-BY-4.0 packaging |
+| non_commercial (CC-BY-NC*) | 21,823 | Corpus pool; not in the public Hub upload |
+| sharealike (Chemotion + rare PMC SA) | 1,897 | Corpus pool, CC-BY-SA-4.0; not in the public Hub upload |
+| other (CC-BY-ND) | 5 | Corpus pool; not in the public Hub upload |
+| empty_unknown | 8,963 | Corpus count; not in the public Hub upload |
 
 `scripts/join_pmc_licences.py` stamps every row; `scripts/split_license_pools.py` reports provenance (`pool_of`) and materialises pool files under `data/irexp/licence_pools/`. Narrative and policy: `docs/scientific_data/LICENCE_REMEDIATION.md`.
 
@@ -136,18 +136,20 @@ Paths relative to the project repository / Hugging Face mirror.
 
 | File | Records | Description |
 |---|---:|---|
-| `data/irexp/irexp.jsonl.gz` | 121,233 | Multi-licence research total; not redistributed |
+| `data/irexp/irexp.jsonl.gz` | 121,233 | Research total; not in the public Hub upload |
 | `data/irexp_resolved/irexp_resolved.jsonl.gz` | 57,646 | Structure-linked research split (multi-licence) |
 | `data/irexp_release/train_no_bench.jsonl.gz` | 42,808 | Research split (multi-licence); benchmark InChIKeys held out |
 | `data/irexp_release/train_no_bench_nmr.jsonl.gz` | 32,949 | Same research split with both ¹H and ¹³C |
 | `data/irexp_release/pretrain_ir.jsonl.gz` | 119,345 | PMC-only IR pretrain pool (multi-licence) |
 | `data/irexp/seen_papers.txt.gz` | 188,016 lines | PMC IDs scanned at harvest |
 | `data/irexp/ir_harvest_snapshot.jsonl.gz` | 134,893 | Intermediate harvest snapshot |
-| `data/irexp/licence_pools/irexp_commercial.jsonl.gz` | 88,545 | Public; CC-BY-4.0 packaging; CC-BY/CC0 stamps |
-| `data/irexp/licence_pools/irexp_sharealike.jsonl.gz` | 1,897 | Public; CC-BY-SA-4.0 |
-| `data/irexp/licence_pools/irexp_non_commercial.jsonl.gz` | 21,823 | Public; source-stamped NC*; redistribution under those terms |
-| `data/irexp/licence_pools/irexp_other.jsonl.gz` | 5 | Public; source-stamped CC-BY-ND; redistribution under those terms |
-| `data/irexp/licence_pools/irexp_empty_unknown.jsonl.gz` | 8,963 | Research-corpus count; not redistributed |
+| `data/irexp/licence_pools/irexp_commercial.jsonl.gz` | 88,545 | Public Hub DoR and Zenodo primary; CC-BY-4.0 packaging |
+| `data/irexp_resolved_commercial.jsonl.gz` | 28,899 | Public Hub; structure-linked commercial subset |
+| `train_no_bench_commercial.jsonl.gz` | 28,753 | Public Hub; commercial subset, benchmark InChIKeys held out |
+| `data/irexp/licence_pools/irexp_sharealike.jsonl.gz` | 1,897 | Corpus pool, CC-BY-SA-4.0; not in the public Hub upload |
+| `data/irexp/licence_pools/irexp_non_commercial.jsonl.gz` | 21,823 | Corpus pool, NC*; not in the public Hub upload |
+| `data/irexp/licence_pools/irexp_other.jsonl.gz` | 5 | Corpus pool, CC-BY-ND; not in the public Hub upload |
+| `data/irexp/licence_pools/irexp_empty_unknown.jsonl.gz` | 8,963 | Corpus count; not in the public Hub upload |
 
 **Composition of `irexp.jsonl.gz`:**
 
@@ -166,13 +168,13 @@ Paths relative to the project repository / Hugging Face mirror.
 
 | Pool file | Count | Notes |
 |---|---:|---|
-| `irexp_commercial.jsonl.gz` | **88,545** | Public; CC-BY-4.0 packaging; per-record CC-BY/CC0 stamps; Zenodo primary |
-| `irexp_sharealike.jsonl.gz` | **1,897** | Public; CC-BY-SA-4.0 (Chemotion 1,888 + rare PMC SA) |
-| `irexp_non_commercial.jsonl.gz` | **21,823** | Public; source-stamped NC*; research redistribution under those terms |
-| `irexp_other.jsonl.gz` | **5** | Public; source-stamped CC-BY-ND; research redistribution under those terms |
-| `irexp_empty_unknown.jsonl.gz` | **8,963** | Research-corpus count; not redistributed |
+| `irexp_commercial.jsonl.gz` | **88,545** | Public Hub DoR and Zenodo primary; CC-BY-4.0 packaging |
+| `irexp_sharealike.jsonl.gz` | **1,897** | Corpus pool, CC-BY-SA-4.0; not in the public Hub upload |
+| `irexp_non_commercial.jsonl.gz` | **21,823** | Corpus pool, NC*; not in the public Hub upload |
+| `irexp_other.jsonl.gz` | **5** | Corpus pool, CC-BY-ND; not in the public Hub upload |
+| `irexp_empty_unknown.jsonl.gz` | **8,963** | Corpus count; not in the public Hub upload |
 
-The multi-licence research total is not a public redistribution file. Public redistribution is the stamped-licence pools above. Commercial reuse must use `license_pool == "commercial"`. Empty/unknown rows remain in the pool sum and are removed from the public Hugging Face redistribution. Chemotion rows were schema-backfilled with `inchikey` / `has_structure` (2026-08-27).
+The public Hugging Face upload is the commercial pool only, plus `irexp_resolved_commercial.jsonl.gz` (28,899) and `train_no_bench_commercial.jsonl.gz` (28,753). ShareAlike, NC*, ND, empty/unknown, and the multi-licence total are retained for research and are not part of that upload. Chemotion rows were schema-backfilled with `inchikey` / `has_structure` (2026-08-27).
 
 **Overview figure:** `docs/scientific_data/figures/fig_irexp_overview.pdf` (provenance / licence pools / composition cascade). See also positioning (`fig_irexp_positioning`), pipeline (`fig_irexp_pipeline`), and validation (`fig_irexp_validation`) figures — `FIGURE_DESIGN_BRIEF.md`.
 
@@ -180,7 +182,7 @@ Median bands: **9** (PMC), **39** (Chemotion). All **1,360,866** released IR ban
 
 ### Access
 
-- **Hugging Face (public redistributable files only):** https://huggingface.co/datasets/ilkhamfy/IRexp — `irexp_commercial.jsonl.gz` (CC-BY-4.0 packaging), `irexp_sharealike.jsonl.gz` (CC-BY-SA-4.0), `irexp_non_commercial.jsonl.gz` (source-stamped NC*; research redistribution under those terms), `irexp_other.jsonl.gz` (source-stamped CC-BY-ND; research redistribution under those terms). The multi-licence total and empty/unknown rows are not redistributed. See `LICENCE_REMEDIATION.md`.
+- **Hugging Face (public DoR upload only):** https://huggingface.co/datasets/ilkhamfy/IRexp — `irexp_commercial.jsonl.gz` (88,545; CC-BY-4.0 packaging), `irexp_resolved_commercial.jsonl.gz` (28,899), `train_no_bench_commercial.jsonl.gz` (28,753). ShareAlike, NC*, ND, empty/unknown, and the multi-licence total are retained for research and are not part of this upload. See `LICENCE_REMEDIATION.md`.
 - **Manuscript + manifests:** https://github.com/IlkhamFY/IRexp
 - **Harvest / pipeline code:** https://github.com/IlkhamFY/spectro-agent
 - **Archival snapshot:** https://doi.org/10.5281/zenodo.22822285 (data-only; same commercial pool / Hub revision `8db58466e3ddfd2fbe09bd47fdd5eb4cfc3e1975`).
@@ -227,11 +229,11 @@ Every band in the full 121,233-record release lies in **[350, 4000] cm⁻¹** (0
 ## Usage Notes
 
 - **Band lists ≠ spectra.** Do not evaluate models trained on IRexp as if they had seen full absorbance curves.
-- **Licence filter.** Public redistribution is the stamped-licence pools in Data Records. Commercial reuse uses `irexp_commercial.jsonl.gz` (CC-BY-4.0 packaging). ShareAlike reuse uses `irexp_sharealike.jsonl.gz` (CC-BY-SA-4.0); do not relicence those rows as CC-BY. NC* and ND files stay under their source stamps. The multi-licence research total and the empty/unknown rows are not redistributed. `source_doi` may hold a PMC accession (`PMC:…`) rather than a DOI.
+- **Licence filter.** Public redistribution is the commercial dataset of record only (`irexp_commercial.jsonl.gz`, CC-BY-4.0 packaging). ShareAlike, NC*, and ND are corpus pools retained for research and are not in the public Hub upload. Do not relicence Chemotion/ShareAlike rows as CC-BY. The multi-licence total and the empty/unknown rows are not part of the public DoR upload. `source_doi` may hold a PMC accession (`PMC:…`) rather than a DOI.
 - **Separate pools by density and licence.** PMC (sparse) vs Chemotion (denser ELN lists). Higher median band count ≠ more complete vibrational assignment.
 - **Structure–NMR quarantine.** Before supervised training on `irexp_resolved`, **drop** IDs in `data/audit/structure_nmr_quarantine.jsonl.gz` by default (~3.3% of resolved rows) unless a noisier set is intentional.
 - **Training without benchmark leakage.** If using complementary IRSpectra-Bench problems, withhold those InChIKeys. `train_no_bench.jsonl.gz` is the multi-licence research split (rebuild with `scripts/build_train_no_bench.py`). Commercial training uses the commercial companion named in Data Availability. Protocol and model results live only in the companion manuscript.
-- **Structure coverage.** Supervised structure tasks need rows with SMILES; 52.5% of the research corpus lack SMILES. Use a structure-linked subset of a stamped-licence pool.
+- **Structure coverage.** Supervised structure tasks need rows with SMILES; 52.5% of the research corpus lack SMILES. On the public Hub upload, use `resolved_commercial`.
 - **Attribution.** Cite this Data Descriptor and the archival version DOI https://doi.org/10.5281/zenodo.22822285, and attribute originating articles through each record’s `source_doi` (PMC accession or DOI).
 
 ### Limitations
@@ -240,7 +242,7 @@ Every band in the full 121,233-record release lies in **[350, 4000] cm⁻¹** (0
 - **Technical Validation depth.** Automated transcription (n=200), harvest-path recall proxies (n=120 papers with Wilson intervals), and a stratified consistency audit (n=280) are machine checks. A stratified expert human band-list audit scored 161 records on the commercial Hugging Face dataset of record. No human molecular-skeleton audit has been completed for IRexp.
 - **Metadata sparsity.** Intensities, solvents, and instrument modes are generally absent; the IR window check is necessary but narrow.
 - **Structure coverage and name resolution.** Only 47.5% of records are structure-linked; OPSIN/PubChem failures leave many IR lists without SMILES.
-- **Licence mix.** The research corpus is multi-licence. Public redistribution is the stamped-licence pools in Data Records. Empty/unknown rows are not redistributed.
+- **Licence mix.** The research corpus is multi-licence. Public redistribution is the commercial dataset of record only. ShareAlike, NC*, ND, and empty/unknown rows are retained for research and are not part of the public Hub upload.
 - **Scope of this paper.** Elucidation benchmarks and model results are out of scope; cite the companion research manuscript for those claims.
 
 ## Data Availability
@@ -254,11 +256,10 @@ IRexp numeric extracts are available at:
 
 Licensing summary (honest):
 
-- Commercial DoR (Hugging Face commercial configuration and the Zenodo primary file): CC-BY-4.0 packaging, with per-record source licences still stamped.
-- ShareAlike file: CC-BY-SA-4.0. **Chemotion (1,888):** CC-BY-SA-4.0[@chemotion2024]. These rows are not in the commercial DoR.
-- Non-commercial file (21,823): source-stamped NC*; packaging is research redistribution under those terms.
-- ND file (`irexp_other.jsonl.gz`, 5): source-stamped CC-BY-ND; packaging is research redistribution under those terms.
-- **PMC (119,345):** mixed Creative Commons — stamped per article (`LICENCE_REMEDIATION.md`). Empty/unknown rows (8,963) are not redistributed.
+- Commercial DoR (Hugging Face commercial file and the Zenodo primary file): CC-BY-4.0 packaging, with per-record source licences still stamped. The same Hub upload includes `irexp_resolved_commercial.jsonl.gz` (28,899) and `train_no_bench_commercial.jsonl.gz` (28,753).
+- **Chemotion (1,888):** CC-BY-SA-4.0[@chemotion2024]. The ShareAlike pool (1,897) is not in the public Hub upload.
+- Non-commercial (21,823; NC*) and ND (5; CC-BY-ND) are corpus pools, not part of the public Hub upload.
+- **PMC (119,345):** mixed Creative Commons — stamped per article (`LICENCE_REMEDIATION.md`). Empty/unknown rows (8,963) and the multi-licence total are not part of the public DoR upload.
 - Only extracted numeric fields and identifiers are redistributed; source full texts are not.
 
 ## Code Availability
