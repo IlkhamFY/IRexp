@@ -19,17 +19,17 @@
 
 ## Abstract
 
-IRexp is a redistributable collection of **experimental infrared band lists** (cm⁻¹ peak positions) mined from open chemistry literature, optionally with **author-reported** ¹H/¹³C NMR strings and resolved structures. The release holds **121,233** records (119,345 PMC OA; 1,888 Chemotion/RADAR4Chem), with **57,646** structure-linked and **39,118** full IR + ¹H + ¹³C + structure quadruples. IRexp stores **numeric band lists**, not absorbance traces. Records carry `source_doi` and a stamped licence pool (**88,545** commercially redistributable CC-BY/CC0). Reuse: multimodal training, retrieval, and tool input. Technical validation covers automated transcription, harvest-path recall proxies, stratified automated consistency audits (n=280), full-corpus quarantine, and a stratified expert human band-list audit of **161** records on the commercial Hugging Face dataset of record. Complementary elucidation benchmarks are described in a companion research manuscript and are not analysed here. Dataset: Hugging Face `ilkhamfy/IRexp`. Paper/manifests: `IlkhamFY/IRexp`. Code: `IlkhamFY/spectro-agent`. Archival DOI: https://doi.org/10.5281/zenodo.22822285.
+IRexp is a redistributable collection of **experimental infrared band lists** (cm⁻¹ peak positions) mined from open chemistry literature, optionally with **author-reported** ¹H/¹³C NMR strings and resolved structures. The full multi-licence release holds **121,233** records (119,345 PMC OA; 1,888 Chemotion/RADAR4Chem), with **57,646** structure-linked and **39,118** full IR + ¹H + ¹³C + structure quadruples. IRexp stores **numeric band lists**, not absorbance traces. Each record carries `source_doi` and a stamped source licence. The commercial dataset of record (DoR) on the Hugging Face and Zenodo primary redistribution path is the CC-BY/CC0 pool of **88,545** records (`irexp_commercial.jsonl.gz`). Chemotion/ShareAlike, non-commercial (NC*), and empty/unknown records are not in that commercial DoR; those pools are public as separate Hugging Face files (`irexp_sharealike.jsonl.gz`, `irexp_non_commercial.jsonl.gz`, `irexp_empty_unknown.jsonl.gz`). Reuse: multimodal training, retrieval, and tool input. Technical validation covers automated transcription, harvest-path recall proxies, stratified automated consistency audits (n=280), full-corpus quarantine, and a stratified expert human band-list audit of **161** records on the commercial Hugging Face DoR. Complementary elucidation benchmarks are described in a companion research manuscript and are not analysed here. Dataset: Hugging Face `ilkhamfy/IRexp`. Paper/manifests: `IlkhamFY/IRexp`. Code: `IlkhamFY/spectro-agent`. Archival DOI: https://doi.org/10.5281/zenodo.22822285. The compiled commercial deposit is packaged under CC-BY-4.0; per-record source licences remain stamped. The Hugging Face dataset card also lists CC-BY-SA-4.0 for the separate ShareAlike file.
 
 <!-- Abstract word count target ≤170. Count on edit before submission. -->
 
 ## Background & Summary
 
-Infrared (IR) spectroscopy is routine in organic characterisation, yet **open, redistributable** collections of *experimental* IR data remain sparse relative to modern machine-learning and agentic tool-use needs. Digitised absorbance libraries such as the NIST Chemistry WebBook[@nist_webbook] and AIST SDBS[@sdbs] are valuable but either modest in size or **view-only** (no bulk redistribution). Computational IR–NMR resources published in *Scientific Data* expand multimodal coverage with simulated spectra[@zipoli2025uspto], while large literature mines for **NMR** peak lists (notably NMRexp[@wang2025nmrexp]) demonstrate that peer-reviewed experimental spectral *lists* with DOI traceability are in scope for this journal. Concurrent literature corpora that include IR among other modalities (for example NMRSpec/NMRTrans[@yang2026nmrtrans]) further motivate an **IR-focused, redistributable** band-list resource rather than another closed spectrum archive.
+Infrared (IR) spectroscopy is routine in organic characterisation, yet **open, redistributable** collections of *experimental* IR data remain sparse relative to modern machine-learning needs. Digitised absorbance libraries such as the NIST Chemistry WebBook[@nist_webbook] and AIST SDBS[@sdbs] are valuable but either modest in size or **view-only** (no bulk redistribution). Computational infrared sets in *Scientific Data* supply simulated spectra, including an IR–NMR multimodal collection[@zipoli2025uspto] and an infrared resonance library[@krishnadas2026squirl]. A computational multimodal spectroscopic dataset that includes infrared was released in the NeurIPS Datasets and Benchmarks track[@alberts2024multimodal]. Large literature mines for **NMR** peak lists (notably NMRexp[@wang2025nmrexp]) demonstrate that peer-reviewed experimental spectral *lists* with DOI traceability are in scope for this journal. NMRTrans is a conference paper on experimental NMR spectra and the associated NMRSpec corpus[@yang2026nmrtrans]; it is not an infrared *Scientific Data* descriptor.
 
 **Relation to NMRexp and other peers.** NMRexp is the natural comparator: ~3.3 million experimental NMR records mined from supporting-information PDFs, with expert-scale manual checks and replicate consistency metrics. IRexp is *not* an NMR database, does not claim size superiority, and is orders of magnitude smaller. Its contribution is complementary: redistributable **IR band lists** (cm⁻¹ positions only) from PMC Open Access full text plus a Chemotion ELN deposit, with per-record licence pools suitable for commercial vs non-commercial reuse. Absorbance-curve libraries (NIST, SDBS) remain the right choice when full digitised spectra are required; computational IR–NMR sets remain the right choice when simulated multimodal coverage is required.
 
-In 2025–26, spectroscopic AI agents and autonomous chemistry workflows increasingly consume *structured* experimental peak lists as tool inputs and retrieval substrates — not paywalled PDF prose and not view-only web UIs. Agents that plan characterisation, call spectrum tools, or train IR→structure models need redistributable numeric lists with DOI attribution and explicit licence pools (commercial vs non-commercial vs ShareAlike). IRexp is designed as that substrate: training / retrieval / tool-input material for literature-grounded spectroscopic agents, without embedding diagnosis benchmarks or model leaderboards in this Descriptor.
+Spectroscopic workflows that consume structured experimental peak lists need redistributable numeric lists with DOI attribution and explicit licence pools (commercial vs non-commercial vs ShareAlike). IRexp is built as that substrate.
 
 IRexp fills a specific wedge. Experimental sections of chemistry papers conventionally report per-compound **IR band lists** (wavenumbers in cm⁻¹) together with ¹H/¹³C NMR shift lists. That textual convention is the object language models and many elucidation pipelines consume, and it is a **different object** from a digitised spectrum. IRexp therefore:
 
@@ -38,7 +38,7 @@ IRexp fills a specific wedge. Experimental sections of chemistry papers conventi
 3. Resolves compound names to canonical structures with OPSIN[@lowe2011opsin], RDKit[@landrum_rdkit], and SELFIES[@krenn2020selfies] where possible.
 4. Releases **extracted numbers only** — no PDFs, figures, or article full text — with source accessions for attribution.
 
-Among openly redistributable *text-derived IR band lists*, IRexp is large by record count (121,233). It does not claim to replace SDBS or NIST absorbance libraries; SDBS alone holds more structure-linked *spectra* than IRexp holds structure-linked band lists. The scientific contribution of this Descriptor is the curated dataset, harvest provenance, licence segregation, and validation artefacts — **not** elucidation accuracy claims. The intended reuse is multimodal pretraining, supervised IR→structure modelling on `irexp_resolved`, and serving as the literature substrate for complementary elucidation benchmarks described elsewhere (forthcoming ICLR manuscript on IRSpectra-Bench; cite that work for protocol and model results, which are not reproduced here).
+Among openly redistributable *text-derived IR band lists*, IRexp comprises 121,233 records, including 57,646 structure-linked band lists (54,985 unique InChIKeys). SDBS is a view-only archive of digitised absorbance spectra (~54,000 FT-IR entries). IRexp is a redistributable collection of text-mined band lists. The two resources are complementary object types. The scientific contribution of this Descriptor is the curated dataset, harvest provenance, licence segregation, and validation artefacts. The intended reuse is multimodal pretraining and supervised IR→structure modelling on `irexp_resolved`.
 
 **Figures (see `FIGURE_DESIGN_BRIEF.md`).**
 
@@ -102,7 +102,7 @@ Where an IUPAC or systematic name is available, names are converted with OPSIN (
 
 ### Quality tooling
 
-Optional physics gates live in `spectro_scraper/quality.py` (¹³C peak count ≤ carbon count; ¹H integration vs formula; IR wavenumber windows). They were **not** applied as a hard filter at harvest; Technical Validation reports a full-corpus post-hoc quarantine on `irexp_resolved` (`scripts/quarantine_structure_nmr.py` → `data/audit/structure_nmr_quarantine.jsonl.gz`). Transcription and recall-proxy scripts: `scripts/audit_extraction.py`, `scripts/audit_extraction_recall.py`.
+IR-range and basic count gates may be applied as construction filters (at least three bands; wavenumbers in 350–4000 cm⁻¹). Formula–NMR physics checks in `spectro_scraper/quality.py` (¹H integral sum ≤ formula hydrogen count + 2; ¹³C peak count ≤ carbon count) are diagnostic, post-hoc quarantine flags. They were **not** hard filters at harvest. Flagged rows remain in the release files. Technical Validation reports a full-corpus post-hoc quarantine on `irexp_resolved` (`scripts/quarantine_structure_nmr.py` → `data/audit/structure_nmr_quarantine.jsonl.gz`). Transcription and recall-proxy scripts: `scripts/audit_extraction.py`, `scripts/audit_extraction_recall.py`.
 
 ## Data Records
 
@@ -112,7 +112,7 @@ Each IRexp record is a JSON object. Required chemistry fields for an IR entry:
 
 | Field | Type | Description |
 |---|---|---|
-| `id` | string | Stable record id (InChIKey when resolved, else internal) |
+| `id` | string | Stable internal record id. InChIKey is stored in `inchikey`. Listing examples may set `id` equal to the InChIKey; that key is not unique (57,646 structure-linked records; 54,985 InChIKeys; about 2.7 thousand extra rows repeat a molecule). |
 | `ir_bands_cm-1` | float list | Experimental IR peak positions (cm⁻¹) |
 | `ir_source` | string | `experimental` for all released rows |
 | `source_doi` | string | `PMC:<pmcid>` or Chemotion deposit DOI |
@@ -200,7 +200,7 @@ A human mark-up of every IR string in every paper remains the gold standard. As 
 
 **Sample (prior).** On **500** `irexp_resolved` records with ¹³C text (seed 0): **17/500 (3.4%)** listed more peaks than carbons. On **500** with ¹H text: integrals > formula H+2 in **17/497 (3.4%)**.
 
-**Full resolved corpus.** `scripts/quarantine_structure_nmr.py` applied the same physics gates to all **57,646** structure-linked rows. **1,882 (~3.3%)** fail ≥1 hard check and are listed in `data/audit/structure_nmr_quarantine.jsonl.gz` (diagnostic only — release files unchanged). Among rows with the relevant modality: ¹³C peaks > carbons **1,194/34,231 (3.49%)**; ¹H integral > formula+2 **1,141/39,672 (2.88%)**; IR out-of-range **0**; unparseable SMILES **0**. Sample rates and full-corpus rates agree closely. Re-users should **drop** quarantined IDs by default before supervised training. These rates are integrity diagnostics, **not** an expert skeleton audit (NMRexp-scale n≈300 manual checks remain optional future work).
+**Full resolved corpus.** `scripts/quarantine_structure_nmr.py` applied the same formula–NMR physics checks post hoc to all **57,646** structure-linked rows. They are diagnostic quarantine flags, not hard harvest filters. **1,882 (~3.3%)** fail at least one diagnostic check and are listed in `data/audit/structure_nmr_quarantine.jsonl.gz` (diagnostic only — release files unchanged). Among rows with the relevant modality: ¹³C peaks > carbons **1,194/34,231 (3.49%)**; ¹H integral > formula+2 **1,141/39,672 (2.88%)**; IR out-of-range **0**; unparseable SMILES **0**. Sample rates and full-corpus rates agree closely. Re-users should **drop** quarantined IDs by default before supervised training. These rates are integrity diagnostics, **not** an expert skeleton audit (NMRexp-scale n≈300 manual checks remain optional future work).
 
 ### IR physical window
 
@@ -222,7 +222,7 @@ Every band in the full 121,233-record release lies in **[350, 4000] cm⁻¹** (0
 ## Usage Notes
 
 - **Band lists ≠ spectra.** Do not evaluate models trained on IRexp as if they had seen full absorbance curves.
-- **AI agents / LLM tool-use.** Prefer JSON band-list fields and `source_doi`; filter by `license_pool` rather than treating the full dump as a single licence.
+- **Licence filter.** Prefer JSON band-list fields and `source_doi`; filter by `license_pool` rather than treating the full dump as a single licence.
 - **Separate pools by density and licence.** PMC (sparse) vs Chemotion (denser ELN lists). Higher median band count ≠ more complete vibrational assignment. Combined redistribution of Chemotion-derived rows must honour CC-BY-SA-4.0; do not relicence SA rows as CC-BY.
 - **Do not assume PMC = CC-BY-4.0.** Filter to `license_pool == "commercial"` (or use `irexp_commercial.jsonl.gz`) for commercial redistribution; attribute via `source_doi` / `pmcid`.
 - **Structure–NMR quarantine.** Before supervised training on `irexp_resolved`, **drop** IDs in `data/audit/structure_nmr_quarantine.jsonl.gz` by default (~3.3% of resolved rows) unless a noisier set is intentional.
@@ -250,8 +250,9 @@ IRexp numeric extracts are available at:
 
 Licensing summary (honest):
 
-- **Chemotion (1,888):** CC-BY-SA-4.0[@chemotion2024].  
-- **PMC (119,345):** mixed Creative Commons — stamped per article; commercial redistributable **88,545** (CC-BY/CC0); NC* **21,823** held aside; empty/unknown **8,963** excluded from commercial Zenodo (`LICENCE_REMEDIATION.md`).  
+- The compiled commercial deposit (Hugging Face commercial configuration and the Zenodo primary file) is packaged under CC-BY-4.0, with per-record source licences still stamped. The Hugging Face dataset card also lists CC-BY-SA-4.0 for the separate ShareAlike file.
+- **Chemotion (1,888):** CC-BY-SA-4.0[@chemotion2024]. These ShareAlike rows are not in the commercial DoR (`irexp_sharealike.jsonl.gz` on Hugging Face).
+- **PMC (119,345):** mixed Creative Commons — stamped per article; commercial redistributable **88,545** (CC-BY/CC0); NC* **21,823** held aside; empty/unknown **8,963** excluded from commercial Zenodo (`LICENCE_REMEDIATION.md`). NC* and empty/unknown rows are not in the commercial DoR; the public Hugging Face files are `irexp_non_commercial.jsonl.gz` and `irexp_empty_unknown.jsonl.gz`.
 - Only extracted numeric fields and identifiers are redistributed; source full texts are not.
 
 ## Code Availability
