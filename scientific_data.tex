@@ -52,9 +52,15 @@ IRexp: A database of experimental infrared band lists from open literature}
 
 %% Corresponding authors marked with * (no equal-contribution footnote ---
 %% distinct roles; both corresponding).
-\author*[1]{\fnm{Ilkham} \sur{Yabbarov}\,\orcid{https://orcid.org/0009-0004-9393-9822}}\email{yabbaroi@mcmaster.ca}
-\author[1]{\fnm{Rudra} \sur{Sondhi}\,\orcid{https://orcid.org/0009-0003-3034-7347}}
-\author*[1,2,3]{\fnm{Rodrigo A.} \sur{Vargas-Hern{\'a}ndez}\,\orcid{https://orcid.org/0000-0002-5559-6521}}\email{vargashr@mcmaster.ca}
+%% sn-jnl defines \orcid as an immediate \href to Orcidlogo.eps. Called at
+%% this point in the source, that ships the logo above the title. Append the
+%% same linked logo to the author line when \orcid follows \author / \email.
+\makeatletter
+\renewcommand{\orcid}[1]{\g@addto@macro\artauthors{\,\href{#1}{\orcidlogo}}}
+\makeatother
+\author*[1]{\fnm{Ilkham} \sur{Yabbarov}}\email{yabbaroi@mcmaster.ca}\orcid{https://orcid.org/0009-0004-9393-9822}
+\author[1]{\fnm{Rudra} \sur{Sondhi}}\orcid{https://orcid.org/0009-0003-3034-7347}
+\author*[1,2,3]{\fnm{Rodrigo A.} \sur{Vargas-Hern{\'a}ndez}}\email{vargashr@mcmaster.ca}\orcid{https://orcid.org/0000-0002-5559-6521}
 
 \affil*[1]{\orgdiv{Department of Chemistry and Chemical Biology},
   \orgname{McMaster University},
