@@ -25,37 +25,45 @@ configs:
     data_files: data/train_no_bench_nmr.jsonl.gz
   - config_name: pretrain_ir
     data_files: data/pretrain_ir.jsonl.gz
-  - config_name: all
-    data_files: data/irexp.jsonl.gz
   - config_name: non_commercial
     data_files: data/irexp_non_commercial.jsonl.gz
   - config_name: sharealike
     data_files: data/irexp_sharealike.jsonl.gz
+  - config_name: other
+    data_files: data/irexp_other.jsonl.gz
 ---
 
 # IRexp — experimental IR band lists from open-access literature
 
 **Data Descriptor:** [IRexp: A database of experimental infrared band lists from open literature](https://github.com/IlkhamFY/IRexp) (*Scientific Data* manuscript). Bulk JSONL is this Hugging Face dataset; harvest/pipeline code is [IlkhamFY/spectro-agent](https://github.com/IlkhamFY/spectro-agent).
 
-IRexp is the largest **openly redistributable** collection of **experimental infrared band lists** mined from open-access chemistry papers, often with co-reported ¹H/¹³C shift lists and resolved structures.
+IRexp is a collection of **experimental infrared band lists** mined from open-access chemistry papers, often with co-reported ¹H/¹³C shift lists and resolved structures. The multi-licence research corpus holds **121,233** records. Public redistribution is limited to stamped-licence pools.
 
 > **Important:** IRexp contains **band lists** (peak positions in cm⁻¹), not digitised absorbance traces. This is the form reported in publication text — the regime IRSpectra-Bench evaluates — and is not directly comparable to SDBS or NIST full spectra.
 
 ## Dataset summary
 
+Public redistributable files:
+
+| Split / file | Records | Packaging |
+|---|---:|---|
+| `irexp_commercial.jsonl.gz` | **88,545** | **Commercial dataset of record.** CC-BY-4.0 packaging; per-record CC-BY/CC0 stamps (`license_pool=commercial`). Zenodo primary file. |
+| `irexp_sharealike.jsonl.gz` | 1,897 | CC-BY-SA-4.0 (Chemotion + rare PMC SA). |
+| `irexp_non_commercial.jsonl.gz` | 21,823 | Source-stamped NC*. Packaging is research redistribution under those terms. |
+| `irexp_other.jsonl.gz` | 5 | Source-stamped CC-BY-ND. Packaging is research redistribution under those terms. |
+
+Not redistributed: the full multi-licence file (`irexp.jsonl.gz`, 121,233) and the empty/unknown rows (8,963). Those counts stay in the research-corpus description. Empty/unknown rows are removed from the public Hugging Face redistribution.
+
+Research splits below are multi-licence. They are not a single-licence public deposit; filter by `license_pool` or use the stamped pools above.
+
 | Split / file | Records | Description |
 |---|---:|---|
-| `irexp_commercial.jsonl.gz` | **88,545** | **Primary redistributable** — CC-BY + CC0 (`license_pool=commercial`) |
-| `irexp.jsonl.gz` | 121,233 | Full corpus (multi-licence; every row stamped) |
-| `irexp_non_commercial.jsonl.gz` | 21,823 | CC-BY-NC* held aside |
-| `irexp_sharealike.jsonl.gz` | 1,897 | Chemotion CC-BY-SA-4.0 + rare PMC SA |
-| `irexp_empty_unknown.jsonl.gz` | 8,963 | Empty/unknown — excluded from commercial Zenodo |
-| `irexp_resolved.jsonl.gz` | 57,646 | Structure-linked (100%; multi-licence — filter by `license_pool`) |
-| … full IR + ¹H + ¹³C + structure | 39,118 | Multimodal quadruples |
-| `train_no_bench.jsonl.gz` | 42,808 | **Recommended for training** — `irexp_resolved` minus all IRSpectra-Bench InChIKey-14 |
+| `irexp_resolved.jsonl.gz` | 57,646 | Structure-linked research split (multi-licence) |
+| … full IR + ¹H + ¹³C + structure | 39,118 | Multimodal quadruples in the research corpus |
+| `train_no_bench.jsonl.gz` | 42,808 | `irexp_resolved` minus IRSpectra-Bench InChIKey-14 (multi-licence) |
 | `train_no_bench_nmr.jsonl.gz` | 32,949 | Same, requiring both ¹H and ¹³C |
 
-**Provenance & licensing:** 119,345 PMC-sourced + 1,888 Chemotion/RADAR4Chem. Per-article Europe PMC join stamps `license` / `license_pool` on every row (`scripts/join_pmc_licences.py`). **Commercial training / Zenodo primary = `commercial` config (88,545).** Do not treat the full `all` split as uniformly CC-BY. See `NOTICE` and `LICENCE_REMEDIATION.md`.
+**Provenance & licensing:** 119,345 PMC-sourced + 1,888 Chemotion/RADAR4Chem. Per-article Europe PMC join stamps `license` / `license_pool` on every row (`scripts/join_pmc_licences.py`). **Commercial training / Zenodo primary = `commercial` config (88,545), CC-BY-4.0 packaging.** The card `license` list is `cc-by-4.0` (commercial packaging) and `cc-by-sa-4.0` (ShareAlike file). NC* and ND files are separate stamped pools and are not covered by the CC-BY-4.0 packaging. See `NOTICE` and `LICENCE_REMEDIATION.md`.
 
 **Companion benchmark:** [IRSpectra-Bench](https://github.com/IlkhamFY/spectro-agent/blob/main/docs/LEADERBOARD.md) — 194 blind elucidation problems built from IRexp; score submissions with `scripts/score_submission.py`.
 
@@ -64,7 +72,7 @@ IRexp is the largest **openly redistributable** collection of **experimental inf
 ```python
 from datasets import load_dataset
 
-# Structure-linked corpus (57,646 records; filter license_pool for commercial use)
+# Structure-linked research split (57,646; multi-licence — filter license_pool)
 ds = load_dataset("ilkhamfy/IRexp", "resolved", split="train")
 
 # Preferred redistributable commercial pool
@@ -87,6 +95,8 @@ ds = load_dataset("ilkhamfy/IRexp", data_files="data/train_no_bench.jsonl.gz", s
 ```
 
 ## Record schema
+
+`id` is a unique stable internal record identifier. The example below is a resolved row and sets `id` to that row's InChIKey; that is a convenience for the example. InChIKey is stored in `inchikey` and is not unique across structure-linked records (57,646 records; 54,985 InChIKeys). `source_doi` is a source identifier: a PMC accession (`PMC:…`) or a DOI, not always a DOI. `ir_shared_in_paper` and `ir_table_flatten_suspect` exist on the commercial dataset of record only.
 
 Each JSONL row:
 
@@ -112,8 +122,8 @@ Each JSONL row:
 
 | Use case | File | Benchmark overlap |
 |---|---|---|
-| Pretrain IR encoder | `pretrain_ir.jsonl.gz` or all `ir_bands_cm-1` | N/A (mostly unlabeled) |
-| Supervised IR→structure | `train_no_bench.jsonl.gz` | **None** (248 IK-14 held out) |
+| Pretrain IR encoder | commercial DoR, or `pretrain_ir.jsonl.gz` (multi-licence research split) | N/A (mostly unlabeled) |
+| Supervised IR→structure | commercial DoR; `train_no_bench.jsonl.gz` is the multi-licence holdout split | **None** on that split (248 IK-14 held out) |
 | Evaluate elucidation | [IRSpectra-Bench](https://github.com/IlkhamFY/spectro-agent/blob/main/docs/LEADERBOARD.md) | — |
 | ⚠️ Legacy split | `irexp_release/train.jsonl.gz` | **117/200 IK-14 overlap** — do not use for benchmark evaluation |
 
@@ -126,9 +136,9 @@ python scripts/build_train_no_bench.py --require-nmr  # 32,949 rows (H+C require
 
 ## Limitations (read before citing)
 
-- **Band lists, not spectra** — median 9 bands (PMC) vs 39 (Chemotion peak-picked).
+- **Band lists, not spectra** — median 9 bands (PMC) vs 39 (Chemotion).
 - **Literature-transcribed** — heterogeneous labs/instruments; not raw `.jdx` files.
-- **Structure resolution 35%** of all records; use `irexp_resolved` for supervised tasks.
+- **Structure resolution 47.5%** of the research corpus (57,646 / 121,233); supervised structure tasks need a structure-linked subset of a stamped-licence pool.
 - **Extraction recall** of IR strings per paper not yet human-audited (transcription fidelity audited: 560/560 bands on n=60).
 
 ## Citation
