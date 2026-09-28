@@ -2,6 +2,8 @@
 
 Internal tracking for pre-submit editorial / M6 cleanups. Postcard root stays clean; this file lives under `docs/`.
 
+**Live counts (Hub rev `fc238e3`):** the dataset of record is **88,519**. Where this checklist still prints 88,545, that figure is the research-corpus commercial stamp and the earlier Zenodo snapshot (10.5281/zenodo.22822285), not the current Hub file.
+
 ## Done in release v0.15 (prose / structure; numbers unchanged)
 
 | Item | Status | Notes |
@@ -23,9 +25,9 @@ Internal tracking for pre-submit editorial / M6 cleanups. Postcard root stays cl
 | Item | Status | Notes |
 |---|---|---|
 | Cite HF revision after F1 commercial publish | **Superseded (v0.24)** | Pin Hub revision `8db58466e3ddfd2fbe09bd47fdd5eb4cfc3e1975` in Access + Data Availability (was `2fb44992…`). |
-| Sci Data dataset of record = commercial 88,545 | **Done (v0.24 counts)** | Commercial CC-BY/CC0 DoR (n=88,545) with F2/F3 flags `ir_shared_in_paper`, `ir_table_flatten_suspect` (flag-only). Companion Hub configs: `resolved_commercial` 28,899; `train_no_bench_commercial` **28,753** (⊆ resolved; 29,111 was wrong). |
+| Sci Data dataset of record = commercial 88,545 | **Superseded** | v0.24 Hub file was 88,545. Live Hub DoR is 88,519 (rev `fc238e3`). 88,545 remains the research-corpus commercial stamp and the Zenodo snapshot 10.5281/zenodo.22822285. |
 | F1 thousands-separator note | **Done** | Note spectro-agent F1 fix + band reparse; commercial pool size unchanged vs pre-F1 stamp. |
-| Full multi-licence vs commercial DoR | **Done** | Keep paper-wide 121,233 methodology headlines; state clearly that Sci Data / commercial redistribution uses the 88,545 commercial deposit while full multi-licence corpus remains construction reference. |
+| Full multi-licence vs commercial DoR | **Done** | Keep paper-wide 121,233 methodology headlines. Live Sci Data redistribution is the 88,519 Hub file (rev `fc238e3`). 88,545 is the research-corpus commercial stamp and the earlier Zenodo snapshot. |
 | Zenodo DOI | **Minted later (data-only)** | v0.16 left the archival DOI unminted. Data-only version DOI is now https://doi.org/10.5281/zenodo.22822285 (commercial CC-BY/CC0 pool). No software DOI is claimed. |
 | Headline counts 121,233 | **Untouched** | No paper-wide rebuild of full-corpus headlines in v0.16. |
 | Figure binaries | **Untouched** | No PDF/PNG regeneration in v0.16. |

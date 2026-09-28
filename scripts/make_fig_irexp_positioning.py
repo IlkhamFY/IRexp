@@ -19,10 +19,12 @@ ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "figures"
 OUT.mkdir(parents=True, exist_ok=True)
 
-# Frozen release counts (data/irexp_stats.json / manuscript caption)
+# Frozen release counts (data/irexp_stats.json / manuscript caption).
+# N_COMM is the public Hub dataset of record (rev fc238e3), not the
+# research-corpus commercial stamp (88,545) or the earlier Zenodo snapshot.
 N_ALL = 121_233
 N_STRUCT = 57_646
-N_COMM = 88_545
+N_COMM = 88_519
 SDBS = 54_100
 NIST = 17_000
 ZIPOLI = 177_461

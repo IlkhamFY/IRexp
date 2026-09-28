@@ -23,7 +23,7 @@ Critical submit blockers below are done. Optional human checks remain open. Do n
 
 ## Already done (agent) — do not redo unless counts drift
 
-- Crossref empty-licence recovery → commercial **88,545**
+- Crossref empty-licence recovery → research-corpus commercial stamp **88,545** (earlier Zenodo snapshot). Live Hub DoR is **88,519** (revision `fc238e3b600f556045bc9a3f7a37738734620cd8`)
 - HF remirror (`scripts/publish_hf.py`, 2026-08-27)
 - Overview figure `figures/fig_irexp_overview.pdf`
 - Dual-publication fence + honest Data/Code Availability placeholders
