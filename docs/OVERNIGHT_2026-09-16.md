@@ -2,6 +2,8 @@
 
 Point-fixes only. No figure redesign. No invented ORCID, Zenodo DOI, or Rudra scores.
 
+**Superseded for the live dataset of record:** Hub revision `fc238e3b600f556045bc9a3f7a37738734620cd8` is 88,519. 88,545 in this note is the research-corpus commercial stamp and the earlier Zenodo snapshot, not the current Hub file.
+
 Started from `origin/main` at **v0.36** (`bd11755`).
 
 ## Locked facts re-checked (do not regress)
@@ -11,7 +13,7 @@ Started from `origin/main` at **v0.36** (`bd11755`).
 | Sci Data primary; JCIM App Notes backup only | Unchanged (no JCIM targeting in manuscript) |
 | Fig.~2 = locked H (`fig_pipe.png` / HF+Zenodo, Cleaning rules, 350–4000, Automated QC) | Caption already 350–4000 / HF~+~Zenodo; **binaries untouched** |
 | Human audit 161/200 scored on commercial DoR; 39 NC/SA intentionally unscored | Abstract, TV, Limitations, cover letter agree |
-| Construction *n* = 121,233; commercial DoR 88,545 on HF `ilkhamfy/IRexp` | Abstract, Background, Data Records, DAS, cover letter agree |
+| Construction *n* = 121,233; that night’s HF commercial file was 88,545 | Agreed in TeX on 2026-09-16. Live Hub DoR is now 88,519 (rev `fc238e3`); 88,545 is the research-corpus stamp / prior Zenodo snapshot |
 | AccelD Grant #596133-2025 | `\section*{Funding}` + cover letter |
 | Cover letter: McMaster letterhead, Rodrigo / `vargashr@mcmaster.ca` | Unchanged sign-off |
 | Archival / Zenodo DOI | Data-only version DOI https://doi.org/10.5281/zenodo.22822285 (commercial CC-BY/CC0 pool). No software DOI claimed. |

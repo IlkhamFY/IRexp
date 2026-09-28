@@ -32,6 +32,8 @@ PMC Open Access is **not** uniformly CC-BY. A prior blanket CC-BY claim (~19% NC
 
 ## Counts (Europe PMC join + Crossref recovery, 2026-08-27)
 
+These are research-corpus licence stamps. Commercial **88,545** is that stamp (and the earlier Zenodo snapshot). The live Hub dataset of record is **88,519** (revision `fc238e3b600f556045bc9a3f7a37738734620cd8`).
+
 ### Records (n = 121,233)
 
 | Pool | Records | % of corpus |
@@ -81,7 +83,7 @@ Provenance totals unchanged: **119,345** PMC-sourced + **1,888** Chemotion.
 | `data/irexp/irexp.jsonl.gz` | Full corpus **with** `license*` fields |
 | `data/irexp/pmc_licence_lookup.jsonl.gz` | Per-PMCID cache |
 | `data/irexp/pmc_licence_summary.json` | Machine-readable counts |
-| `data/irexp/licence_pools/irexp_commercial.jsonl.gz` | Zenodo primary (88,545) |
+| `data/irexp/licence_pools/irexp_commercial.jsonl.gz` | Research-corpus commercial stamp and earlier Zenodo snapshot (88,545); not Hub rev `fc238e3` (live DoR 88,519) |
 | `data/irexp/licence_pools/irexp_non_commercial.jsonl.gz` | NC held aside |
 | `data/irexp/licence_pools/irexp_sharealike.jsonl.gz` | Chemotion + PMC SA |
 | `data/irexp/licence_pools/irexp_empty_unknown.jsonl.gz` | Excluded from commercial |
@@ -98,7 +100,7 @@ python scripts/split_license_pools.py        # report
 
 Public dataset: https://huggingface.co/datasets/ilkhamfy/IRexp  
 
-**Status (2026-08-27):** remirrored after Crossref recovery — Hub card + pools show commercial **88,545** / NC **21,823** / empty **8,963** / SA **1,897**. Re-run only if local stamps drift again:
+**Status (2026-08-27):** remirrored after Crossref recovery — that Hub card showed commercial **88,545** / NC **21,823** / empty **8,963** / SA **1,897**. **88,545** is the research-corpus commercial stamp (and the earlier Zenodo snapshot https://doi.org/10.5281/zenodo.22822285). The live Hub dataset of record is revision `fc238e3b600f556045bc9a3f7a37738734620cd8`: commercial **88,519** after the ≥3-band filter was reapplied (26 stamp rows removed). Re-run only if local stamps drift again:
 
 ```bash
 # Preferred: repo helper (requires HF_TOKEN)
