@@ -21,9 +21,11 @@ Full redistributable dumps are **not** stored in this manuscript repository (siz
 - `NOTICE` — redistribution / licence policy
 - `README_HF.md` — Hugging Face dataset card source
 - `README_RELEASE.md` — release split notes
+- `seen_papers.txt.gz` — 188,016 PMC IDs scanned at harvest (not a Hub file)
+- `structure_nmr_quarantine.jsonl.gz` — 1,882 diagnostic quarantine IDs (not a Hub file)
 
-## Primary Sci Data / Zenodo file (upload separately)
+## Public Hugging Face files (revision `fc238e3b600f556045bc9a3f7a37738734620cd8`)
 
-`irexp_commercial.jsonl.gz` — **88,545** CC-BY/CC0 records (`license_pool=commercial`).
+`irexp_commercial.jsonl.gz` — **88,519** CC-BY/CC0 records (dataset of record). `irexp_resolved_commercial.jsonl.gz` — **29,255**. `train_no_bench_commercial.jsonl.gz` — **29,109**. Companions on the same revision: ShareAlike **1,897**, non-commercial **21,823**. Public downloadable total **112,239**.
 
-Companion ShareAlike file and NC*/empty pools are documented in `LICENCE_REMEDIATION.md` and `ZENODO_DATA_ONLY_CHECKLIST.md`.
+The research corpus remains **121,233**. About **8,994** rows are withheld (empty/unknown licence 8,963, ND 5 with release deferred, and 26 commercial-stamp rows removed by the reapplied ≥3-band filter). Zenodo https://doi.org/10.5281/zenodo.22822285 archives an earlier commercial snapshot (88,545), not this Hub revision.
