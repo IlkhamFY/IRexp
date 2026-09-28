@@ -28,18 +28,21 @@ Licence pools (record counts)
 | non_commercial (CC-BY-NC*) | 21,823 | Hub companion; excluded from the CC-BY dataset of record |
 | sharealike (Chemotion CC-BY-SA-4.0 + rare PMC CC-BY-SA) | 1,897 | Hub companion; honour ShareAlike; excluded from the CC-BY dataset of record |
 | empty_unknown (EMPTY / no EPMC hit) | 8,963 | **Excluded** from commercial Zenodo pool |
-| other (CC-BY-ND via Crossref recovery) | 5 | Held aside — `licence_pools/irexp_other.jsonl.gz` |
+| other (CC-BY-ND via Crossref recovery) | 5 | Hub companion `irexp_other.jsonl.gz`; excluded from the commercial DoR |
 
 Provenance (unchanged totals): PMC-sourced 119,345; Chemotion 1,888.
 Unique PMCIDs joined: 15,416. Research corpus total remains 121,233.
-Public downloadable total on Hub revision `fc238e3b600f556045bc9a3f7a37738734620cd8`:
+Public downloadable total of the commercial, ShareAlike, and non-commercial files
+on Hub revision `4312254c279300f881ad12671476e877027ed3da`:
 **112,239** = 88,519 commercial + 21,823 non-commercial + 1,897 ShareAlike.
-About **8,994** rows are withheld from that download: empty/unknown (8,963),
-ND (5; release deferred — those five rows were not released), and 26
-commercial-stamp rows dropped from the public file. Resolved commercial
-subset: 29,255. Train-no-bench commercial subset: 29,109.
-Zenodo https://doi.org/10.5281/zenodo.22822285 archives an earlier commercial
-snapshot (88,545) and is not this Hub revision.
+**8,994** rows lie outside those three files: empty/unknown (8,963),
+CC-BY-ND (5; Hub companion `irexp_other.jsonl.gz`, excluded from the commercial
+DoR *n* = 88,519), and 26 commercial-stamp rows dropped by the ≥3 re-filter.
+Resolved commercial subset: 29,255. Train-no-bench commercial subset: 29,109.
+Commercial *n* and band lists match Zenodo https://doi.org/10.5281/zenodo.23021932
+(revision `fc238e3b600f556045bc9a3f7a37738734620cd8`). An earlier version DOI
+(https://doi.org/10.5281/zenodo.22822285) archived the pre-clean commercial
+snapshot (88,545).
 See `docs/LICENCE_REMEDIATION.md`.
 
 Materialise pools
