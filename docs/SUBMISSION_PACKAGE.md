@@ -14,20 +14,20 @@
 | **Authors** | Ilkham Yabbarov\* (yabbaroi@mcmaster.ca; https://orcid.org/0009-0004-9393-9822); Rudra Sondhi (https://orcid.org/0009-0003-3034-7347); Rodrigo A. Vargas-Hernández\* (vargashr@mcmaster.ca; https://orcid.org/0000-0002-5559-6521) |
 | **Affiliations** | (1) Department of Chemistry and Chemical Biology, McMaster University, Hamilton, Ontario L8S 4L8, Canada; (2) Brockhouse Institute for Materials Research, McMaster University; (3) School of Computational Science and Engineering, McMaster University. \* corresponding |
 | **Signatory (cover)** | Rodrigo Vargas-Hernández \<vargashr@mcmaster.ca\> |
-| **Funding** | NSERC #596133-2025 (CREATE AccelD / Acceleration Consortium) |
-| **HF DoR** | `ilkhamfy/IRexp` revision `fc238e3b600f556045bc9a3f7a37738734620cd8` — commercial n=88,519; full corpus n=121,233; research-corpus commercial stamp n=88,545 |
-| **Zenodo version DOI** | https://doi.org/10.5281/zenodo.23021932 (this Hub revision, n=88,519). Earlier version DOI https://doi.org/10.5281/zenodo.22822285 archived the pre-clean snapshot (n=88,545). |
+| **Funding** | NSERC Discovery Grant No. RGPIN-2024-06594 and NSERC #596133-2025 (CREATE AccelD / Acceleration Consortium) |
+| **HF DoR** | `ilkhamfy/IRexp` revision `4312254c279300f881ad12671476e877027ed3da` — commercial n=88,519; full corpus n=121,233; research-corpus commercial stamp n=88,545 |
+| **Zenodo version DOI** | https://doi.org/10.5281/zenodo.23023528 (this Hub revision, n=88,519). Earlier version DOI https://doi.org/10.5281/zenodo.22822285 archived the pre-clean snapshot (n=88,545). |
 | **Zenodo concept DOI** | https://doi.org/10.5281/zenodo.22822284 |
 | **Main TeX** | `scientific_data.tex` |
 | **Cover TeX** | `cover_letter/cover_letter.tex` |
 
 ### Abstract (verbatim sense from TeX)
 
-IRexp is a redistributable collection of experimental infrared band lists (cm⁻¹ peak positions) mined from open chemistry literature, optionally with author-reported ¹H/¹³C NMR strings and resolved structures. The release holds 121,233 records (119,345 PMC Open Access Subset; 1,888 Chemotion/RADAR4Chem), including 57,646 structure-linked entries and 39,118 IR + ¹H + ¹³C + structure quadruples. IRexp stores numeric band lists, not absorbance traces; each record carries a source identifier and a stamped licence. The public dataset of record is the commercial CC-BY/CC0 pool of 88,519 records (research-corpus commercial stamp 88,545), archived on Zenodo at https://doi.org/10.5281/zenodo.23021932. Intended reuse is multimodal training, retrieval, and tool input for spectroscopic workflows that need structured, attributable experimental peak lists rather than paywalled PDFs or view-only archives. Technical validation covers automated transcription, harvest-path recall proxies, stratified automated consistency audits, full-corpus quarantine, and a stratified expert human band-list audit of 161 records on the commercial Hugging Face dataset of record. Complementary elucidation benchmarks are described in a companion research manuscript and are not analysed here.
+IRexp is a redistributable collection of experimental infrared band lists (cm⁻¹ peak positions) mined from open chemistry literature, optionally with author-reported ¹H/¹³C NMR strings and resolved structures. The release holds 121,233 records (119,345 PMC Open Access Subset; 1,888 Chemotion/RADAR4Chem), including 57,646 structure-linked entries and 39,118 IR + ¹H + ¹³C + structure quadruples. IRexp stores numeric band lists, not absorbance traces; each record carries a source identifier and a stamped licence. The public dataset of record is the commercial CC-BY/CC0 pool of 88,519 records (research-corpus commercial stamp 88,545), archived on Zenodo at https://doi.org/10.5281/zenodo.23023528. Intended reuse is multimodal training, retrieval, and tool input for spectroscopic workflows that need structured, attributable experimental peak lists rather than paywalled PDFs or view-only archives. Technical validation covers automated transcription, harvest-path recall proxies, stratified automated consistency audits, full-corpus quarantine, and a stratified expert human band-list audit of 161 records on the commercial Hugging Face dataset of record. Complementary elucidation benchmarks are described in a companion research manuscript and are not analysed here.
 
 ### Data availability (summary)
 
-- **Dataset of record:** commercial CC-BY/CC0 pool n=88,519 on Hugging Face `ilkhamfy/IRexp` (revision `fc238e3b600f556045bc9a3f7a37738734620cd8`). Zenodo https://doi.org/10.5281/zenodo.23021932 archives this Hub revision. An earlier version DOI (https://doi.org/10.5281/zenodo.22822285) archived the pre-clean snapshot (n=88,545).
+- **Dataset of record:** commercial CC-BY/CC0 pool n=88,519 on Hugging Face `ilkhamfy/IRexp` (revision `4312254c279300f881ad12671476e877027ed3da`). Zenodo https://doi.org/10.5281/zenodo.23023528 archives this Hub revision. An earlier version DOI (https://doi.org/10.5281/zenodo.22822285) archived the pre-clean snapshot (n=88,545).
 - **Full construction corpus:** n=121,233 (methodology reference; not the Sci Data commercial redistribution artefact)  
 - **Code:** https://github.com/IlkhamFY/spectro-agent (MIT)  
 - **Manuscript + manifests + figures:** https://github.com/IlkhamFY/IRexp — **keep public until after real submit** (Access § still cites it; do not hide GH now)
@@ -36,7 +36,7 @@ IRexp is a redistributable collection of experimental infrared band lists (cm⁻
 
 | Check | Status |
 |---|---|
-| Cover letter cites Zenodo version DOI `10.5281/zenodo.23021932` | ✓ |
+| Cover letter cites Zenodo version DOI `10.5281/zenodo.23023528` | ✓ |
 | Cover letter has **no** “not yet minted” for the **data** DOI | ✓ |
 | Manuscript Data Availability cites same Zenodo version DOI | ✓ |
 | Manuscript Code Availability software-DOI hedge (“archival software DOI … not yet minted”) | ✓ intentional — leave as-is |
@@ -72,8 +72,8 @@ Also see: `docs/HUMAN_SUBMISSION_CHECKLIST.md`, `docs/ZENODO_DATA_ONLY_CHECKLIST
 | Affiliations | McMaster University — Chemistry & Chemical Biology; Brockhouse Institute for Materials Research; School of Computational Science and Engineering (Hamilton, ON, Canada) |
 | Abstract | (paste from TeX abstract above) |
 | Keywords | infrared spectroscopy, band lists, peak lists, PMC Open Access, Chemotion, FAIR data, licence pools, data descriptor |
-| Funding | NSERC 596133-2025 (CREATE for Accelerated Discovery, AccelD), Acceleration Consortium |
-| Data availability | HF `ilkhamfy/IRexp` revision `fc238e3` (commercial DoR n=88,519); Zenodo https://doi.org/10.5281/zenodo.23021932 (this Hub revision); full corpus n=121,233 described in manuscript; code `IlkhamFY/spectro-agent`; manuscript repo `IlkhamFY/IRexp` |
+| Funding | NSERC Discovery Grant No. RGPIN-2024-06594 and NSERC 596133-2025 (CREATE for Accelerated Discovery, AccelD), Acceleration Consortium |
+| Data availability | HF `ilkhamfy/IRexp` revision `4312254` (commercial DoR n=88,519); Zenodo https://doi.org/10.5281/zenodo.23023528 (this Hub revision); full corpus n=121,233 described in manuscript; code `IlkhamFY/spectro-agent`; manuscript repo `IlkhamFY/IRexp` |
 | Upload files | Manuscript PDF (from Overleaf); optional SI if any; do **not** upload bulk JSONL |
 | Cover letter | Not required by ChemRxiv typically — keep Sci Data cover for journal portal |
 | License | Follow ChemRxiv default CC-BY (confirm at upload) |
@@ -92,8 +92,8 @@ Also see: `docs/HUMAN_SUBMISSION_CHECKLIST.md`, `docs/ZENODO_DATA_ONLY_CHECKLIST
 | Corresponding | yabbaroi@mcmaster.ca; vargashr@mcmaster.ca |
 | Cover letter | Export from `cover_letter/cover_letter.tex` (signatory Rodrigo Vargas-Hernández) |
 | Abstract | (from TeX) |
-| Funding | NSERC #596133-2025 (CREATE AccelD / Acceleration Consortium) |
-| Data DOI | https://doi.org/10.5281/zenodo.23021932 (concept 10.5281/zenodo.22822284) |
+| Funding | NSERC Discovery Grant No. RGPIN-2024-06594 and NSERC #596133-2025 (CREATE AccelD / Acceleration Consortium) |
+| Data DOI | https://doi.org/10.5281/zenodo.23023528 (concept 10.5281/zenodo.22822284) |
 | Code | https://github.com/IlkhamFY/spectro-agent |
 | Manuscript repo | https://github.com/IlkhamFY/IRexp (**public at submit time**) |
 | HF dataset | https://huggingface.co/datasets/ilkhamfy/IRexp |

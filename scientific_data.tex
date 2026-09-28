@@ -644,14 +644,14 @@ is not deposited here.
         \texttt{data/seen\_papers.txt.gz} and
         \texttt{data/structure\_nmr\_quarantine.jsonl.gz} are in this repository.
         \texttt{ir\_harvest\_snapshot.jsonl.gz} is not deposited here.
-  \item Zenodo archival deposit of the commercial dataset of record
-        ($n=88{,}519$; band lists match revision
-        \texttt{fc238e3b600f556045bc9a3f7a37738734620cd8}):
-        \url{https://doi.org/10.5281/zenodo.23021932}.
-        Hub revision \texttt{4312254c279300f881ad12671476e877027ed3da}
-        sets \texttt{has\_structure} true when SMILES is present, names the
-        non-commercial companion on the dataset card, and adds the CC-BY-ND
-        companion. It does not change that commercial count or those band lists.
+  \item Zenodo archival deposit of this Hub revision
+        (\texttt{4312254c279300f881ad12671476e877027ed3da}; commercial
+        $n=88{,}519$):
+        \url{https://doi.org/10.5281/zenodo.23023528}
+        (concept DOI \url{https://doi.org/10.5281/zenodo.22822284}).
+        The same revision sets \texttt{has\_structure} true when SMILES is
+        present, names the non-commercial companion on the dataset card, and
+        adds the CC-BY-ND companion.
   \item This Data Descriptor, manifests, and figures:
         \url{https://github.com/IlkhamFY/IRexp}
   \item Harvest / pipeline code: \url{https://github.com/IlkhamFY/spectro-agent}
@@ -671,7 +671,7 @@ Transcription, recall-proxy, and consistency audits are reported side by side.
 PRE is the multi-licence research release (PMC pool 119,345; 15,416 PMCIDs;
 chemist strata include Chemotion and other licences).
 POST repeats the same scripts, seeds, and sample sizes on the commercial
-dataset of record (Hub revision \texttt{fc238e3}, $n=88{,}519$), which carries
+dataset of record (Hub revision \texttt{4312254}, $n=88{,}519$), which carries
 the thousands-separator repair.
 The pools differ, so each pair is a side-by-side description, not a paired
 difference.
@@ -689,7 +689,7 @@ PRE: 2,250/2,261 bands (0.9951) and 196/200 records fully confirmed.
 The four incomplete records (PMCIDs 5713685, 4189708, 12202350, 6259152) missed
 11 bands total on re-fetch match --- consistent with plain-text / formatting
 drift between harvest and Europe PMC re-fetch, not wholesale hallucination.
-POST (commercial DoR, Hub \texttt{fc238e3}, $n=88{,}519$): 2,117/2,119 bands
+POST (commercial DoR, Hub \texttt{4312254}, $n=88{,}519$): 2,117/2,119 bands
 (0.9991) and 199/200 records fully confirmed.
 One incomplete record (PMC6835751) missed two bands.
 This bounds automated transcription error (mis-parsed or unit-mangled values).
@@ -710,13 +710,12 @@ On that PRE re-extract, 811 of 871 IR lists matched a released list (0.9311);
 18/120 papers yielded \emph{extra} re-extracted lists relative to the curated
 release (parser over-fire vs post-harvest dedup/curation, not missed released
 compounds).
-POST (commercial DoR): list-level recall proxy 0.9160 (981/1,071);
-released bands in the re-extract 0.9286 (11,518/12,404);
-107/120 papers recovered every released list (0.8917).
-POST compares repaired DoR bands to unrepaired \texttt{extract\_records}
-output.
-Lower list and band overlap is expected and does not contradict the improved
-transcription fidelity above.
+POST (commercial DoR, Hub \texttt{4312254}, $n=88{,}519$; re-extract with
+spectro-agent v0.1.0): list-level recall proxy 0.9739 (1,043/1,071);
+released bands in the re-extract 0.9781 (12,132/12,404);
+118/120 papers recovered every released list (0.9833).
+Residual misses are concentrated in two PMCIDs (segmenter/\texttt{\_IR\_RE}
+gaps, not thousands separators).
 This automatic proxy does not replace expert human recall.
 
 \subsection{Stratified automated consistency audit}
@@ -736,7 +735,7 @@ structure-linked commercial rows and 98 IR-only rows.
 \caption{Automated consistency audit ($n=280$, seed~0).
 PRE uses the multi-licence research release.
 POST uses the commercial dataset of record
-(Hub \texttt{fc238e3}, $n=88{,}519$).}\label{tab:consistency}
+(Hub \texttt{4312254}, $n=88{,}519$).}\label{tab:consistency}
 \small
 \begin{tabular}{@{}lrrr@{}}
 \toprule
@@ -882,7 +881,7 @@ Row counts are in \texttt{data/f1\_commercial\_build\_stats.json}.
         ($\sim$3.3\% of structure-linked rows) unless a noisier training set
         is intentional.
         That list is on the Zenodo deposit
-        (\url{https://doi.org/10.5281/zenodo.23021932}) and is not a Hub file.
+        (\url{https://doi.org/10.5281/zenodo.23023528}) and is not a Hub file.
   \item \textbf{Training without benchmark leakage.} If holding out structures used
         in a complementary elucidation benchmark, withhold those InChIKeys.
         \texttt{train\_no\_bench.jsonl.gz} is the multi-licence research split
@@ -980,9 +979,7 @@ commercial file with the commercial QC columns
 rows with non-empty SMILES) and
 \texttt{data/train\_no\_bench\_commercial.jsonl.gz} ($n=29{,}109$; a subset of
 that file).
-The commercial count remains $n=88{,}519$, and its band lists match Zenodo
-\url{https://doi.org/10.5281/zenodo.23021932} (revision
-\texttt{fc238e3b600f556045bc9a3f7a37738734620cd8}).
+The commercial count remains $n=88{,}519$.
 The same Hub revision sets \texttt{has\_structure} true when SMILES is present,
 names the non-commercial companion on the dataset card, and deposits
 \texttt{data/irexp\_sharealike.jsonl.gz} (1,897; CC-BY-SA-4.0),
@@ -998,8 +995,9 @@ Section~\ref{sec:datarecords} and is not a Hub file.
 8,994 rows lie outside the commercial, ShareAlike, and non-commercial files
 (8,963 empty/unknown $+$ 5 CC-BY-ND $+$ 26 rows with fewer than three bands).
 The five CC-BY-ND rows are the Hub \texttt{irexp\_other} companion.
-The Zenodo deposit archives the commercial file at the \texttt{fc238e3} band
-lists.
+Zenodo version DOI \url{https://doi.org/10.5281/zenodo.23023528}
+(concept DOI \url{https://doi.org/10.5281/zenodo.22822284}) archives this
+Hub revision (commercial $n=88{,}519$).
 An earlier version DOI (\url{https://doi.org/10.5281/zenodo.22822285})
 archived the pre-clean commercial snapshot (88,545).
 % GitHub \url{https://github.com/IlkhamFY/IRexp} holds this manuscript, frozen count
@@ -1011,8 +1009,10 @@ archived the pre-clean commercial snapshot (88,545).
   \item \textbf{Dataset of record}:
         \begin{itemize}
             \item Hugging Face Datasets, \url{https://huggingface.co/datasets/ilkhamfy/IRexp}, revision \texttt{4312254c279300f881ad12671476e877027ed3da}.
-                  Commercial $n=88{,}519$ and its band lists match Zenodo revision \texttt{fc238e3b600f556045bc9a3f7a37738734620cd8}.
-            \item Zenodo: \url{https://doi.org/10.5281/zenodo.23021932}.
+                  Commercial $n=88{,}519$.
+            \item Zenodo: \url{https://doi.org/10.5281/zenodo.23023528}
+                  (concept DOI \url{https://doi.org/10.5281/zenodo.22822284}),
+                  archiving this Hub revision.
         \end{itemize}
   % \item Manuscript, frozen count manifests, and figures:
         % \url{https://github.com/IlkhamFY/IRexp}
@@ -1020,7 +1020,7 @@ archived the pre-clean commercial snapshot (88,545).
         (Section~\ref{sec:codeavail})
    \item \textbf{License:}
     \begin{itemize}
-          \item Commercial DoR (Hugging Face commercial file and Zenodo \url{https://doi.org/10.5281/zenodo.23021932}): CC-BY-4.0 packaging, with per-record source licences still stamped.
+          \item Commercial DoR (Hugging Face commercial file and Zenodo \url{https://doi.org/10.5281/zenodo.23023528}): CC-BY-4.0 packaging, with per-record source licences still stamped.
           \item ShareAlike companion on the same Hub revision (1,897; Chemotion 1,888 plus rare PMC ShareAlike): CC-BY-SA-4.0~\citep{chemotion2024}.
                 This file is excluded from the CC-BY dataset of record.
           \item Non-commercial companion on the same Hub revision (21,823; NC*): excluded from the CC-BY dataset of record.

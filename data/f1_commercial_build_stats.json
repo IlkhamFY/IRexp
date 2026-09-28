@@ -1,7 +1,7 @@
 {
   "source": "https://huggingface.co/datasets/ilkhamfy/IRexp/resolve/fc238e3b600f556045bc9a3f7a37738734620cd8/data/f1_commercial_build_stats.json",
   "hub_revision": "fc238e3b600f556045bc9a3f7a37738734620cd8",
-  "note": "Mirrored from Hub revision fc238e3. Flag integers below were counted from irexp_commercial.jsonl.gz on that revision; the Hub JSON body does not repeat them. F2/F3 are flag-only; rows not dropped.",
+  "note": "Flag integers below were counted from irexp_commercial.jsonl.gz on separator-repair revision fc238e3 (not the archival pin). The Hub JSON body does not repeat them. F2/F3 are flag-only; rows not dropped. Archival Hub revision is 4312254c279300f881ad12671476e877027ed3da (Zenodo 10.5281/zenodo.23023528).",
   "commercial": {
     "label": "commercial",
     "n_commercial": 88519,
