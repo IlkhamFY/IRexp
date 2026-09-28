@@ -304,27 +304,7 @@ AIST SDBS (view-only; no bulk export)~\citep{sdbs}. NIST Chemistry WebBook gas-p
 \begin{figure}[tbp]
 \centering
 \includegraphics[width=\textwidth]{fig_irexp_pipeline.pdf}
-\caption{Construction, construction filters, and diagnostic checks.
-\textbf{(A)}~188,016 PMC Open Access identifiers scanned; regex extraction of IR
-band lists and co-reported NMR strings; OPSIN/RDKit structure resolution;
-Europe PMC licence join with Crossref recovery; segregation into licence
-pools as shown.
-The Hugging Face dataset of record and the Zenodo primary file are the commercial
-pool (archival version DOI \url{https://doi.org/10.5281/zenodo.22822285}).
-ShareAlike and non-commercial files on the same Hub repository are separate
-licence-bound companions.
-Construction filters: band count $\geq$3 and wavenumbers in
-350--4000\,cm$^{-1}$.
-Formula--NMR physics checks ($^{1}$H integral sum $\leq$ formula hydrogen count
-$+2$; $^{13}$C peak count $\leq$ carbon count) are post-hoc diagnostic
-quarantine flags.
-They are not hard harvest filters and do not drop release rows
-(Technical Validation).
-Release: 121,233 band lists / 57,646 structure-linked.
-\textbf{(B)}~Representative automated checks (failures marked in red).
-IR-range and band-count failures can reflect construction filters.
-Formula--NMR physics failures are diagnostic quarantine flags, not construction
-rejections.}
+\caption{Construction and diagnostic checks. (A)~PMC Open Access harvest, regex IR/NMR extraction, structure resolution, licence join, and segregation into pools; the Hugging Face / Zenodo dataset of record is the commercial pool. Construction filters (band count $\geq$3; 350--4000\,cm$^{-1}$) gate release rows; formula--NMR physics checks are post-hoc quarantine flags only (Technical Validation). Release: 121,233 band lists / 57,646 structure-linked. (B)~Example automated checks (failures in red).}
 \label{fig:pipeline}
 \end{figure}
 
