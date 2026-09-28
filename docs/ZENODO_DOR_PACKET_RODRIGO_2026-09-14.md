@@ -1,6 +1,6 @@
 # IRexp Zenodo / DoR packet — for Rodrigo (one page)
 
-**Date:** 2026-09-14 · **Owner:** Ilkham · **Status:** minted — data-only version DOI https://doi.org/10.5281/zenodo.22822285 (commercial CC-BY/CC0 pool). No software DOI.
+**Date:** 2026-09-14 · **Owner:** Ilkham · **Status:** minted — data-only version DOI https://doi.org/10.5281/zenodo.22822285 archives the earlier commercial snapshot (n=88,545). The live Hub dataset of record is revision `fc238e3b600f556045bc9a3f7a37738734620cd8` (n=88,519). No software DOI.
 
 ## 1. What to mint
 
@@ -11,7 +11,7 @@ A **Zenodo archival deposit** that mirrors the **commercial dataset of record** 
 - **n = 88,545** CC-BY/CC0 commercial records with F2/F3 quality flags retained as fields (rows not dropped)  
 - Companion configs on the same revision: `resolved_commercial` (28,899), `train_no_bench_commercial` (28,753 ⊆ resolved)
 
-This is the Sci Data redistribution artifact. The full multi-licence corpus (n=121,233) stays the **methodology reference**, not the commercial DoR.
+This packet describes that earlier Zenodo snapshot (n=88,545; research-corpus commercial stamp), not the live Hub dataset of record (n=88,519, revision `fc238e3`). The full multi-licence corpus (n=121,233) stays the **methodology reference**.
 
 ## 2. Files / snapshot to upload
 
@@ -42,7 +42,7 @@ Do **not** invent filenames — if the Hub UI export is awkward, download the re
 2. Rudra Sondhi (McMaster; https://orcid.org/0009-0003-3034-7347)  
 3. Rodrigo A. Vargas-Hernández (McMaster; https://orcid.org/0000-0002-5559-6521) — corresponding  
 
-**Description (paste):** Redistributable experimental IR band lists (cm⁻¹ positions) mined from PMC Open Access and Chemotion. This archival deposit mirrors Hugging Face `ilkhamfy/IRexp` revision `8db58466…` (n=88,545 commercial CC-BY/CC0 records with F2/F3 flags). Full multi-licence construction corpus is described in the Scientific Data manuscript on GitHub `IlkhamFY/IRexp`.
+**Description (paste, this Zenodo snapshot):** Redistributable experimental IR band lists (cm⁻¹ positions) mined from PMC Open Access and Chemotion. This archival deposit mirrors the earlier Hugging Face `ilkhamfy/IRexp` revision `8db58466…` (n=88,545 commercial CC-BY/CC0 records with F2/F3 flags). It is not Hub revision `fc238e3` (live dataset of record, n=88,519). Full multi-licence construction corpus is described in the Scientific Data manuscript on GitHub `IlkhamFY/IRexp`.
 
 **Ack:** NSERC CREATE AccelD Grant #596133-2025.
 
