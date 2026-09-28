@@ -24,14 +24,23 @@ Licence pools (record counts)
 -----------------------------
 | Pool | Records | Redistribution policy |
 |---|---:|---|
-| **commercial** (CC0 + CC-BY) | **88,545** | Primary Sci Data / Zenodo redistributable artifact |
-| non_commercial (CC-BY-NC*) | 21,823 | Held aside — `licence_pools/irexp_non_commercial.jsonl.gz` |
-| sharealike (Chemotion CC-BY-SA-4.0 + rare PMC CC-BY-SA) | 1,897 | Separate SA file — honour ShareAlike |
+| **commercial** (CC0 + CC-BY) | **88,519** public file (stamp 88,545; 26 rows removed after the ≥3 re-filter) | Primary Sci Data Hub dataset of record (CC-BY-4.0 packaging) |
+| non_commercial (CC-BY-NC*) | 21,823 | Hub companion; excluded from the CC-BY dataset of record |
+| sharealike (Chemotion CC-BY-SA-4.0 + rare PMC CC-BY-SA) | 1,897 | Hub companion; honour ShareAlike; excluded from the CC-BY dataset of record |
 | empty_unknown (EMPTY / no EPMC hit) | 8,963 | **Excluded** from commercial Zenodo pool |
 | other (CC-BY-ND via Crossref recovery) | 5 | Held aside — `licence_pools/irexp_other.jsonl.gz` |
 
 Provenance (unchanged totals): PMC-sourced 119,345; Chemotion 1,888.
-Unique PMCIDs joined: 15,416. See `docs/scientific_data/LICENCE_REMEDIATION.md`.
+Unique PMCIDs joined: 15,416. Research corpus total remains 121,233.
+Public downloadable total on Hub revision `fc238e3b600f556045bc9a3f7a37738734620cd8`:
+**112,239** = 88,519 commercial + 21,823 non-commercial + 1,897 ShareAlike.
+About **8,994** rows are withheld from that download: empty/unknown (8,963),
+ND (5; release deferred — those five rows were not released), and 26
+commercial-stamp rows dropped from the public file. Resolved commercial
+subset: 29,255. Train-no-bench commercial subset: 29,109.
+Zenodo https://doi.org/10.5281/zenodo.22822285 archives an earlier commercial
+snapshot (88,545) and is not this Hub revision.
+See `docs/LICENCE_REMEDIATION.md`.
 
 Materialise pools
 -----------------

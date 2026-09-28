@@ -3,6 +3,7 @@ language:
   - en
 license:
   - cc-by-4.0
+  - cc-by-sa-4.0
 tags:
   - chemistry
   - spectroscopy
@@ -20,6 +21,10 @@ configs:
     data_files: data/irexp_resolved_commercial.jsonl.gz
   - config_name: train_no_bench_commercial
     data_files: data/train_no_bench_commercial.jsonl.gz
+  - config_name: sharealike
+    data_files: data/irexp_sharealike.jsonl.gz
+  - config_name: non_commercial
+    data_files: data/irexp_non_commercial.jsonl.gz
 ---
 
 # IRexp — experimental IR band lists (commercial dataset of record)
@@ -38,13 +43,15 @@ Files in this upload:
 
 | Config / file | Records | Description |
 |---|---:|---|
-| `commercial` / `irexp_commercial.jsonl.gz` | **88,545** | **Dataset of record.** CC-BY-4.0 packaging; per-record CC-BY/CC0 stamps. Zenodo primary file. |
-| `resolved_commercial` / `irexp_resolved_commercial.jsonl.gz` | 28,899 | Structure-linked commercial subset |
-| `train_no_bench_commercial` / `train_no_bench_commercial.jsonl.gz` | 28,753 | `resolved_commercial` with benchmark InChIKeys held out |
+| `commercial` / `irexp_commercial.jsonl.gz` | **88,519** | **Dataset of record.** CC-BY-4.0 packaging; per-record CC-BY/CC0 stamps. Hub revision `fc238e3b600f556045bc9a3f7a37738734620cd8`. |
+| `resolved_commercial` / `irexp_resolved_commercial.jsonl.gz` | 29,255 | Commercial rows with non-empty SMILES |
+| `train_no_bench_commercial` / `train_no_bench_commercial.jsonl.gz` | 29,109 | That subset with benchmark InChIKeys held out |
+| `sharealike` / `irexp_sharealike.jsonl.gz` | 1,897 | Companion; CC-BY-SA-4.0; excluded from the CC-BY dataset of record |
+| `non_commercial` / `irexp_non_commercial.jsonl.gz` | 21,823 | Companion; NC*; excluded from the CC-BY dataset of record |
 
-Retained for research and **not part of this public DoR upload**: non-commercial (NC*, 21,823), ShareAlike (1,897; Chemotion CC-BY-SA-4.0 plus rare PMC SA), ND (5; CC-BY-ND), empty/unknown (8,963), and the full multi-licence file (`irexp.jsonl.gz`, 121,233).
+Public downloadable total: **112,239**. Retained for research and **not part of this upload**: ND (5; CC-BY-ND; release deferred), empty/unknown (8,963), and the full multi-licence file (`irexp.jsonl.gz`, 121,233). About 8,994 rows are withheld (those pools plus 26 commercial-stamp rows removed by the reapplied ≥3-band filter). Zenodo https://doi.org/10.5281/zenodo.22822285 archives an earlier commercial snapshot (88,545), not this revision.
 
-**Provenance:** 119,345 PMC-sourced + 1,888 Chemotion/RADAR4Chem. Per-article stamps (`license` / `license_pool`) are on every commercial row. The card `license` is `cc-by-4.0` for this commercial upload. ShareAlike and NC* source stamps apply to corpus pools that are not in this upload. See `NOTICE` and `LICENCE_REMEDIATION.md`.
+**Provenance:** 119,345 PMC-sourced + 1,888 Chemotion/RADAR4Chem. Per-article stamps (`license` / `license_pool`) are on every row. The card `license` is `cc-by-4.0` for the commercial dataset of record. ShareAlike and NC* companions stay under their source licences and are excluded from that pool. See `NOTICE` and `LICENCE_REMEDIATION.md`.
 
 **Zenodo:** data-only archival deposit of this commercial pool, https://doi.org/10.5281/zenodo.22822285.
 
@@ -53,19 +60,19 @@ Retained for research and **not part of this public DoR upload**: non-commercial
 ```python
 from datasets import load_dataset
 
-# Dataset of record (88,545 commercial rows)
+# Dataset of record (88,519 commercial rows)
 ds = load_dataset("ilkhamfy/IRexp", "commercial", split="train")
 
-# Structure-linked commercial subset (28,899)
+# Commercial rows with non-empty SMILES (29,255)
 res = load_dataset("ilkhamfy/IRexp", "resolved_commercial", split="train")
 
-# Commercial subset with benchmark InChIKeys held out (28,753)
+# That subset with benchmark InChIKeys held out (29,109)
 train = load_dataset("ilkhamfy/IRexp", "train_no_bench_commercial", split="train")
 ```
 
 ## Record schema
 
-`id` is a unique stable internal record identifier. InChIKey is stored in `inchikey` and is not unique across structure-linked records in the research corpus (57,646 records; 54,985 InChIKeys). `source_doi` is a source identifier: a PMC accession (`PMC:…`) or a DOI, not always a DOI. `ir_shared_in_paper` and `ir_table_flatten_suspect` are on the commercial dataset of record only (flag-only; rows not dropped).
+`id` is an opaque stable key (a mix of hashes and InChIKey-shaped strings), not a guaranteed molecule join key. InChIKey is stored in `inchikey` and is not unique across structure-linked records in the research corpus (57,646 records; 54,985 InChIKeys). `source_doi` is a source identifier: a PMC accession (`PMC:…`) or a DOI, not always a DOI. Non-commercial and ShareAlike rows use the core columns. The commercial file adds `ir_bands_old_cm-1`, `ir_shared_in_paper`, `ir_table_flatten_suspect`, `ir_refetch_confirmed`, and `ir_refetch_merged` (flag-only where boolean; rows not dropped).
 
 ```json
 {
@@ -94,7 +101,7 @@ The `id` in this row is an internal identifier, not an InChIKey. Some resolved r
 - **Band lists, not spectra** — median 9 bands (PMC) vs 39 (Chemotion).
 - **Literature-transcribed** — heterogeneous labs/instruments; not raw `.jdx` files.
 - **Structure resolution 47.5%** of the research corpus (57,646 / 121,233). Supervised structure tasks on this upload use `resolved_commercial`.
-- **This upload is the commercial pool only.** NC*, ShareAlike, ND, empty/unknown, and the full multi-licence dump are not here.
+- **Dataset of record is the commercial pool.** ShareAlike and NC* are companions on the same revision and are excluded from that pool. ND, empty/unknown, and the full multi-licence dump are not here.
 - **Extraction recall** of IR strings per paper is not a completed human audit (transcription fidelity: 560/560 bands on n=60).
 
 ## Links
