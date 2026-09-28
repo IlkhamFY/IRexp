@@ -38,8 +38,9 @@ About **8,994** rows are withheld from that download: empty/unknown (8,963),
 ND (5; release deferred — those five rows were not released), and 26
 commercial-stamp rows dropped from the public file. Resolved commercial
 subset: 29,255. Train-no-bench commercial subset: 29,109.
-Zenodo https://doi.org/10.5281/zenodo.22822285 archives an earlier commercial
-snapshot (88,545) and is not this Hub revision.
+Zenodo https://doi.org/10.5281/zenodo.23021932 archives this Hub revision
+(88,519). An earlier version DOI (https://doi.org/10.5281/zenodo.22822285)
+archived the pre-clean commercial snapshot (88,545).
 See `docs/LICENCE_REMEDIATION.md`.
 
 Materialise pools

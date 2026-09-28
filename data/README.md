@@ -9,7 +9,7 @@ Full redistributable dumps are **not** stored in this manuscript repository (siz
 | This manuscript + frozen manifests | https://github.com/IlkhamFY/IRexp (`data/` here is manifests only — no bulk JSONL) |
 | Hugging Face dataset (bulk JSONL) | https://huggingface.co/datasets/ilkhamfy/IRexp |
 | Harvest / pipeline code | https://github.com/IlkhamFY/spectro-agent |
-| Archival deposit | Zenodo data-only deposit of the commercial CC-BY/CC0 pool, https://doi.org/10.5281/zenodo.22822285 (`10.5281/zenodo.22822285`). See `ZENODO_DATA_ONLY_CHECKLIST.md` |
+| Archival deposit | Zenodo data-only deposit of this Hub revision (commercial *n* = 88,519), https://doi.org/10.5281/zenodo.23021932 (`10.5281/zenodo.23021932`; concept `10.5281/zenodo.22822284`). An earlier version DOI (`10.5281/zenodo.22822285`) archived the pre-clean snapshot (*n* = 88,545). See `ZENODO_DATA_ONLY_CHECKLIST.md` |
 
 ## Local manifests (this repo)
 
@@ -28,4 +28,4 @@ Full redistributable dumps are **not** stored in this manuscript repository (siz
 
 `irexp_commercial.jsonl.gz` — **88,519** CC-BY/CC0 records (dataset of record). `irexp_resolved_commercial.jsonl.gz` — **29,255**. `train_no_bench_commercial.jsonl.gz` — **29,109**. Companions on the same revision: ShareAlike **1,897**, non-commercial **21,823**. Public downloadable total **112,239**.
 
-The research corpus remains **121,233**. About **8,994** rows are withheld (empty/unknown licence 8,963, ND 5 with release deferred, and 26 commercial-stamp rows removed by the reapplied ≥3-band filter). Zenodo https://doi.org/10.5281/zenodo.22822285 archives an earlier commercial snapshot (88,545), not this Hub revision.
+The research corpus remains **121,233**. About **8,994** rows are withheld (empty/unknown licence 8,963, ND 5 with release deferred, and 26 commercial-stamp rows removed by the reapplied ≥3-band filter). Zenodo https://doi.org/10.5281/zenodo.23021932 archives this Hub revision (88,519). An earlier version DOI (https://doi.org/10.5281/zenodo.22822285) archived the pre-clean commercial snapshot (88,545).

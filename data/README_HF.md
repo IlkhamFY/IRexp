@@ -49,11 +49,11 @@ Files in this upload:
 | `sharealike` / `irexp_sharealike.jsonl.gz` | 1,897 | Companion; CC-BY-SA-4.0; excluded from the CC-BY dataset of record |
 | `non_commercial` / `irexp_non_commercial.jsonl.gz` | 21,823 | Companion; NC*; excluded from the CC-BY dataset of record |
 
-Public downloadable total: **112,239**. Retained for research and **not part of this upload**: ND (5; CC-BY-ND; release deferred), empty/unknown (8,963), and the full multi-licence file (`irexp.jsonl.gz`, 121,233). About 8,994 rows are withheld (those pools plus 26 commercial-stamp rows removed by the reapplied ≥3-band filter). Zenodo https://doi.org/10.5281/zenodo.22822285 archives an earlier commercial snapshot (88,545), not this revision.
+Public downloadable total: **112,239**. Retained for research and **not part of this upload**: ND (5; CC-BY-ND; release deferred), empty/unknown (8,963), and the full multi-licence file (`irexp.jsonl.gz`, 121,233). About 8,994 rows are withheld (those pools plus 26 commercial-stamp rows removed by the reapplied ≥3-band filter). Zenodo https://doi.org/10.5281/zenodo.23021932 archives this revision (88,519). An earlier version DOI (https://doi.org/10.5281/zenodo.22822285) archived the pre-clean commercial snapshot (88,545).
 
 **Provenance:** 119,345 PMC-sourced + 1,888 Chemotion/RADAR4Chem. Per-article stamps (`license` / `license_pool`) are on every row. The card `license` is `cc-by-4.0` for the commercial dataset of record. ShareAlike and NC* companions stay under their source licences and are excluded from that pool. See `NOTICE` and `LICENCE_REMEDIATION.md`.
 
-**Zenodo:** data-only archival deposit of this commercial pool, https://doi.org/10.5281/zenodo.22822285.
+**Zenodo:** data-only archival deposit of this Hub revision (commercial *n* = 88,519), https://doi.org/10.5281/zenodo.23021932.
 
 ## Load
 
@@ -109,7 +109,7 @@ The `id` in this row is an internal identifier, not an InChIKey. Some resolved r
 - **Dataset (Hugging Face):** https://huggingface.co/datasets/ilkhamfy/IRexp
 - **Data Descriptor (paper + manifests):** https://github.com/IlkhamFY/IRexp
 - **Harvest / pipeline code:** https://github.com/IlkhamFY/spectro-agent
-- **Zenodo:** commercial pool, https://doi.org/10.5281/zenodo.22822285
+- **Zenodo:** this Hub revision (commercial *n* = 88,519), https://doi.org/10.5281/zenodo.23021932
 - **Licence details:** `NOTICE` / `LICENCE_REMEDIATION.md`
 
 When uploading to Hugging Face, this file is the repository `README.md`.
