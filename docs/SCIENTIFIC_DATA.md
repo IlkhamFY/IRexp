@@ -97,7 +97,7 @@ Where an IUPAC or systematic name is available, names are converted with OPSIN (
 | commercial (CC-BY + CC0) | **88,545** | Research-corpus stamp. Live Hub DoR is 88,519 (rev `fc238e3`), archived at Zenodo 10.5281/zenodo.23021932. Version DOI 10.5281/zenodo.22822285 is the earlier 88,545 snapshot |
 | non_commercial (CC-BY-NC*) | 21,823 | Corpus pool; not in the public Hub upload |
 | sharealike (Chemotion + rare PMC SA) | 1,897 | Corpus pool, CC-BY-SA-4.0; not in the public Hub upload |
-| other (CC-BY-ND) | 5 | Corpus pool; not in the public Hub upload |
+| other (CC-BY-ND) | 5 | Hub companion `irexp_other.jsonl.gz`; excluded from the commercial dataset of record |
 | empty_unknown | 8,963 | Corpus count; not in the public Hub upload |
 
 `scripts/join_pmc_licences.py` stamps every row; `scripts/split_license_pools.py` reports provenance (`pool_of`) and materialises pool files under `data/irexp/licence_pools/`. Narrative and policy: `docs/scientific_data/LICENCE_REMEDIATION.md`.
@@ -148,7 +148,7 @@ Paths relative to the project repository / Hugging Face mirror.
 | `train_no_bench_commercial.jsonl.gz` | 28,753 | Public Hub; commercial subset, benchmark InChIKeys held out |
 | `data/irexp/licence_pools/irexp_sharealike.jsonl.gz` | 1,897 | Corpus pool, CC-BY-SA-4.0; not in the public Hub upload |
 | `data/irexp/licence_pools/irexp_non_commercial.jsonl.gz` | 21,823 | Corpus pool, NC*; not in the public Hub upload |
-| `data/irexp/licence_pools/irexp_other.jsonl.gz` | 5 | Corpus pool, CC-BY-ND; not in the public Hub upload |
+| `irexp_other.jsonl.gz` | 5 | Public Hub companion; CC-BY-ND; excluded from the commercial dataset of record |
 | `data/irexp/licence_pools/irexp_empty_unknown.jsonl.gz` | 8,963 | Corpus count; not in the public Hub upload |
 
 **Composition of `irexp.jsonl.gz`:**
@@ -169,12 +169,12 @@ Paths relative to the project repository / Hugging Face mirror.
 | Pool file | Count | Notes |
 |---|---:|---|
 | `irexp_commercial.jsonl.gz` | **88,519** | Public Hub dataset of record (rev `fc238e3`); CC-BY-4.0 packaging; Zenodo 10.5281/zenodo.23021932. Research-corpus stamp 88,545 (earlier version DOI 10.5281/zenodo.22822285) |
-| `irexp_sharealike.jsonl.gz` | **1,897** | Corpus pool, CC-BY-SA-4.0; not in the public Hub upload |
-| `irexp_non_commercial.jsonl.gz` | **21,823** | Corpus pool, NC*; not in the public Hub upload |
-| `irexp_other.jsonl.gz` | **5** | Corpus pool, CC-BY-ND; not in the public Hub upload |
+| `irexp_sharealike.jsonl.gz` | **1,897** | Public Hub companion; CC-BY-SA-4.0; excluded from the CC-BY dataset of record |
+| `irexp_non_commercial.jsonl.gz` | **21,823** | Public Hub companion; NC*; excluded from the CC-BY dataset of record |
+| `irexp_other.jsonl.gz` | **5** | Public Hub companion; CC-BY-ND; excluded from the commercial dataset of record |
 | `irexp_empty_unknown.jsonl.gz` | **8,963** | Corpus count; not in the public Hub upload |
 
-The public Hugging Face upload is the commercial pool only, plus `irexp_resolved_commercial.jsonl.gz` (28,899) and `train_no_bench_commercial.jsonl.gz` (28,753). ShareAlike, NC*, ND, empty/unknown, and the multi-licence total are retained for research and are not part of that upload. Chemotion rows were schema-backfilled with `inchikey` / `has_structure` (2026-08-27).
+The public Hugging Face upload (revision `4312254c279300f881ad12671476e877027ed3da`) is the commercial pool (`n` = 88,519), plus `irexp_resolved_commercial.jsonl.gz` (29,255) and `train_no_bench_commercial.jsonl.gz` (29,109), with ShareAlike, non-commercial, and CC-BY-ND (`irexp_other.jsonl.gz`, 5) companions excluded from the commercial dataset of record. Commercial *n* and band lists match Zenodo 10.5281/zenodo.23021932 (revision `fc238e3`). Empty/unknown and the multi-licence total are not Hub files. 8,994 rows lie outside the commercial, ShareAlike, and non-commercial files (8,963 empty/unknown + 5 CC-BY-ND + 26 rows with fewer than three bands). Public Hub bands in those three files: 1,256,623, beside 1,360,866 in the full corpus.
 
 **Overview figure:** `docs/scientific_data/figures/fig_irexp_overview.pdf` (provenance / licence pools / composition cascade). See also positioning (`fig_irexp_positioning`), pipeline (`fig_irexp_pipeline`), and validation (`fig_irexp_validation`) figures — `FIGURE_DESIGN_BRIEF.md`.
 
@@ -229,9 +229,9 @@ Every band in the full 121,233-record release lies in **[350, 4000] cm⁻¹** (0
 ## Usage Notes
 
 - **Band lists ≠ spectra.** Do not evaluate models trained on IRexp as if they had seen full absorbance curves.
-- **Licence filter.** Public redistribution is the commercial dataset of record only (`irexp_commercial.jsonl.gz`, CC-BY-4.0 packaging). ShareAlike, NC*, and ND are corpus pools retained for research and are not in the public Hub upload. Do not relicence Chemotion/ShareAlike rows as CC-BY. The multi-licence total and the empty/unknown rows are not part of the public DoR upload. `source_doi` may hold a PMC accession (`PMC:…`) rather than a DOI.
+- **Licence filter.** Public redistribution of the dataset of record is the commercial file only (`irexp_commercial.jsonl.gz`, CC-BY-4.0 packaging). ShareAlike, NC*, and the CC-BY-ND `other` companion (5; `irexp_other.jsonl.gz`) are on the Hub and are excluded from that pool. Do not relicence Chemotion/ShareAlike rows as CC-BY. The multi-licence total and the empty/unknown rows are not Hub files. `source_doi` may hold a PMC accession (`PMC:…`) rather than a DOI.
 - **Separate pools by density and licence.** PMC (sparse) vs Chemotion (denser ELN lists). Higher median band count ≠ more complete vibrational assignment.
-- **Structure–NMR quarantine.** Before supervised training on `irexp_resolved`, **drop** IDs in `data/audit/structure_nmr_quarantine.jsonl.gz` by default (~3.3% of resolved rows) unless a noisier set is intentional.
+- **Structure–NMR quarantine.** Drop IDs in `structure_nmr_quarantine.jsonl.gz` by default before supervised structure or NMR training (~3.3% of structure-linked rows) unless a noisier set is intentional. The list is on Zenodo https://doi.org/10.5281/zenodo.23021932 and is not a Hub file.
 - **Training without benchmark leakage.** If using complementary IRSpectra-Bench problems, withhold those InChIKeys. `train_no_bench.jsonl.gz` is the multi-licence research split (rebuild with `scripts/build_train_no_bench.py`). Commercial training uses the commercial companion named in Data Availability. Protocol and model results live only in the companion manuscript.
 - **Structure coverage.** Supervised structure tasks need rows with SMILES; 52.5% of the research corpus lack SMILES. On the public Hub upload, use `resolved_commercial`.
 - **Attribution.** Cite this Data Descriptor and the archival version DOI https://doi.org/10.5281/zenodo.23021932, and attribute originating articles through each record’s `source_doi` (PMC accession or DOI).

@@ -405,12 +405,16 @@ enter the CC-BY dataset of record:
 \texttt{data/irexp\_sharealike.jsonl.gz} (1,897; Chemotion plus rare PMC
 ShareAlike; source licence CC-BY-SA-4.0) and
 \texttt{data/irexp\_non\_commercial.jsonl.gz} (21,823; NC*).
-The public downloadable total is 112,239 (88,519 $+$ 21,823 $+$ 1,897).
-ND (5; CC-BY-ND; release deferred) and empty/unknown (8,963) remain
-research-corpus counts and are not Hub files.
-About 8,994 research-corpus rows are withheld from that download: the
-empty/unknown and ND rows, plus 26 commercial-stamp rows removed when the
-$\geq$3 band filter was reapplied after the thousands-separator repair.
+The public downloadable total of the commercial, ShareAlike, and
+non-commercial files is 112,239 (88,519 $+$ 21,823 $+$ 1,897).
+\texttt{data/irexp\_other.jsonl.gz} (5; CC-BY-ND) is on the same Hub revision
+and is excluded from the commercial dataset of record ($n=88{,}519$).
+Empty/unknown (8,963) is not a Hub file.
+8,994 research-corpus rows lie outside the commercial, ShareAlike, and
+non-commercial files (8,963 empty/unknown $+$ 5 CC-BY-ND $+$ 26 rows with
+fewer than three bands).
+Those 26 rows are the commercial-stamp rows removed when the $\geq$3 band
+filter was reapplied after the thousands-separator repair.
 
 \subsection{Object definition}
 
@@ -512,18 +516,19 @@ appears in source text, PDFs, figures, or full article bodies.
 Bulk JSONL is \emph{not} stored in this manuscript repository.
 The public Hugging Face repository (\texttt{ilkhamfy/IRexp}, under \texttt{data/};
 revision in the Access subsection) holds the commercial dataset of record,
-two commercial subsets, and the ShareAlike and non-commercial companions
+two commercial subsets, and the ShareAlike, non-commercial, and CC-BY-ND
+companions
 (Table~\ref{tab:files}).
 The spectro-agent working tree keeps the research corpus, including the
-multi-licence total, the ND pool, and the empty/unknown pool, under
+multi-licence total and the empty/unknown pool, under
 \texttt{data/irexp/} and \texttt{data/irexp/licence\_pools/}.
 Frozen counts are mirrored here as \texttt{data/irexp\_stats.json}.
 
 \begin{table}[ht]
 \caption{IRexp files and licence-pool counts.
 The public Hugging Face repository (\texttt{data/}) holds the commercial dataset
-of record, two commercial subsets, and licence-bound ShareAlike and
-non-commercial companions.
+of record, two commercial subsets, and licence-bound ShareAlike,
+non-commercial, and CC-BY-ND companions.
 Those companions are excluded from the CC-BY dataset of record.
 Remaining rows are research-corpus counts and are not Hub files.}\label{tab:files}
 \scriptsize
@@ -537,13 +542,13 @@ File & Records & Description \\
 \texttt{data/train\_no\_bench\_commercial.jsonl.gz} & 29,109 & Public Hub; that subset, benchmark InChIKeys held out \\
 \texttt{data/irexp\_sharealike.jsonl.gz} & 1,897 & Public Hub companion; CC-BY-SA-4.0 (Chemotion and rare PMC ShareAlike); excluded from the CC-BY dataset of record \\
 \texttt{data/irexp\_non\_commercial.jsonl.gz} & 21,823 & Public Hub companion; NC*; excluded from the CC-BY dataset of record \\
+\texttt{data/irexp\_other.jsonl.gz} & 5 & Public Hub companion; CC-BY-ND; excluded from the CC-BY dataset of record \\
 \midrule
 \texttt{irexp.jsonl.gz} & 121,233 & Research-corpus total; not a Hub file \\
 \texttt{irexp\_resolved.jsonl.gz} & 57,646 & Research split (multi-licence); not a Hub file \\
 \texttt{train\_no\_bench.jsonl.gz} & 42,808 & Research split; benchmark InChIKeys held out; not a Hub file \\
 \texttt{train\_no\_bench\_nmr.jsonl.gz} & 32,949 & Same research split with both $^{1}$H and $^{13}$C; not a Hub file \\
 \texttt{pretrain\_ir.jsonl.gz} & 119,345 & PMC-only research pool; not a Hub file \\
-\texttt{irexp\_other.jsonl.gz} & 5 & Research-corpus pool, CC-BY-ND; not a Hub file \\
 \texttt{irexp\_empty\_unknown.jsonl.gz} & 8,963 & Research-corpus count; not a Hub file \\
 \bottomrule
 \end{tabular}
@@ -570,7 +575,9 @@ Structure-linked and quadruple totals are in the release-scope paragraph.
 nitrogen atoms per molecule, and carbonyl $\mathrm{C{=}O}$ count (RDKit: number
 of carbon--oxygen double bonds).
 \textbf{(f)}~Automated checks: transcription error ($n=200$), band recall and
-list match ($n=120$), stratified automated consistency-audit fails ($n=280$).}
+list match ($n=120$), stratified automated consistency-audit fails ($n=280$).
+Public Hub bands (commercial, ShareAlike, and non-commercial) number 1,256,623,
+beside 1,360,866 in the full corpus.}
 \label{fig:distribution}
 \end{figure}
 
@@ -582,16 +589,22 @@ public $\geq$3 re-filter, ShareAlike, non-commercial, ND, and empty/unknown)
 sum to 121,233 (Figure~\ref{fig:distribution}b).
 The public dataset of record is the 88,519-row commercial file, packaged under
 CC-BY-4.0 (Table~\ref{tab:files}).
-ShareAlike and non-commercial stamps are also deposited as separate Hub
-companions.
-ND release is deferred, and empty/unknown rows are not Hub files.
+ShareAlike, non-commercial, and CC-BY-ND stamps are also deposited as separate
+Hub companions.
+The CC-BY-ND file is excluded from the commercial dataset of record.
+Empty/unknown rows are not Hub files.
 
 Median bands: 9 (PMC), 39 (Chemotion).
-All 1,360,866 released IR band values fall inside 350--4000\,cm$^{-1}$
-(full-corpus range check; Fig.~\ref{fig:pipeline} construction filters).
+All 1,360,866 corpus IR band values fall inside 350--4000\,cm$^{-1}$
+(full-corpus range check; Fig.~\ref{fig:pipeline} construction filters;
+Fig.~\ref{fig:distribution}).
+The public Hub commercial, ShareAlike, and non-commercial files contain
+1,256,623 of those bands.
 \texttt{data/seen\_papers.txt.gz} (188,016 PMC IDs scanned) and
 \texttt{data/structure\_nmr\_quarantine.jsonl.gz} (1,882 IDs) are in this
 repository and are not Hub files.
+The quarantine list is also on the Zenodo deposit
+(Section~\ref{sec:usage}).
 \texttt{ir\_harvest\_snapshot.jsonl.gz} (134,893 intermediate harvest rows)
 is not deposited here.
 
@@ -600,7 +613,7 @@ is not deposited here.
 \begin{itemize}
   \item Public dataset of record, Hugging Face
         \url{https://huggingface.co/datasets/ilkhamfy/IRexp},
-        revision \texttt{fc238e3b600f556045bc9a3f7a37738734620cd8},
+        revision \texttt{4312254c279300f881ad12671476e877027ed3da},
         under \texttt{data/} (Table~\ref{tab:files}):
         \begin{itemize}
           \item \texttt{data/irexp\_commercial.jsonl.gz} (88,519): CC-BY-4.0 packaging,
@@ -616,18 +629,27 @@ is not deposited here.
           \item \texttt{data/irexp\_sharealike.jsonl.gz} (1,897): Chemotion plus
                 rare PMC ShareAlike; source licence CC-BY-SA-4.0.
           \item \texttt{data/irexp\_non\_commercial.jsonl.gz} (21,823): NC*.
+          \item \texttt{data/irexp\_other.jsonl.gz} (5): CC-BY-ND; excluded from
+                the commercial dataset of record ($n=88{,}519$).
         \end{itemize}
-        With the commercial file, the public downloadable total is 112,239.
+        With the commercial, ShareAlike, and non-commercial files, the public
+        downloadable total is 112,239.
   \item Research-corpus accounting, not deposited as Hub files:
-        the multi-licence total (121,233), ND (5; release deferred), and
-        empty/unknown (8,963).
-        About 8,994 rows are withheld from the public download
-        (Section~\ref{sec:datarecords}).
+        the multi-licence total (121,233) and empty/unknown (8,963).
+        8,994 rows lie outside the commercial, ShareAlike, and non-commercial
+        files (8,963 empty/unknown $+$ 5 CC-BY-ND $+$ 26 rows with fewer than
+        three bands; Section~\ref{sec:datarecords}).
         \texttt{data/seen\_papers.txt.gz} and
         \texttt{data/structure\_nmr\_quarantine.jsonl.gz} are in this repository.
         \texttt{ir\_harvest\_snapshot.jsonl.gz} is not deposited here.
-  \item Zenodo archival deposit of this Hub revision (commercial $n=88{,}519$):
+  \item Zenodo archival deposit of the commercial dataset of record
+        ($n=88{,}519$; band lists match revision
+        \texttt{fc238e3b600f556045bc9a3f7a37738734620cd8}):
         \url{https://doi.org/10.5281/zenodo.23021932}.
+        Hub revision \texttt{4312254c279300f881ad12671476e877027ed3da}
+        sets \texttt{has\_structure} true when SMILES is present, names the
+        non-commercial companion on the dataset card, and adds the CC-BY-ND
+        companion. It does not change that commercial count or those band lists.
   \item This Data Descriptor, manifests, and figures:
         \url{https://github.com/IlkhamFY/IRexp}
   \item Harvest / pipeline code: \url{https://github.com/IlkhamFY/spectro-agent}
@@ -730,8 +752,9 @@ The same formula--NMR physics checks were applied post hoc to all 57,646
 structure-linked rows.
 They are diagnostic quarantine flags, not hard harvest filters.
 1,882 ($\sim$3.3\%) fail at least one diagnostic check and are listed in
-\texttt{data/structure\_nmr\_quarantine.jsonl.gz} in this repository
-(diagnostic only; release files unchanged; not a Hub file).
+\texttt{data/structure\_nmr\_quarantine.jsonl.gz}
+(diagnostic only; release files unchanged; on the Zenodo deposit;
+not a Hub file).
 Among rows with the relevant modality: $^{13}$C peaks $>$ carbons
 1,194/34,231 (3.49\%); $^{1}$H integral $>$ formula+2
 1,141/39,672 (2.88\%); IR out-of-range 0; unparseable SMILES 0.
@@ -746,7 +769,10 @@ deferred.
 \subsection{IR physical window}
 
 Every band in the full 121,233-record release lies in $[350, 4000]$\,cm$^{-1}$
-(0 / 1,360,866 out of range), matching the construction wavenumber filter in
+(0 / 1,360,866 out of range).
+The public Hub commercial, ShareAlike, and non-commercial files contain
+1,256,623 of those bands (Fig.~\ref{fig:distribution}).
+The window matches the construction wavenumber filter in
 Fig.~\ref{fig:pipeline}.
 This is a necessary range gate only: IRexp does not store intensities, solvents,
 or ATR vs transmission metadata.
@@ -803,8 +829,10 @@ Row counts are in \texttt{data/f1\_commercial\_build\_stats.json}.
         They remain bound by their source licences and are excluded from the
         CC-BY dataset of record.
         Do not relicence Chemotion or other ShareAlike rows as CC-BY.
-        ND (5; CC-BY-ND), empty/unknown rows, and the multi-licence total
-        \texttt{irexp.jsonl.gz} are research-corpus counts and are not Hub files.
+        ND (5; CC-BY-ND; \texttt{data/irexp\_other.jsonl.gz}) is a Hub companion
+        excluded from the commercial dataset of record.
+        Empty/unknown rows and the multi-licence total
+        \texttt{irexp.jsonl.gz} are not Hub files.
         Attribute via \texttt{source\_doi} / \texttt{pmcid}.
         \texttt{source\_doi} may hold a PMC accession (\texttt{PMC:\ldots}) rather
         than a DOI.
@@ -812,11 +840,13 @@ Row counts are in \texttt{data/f1\_commercial\_build\_stats.json}.
         vs Chemotion (denser, author-curated ELN band lists).
         Higher median band count does not imply more complete vibrational
         assignment --- Chemotion lists are author-entered, not peak-picked curves.
-  \item \textbf{Structure--NMR quarantine.} Before supervised training on
-        the structure-linked research split, drop IDs in
-        \texttt{data/structure\_nmr\_quarantine.jsonl.gz} by default
-        ($\sim$3.3\% of resolved rows) unless a noisier training set is intentional.
-        That list is in this repository and is not a Hub file.
+  \item \textbf{Structure--NMR quarantine.} Drop IDs in
+        \texttt{data/structure\_nmr\_quarantine.jsonl.gz} by default before
+        supervised structure or NMR training
+        ($\sim$3.3\% of structure-linked rows) unless a noisier training set
+        is intentional.
+        That list is on the Zenodo deposit
+        (\url{https://doi.org/10.5281/zenodo.23021932}) and is not a Hub file.
   \item \textbf{Training without benchmark leakage.} If holding out structures used
         in a complementary elucidation benchmark, withhold those InChIKeys.
         \texttt{train\_no\_bench.jsonl.gz} is the multi-licence research split
@@ -859,7 +889,8 @@ Row counts are in \texttt{data/f1\_commercial\_build\_stats.json}.
         (Section~\ref{sec:datarecords}).
         ShareAlike and NC* companions are on the same Hub repository under
         their source licences and are excluded from that pool.
-        ND and empty/unknown rows are not Hub files.
+        The CC-BY-ND companion (5) is excluded from that pool.
+        Empty/unknown rows are not Hub files.
   \item \textbf{Scope of this paper.} Elucidation benchmarks and model results are
         out of scope for this Data Descriptor.
 \end{itemize}
@@ -905,28 +936,33 @@ is claimed here.
 The commercial dataset of record (DoR) is the CC-BY/CC0 pool ($n=88{,}519$),
 packaged under CC-BY-4.0, with per-record source licences still stamped
 (Section~\ref{sec:datarecords}).
-Hub revision \texttt{fc238e3b600f556045bc9a3f7a37738734620cd8} deposits that
+Hub revision \texttt{4312254c279300f881ad12671476e877027ed3da} deposits that
 commercial file with the commercial QC columns
 (rows not dropped for shared-IR or table-flatten flags), plus
 \texttt{data/irexp\_resolved\_commercial.jsonl.gz} ($n=29{,}255$; commercial
 rows with non-empty SMILES) and
 \texttt{data/train\_no\_bench\_commercial.jsonl.gz} ($n=29{,}109$; a subset of
 that file).
-The same revision deposits
-\texttt{data/irexp\_sharealike.jsonl.gz} (1,897; CC-BY-SA-4.0) and
-\texttt{data/irexp\_non\_commercial.jsonl.gz} (21,823; NC*) as licence-bound
-companions.
+The commercial count remains $n=88{,}519$, and its band lists match Zenodo
+\url{https://doi.org/10.5281/zenodo.23021932} (revision
+\texttt{fc238e3b600f556045bc9a3f7a37738734620cd8}).
+The same Hub revision sets \texttt{has\_structure} true when SMILES is present,
+names the non-commercial companion on the dataset card, and deposits
+\texttt{data/irexp\_sharealike.jsonl.gz} (1,897; CC-BY-SA-4.0),
+\texttt{data/irexp\_non\_commercial.jsonl.gz} (21,823; NC*), and
+\texttt{data/irexp\_other.jsonl.gz} (5; CC-BY-ND) as licence-bound companions.
 Those companions do not enlarge the CC-BY dataset of record.
-The public downloadable total is 112,239.
-Band lists on this revision include the thousands-separator repair, the
+The commercial, ShareAlike, and non-commercial files total 112,239.
+Band lists on the commercial file include the thousands-separator repair, the
 reapplied $\geq$3 filter, and within-list integer-band deduplication
 (Methods).
 The multi-licence research total (121,233) is the construction reference in
 Section~\ref{sec:datarecords} and is not a Hub file.
-About 8,994 rows are withheld (empty/unknown licence, ND with release
-deferred, and the 26 rows removed by the reapplied filter).
-The Zenodo deposit (\url{https://doi.org/10.5281/zenodo.23021932}) archives
-this Hub revision.
+8,994 rows lie outside the commercial, ShareAlike, and non-commercial files
+(8,963 empty/unknown $+$ 5 CC-BY-ND $+$ 26 rows with fewer than three bands).
+The five CC-BY-ND rows are the Hub \texttt{irexp\_other} companion.
+The Zenodo deposit archives the commercial file at the \texttt{fc238e3} band
+lists.
 An earlier version DOI (\url{https://doi.org/10.5281/zenodo.22822285})
 archived the pre-clean commercial snapshot (88,545).
 % GitHub \url{https://github.com/IlkhamFY/IRexp} holds this manuscript, frozen count
@@ -937,7 +973,8 @@ archived the pre-clean commercial snapshot (88,545).
 \begin{itemize}
   \item \textbf{Dataset of record}:
         \begin{itemize}
-            \item Hugging Face Datasets, \url{https://huggingface.co/datasets/ilkhamfy/IRexp}, revision \texttt{fc238e3b600f556045bc9a3f7a37738734620cd8}.
+            \item Hugging Face Datasets, \url{https://huggingface.co/datasets/ilkhamfy/IRexp}, revision \texttt{4312254c279300f881ad12671476e877027ed3da}.
+                  Commercial $n=88{,}519$ and its band lists match Zenodo revision \texttt{fc238e3b600f556045bc9a3f7a37738734620cd8}.
             \item Zenodo: \url{https://doi.org/10.5281/zenodo.23021932}.
         \end{itemize}
   % \item Manuscript, frozen count manifests, and figures:
@@ -950,7 +987,7 @@ archived the pre-clean commercial snapshot (88,545).
           \item ShareAlike companion on the same Hub revision (1,897; Chemotion 1,888 plus rare PMC ShareAlike): CC-BY-SA-4.0~\citep{chemotion2024}.
                 This file is excluded from the CC-BY dataset of record.
           \item Non-commercial companion on the same Hub revision (21,823; NC*): excluded from the CC-BY dataset of record.
-          \item ND (5; CC-BY-ND) is a research-corpus pool and is not a Hub file.
+          \item ND (5; CC-BY-ND; \texttt{data/irexp\_other.jsonl.gz}) is a Hub companion and is excluded from the commercial dataset of record.
           \item PMC-sourced rows are mixed Creative Commons, stamped per article (\texttt{docs/LICENCE\_REMEDIATION.md}).
                 Empty/unknown rows (8,963) and the multi-licence total are not Hub files.
           \item Only extracted numeric fields and identifiers are redistributed; source full texts are not.

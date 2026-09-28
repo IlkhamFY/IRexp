@@ -43,13 +43,14 @@ Files in this upload:
 
 | Config / file | Records | Description |
 |---|---:|---|
-| `commercial` / `irexp_commercial.jsonl.gz` | **88,519** | **Dataset of record.** CC-BY-4.0 packaging; per-record CC-BY/CC0 stamps. Hub revision `fc238e3b600f556045bc9a3f7a37738734620cd8`. |
+| `commercial` / `irexp_commercial.jsonl.gz` | **88,519** | **Dataset of record.** CC-BY-4.0 packaging; per-record CC-BY/CC0 stamps. Hub revision `4312254c279300f881ad12671476e877027ed3da`. Commercial *n* and band lists match Zenodo `10.5281/zenodo.23021932` (revision `fc238e3`). |
 | `resolved_commercial` / `irexp_resolved_commercial.jsonl.gz` | 29,255 | Commercial rows with non-empty SMILES |
 | `train_no_bench_commercial` / `train_no_bench_commercial.jsonl.gz` | 29,109 | That subset with benchmark InChIKeys held out |
 | `sharealike` / `irexp_sharealike.jsonl.gz` | 1,897 | Companion; CC-BY-SA-4.0; excluded from the CC-BY dataset of record |
-| `non_commercial` / `irexp_non_commercial.jsonl.gz` | 21,823 | Companion; NC*; excluded from the CC-BY dataset of record |
+| `non_commercial` / `irexp_non_commercial.jsonl.gz` | 21,823 | Companion; NC*; excluded from the CC-BY dataset of record; named on the dataset card |
+| `other` / `irexp_other.jsonl.gz` | 5 | Companion; CC-BY-ND; excluded from the CC-BY dataset of record |
 
-Public downloadable total: **112,239**. Retained for research and **not part of this upload**: ND (5; CC-BY-ND; release deferred), empty/unknown (8,963), and the full multi-licence file (`irexp.jsonl.gz`, 121,233). About 8,994 rows are withheld (those pools plus 26 commercial-stamp rows removed by the reapplied ≥3-band filter). Zenodo https://doi.org/10.5281/zenodo.23021932 archives this revision (88,519). An earlier version DOI (https://doi.org/10.5281/zenodo.22822285) archived the pre-clean commercial snapshot (88,545).
+Public downloadable total of the commercial, ShareAlike, and non-commercial files: **112,239** (1,256,623 bands). **8,994** rows lie outside those files (8,963 empty/unknown + 5 CC-BY-ND + 26 rows with fewer than three bands). The five CC-BY-ND rows are the `other` companion and are excluded from the commercial dataset of record (*n* = 88,519). Empty/unknown (8,963) and the full multi-licence file (`irexp.jsonl.gz`, 121,233) are not part of this upload. The corpus contains 1,360,866 bands. Zenodo https://doi.org/10.5281/zenodo.23021932 archives the commercial file at revision `fc238e3` (*n* = 88,519). An earlier version DOI (https://doi.org/10.5281/zenodo.22822285) archived the pre-clean commercial snapshot (88,545).
 
 **Provenance:** 119,345 PMC-sourced + 1,888 Chemotion/RADAR4Chem. Per-article stamps (`license` / `license_pool`) are on every row. The card `license` is `cc-by-4.0` for the commercial dataset of record. ShareAlike and NC* companions stay under their source licences and are excluded from that pool. See `NOTICE` and `LICENCE_REMEDIATION.md`.
 
@@ -101,7 +102,7 @@ The `id` in this row is an internal identifier, not an InChIKey. Some resolved r
 - **Band lists, not spectra** — median 9 bands (PMC) vs 39 (Chemotion).
 - **Literature-transcribed** — heterogeneous labs/instruments; not raw `.jdx` files.
 - **Structure resolution 47.5%** of the research corpus (57,646 / 121,233). Supervised structure tasks on this upload use `resolved_commercial`.
-- **Dataset of record is the commercial pool.** ShareAlike and NC* are companions on the same revision and are excluded from that pool. ND, empty/unknown, and the full multi-licence dump are not here.
+- **Dataset of record is the commercial pool.** ShareAlike, NC*, and the CC-BY-ND `other` companion are on the same revision and are excluded from that pool. Empty/unknown and the full multi-licence dump are not here.
 - **Extraction recall** of IR strings per paper is not a completed human audit (transcription fidelity: 560/560 bands on n=60).
 
 ## Links
@@ -109,7 +110,7 @@ The `id` in this row is an internal identifier, not an InChIKey. Some resolved r
 - **Dataset (Hugging Face):** https://huggingface.co/datasets/ilkhamfy/IRexp
 - **Data Descriptor (paper + manifests):** https://github.com/IlkhamFY/IRexp
 - **Harvest / pipeline code:** https://github.com/IlkhamFY/spectro-agent
-- **Zenodo:** this Hub revision (commercial *n* = 88,519), https://doi.org/10.5281/zenodo.23021932
+- **Zenodo:** commercial file (*n* = 88,519; revision `fc238e3`), https://doi.org/10.5281/zenodo.23021932
 - **Licence details:** `NOTICE` / `LICENCE_REMEDIATION.md`
 
 When uploading to Hugging Face, this file is the repository `README.md`.
