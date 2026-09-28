@@ -39,4 +39,5 @@ paper instead.
 - Dataset card / bulk JSONL: https://huggingface.co/datasets/ilkhamfy/IRexp
 - Harvest / pipeline code: https://github.com/IlkhamFY/spectro-agent
 - Companion research: `IRSpectra-Bench` (ICLR track)
-- Archival deposit (data-only): the commercial CC-BY/CC0 pool is archived at Zenodo, https://doi.org/10.5281/zenodo.22822285.
+- Live dataset of record: Hugging Face `ilkhamfy/IRexp`, commercial CC-BY/CC0 pool *n* = 88,519 (revision `fc238e3b600f556045bc9a3f7a37738734620cd8`).
+- Earlier commercial snapshot (*n* = 88,545), not that Hub revision: https://doi.org/10.5281/zenodo.22822285.

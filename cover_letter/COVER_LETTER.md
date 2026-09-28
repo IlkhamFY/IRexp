@@ -13,8 +13,8 @@ Dear Editor,
 
 We submit our manuscript entitled *IRexp: A database of experimental infrared band lists from open literature* for consideration as a Data Descriptor in *Scientific Data*.
 IRexp is a redistributable collection of experimental infrared band lists (cm⁻¹ peak positions) mined from open chemistry literature.
-The full construction corpus comprises *n* = 121,233 records; for Scientific Data redistribution, the dataset of record is the commercial CC-BY/CC0 pool (*n* = 88,545), published on Hugging Face Datasets (ilkhamfy/IRexp).
-The commercial dataset of record is archived on Zenodo (DOI [10.5281/zenodo.22822285](https://doi.org/10.5281/zenodo.22822285)).
+The full construction corpus comprises *n* = 121,233 records; for Scientific Data redistribution, the dataset of record is the commercial CC-BY/CC0 pool (*n* = 88,519), published on Hugging Face Datasets (ilkhamfy/IRexp), revision fc238e3b600f556045bc9a3f7a37738734620cd8.
+Zenodo (DOI [10.5281/zenodo.22822285](https://doi.org/10.5281/zenodo.22822285)) archives an earlier commercial snapshot (*n* = 88,545) and is not this Hub revision.
 
 Technical validation includes automated transcription and recall-proxy checks, stratified automated consistency audits, full-corpus quarantine, and a stratified expert human band-list audit.
 161 records were scored in a stratified expert human band-list audit on the commercial Hugging Face dataset of record.
