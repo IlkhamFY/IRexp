@@ -1,6 +1,6 @@
 # IRexp Zenodo / DoR packet — for Rodrigo (one page)
 
-**Date:** 2026-09-14 · **Owner:** Ilkham · **Status:** minted — data-only version DOI https://doi.org/10.5281/zenodo.22822285 archives the earlier commercial snapshot (n=88,545). The live Hub dataset of record is revision `fc238e3b600f556045bc9a3f7a37738734620cd8` (n=88,519). No software DOI.
+**Date:** 2026-09-14 · **Owner:** Ilkham · **Status:** superseded — this packet describes the first mint, version DOI https://doi.org/10.5281/zenodo.22822285 (pre-clean commercial snapshot, n=88,545). The live Hub dataset of record is revision `fc238e3b600f556045bc9a3f7a37738734620cd8` (n=88,519), archived at https://doi.org/10.5281/zenodo.23021932. No software DOI.
 
 ## 1. What to mint
 
@@ -42,13 +42,13 @@ Do **not** invent filenames — if the Hub UI export is awkward, download the re
 2. Rudra Sondhi (McMaster; https://orcid.org/0009-0003-3034-7347)  
 3. Rodrigo A. Vargas-Hernández (McMaster; https://orcid.org/0000-0002-5559-6521) — corresponding  
 
-**Description (paste, this Zenodo snapshot):** Redistributable experimental IR band lists (cm⁻¹ positions) mined from PMC Open Access and Chemotion. This archival deposit mirrors the earlier Hugging Face `ilkhamfy/IRexp` revision `8db58466…` (n=88,545 commercial CC-BY/CC0 records with F2/F3 flags). It is not Hub revision `fc238e3` (live dataset of record, n=88,519). Full multi-licence construction corpus is described in the Scientific Data manuscript on GitHub `IlkhamFY/IRexp`.
+**Description (paste, first Zenodo version only):** Redistributable experimental IR band lists (cm⁻¹ positions) mined from PMC Open Access and Chemotion. Version DOI https://doi.org/10.5281/zenodo.22822285 mirrors the earlier Hugging Face `ilkhamfy/IRexp` revision `8db58466…` (n=88,545 commercial CC-BY/CC0 records with F2/F3 flags). It is not Hub revision `fc238e3` (live dataset of record, n=88,519), which is archived at https://doi.org/10.5281/zenodo.23021932. Full multi-licence construction corpus is described in the Scientific Data manuscript on GitHub `IlkhamFY/IRexp`.
 
 **Ack:** NSERC CREATE AccelD Grant #596133-2025.
 
 ## 6. After mint — what Ilkham needs
 
-Data-only version DOI: https://doi.org/10.5281/zenodo.22822285. `scientific_data.tex` Data Availability cites that record. No software DOI is claimed.
+First data-only version DOI: https://doi.org/10.5281/zenodo.22822285 (pre-clean snapshot). `scientific_data.tex` Data Availability now cites https://doi.org/10.5281/zenodo.23021932. No software DOI is claimed.
 
 ## 7. Rodrigo checklist
 

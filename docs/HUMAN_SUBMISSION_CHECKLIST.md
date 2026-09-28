@@ -7,7 +7,7 @@ Critical submit blockers below are done. Optional human checks remain open. Do n
 
 | # | Action | Status | Notes / stub |
 |---|---|---|---|
-| 1 | Mint **data-only** Zenodo DOI | ☑ | Done — version DOI https://doi.org/10.5281/zenodo.22822285 (concept 10.5281/zenodo.22822284). See `ZENODO_DATA_ONLY_CHECKLIST.md`. |
+| 1 | Mint **data-only** Zenodo DOI | ☑ | Done — version DOI https://doi.org/10.5281/zenodo.23021932 (this Hub revision, n=88,519; concept 10.5281/zenodo.22822284). Earlier version DOI https://doi.org/10.5281/zenodo.22822285 archived the pre-clean snapshot (n=88,545). See `ZENODO_DATA_ONLY_CHECKLIST.md`. |
 | 2 | ORCID — **I. Yabbarov** | ☑ | https://orcid.org/0009-0004-9393-9822 — `\orcid` immediately after `\author` / `\email` in `scientific_data.tex`. |
 | 3 | ORCID — **R. A. Vargas-Hernández** | ☑ | https://orcid.org/0000-0002-5559-6521 — `\orcid` immediately after `\author` / `\email` in `scientific_data.tex`. |
 | 4 | ORCID — **Rudra Sondhi** | ☑ | https://orcid.org/0009-0003-3034-7347 — `\orcid` immediately after `\author` in `scientific_data.tex`. |
@@ -23,7 +23,7 @@ Critical submit blockers below are done. Optional human checks remain open. Do n
 
 ## Already done (agent) — do not redo unless counts drift
 
-- Crossref empty-licence recovery → research-corpus commercial stamp **88,545** (earlier Zenodo snapshot). Live Hub DoR is **88,519** (revision `fc238e3b600f556045bc9a3f7a37738734620cd8`)
+- Crossref empty-licence recovery → research-corpus commercial stamp **88,545** (earlier Zenodo version DOI https://doi.org/10.5281/zenodo.22822285). Live Hub DoR is **88,519** (revision `fc238e3b600f556045bc9a3f7a37738734620cd8`), archived at https://doi.org/10.5281/zenodo.23021932
 - HF remirror (`scripts/publish_hf.py`, 2026-08-27)
 - Overview figure `figures/fig_irexp_overview.pdf`
 - Dual-publication fence + honest Data/Code Availability placeholders
