@@ -20,11 +20,11 @@ OUT = ROOT / "figures"
 OUT.mkdir(parents=True, exist_ok=True)
 
 # Frozen release counts (data/irexp_stats.json / manuscript caption).
-# N_COMM is the public Hub dataset of record (rev 4312254), not the
-# research-corpus commercial stamp (88,545) or the earlier Zenodo snapshot.
-N_ALL = 121_233
-N_STRUCT = 57_646
-N_COMM = 88_519
+# N_COMM is the public Hub dataset of record (combined release v0.2:
+# v4 IR-attachment fix + 2026 SI expansion); N_ALL is the research corpus.
+N_ALL = 239_735
+N_STRUCT = 101_624
+N_COMM = 163_931
 SDBS = 54_100
 NIST = 17_000
 ZIPOLI = 177_461
@@ -165,7 +165,7 @@ def main() -> None:
     )
     ax.set_ylabel("Number of IR records", fontsize=9, color=INK)
     ax.yaxis.set_major_formatter(FuncFormatter(_thousands))
-    ax.set_ylim(0, 210_000)
+    ax.set_ylim(0, 280_000)
     ax.set_xlim(-0.55, 5.05)
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
@@ -192,9 +192,9 @@ def main() -> None:
             fontweight="medium",
         )
 
-    _bracket(-0.30, 1.35, 202_000, "View-only")
-    _bracket(2.20, 2.70, 202_000, "Computed")
-    _bracket(3.40, 4.80, 202_000, "This work")
+    _bracket(-0.30, 1.35, 268_000, "View-only")
+    _bracket(2.20, 2.70, 268_000, "Computed")
+    _bracket(3.40, 4.80, 268_000, "This work")
 
     ax.text(
         -0.14,

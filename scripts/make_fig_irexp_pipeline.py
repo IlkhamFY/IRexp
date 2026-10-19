@@ -140,9 +140,9 @@ def main() -> None:
     circ_y = y + h + 0.20  # centers only above their boxes
 
     steps = [
-        ("1", "PMC OA text", ["188,016 PMCIDs", "S3 plain text"], BLUE),
+        ("1", "PMC OA text", ["220,159 PMCIDs", "S3 text + SI"], BLUE),
         ("2", "IR extract", ["Regex band lists", "+ co-reported NMR"], BLUE),
-        ("3", "Structure resolve", ["OPSIN → RDKit", "SMILES / InChIKey"], BLUE),
+        ("3", "Structure resolve", ["OPSIN / OCSR", "→ RDKit, tiers A–D"], BLUE),
         ("4", "Licence join", ["Europe PMC", "+ Crossref"], ORANGE),
         ("5", "Release pools", ["Hugging Face", "JSONL pools"], NAVY),
     ]
@@ -285,7 +285,7 @@ def main() -> None:
     axa.text(
         fin_x + fin_w / 2,
         fin_y + fin_h * 0.48,
-        "121,233 band lists",
+        "239,735 band lists",
         ha="center",
         va="center",
         fontsize=8.0,
@@ -295,10 +295,10 @@ def main() -> None:
     axa.text(
         fin_x + fin_w / 2,
         fin_y + fin_h * 0.22,
-        "57,646 structure-linked",
+        "101,624 structure-linked",
         ha="center",
         va="center",
-        fontsize=7.6,
+        fontsize=7.0,
         fontweight="bold",
         color=ORANGE,
     )
