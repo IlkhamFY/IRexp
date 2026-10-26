@@ -22,7 +22,7 @@ IRexp stores numeric band lists with PMC accessions / Chemotion deposit DOIs and
 
 This work was supported by NSERC Discovery Grant No. RGPIN-2024-06594 and by NSERC funding reference number 596133-2025 (CREATE for Accelerated Discovery, AccelD), delivered through the Acceleration Consortium.
 
-All authors confirm that this manuscript has not been previously published and is not under consideration elsewhere. A preprint of an earlier version is available on ChemRxiv ([10.26434/chemrxiv.15009750](https://doi.org/10.26434/chemrxiv.15009750)). The authors have approved the submitted version and agree to *Scientific Data*'s submission policies.
+All authors confirm that this manuscript has not been previously published and is not under consideration elsewhere. A preprint of an earlier version is available on ChemRxiv ([10.26434/chemrxiv.15009750/v1](https://doi.org/10.26434/chemrxiv.15009750/v1)). The authors have approved the submitted version and agree to *Scientific Data*'s submission policies.
 
 Best regards,  
 Rodrigo A. Vargas-Hernández, on behalf of all authors  
