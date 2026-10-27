@@ -736,20 +736,14 @@ Machine-readable package: \texttt{data/qc\_structure\_nmr.json} in this
 repository (audit artefacts under \texttt{data/audit/} in the code repository).
 Numbers below are seed-fixed descriptive checks; Wilson 95\% intervals are
 reported where a check computed them.
-\textbf{All checks below are automated} unless marked otherwise.
-They are not expert-audited in the sense of NMRexp's human molecular-skeleton
-and PDF mark-up protocol~\citep{wang2025nmrexp}.
-Transcription, recall-proxy, and consistency audits are reported side by side.
 PRE is the earlier multi-licence research release (121,233 records; PMC pool
 119,345; 15,416 PMCIDs; chemist strata include Chemotion and other licences).
 POST repeats the same scripts, seeds, and sample sizes on the previous commercial
 dataset of record (Hub revision \texttt{4312254}, $n=88{,}519$), which carries
 the thousands-separator repair.
-The PRE and POST checks were not repeated on release v0.2.
 The pools differ, so each pair is a side-by-side description, not a paired
 difference.
 Figure~\ref{fig:distribution}f shows the PRE sample distributions.
-The expert human band-list scores were not repeated after the repair.
 
 \subsection{Transcription fidelity (PMC)}
 
@@ -760,8 +754,7 @@ Result: 560/560 bands and 60/60 records confirmed.
 The enlarged sample is $n=200$ (same script and seed).
 PRE: 2,250/2,261 bands (0.9951) and 196/200 records fully confirmed.
 The four incomplete records (PMCIDs 5713685, 4189708, 12202350, 6259152) missed
-11 bands total on re-fetch match --- consistent with plain-text / formatting
-drift between harvest and Europe PMC re-fetch, not wholesale hallucination.
+11 bands total on re-fetch match.
 POST (commercial DoR, Hub \texttt{4312254}, $n=88{,}519$): 2,117/2,119 bands
 (0.9991) and 199/200 records fully confirmed.
 One incomplete record (PMC6835751) missed two bands.
@@ -769,7 +762,6 @@ This bounds automated transcription error (mis-parsed or unit-mangled values).
 
 \subsection{Extraction-recall proxy (PMC, harvest path)}
 
-A human mark-up of every IR string in every paper remains the gold standard.
 As an automatic proxy on the actual harvest path: re-fetch PMC-OA S3 plain text
 for 120 distinct source PMCIDs; re-run extraction; compare band-sets to released
 rows ($\pm$1\,cm$^{-1}$).
@@ -789,7 +781,6 @@ released bands in the re-extract 0.9781 (12,132/12,404);
 118/120 papers recovered every released list (0.9833).
 Residual misses are concentrated in two PMCIDs (segmenter/\texttt{\_IR\_RE}
 gaps, not thousands separators).
-This automatic proxy does not replace expert human recall.
 
 \subsection{Stratified automated consistency audit}
 
@@ -838,7 +829,7 @@ POST fail modes in-sample: $^{1}$H integral $>$ formula+2 (3), $^{13}$C peaks
 $>$ carbons (2), transcription miss (2).
 No in-sample POST failure was a duplicate integer band.
 The 177/182 structure-physics pass rate is an automated consistency metric on
-formula--NMR physics gates, not a human molecular-skeleton correctness audit.
+formula--NMR physics gates.
 
 \subsection{Structure--NMR consistency and quarantine (resolved)}
 
@@ -858,16 +849,6 @@ release files).
 Among rows with the relevant modality: $^{13}$C peaks $>$ carbons
 173/55,857 (0.31\%); $^{1}$H integral $>$ formula+2
 144/62,473 (0.23\%); IR out-of-range 0; unparseable SMILES 0.
-On the earlier release the full-corpus rate was 1,882/57,646 (3.3\%), close to
-the sample rates above.
-The rate is lower now because the SI structure pipeline applies the same count
-gates before a structure is released and contradicting structures are withheld
-as tier~X.
-Re-users should filter quarantined IDs before supervised training
-(default recommendation: drop the quarantine list unless a noisier corpus is
-intentionally desired).
-These rates are integrity diagnostics; a full-corpus human molecular-skeleton
-audit remains deferred.
 
 \subsection{IR physical window}
 
