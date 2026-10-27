@@ -77,7 +77,7 @@ IRexp is a collection of experimental infrared band lists
 author-reported $^{1}$H/$^{13}$C NMR strings and resolved structures.
 The multi-licence research corpus holds 239,735 records (237,847 PMC Open Access
 text and supplements; 1,888 Chemotion/RADAR4Chem), including 101,624
-structure-linked entries (56,035 formula-verified) and 54,429
+structure-linked entries and 54,429
 IR~$+$~$^{1}$H~$+$~$^{13}$C~$+$~structure quadruples.
 Records are numeric band lists, not absorbance traces, each with a source
 identifier and a stamped licence.
@@ -363,18 +363,14 @@ The multi-licence structure-linked split is \texttt{irexp\_resolved}
 The public structure-linked commercial subset is
 \texttt{data/irexp\_resolved\_commercial.jsonl.gz}.
 
-\subsection{Release v0.2: IR attachment, supporting information, and structure tiers}\label{sec:v02}
+\subsection{IR attachment, supporting information, and structure tiers}\label{sec:v02}
 
-\paragraph{IR-attachment fix.}
+\paragraph{IR attachment.}
 The extractor assigns IR blocks within each compound's own section of the
 experimental text, bounded by compound headings and paragraph breaks, instead of
 attaching the nearest IR block to an NMR record.
 A record without an IR block of its own gets no IR, and IR-only compounds become
 their own records.
-Every main-text row was re-located in its source text and re-decided: 109,200
-were kept, 6,959 had a neighbour's IR replaced by the compound's own IR, 2,950
-were dropped because the compound has no IR of its own, 231 merged duplicates
-were dropped, and 185 new rows were added.
 The main-text part of the research corpus is 116,320 PMC rows.
 
 \paragraph{Supporting-information expansion.}
@@ -750,8 +746,6 @@ POST repeats the same scripts, seeds, and sample sizes on the previous commercia
 dataset of record (Hub revision \texttt{4312254}, $n=88{,}519$), which carries
 the thousands-separator repair.
 The PRE and POST checks were not repeated on release v0.2.
-The v0.2 additions are covered by the AI audits in
-Section~\ref{sec:aiaudit}.
 The pools differ, so each pair is a side-by-side description, not a paired
 difference.
 Figure~\ref{fig:distribution}f shows the PRE sample distributions.
@@ -846,43 +840,6 @@ No in-sample POST failure was a duplicate integer band.
 The 177/182 structure-physics pass rate is an automated consistency metric on
 formula--NMR physics gates, not a human molecular-skeleton correctness audit.
 
-\subsection{AI audits of the release v0.2 additions}\label{sec:aiaudit}
-
-The checks in this subsection are AI audits: a language model compared each
-sampled row with its source text and recorded a verdict.
-They are not human audits.
-Wilson 95\% intervals are given.
-
-\begin{itemize}
-  \item \textbf{SI band lists} (150 random SI rows, seed 20261016): bands
-        transcribed correctly 149/150 (99.3\%; $[96.3, 99.9]$), compound
-        attribution 149/150 (99.3\%; $[96.3, 99.9]$), experimental IR 150/150
-        (100\%; $[97.5, 100]$).
-        The two errors were a band pair written without a space and a label
-        taken from an azide annotation.
-  \item \textbf{SI structures} (150 random resolved SI rows, drawn before the
-        strict tiers): right compound and right structure 146/150 (97.3\%;
-        $[93.3, 99.0]$).
-        Three errors were fragments of line-wrapped names (all tier~D), and one
-        was two regioisomers that share one label.
-  \item \textbf{Main-text formula check} (40 rows promoted to tiers A--B by the
-        own-block formula, seed 11): 40/40 consistent with the own block
-        ($[91.2, 100]$).
-        A wrong same-paper structure passes the block formula in 3.3\% of
-        31,556 pairs (automated specificity check).
-  \item \textbf{IR/NMR split} (12 headings that sit between a record's own IR and
-        its own NMR): 12/12 are genuine separate compounds, so these records
-        are tier~X.
-  \item \textbf{Formula mismatches} (15 rows): only 6/15 were real structure
-        errors; the rest were formula typos in the source or parse errors.
-        Formula mismatches are therefore flagged, not excluded.
-  \item \textbf{OCSR label rule on the main text} (automated benchmark against
-        main-text structures): 104/104 on 100 held-out papers ($[96.4, 100]$),
-        but 1,372/1,443 (95.1\%) on the full run of 6,309 papers.
-        Because the full run is below 97\%, those OCSR structures are released
-        as tier~D only.
-\end{itemize}
-
 \subsection{Structure--NMR consistency and quarantine (resolved)}
 
 \paragraph{Sample (prior).}
@@ -954,8 +911,6 @@ Row counts are in \texttt{data/irexp\_stats.json}.
         (309 / 101,624 flagged; diagnostic flags, release files unchanged).
   \item Commercial shared-IR and table-flatten flags are complete for the
         main-text rows (flag-only; 15,437 / 3,049 / union 17,870 of 85,878).
-  \item AI audits of the v0.2 additions are complete
-        (Section~\ref{sec:aiaudit}); they are not human audits.
   \item \textbf{161 scored} in a stratified expert human band-list audit.
         Among scored: source found 160/161; bands exact 143, subset\_ok 13,
         mismatch 4, cannot\_tell 1; truncation absent 153/161; completeness
@@ -1048,7 +1003,7 @@ Row counts are in \texttt{data/irexp\_stats.json}.
         harvest-path recall proxies ($n=120$ papers), and a stratified consistency
         audit ($n=280$) are machine checks, reported on the earlier research
         release and the previous commercial dataset of record (Hub \texttt{4312254});
-        the v0.2 additions are covered by AI audits and a 150-record human audit.
+        the v0.2 additions are covered by a 150-record human audit.
         A stratified expert human band-list audit scored 161 records and was
         not repeated after the separator repair.
         No full-corpus human molecular-skeleton audit has been completed for IRexp.
@@ -1124,8 +1079,8 @@ The same release deposits
 \texttt{data/irexp\_other.jsonl.gz} (5; CC-BY-ND) as licence-bound companions.
 Those companions do not enlarge the CC-BY dataset of record.
 The commercial, ShareAlike, and non-commercial files total 230,835.
-Band lists on the commercial file include the thousands-separator repair, the
-IR-attachment fix, the $\geq$3 filter, and within-list integer-band
+Band lists on the commercial file include the thousands-separator repair,
+own-block IR attachment, the $\geq$3 filter, and within-list integer-band
 deduplication (Methods).
 The multi-licence research total (239,735) is the construction reference in
 Section~\ref{sec:datarecords} and is not a Hub file.
