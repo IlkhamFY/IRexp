@@ -144,7 +144,7 @@ is required~\citep{zipoli2025uspto}.
 multi-licence research corpus, with per-record licence pools.
 The public dataset of record is the commercial CC-BY/CC0 subset (163,931);
 grouped bars also show structure-linked records (101,624).
-\textbf{SDBS} FT-IR ($\sim$54,000 digitised absorbance spectra; AIST 2015) and
+\textbf{SDBS} FT-IR ($\sim$54,100 digitised absorbance spectra; AIST 2015) and
 \textbf{NIST} WebBook ($\sim$17,000 gas-phase IR; approximate) are view-only
 digitised spectra.
 \textbf{Zipoli et al.}~\citep{zipoli2025uspto} contribute 177,461 \emph{computed}
@@ -191,7 +191,7 @@ IRexp therefore:
 Among openly redistributable \emph{text-derived IR band lists}, IRexp's public
 release is the commercial dataset of record in Section~\ref{sec:datarecords}.
 SDBS is a view-only archive of digitised absorbance spectra
-($\sim$54,000 FT-IR entries).
+($\sim$54,100 FT-IR entries).
 That commercial pool is a redistributable collection of text-mined band lists.
 The two resources are complementary object types.
 This Descriptor contributes the curated dataset, harvest provenance, licence
@@ -286,7 +286,7 @@ That equality is a convenience for this row type
 (Section~\ref{sec:datarecords}).
 These are not algorithmic peak-picks from absorbance curves; they are
 author-entered experimental band lists from the ELN deposit, denser than typical
-paper prose (median 39 bands vs 9 for PMC).
+paper prose (median 39 bands vs 10 for PMC).
 Rows carry \texttt{license=CC-BY-SA-4.0}, \texttt{source=Chemotion}, and
 \texttt{source\_doi} equal to the deposit DOI.
 
@@ -366,7 +366,7 @@ The public structure-linked commercial subset is
 \subsection{Release v0.2: IR attachment, supporting information, and structure tiers}\label{sec:v02}
 
 \paragraph{IR-attachment fix.}
-The extractor now assigns IR blocks within each compound's own section of the
+The extractor assigns IR blocks within each compound's own section of the
 experimental text, bounded by compound headings and paragraph breaks, instead of
 attaching the nearest IR block to an NMR record.
 A record without an IR block of its own gets no IR, and IR-only compounds become
@@ -375,7 +375,7 @@ Every main-text row was re-located in its source text and re-decided: 109,200
 were kept, 6,959 had a neighbour's IR replaced by the compound's own IR, 2,950
 were dropped because the compound has no IR of its own, 231 merged duplicates
 were dropped, and 185 new rows were added.
-The main-text part of the research corpus is now 116,320 PMC rows.
+The main-text part of the research corpus is 116,320 PMC rows.
 
 \paragraph{Supporting-information expansion.}
 The same parser read the SI files of PMC OA papers and added 121,527 band lists
