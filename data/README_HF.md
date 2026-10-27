@@ -80,13 +80,9 @@ Tiers A–B: 56,035 (23.4%). Tiers A–D (rows with a released structure): 101,6
 - SI rows also carry `si_label`, `si_name`, `ir_raw` (author IR string) and `parser`.
 - `ir_bands_old_cm-1` on SI rows is the list before within-list integer dedup. `ir_table_flatten_suspect` is null on SI rows (not computed for that set).
 
-## Quality checks (automated and AI audits; not human audits)
+## Quality checks (automated)
 
-- SI band lists, AI audit of 150 random rows: bands correct 149/150, compound attribution 149/150, experimental IR 150/150.
-- SI structures before strict tiers, AI audit of 150 random resolved rows: 146/150 correct (Wilson 95% CI 93.3–99.0%).
-- Formula-check promotions on the main text, AI audit: 40/40 correct (Wilson 91.2–100%).
 - OCSR label-B rule on 100 held-out papers: 104/104 (Wilson 96.4–100%). On the full main-text OCSR run the same rule scored 95.1%, below the 97% bar, so those structures were shipped as tier D only.
-- IR/NMR split headings: 12/12 verified as genuine separate compounds (these rows are tier X).
 
 ## Licence
 
