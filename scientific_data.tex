@@ -452,7 +452,8 @@ That total is construction and licence-pool accounting.
 It is not deposited as a Hub file.
 The public dataset is the commercial pool only:
 \texttt{data/irexp\_commercial.jsonl.gz} (163,931 CC-BY/CC0 records) on Hugging Face
-(\texttt{ilkhamfy/IRexp}; revision in the Access subsection), packaged under
+(\texttt{ilkhamfy/IRexp}; revision in the Access subsection)~\citep{irexp_hf}
+and archived on Zenodo~\citep{irexp_zenodo_v02}, packaged under
 CC-BY-4.0, with per-record source licences still stamped.
 The same Hub revision includes \texttt{data/irexp\_resolved\_commercial.jsonl.gz}
 (67,235; the commercial rows with a released structure, tiers A--D) and
@@ -679,7 +680,7 @@ is not deposited here.
 \begin{itemize}
   \item Public dataset, Hugging Face
         \url{https://huggingface.co/datasets/ilkhamfy/IRexp},
-        release v0.2 (revision \texttt{9ee1aa9b2f462cef8cf18489e45a516a4b716193}), under \texttt{data/} (Table~\ref{tab:files}):
+        release v0.2 (revision \texttt{9ee1aa9b2f462cef8cf18489e45a516a4b716193})~\citep{irexp_hf}, under \texttt{data/} (Table~\ref{tab:files}):
         \begin{itemize}
           \item \texttt{data/irexp\_commercial.jsonl.gz} (163,931): CC-BY-4.0 packaging,
                 per-record CC-BY/CC0 stamps.
@@ -709,13 +710,13 @@ is not deposited here.
   \item Zenodo archival deposit of the commercial files of release v0.2
         (commercial $n=163{,}931$):
         \url{https://doi.org/10.5281/zenodo.23463965}
-        (concept DOI \url{https://doi.org/10.5281/zenodo.22822284}).
+        (concept DOI \url{https://doi.org/10.5281/zenodo.22822284})~\citep{irexp_zenodo_v02}.
         The previous Hub revision
         (\texttt{4312254c279300f881ad12671476e877027ed3da}; commercial
         $n=88{,}519$) is archived at
         \url{https://doi.org/10.5281/zenodo.23023528}.
   \item This Data Descriptor, manifests, and figures:
-        \url{https://github.com/IlkhamFY/IRexp}
+        \url{https://github.com/IlkhamFY/IRexp}~\citep{irexp_github}
   \item Harvest / pipeline code: \url{https://github.com/IlkhamFY/spectro-agent}
         (Section~\ref{sec:codeavail})
 \end{itemize}
@@ -977,7 +978,7 @@ Row counts are in \texttt{data/irexp\_stats.json}.
 \section{Code Availability}\label{sec:codeavail}
 Harvesting, extraction, structure resolution, licence-pool splitting, and
 validation scripts live in the code repository
-\url{https://github.com/IlkhamFY/spectro-agent} under the MIT License
+\url{https://github.com/IlkhamFY/spectro-agent} under the MIT License~\citep{spectroagent_zenodo}.
 % The Data Descriptor repository (\url{https://github.com/IlkhamFY/IRexp}) holds
 % the manuscript, figures, and frozen count manifests.
 
@@ -1007,17 +1008,17 @@ The harvest and audit source code for IRexp is available as spectro-agent
 version 0.1.0 at
 \url{https://github.com/IlkhamFY/spectro-agent/releases/tag/v0.1.0}
 and archived on Zenodo (DOI:
-\url{https://doi.org/10.5281/zenodo.23022900}).
+\url{https://doi.org/10.5281/zenodo.23022900})~\citep{spectroagent_zenodo}.
 The release v0.2 build script (\texttt{scripts/build\_release.py}) and release
 check (\texttt{scripts/release\_check.py}) are deposited with the data on
-Hugging Face and Zenodo.
+Hugging Face and Zenodo~\citep{irexp_hf,irexp_zenodo_v02}.
 
 \section{Data Availability}\label{sec:dataavail}
 
 The commercial file is the CC-BY/CC0 pool ($n=163{,}931$),
 packaged under CC-BY-4.0, with per-record source licences still stamped
 (Section~\ref{sec:datarecords}).
-Release v0.2 on Hugging Face deposits that file with the commercial
+Release v0.2 on Hugging Face~\citep{irexp_hf} deposits that file with the commercial
 QC columns and structure tiers
 (rows not dropped for shared-IR or table-flatten flags), plus
 \texttt{data/irexp\_resolved\_commercial.jsonl.gz} ($n=67{,}235$; commercial
@@ -1040,7 +1041,7 @@ Section~\ref{sec:datarecords} and is not a Hub file.
 The five CC-BY-ND rows are the Hub \texttt{irexp\_other} companion.
 Zenodo version DOI \url{https://doi.org/10.5281/zenodo.23463965}
 (concept DOI \url{https://doi.org/10.5281/zenodo.22822284}) archives the
-commercial files of this release ($n=163{,}931$).
+commercial files of this release ($n=163{,}931$)~\citep{irexp_zenodo_v02}.
 Earlier version DOIs archived Hub revision \texttt{4312254} (commercial
 88,519; \url{https://doi.org/10.5281/zenodo.23023528}) and the pre-clean
 commercial snapshot (88,545; \url{https://doi.org/10.5281/zenodo.22822285}).
