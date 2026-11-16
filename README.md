@@ -37,7 +37,17 @@ df = pd.read_json(path, lines=True)
 
 - Hugging Face: [ilkhamfy/IRexp](https://huggingface.co/datasets/ilkhamfy/IRexp)
 - Zenodo archive: [10.5281/zenodo.24117617](https://doi.org/10.5281/zenodo.24117617) (concept: [10.5281/zenodo.22822284](https://doi.org/10.5281/zenodo.22822284))
-- Extraction code: [IlkhamFY/spectro-agent](https://github.com/IlkhamFY/spectro-agent)
+- Code: [`code/`](code/) in this repository (archive: [10.5281/zenodo.23022899](https://doi.org/10.5281/zenodo.23022899))
+
+## Code
+
+[`code/`](code/) holds the harvest, extraction, structure resolution, licence handling and validation code used to build IRexp. See [`code/README.md`](code/README.md) for install, run order and tests.
+
+```bash
+cd code
+pip install -r requirements.txt
+python -m pytest tests -q
+```
 
 ## Licence
 

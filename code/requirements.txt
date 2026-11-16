@@ -1,0 +1,14 @@
+# Core (harvest, extraction, licence join, validation)
+PyYAML>=6.0
+pypdf>=4.0
+
+# Structure resolution (IUPAC name -> SMILES -> InChIKey); degrades gracefully if absent
+rdkit>=2023.3
+selfies>=2.1
+py2opsin>=1.0          # needs a Java runtime on PATH
+
+# Optional: publisher-page adapters (not used for the IRexp release)
+# scrapling[fetchers]>=0.4.8
+
+# Tests
+pytest>=7
