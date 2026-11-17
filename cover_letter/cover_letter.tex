@@ -29,16 +29,21 @@ Dear Editor,\\
 
 
 %----------------------------------------------------------------------------------------
-We submit our manuscript entitled ``\emph{IRexp: A database of experimental infrared band lists from open literature}'' for consideration as a Data Descriptor in \emph{Scientific Data}.
-IRexp is a redistributable collection of experimental infrared band lists (cm$^{-1}$ peak positions) mined from open chemistry literature.
-The full construction corpus comprises $n=239{,}735$ records from PMC Open Access main text and supporting information and a Chemotion deposit; 101,624 are structure-linked, each with an evidence tier.
-For Scientific Data redistribution, the public dataset is the commercial CC-BY/CC0 pool ($n=163{,}931$), published on Hugging Face Datasets (\texttt{ilkhamfy/IRexp}).
-Zenodo archives this release under \href{https://doi.org/10.5281/zenodo.24117617}{\texttt{10.5281/\linebreak[0]zenodo.24117617}}.
+We submit our manuscript entitled ``\emph{IRexp: A database of experimental infrared band lists from open-access literature}'' for consideration as a Data Descriptor in \emph{Scientific Data}.
+IRexp is a collection of experimental infrared band lists (cm$^{-1}$ peak positions) mined from PMC Open Access full text and supporting information and from a Chemotion repository deposit.
+Of 239{,}735 harvested records, 230{,}946 are deposited, from 19{,}859 PMC accessions and the Chemotion deposit.
+In total, 96{,}973 records are linked to a resolved structure, and 50{,}682 of these also carry author-reported $^{1}$H and $^{13}$C NMR.
+The dataset of record is the CC-BY file (190{,}049 records), and every record keeps its source identifier and licence.
 
-Technical validation includes automated transcription and recall-proxy checks, stratified automated consistency audits, full-corpus quarantine, a stratified expert human band-list audit, and a 150-record human audit of release v0.2 (structures correct for 68 of 70 formula-verified records; band lists complete and correct for 145 of 150).
-IRexp stores numeric band lists with PMC accessions / Chemotion deposit DOIs and stamped licence pools---not absorbance traces---and is intended for multimodal training, retrieval, and spectroscopic workflows that need structured, attributable experimental peak lists.\\
+The data are available on Hugging Face (\href{https://huggingface.co/datasets/ilkhamfy/IRexp}{\texttt{ilkhamfy/IRexp}}) and Zenodo (\href{https://doi.org/10.5281/zenodo.24117617}{\texttt{10.5281/\linebreak[0]zenodo.24117617}}).
+The code is in the \texttt{code/} folder of \href{https://github.com/IlkhamFY/IRexp}{\texttt{github.com/\linebreak[0]IlkhamFY/IRexp}} and archived on Zenodo (\href{https://doi.org/10.5281/zenodo.24295113}{\texttt{10.5281/\linebreak[0]zenodo.24295113}}).
 
-All authors confirm that this manuscript has not been previously published and is not under consideration elsewhere. A preprint of an earlier version is available on ChemRxiv (\href{https://doi.org/10.26434/chemrxiv.15009750/v1}{\texttt{10.26434/\linebreak[0]chemrxiv.15009750/v1}}). The authors have approved the submitted version and agree to \emph{Scientific Data}'s submission policies.
+For technical validation, two stratified samples were checked by hand against their source documents.
+In 161 main-text records, the source was found for 160, and bands were exact for 143 and an acceptable subset for 13.
+In 150 supporting-information records, band lists were complete and correct for 145, and structures were correct for 90 of 100.
+Automated checks found 2{,}131 of 2{,}133 sampled bands in the source text, and formula-NMR checks flag 299 of the 96{,}973 structure-linked records.
+
+All authors confirm that this manuscript has not been previously published and is not under consideration elsewhere. A preprint is available on ChemRxiv (\href{https://doi.org/10.26434/chemrxiv.15009750/v2}{\texttt{10.26434/\linebreak[0]chemrxiv.15009750/v2}}). The authors have approved the submitted version and agree to \emph{Scientific Data}'s submission policies.
 
 \vspace{0.5cm}
 

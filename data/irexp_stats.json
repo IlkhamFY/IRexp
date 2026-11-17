@@ -44,5 +44,5 @@
     "public_dor_commercial": 88519,
     "hub_revision": "4312254c279300f881ad12671476e877027ed3da"
   },
-  "note": "IRexp experimental IR (PMC-OA mixed CC terms + Chemotion CC-BY-SA-4.0). Per-record license/license_pool via scripts/join_pmc_licences.py (Europe PMC) + Crossref/EPMC empty-licence recovery (2026-08-27). licence_pool_commercial 88545 is the research-corpus stamp. The public Hub dataset of record (revision 4312254c279300f881ad12671476e877027ed3da) is 88519 after the >=3 band filter was reapplied. Zenodo 10.5281/zenodo.23023528 archives this Hub revision (88519; concept 10.5281/zenodo.22822284). Version DOI 10.5281/zenodo.22822285 archived the earlier 88545 snapshot. ND release is deferred. See docs/LICENCE_REMEDIATION.md."
+  "note": "IRexp experimental IR (PMC-OA mixed CC terms + Chemotion CC-BY-SA-4.0). Per-record license/license_pool via scripts/join_pmc_licences.py (Europe PMC) + Crossref/EPMC empty-licence recovery (2026-08-27). licence_pool_commercial 88545 is the research-corpus stamp. The public Hub dataset of record (revision 4312254c279300f881ad12671476e877027ed3da) is 88519 after the >=3 band filter was reapplied. Zenodo 10.5281/zenodo.23023528 archives this Hub revision (88519; concept 10.5281/zenodo.22822284). Version DOI 10.5281/zenodo.22822285 archived the earlier 88545 snapshot. ND release is deferred."
 }
