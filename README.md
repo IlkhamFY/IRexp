@@ -37,7 +37,7 @@ df = pd.read_json(path, lines=True)
 
 - Hugging Face: [ilkhamfy/IRexp](https://huggingface.co/datasets/ilkhamfy/IRexp)
 - Zenodo archive: [10.5281/zenodo.24117617](https://doi.org/10.5281/zenodo.24117617) (concept: [10.5281/zenodo.22822284](https://doi.org/10.5281/zenodo.22822284))
-- Code: [`code/`](code/) in this repository (archive: [10.5281/zenodo.23022899](https://doi.org/10.5281/zenodo.23022899))
+- Code: [`code/`](code/) in this repository (archive: [10.5281/zenodo.24295113](https://doi.org/10.5281/zenodo.24295113))
 
 ## Code
 

@@ -43,6 +43,6 @@ through source_doi or pmcid.
 
 Code
 ----
-Harvest and pipeline code: https://github.com/IlkhamFY/spectro-agent
+Harvest and pipeline code: https://github.com/IlkhamFY/IRexp/tree/main/code (https://doi.org/10.5281/zenodo.24295113)
 (MIT License). A deposit integrity script is at scripts/release_check.py.
 Manuscript and figures: https://github.com/IlkhamFY/IRexp

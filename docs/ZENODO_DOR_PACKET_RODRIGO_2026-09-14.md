@@ -27,7 +27,7 @@ Do **not** invent filenames — if the Hub UI export is awkward, download the re
 
 - **License metadata:** Creative Commons as stamped per record in the commercial pool (**CC-BY-4.0** and **CC0**); deposit-level note: “mixed CC-BY/CC0 commercial pool; see per-record `license` / `license_pool` fields.”  
 - **Suggested title:** `IRexp: experimental infrared band lists from open literature (commercial redistributable pool)`  
-- **Version / related:** link HF revision above; GitHub manuscript https://github.com/IlkhamFY/IRexp ; harvest code https://github.com/IlkhamFY/spectro-agent @ `3af6f5af244cbec0c8f763973fedd5d93af3de20`
+- **Version / related:** link HF revision above; GitHub manuscript https://github.com/IlkhamFY/IRexp ; harvest code https://github.com/IlkhamFY/IRexp/tree/main/code (https://doi.org/10.5281/zenodo.24295113)
 
 ## 4. What NOT to include
 
@@ -56,7 +56,7 @@ First data-only version DOI: https://doi.org/10.5281/zenodo.22822285 (pre-clean 
 - [ ] Upload HF `8db58466…` commercial snapshot (+ README/LICENSE note)  
 - [ ] Set creators + title as above  
 - [ ] Set access open; license note CC-BY/CC0 commercial pool  
-- [ ] Related identifiers: HF URL + GitHub IRexp + spectro-agent commit  
+- [ ] Related identifiers: HF URL + GitHub IRexp + code DOI 10.5281/zenodo.24295113  
 - [ ] Publish → copy DOI to Ilkham  
 - [ ] Do **not** upload NC/empty pools or leaderboard files  
 

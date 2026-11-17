@@ -36,7 +36,7 @@ Do **not** upload IRSpectra-Bench predictions, leaderboards, or model-result tab
 - **Title:** `IRexp: experimental infrared band lists from open literature (data release)`
 - **Creators:** Ilkham Yabbarov (https://orcid.org/0009-0004-9393-9822); Rodrigo A. Vargas-Hernández (https://orcid.org/0000-0002-5559-6521)
 - **Description (published on `10.5281/zenodo.23023528`):** Redistributable experimental IR **band lists** (cm⁻¹), not absorbance traces. This version archives Hugging Face `ilkhamfy/IRexp` revision `4312254` (commercial n=88,519). An earlier version DOI (`10.5281/zenodo.22822285`) archived the pre-clean snapshot (n=88,545). ShareAlike and non-commercial companions are separate. Companion ICLR/IRSpectra-Bench results are **out of scope**.
-- **Related identifiers:** GitHub paper/manifests `IlkhamFY/IRexp`; code `IlkhamFY/spectro-agent`; HF `ilkhamfy/IRexp`; forthcoming Sci Data Data Descriptor; companion research manuscript (cross-cite, no results).
+- **Related identifiers:** GitHub paper/manifests `IlkhamFY/IRexp`; code `IlkhamFY/IRexp` `code/` (DOI 10.5281/zenodo.24295113); HF `ilkhamfy/IRexp`; forthcoming Sci Data Data Descriptor; companion research manuscript (cross-cite, no results).
 
 ## After mint
 

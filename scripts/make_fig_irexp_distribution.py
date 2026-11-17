@@ -1,6 +1,6 @@
 ﻿#!/usr/bin/env python3
 """Fig 3 — composition + band-count histogram + validation.
-Uses serialized histogram/audit arrays under data/ (from spectro-agent irexp.jsonl.gz).
+Uses serialized histogram/audit arrays under data/ (from the harvest output irexp.jsonl.gz).
 Panel e: unique-InChIKey chem composition (data/chem_composition.json).
 Design: DejaVu Sans, ink #111111, values bold in right columns, PDF42 + PNG 600dpi.
 """
@@ -231,7 +231,7 @@ def main() -> None:
         "Modality linkage",
     )
 
-    # d ΓÇö real band-count HISTOGRAM with median line (from serialized spectro-agent counts)
+    # d ΓÇö real band-count HISTOGRAM with median line (from serialized harvest counts)
     # Same heading coordinates as e/f phantoms so d/e/f letters and titles align.
     ax_d = fig.add_subplot(gs[1, 0])
     _panel(ax_d, "d", x=-0.06, y=1.34)

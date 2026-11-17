@@ -26,7 +26,7 @@ Internal tracking for pre-submit editorial / M6 cleanups. Postcard root stays cl
 |---|---|---|
 | Cite HF revision after F1 commercial publish | **Superseded (v0.24)** | Pin Hub revision `8db58466e3ddfd2fbe09bd47fdd5eb4cfc3e1975` in Access + Data Availability (was `2fb44992…`). |
 | Sci Data dataset of record = commercial 88,545 | **Superseded** | v0.24 Hub file was 88,545. Live Hub DoR is 88,519 (rev `4312254`), archived at 10.5281/zenodo.23023528. 88,545 remains the research-corpus commercial stamp; version DOI 10.5281/zenodo.22822285 is that earlier snapshot. |
-| F1 thousands-separator note | **Done** | Note spectro-agent F1 fix + band reparse; commercial pool size unchanged vs pre-F1 stamp. |
+| F1 thousands-separator note | **Done** | Note F1 parser fix (now in `code/`) + band reparse; commercial pool size unchanged vs pre-F1 stamp. |
 | Full multi-licence vs commercial DoR | **Done** | Keep paper-wide 121,233 methodology headlines. Live Sci Data redistribution is the 88,519 Hub file (rev `4312254`). 88,545 is the research-corpus commercial stamp and the earlier Zenodo snapshot. |
 | Zenodo DOI | **Minted later (data-only)** | v0.16 left the archival DOI unminted. First data-only version DOI was https://doi.org/10.5281/zenodo.22822285 (pre-clean snapshot). Current version DOI is https://doi.org/10.5281/zenodo.23023528. No software DOI is claimed. |
 | Headline counts 121,233 | **Untouched** | No paper-wide rebuild of full-corpus headlines in v0.16. |
@@ -44,7 +44,7 @@ Internal tracking for pre-submit editorial / M6 cleanups. Postcard root stays cl
 | End-matter order | **Done** | Usage Notes → Code Availability → Data Availability. |
 | F2/F3 fields + rates | **Done** | Data Records table + TV; Hub stats 18651 / 3154 / 21075. |
 | F1 defined once | **Done** | PMC6268696 thousands-separator example in Methods. |
-| spectro-agent F1 commit | **Done** | `35808ea` / snapshot `3af6f5a` (2026-09-11). |
+| F1 parser commit | **Done** | 2026-09-11; released in `code/` (10.5281/zenodo.24295113). |
 
 ## Done in release v0.24 (DAS pin after Hub B1+B3)
 
@@ -59,14 +59,14 @@ Internal tracking for pre-submit editorial / M6 cleanups. Postcard root stays cl
 
 | Item | Status | Notes |
 |---|---|---|
-| **F1 code** | **Done** (spectro-agent + Hub commercial DoR) | Thousands-separator fix applied; bands reparsed; commercial Hub revision cited in v0.16. |
+| **F1 code** | **Done** (`code/` + Hub commercial DoR) | Thousands-separator fix applied; bands reparsed; commercial Hub revision cited in v0.16. |
 | **Data rebuild (full multi-licence headlines)** | **Pending** | Commercial DoR published on Hub; do **not** change paper-wide 121,233 headlines until a consistent full vs commercial rebuild lands. |
 | Band-window QC gate vs prose | **Aligned (v0.37)** | Prose restored to **350–4000** to match locked Fig.~2 H (Cleaning rules) and frozen QC `out_of_range_outside_350_4000=0`. Do not redesign Fig.~2. |
 | Zenodo data-only DOI mint | **Done** | Current commercial-pool deposit: https://doi.org/10.5281/zenodo.23023528. Earlier version https://doi.org/10.5281/zenodo.22822285 is the pre-clean snapshot. See `ZENODO_DATA_ONLY_CHECKLIST.md`. |
 | ORCID confirmation (authors) | **Done** | Ilkham Yabbarov https://orcid.org/0009-0004-9393-9822; Rudra Sondhi https://orcid.org/0009-0003-3034-7347; Rodrigo A. Vargas-Hernández https://orcid.org/0000-0002-5559-6521. In `scientific_data.tex`. |
 | Expert human structure spot-check ($n\geq100$) | **Deferred** | Optional TV strengthen vs NMRexp. |
 | Human extraction-recall mark-up | **Deferred** | Optional. |
-| Software / release tag + software DOI | **Open** | Pin spectro-agent snapshot when archival deposit minted. |
+| Software / release tag + software DOI | **Done** | `code/` archived at 10.5281/zenodo.24295113. |
 
 ## Out of scope for this Descriptor (companion paper)
 
@@ -75,5 +75,5 @@ Internal tracking for pre-submit editorial / M6 cleanups. Postcard root stays cl
 ## Contacts
 
 - Manuscript / manifests: https://github.com/IlkhamFY/IRexp
-- Code: https://github.com/IlkhamFY/spectro-agent
+- Code: https://github.com/IlkhamFY/IRexp/tree/main/code (https://doi.org/10.5281/zenodo.24295113)
 - Dataset (commercial DoR): https://huggingface.co/datasets/ilkhamfy/IRexp (rev `8db58466e3ddfd2fbe09bd47fdd5eb4cfc3e1975`)

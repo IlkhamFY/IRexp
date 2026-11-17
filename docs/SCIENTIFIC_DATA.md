@@ -23,7 +23,7 @@ IRexp is a collection of experimental infrared band lists (cm⁻¹ peak position
 
 <!-- Abstract word count: 137 (whitespace tokens after expanding math). Cap ≤170. Filenames are in Data Records, not here. -->
 
-Dataset: Hugging Face `ilkhamfy/IRexp` (commercial DoR only). Paper/manifests: `IlkhamFY/IRexp`. Code: `IlkhamFY/spectro-agent`. Archival DOI: https://doi.org/10.5281/zenodo.23023528. ShareAlike, NC*, and ND remain corpus pools and are not in that Hub upload (Data Records).
+Dataset: Hugging Face `ilkhamfy/IRexp` (commercial DoR only). Paper/manifests: `IlkhamFY/IRexp`. Code: `IlkhamFY/IRexp` `code/` (10.5281/zenodo.24295113). Archival DOI: https://doi.org/10.5281/zenodo.23023528. ShareAlike, NC*, and ND remain corpus pools and are not in that Hub upload (Data Records).
 
 ## Background & Summary
 
@@ -184,7 +184,7 @@ Median bands: **9** (PMC), **39** (Chemotion). All **1,360,866** released IR ban
 
 - **Hugging Face (public dataset of record):** https://huggingface.co/datasets/ilkhamfy/IRexp, revision `4312254c279300f881ad12671476e877027ed3da` — `irexp_commercial.jsonl.gz` (88,519; CC-BY-4.0 packaging), `irexp_resolved_commercial.jsonl.gz` (29,255), `train_no_bench_commercial.jsonl.gz` (29,109). The research-corpus commercial stamp is 88,545. Zenodo https://doi.org/10.5281/zenodo.23023528 archives this Hub revision. An earlier version DOI (https://doi.org/10.5281/zenodo.22822285) archived the pre-clean snapshot. See `LICENCE_REMEDIATION.md`.
 - **Manuscript + manifests:** https://github.com/IlkhamFY/IRexp
-- **Harvest / pipeline code:** https://github.com/IlkhamFY/spectro-agent
+- **Harvest / pipeline code:** https://github.com/IlkhamFY/IRexp/tree/main/code (https://doi.org/10.5281/zenodo.24295113)
 - **Archival deposit:** https://doi.org/10.5281/zenodo.23023528 (data-only; this Hub revision, commercial *n* = 88,519). Concept DOI: https://doi.org/10.5281/zenodo.22822284.
 
 ## Technical Validation
@@ -251,7 +251,7 @@ IRexp numeric extracts are available at:
 
 - Hugging Face Datasets (bulk JSONL): https://huggingface.co/datasets/ilkhamfy/IRexp, revision `4312254c279300f881ad12671476e877027ed3da` (commercial dataset of record, 88,519)  
 - Manuscript + manifests: https://github.com/IlkhamFY/IRexp (no bulk JSONL under `data/`)  
-- Harvest / pipeline code: https://github.com/IlkhamFY/spectro-agent  
+- Harvest / pipeline code: https://github.com/IlkhamFY/IRexp/tree/main/code (https://doi.org/10.5281/zenodo.24295113)  
 - Zenodo archival deposit of this Hub revision (88,519): https://doi.org/10.5281/zenodo.23023528 (`10.5281/zenodo.23023528`). An earlier version DOI (https://doi.org/10.5281/zenodo.22822285) archived the pre-clean commercial snapshot (88,545).
 
 Licensing summary (honest):
@@ -264,7 +264,7 @@ Licensing summary (honest):
 
 ## Code Availability
 
-Manuscript and manifests: https://github.com/IlkhamFY/IRexp. Harvesting, extraction, licence-pool splitting, and validation scripts: https://github.com/IlkhamFY/spectro-agent (MIT License). A release tag (`irexp-scidata` placeholder) will be pinned at Zenodo deposit; until then `main` @ `6c18914` (2026-08-31) is the public script snapshot.
+Manuscript and manifests: https://github.com/IlkhamFY/IRexp. Harvesting, extraction, licence-pool splitting, and validation code: https://github.com/IlkhamFY/IRexp/tree/main/code (MIT License), archived at https://doi.org/10.5281/zenodo.24295113.
 
 ## Author contributions
 

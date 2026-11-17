@@ -9,7 +9,7 @@ Full redistributable dumps are not stored in this manuscript repository.
 | This manuscript, manifests, and figures | https://github.com/IlkhamFY/IRexp |
 | Dataset (JSONL files under `data/`) | https://huggingface.co/datasets/ilkhamfy/IRexp |
 | Archive | https://doi.org/10.5281/zenodo.24117617 (concept: https://doi.org/10.5281/zenodo.22822284) |
-| Harvest and pipeline code | https://github.com/IlkhamFY/spectro-agent |
+| Harvest and pipeline code | https://github.com/IlkhamFY/IRexp/tree/main/code (https://doi.org/10.5281/zenodo.24295113) |
 
 ## Deposit
 

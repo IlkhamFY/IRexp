@@ -29,7 +29,7 @@ IRexp is a redistributable collection of experimental infrared band lists (cm⁻
 
 - **Dataset of record:** commercial CC-BY/CC0 pool n=88,519 on Hugging Face `ilkhamfy/IRexp` (revision `4312254c279300f881ad12671476e877027ed3da`). Zenodo https://doi.org/10.5281/zenodo.23023528 archives this Hub revision. An earlier version DOI (https://doi.org/10.5281/zenodo.22822285) archived the pre-clean snapshot (n=88,545).
 - **Full construction corpus:** n=121,233 (methodology reference; not the Sci Data commercial redistribution artefact)  
-- **Code:** https://github.com/IlkhamFY/spectro-agent (MIT)  
+- **Code:** https://github.com/IlkhamFY/IRexp/tree/main/code (MIT; archived at https://doi.org/10.5281/zenodo.24295113)  
 - **Manuscript + manifests + figures:** https://github.com/IlkhamFY/IRexp — **keep public until after real submit** (Access § still cites it; do not hide GH now)
 
 ### DOI verification (v0.49)
@@ -73,7 +73,7 @@ Also see: `docs/HUMAN_SUBMISSION_CHECKLIST.md`, `docs/ZENODO_DATA_ONLY_CHECKLIST
 | Abstract | (paste from TeX abstract above) |
 | Keywords | infrared spectroscopy, band lists, peak lists, PMC Open Access, Chemotion, FAIR data, licence pools, data descriptor |
 | Funding | NSERC Discovery Grant No. RGPIN-2024-06594 and NSERC 596133-2025 (CREATE for Accelerated Discovery, AccelD), Acceleration Consortium |
-| Data availability | HF `ilkhamfy/IRexp` revision `4312254` (commercial DoR n=88,519); Zenodo https://doi.org/10.5281/zenodo.23023528 (this Hub revision); full corpus n=121,233 described in manuscript; code `IlkhamFY/spectro-agent`; manuscript repo `IlkhamFY/IRexp` |
+| Data availability | HF `ilkhamfy/IRexp` revision `4312254` (commercial DoR n=88,519); Zenodo https://doi.org/10.5281/zenodo.23023528 (this Hub revision); full corpus n=121,233 described in manuscript; code `IlkhamFY/IRexp` `code/` (10.5281/zenodo.24295113); manuscript repo `IlkhamFY/IRexp` |
 | Upload files | Manuscript PDF (from Overleaf); optional SI if any; do **not** upload bulk JSONL |
 | Cover letter | Not required by ChemRxiv typically — keep Sci Data cover for journal portal |
 | License | Follow ChemRxiv default CC-BY (confirm at upload) |
@@ -94,7 +94,7 @@ Also see: `docs/HUMAN_SUBMISSION_CHECKLIST.md`, `docs/ZENODO_DATA_ONLY_CHECKLIST
 | Abstract | (from TeX) |
 | Funding | NSERC Discovery Grant No. RGPIN-2024-06594 and NSERC #596133-2025 (CREATE AccelD / Acceleration Consortium) |
 | Data DOI | https://doi.org/10.5281/zenodo.23023528 (concept 10.5281/zenodo.22822284) |
-| Code | https://github.com/IlkhamFY/spectro-agent |
+| Code | https://github.com/IlkhamFY/IRexp/tree/main/code (https://doi.org/10.5281/zenodo.24295113) |
 | Manuscript repo | https://github.com/IlkhamFY/IRexp (**public at submit time**) |
 | HF dataset | https://huggingface.co/datasets/ilkhamfy/IRexp |
 | **Suggested reviewers** | **ask Rodrigo** — no suggested-reviewer list found in repo files |
@@ -115,7 +115,7 @@ Also see: `docs/HUMAN_SUBMISSION_CHECKLIST.md`, `docs/ZENODO_DATA_ONLY_CHECKLIST
 1. Complete ChemRxiv upload **and** Scientific Data eJP submission (confirmation emails / manuscript IDs in hand).  
 2. **Then** optionally: make `IlkhamFY/IRexp` private, or comment Access / Data Availability GH manuscript URLs in a follow-up revision — **not before**.  
 3. Do **not** hide HF dataset or Zenodo record.  
-4. spectro-agent code repo stays public (MIT).
+4. Code stays public in `code/` of this repository (MIT).
 
 ---
 
