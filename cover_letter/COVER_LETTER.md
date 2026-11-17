@@ -15,7 +15,7 @@ We submit our manuscript entitled *IRexp: A database of experimental infrared ba
 IRexp is a redistributable collection of experimental infrared band lists (cm⁻¹ peak positions) mined from open chemistry literature.
 The full construction corpus comprises *n* = 239,735 records from PMC Open Access main text and supporting information and a Chemotion deposit; 101,624 are structure-linked, each with an evidence tier.
 For Scientific Data redistribution, the dataset of record is the commercial CC-BY/CC0 pool (*n* = 163,931), published on Hugging Face Datasets (ilkhamfy/IRexp), release v0.2, revision 9ee1aa9b2f462cef8cf18489e45a516a4b716193.
-Zenodo archives the commercial files of this release (*n* = 163,931) under DOI [10.5281/zenodo.23463965](https://doi.org/10.5281/zenodo.23463965).
+Zenodo archives this release under DOI [10.5281/zenodo.24117617](https://doi.org/10.5281/zenodo.24117617).
 
 Technical validation includes automated transcription and recall-proxy checks, stratified automated consistency audits, full-corpus quarantine, and a stratified expert human band-list audit on the commercial Hugging Face dataset of record.
 IRexp stores numeric band lists with PMC accessions / Chemotion deposit DOIs and stamped licence pools—not absorbance traces—and is intended for multimodal training, retrieval, and spectroscopic workflows that need structured, attributable experimental peak lists.
